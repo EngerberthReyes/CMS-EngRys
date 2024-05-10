@@ -13,7 +13,7 @@ const Index = () => {
       <section className={`${stylesLogin.contenedor_general} w-50`}></section>
       <form className={stylesLogin.contenedor_form}>
         <h1 className={stylesLogin.titulo_form}>Iniciar Sesión</h1>
-        <label className={stylesLogin.label}>Algao</label>
+        <label className={stylesLogin.label}>Algo</label>
         <input className={`${stylesLogin.input_texto} rounded-2`} type="text" />
         <label className={stylesLogin.label}>Algo 2</label>
         <section className={stylesLogin.contenedor_input_password}>
