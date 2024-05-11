@@ -12,13 +12,13 @@ const RecuperarContraseña = () => {
   return (
     <>
       <head>
-        <title>Registro de Cuenta</title>
+        <title>Recuperar Contraseña</title>
         <link rel="icon" href="/eye-solid.svg" />
       </head>
       <body>
       <section className={stylesLogin.contenedor_general}></section>
       <form className={stylesLogin.contenedor_form}>
-        <h1 className={stylesLogin.titulo_form}>Registrar Algo</h1>
+        <h1 className={stylesLogin.titulo_form}>Recuperar Algo</h1>
         <label className={stylesLogin.label}>Algo</label>
         <input className={`${stylesLogin.input_texto} rounded-2`} type="text" />
         <label className={stylesLogin.label}>Algo 2</label>
