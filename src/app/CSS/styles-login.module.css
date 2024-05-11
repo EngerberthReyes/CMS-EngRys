@@ -25,11 +25,25 @@
   gap: 0.5rem;
 }
 
+.cotenedor_passoword_perdida {
+  width: 92%;
+  height: 32%;
+  position: relative;
+  display: flex;
+  justify-content: flex-end;
+  margin: 2% 0 1% 0;
+  overflow: hidden;
+}
+
+.link_password {
+  position: absolute;
+}
+
 .titulo_form {
-    color: #ffffff;
-    margin: 5% 0;
-    align-self: flex-start;
-    margin-left: 7.5%;
+  color: #ffffff;
+  margin: 5% 0;
+  align-self: flex-start;
+  margin-left: 7.5%;
 }
 
 .label {
@@ -47,12 +61,12 @@
 }
 
 .contenedor_input_password {
-    position: relative;
-    width: 100%;
+  position: relative;
+  width: 100%;
 }
 
 .label:last-of-type {
-    margin-top: 5%;
+  margin-top: 5%;
 }
 
 .input_texto:last-of-type {
@@ -60,11 +74,11 @@
 }
 
 .icono_password {
-    position: absolute;
-    top: 28.5%;
-    right: 10%;
-    margin: 0;
-    cursor: pointer;
+  position: absolute;
+  top: 20.5%;
+  right: 10%;
+  margin: 0;
+  cursor: pointer;
 }
 
 .boton {
@@ -72,5 +86,5 @@
   width: 85%;
   height: 11%;
   margin: 5% 0;
-  color: #ffffff
+  color: #ffffff;
 }
