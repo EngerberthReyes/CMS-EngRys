@@ -31,7 +31,7 @@
   position: relative;
   display: flex;
   justify-content: flex-end;
-  margin: 2% 0 1% 0;
+  margin: 1rem 0 1rem 0;
   overflow: hidden;
 }
 
@@ -75,7 +75,7 @@
 
 .icono_password {
   position: absolute;
-  top: 20.5%;
+  top: 16%;
   right: 10%;
   margin: 0;
   cursor: pointer;
