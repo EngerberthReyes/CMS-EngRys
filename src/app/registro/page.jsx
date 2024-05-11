@@ -12,7 +12,7 @@ const Registro = () => {
   return (
     <>
       <head>
-        <title>Registro de Cuenta</title>
+        <title>Registrar Cuenta</title>
         <link rel="icon" href="/eye-solid.svg" />
       </head>
       <body>
