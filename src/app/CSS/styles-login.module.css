@@ -26,17 +26,14 @@
 }
 
 .cotenedor_passoword_perdida {
-  width: 92%;
-  height: 35%;
+  width: 85%;
+  height: 50%;
   position: relative;
   display: flex;
-  justify-content: flex-end;
-  margin: 1rem 0 1rem 0;
+  justify-content: center;
+  column-gap: 20%;
+  margin: 1rem 0 0 3.2rem;
   overflow: hidden;
-}
-
-.link_password {
-  position: absolute;
 }
 
 .titulo_form {
