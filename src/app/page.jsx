@@ -21,7 +21,7 @@ const Index = () => {
         <input className={`${stylesLogin.input_texto} rounded-2`} type="text" />
         <Image className={stylesLogin.icono_password} onClick={mostrarPassword} width={20} height={20} src={`/eye-solid.svg`} />
         <section className={stylesLogin.cotenedor_passoword_perdida}>
-        <Link className={stylesLogin.link_password} href="algo.html">Ha Olvidado su Contraseña?</Link>
+        <Link className={stylesLogin.link_password} href="algo.html">¿Ha Olvidado Su Contraseña?</Link>
         </section>
         </section>
         <button className={`${stylesLogin.boton} rounded-2`}>Boton Aca</button>
