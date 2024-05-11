@@ -35,11 +35,11 @@ const Index = () => {
           />
           <section className={stylesLogin.cotenedor_passoword_perdida}>
             <Link className={stylesLogin.link_password} href="/registro">
-              ¿Ha Olvidado Su Contraseña?
+              ¿Has olvidado tu contraseña?
             </Link>
           </section>
         </section>
-        <button className={`${stylesLogin.boton} rounded-2`}>Boton Aca</button>
+        <button className={`${stylesLogin.boton} rounded-2`}>Iniciar Sesión</button>
       </form>
     </>
   );
