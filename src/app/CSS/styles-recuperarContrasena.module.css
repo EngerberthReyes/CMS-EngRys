@@ -1,0 +1,92 @@
+.contenedor_general {
+    background: url(/_next/static/media/Anarcocapitalismo.fc0e37be.png) center center;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    top: 0;
+    left: 0;
+    width: 50%;
+    height: 62%;
+    margin: 0 -8% 0 0;
+    z-index: -1;
+    border-radius: 1rem;
+  }
+  
+  .contenedor_form {
+    width: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 62%;
+    color: #28a745;
+    text-align: center;
+    flex-direction: column;
+    background-color: #c20505;
+    border-radius: 0rem 1rem 1rem 0rem;
+    gap: 0.5rem;
+  }
+  
+  .cotenedor_passoword_perdida {
+    width: 92%;
+    height: 35%;
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    margin: 1rem 0 1rem 0;
+    overflow: hidden;
+  }
+  
+  .link_password {
+    position: absolute;
+  }
+  
+  .titulo_form {
+    color: #ffffff;
+    margin: 5% 0;
+    align-self: flex-start;
+    margin-left: 7.5%;
+  }
+  
+  .label {
+    color: #ffffff;
+    align-self: flex-start;
+    margin-left: 8%;
+  }
+  
+  .input_texto {
+    width: 85%;
+    height: 2.5rem;
+    margin-bottom: 5%;
+    outline: none;
+    padding: 0.9rem;
+  }
+  
+  .contenedor_input_password {
+    position: relative;
+    width: 100%;
+  }
+  
+  .label:last-of-type {
+    margin-top: 5%;
+  }
+  
+  .input_texto:last-of-type {
+    margin-bottom: 0;
+  }
+  
+  .icono_password {
+    position: absolute;
+    top: 16%;
+    right: 10%;
+    margin: 0;
+    cursor: pointer;
+  }
+  
+  .boton {
+    background: #ff0000;
+    width: 85%;
+    height: 11%;
+    margin: 4% 0 5% 0;
+    color: #ffffff;
+  }
+  
