@@ -36,11 +36,11 @@ const RecuperarContraseña = () => {
           />
           <section className={stylesLogin.cotenedor_passoword_perdida}>
             <Link className={stylesLogin.link_password} href="/">
-              ¿Ya dispone de una cuenta?
+              Volver a Iniciar Sesión
             </Link>
           </section>
         </section>
-        <button className={`${stylesLogin.boton} rounded-2`}>Registrarse</button>
+        <button className={`${stylesLogin.boton} rounded-2`}>Continuar</button>
       </form>
       </body>
     </>
