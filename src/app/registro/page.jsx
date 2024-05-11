@@ -12,7 +12,7 @@ const Index = () => {
   return (
     <>
       <head>
-        <title>Hola</title>
+        <title>Registro de Cuenta</title>
         <link rel="icon" href="/eye-solid.svg" />
       </head>
       <section className={`${stylesLogin.contenedor_general} w-50`}></section>
