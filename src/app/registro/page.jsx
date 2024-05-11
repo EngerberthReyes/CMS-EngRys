@@ -13,7 +13,7 @@ const Index = () => {
     <>
       <section className={`${stylesLogin.contenedor_general} w-50`}></section>
       <form className={stylesLogin.contenedor_form}>
-        <h1 className={stylesLogin.titulo_form}>Iniciar Sesión</h1>
+        <h1 className={stylesLogin.titulo_form}>Registrar Algo</h1>
         <label className={stylesLogin.label}>Algo</label>
         <input className={`${stylesLogin.input_texto} rounded-2`} type="text" />
         <label className={stylesLogin.label}>Algo 2</label>
@@ -21,7 +21,7 @@ const Index = () => {
         <input className={`${stylesLogin.input_texto} rounded-2`} type="text" />
         <Image className={stylesLogin.icono_password} onClick={mostrarPassword} width={20} height={20} src={`/eye-solid.svg`} />
         <section className={stylesLogin.cotenedor_passoword_perdida}>
-        <Link className={stylesLogin.link_password} href="algo.html">¿Ha Olvidado Su Contraseña?</Link>
+        <Link className={stylesLogin.link_password} href="/">¿Ha Olvidado Su Contraseña?</Link>
         </section>
         </section>
         <button className={`${stylesLogin.boton} rounded-2`}>Boton Aca</button>
