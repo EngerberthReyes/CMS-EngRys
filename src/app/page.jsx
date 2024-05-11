@@ -41,7 +41,7 @@ const Index = () => {
             <Link className={stylesLogin.link_password} href="/registro">
                 ¿Aún No Tienes Cuenta?
               </Link>
-              <Link className={stylesLogin.link_password} href="/registro">
+              <Link className={stylesLogin.link_password} href="/recuperar_contrasena">
                 ¿Has olvidado tu contraseña?
               </Link>
             </section>

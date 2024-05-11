@@ -14,7 +14,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 62%;
+  height: 71%;
   color: #28a745;
   text-align: center;
   flex-direction: column;
@@ -32,7 +32,7 @@
   display: flex;
   justify-content: center;
   column-gap: 20%;
-  margin: 1rem 0 0 3.2rem;
+  margin: 2rem 0 0 3.2rem;
   overflow: hidden;
 }
 
