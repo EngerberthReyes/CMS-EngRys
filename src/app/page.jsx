@@ -37,14 +37,17 @@ const Index = () => {
               height={20}
               src={`/eye-solid.svg`}
             />
-            <section className={stylesLogin.cotenedor_passoword_perdida}>
+          </section>
+          <section className={stylesLogin.cotenedor_passoword_perdida}>
             <Link className={stylesLogin.link_password} href="/registro">
-                ¿Aún No Tienes Cuenta?
-              </Link>
-              <Link className={stylesLogin.link_password} href="/recuperar_contrasena">
-                ¿Has olvidado tu contraseña?
-              </Link>
-            </section>
+              ¿Aún No Tienes Cuenta?
+            </Link>
+            <Link
+              className={stylesLogin.link_password}
+              href="/recuperar_contrasena"
+            >
+              ¿Has olvidado tu contraseña?
+            </Link>
           </section>
           <button className={`${stylesLogin.boton} rounded-2`}>
             Iniciar Sesión

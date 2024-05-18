@@ -27,12 +27,11 @@
 
 .cotenedor_passoword_perdida {
   width: 85%;
-  height: 50%;
   position: relative;
   display: flex;
   justify-content: center;
   column-gap: 20%;
-  margin: 2rem 0 0 3.2rem;
+  margin: 4% 0 0 0;
   overflow: hidden;
 }
 
@@ -72,7 +71,7 @@
 
 .icono_password {
   position: absolute;
-  top: 11%;
+  top: 29%;
   right: 10%;
   margin: 0;
   cursor: pointer;
