@@ -84,3 +84,31 @@
   margin: 4% 0 5% 0;
   color: #ffffff;
 }
+
+@media (width < 890px) {
+  .contenedor_general {
+    width: 100% !important;
+    background: url("../../../public/epigrafe73.png") center center;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+
+  .contenedor_form {
+    width: 50%;
+    position: absolute;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 71%;
+    color: #28a745;
+    text-align: center;
+    flex-direction: column;
+    background-color: #c20505;
+    margin-left: 2.5rem;
+    margin-right: 2.5rem;
+    border-radius: 1rem;
+    gap: 0.5rem;
+    z-index: 1000;
+  }
+}
