@@ -6,7 +6,7 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata = {
   title: "Iniciar Sesión",
-  description: "Hecho en Next.Js",
+  description: "Hecho en Next.Js 14",
 };
 
 export default function RootLayout({ children }) {
