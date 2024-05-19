@@ -41,6 +41,7 @@
 .seccionElementos {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  place-items: center;
   gap: 1rem;
 }
 
