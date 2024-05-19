@@ -13,12 +13,12 @@ const Registro = () => {
     <>
       <head>
         <title>Registrar Cuenta</title>
-        <link rel="icon" href="/eye-solid.svg" />
+        <link rel="icon" href="/favicon.ico" />
       </head>
-      <body>
+      <body className={stylesRegistro.body}>
         <section className={`${stylesRegistro.contenedor_general} w-50`}></section>
         <form className={stylesRegistro.contenedor_form}>
-          <h1 className={stylesRegistro.titulo_form}>Registrar Algo</h1>
+          <h1 className={stylesRegistro.titulo_form}>Registrar Cuenta</h1>
           <label className={stylesRegistro.label}>Algo</label>
           <input
             className={`${stylesRegistro.input_texto} rounded-2`}
@@ -37,11 +37,14 @@ const Registro = () => {
               height={20}
               src={`/eye-solid.svg`}
             />
-            <section className={stylesRegistro.cotenedor_passoword_perdida}>
-              <Link className={stylesRegistro.link_password} href="/">
-                ¿Ya dispone de una cuenta?
-              </Link>
-            </section>
+          </section>
+          <section className={stylesRegistro.contenedor_passoword_perdida}>
+            <Link
+              className={stylesRegistro.link_password}
+              href="/"
+            >
+              ¿Ya tienes una cuenta?
+            </Link>
           </section>
           <button className={`${stylesRegistro.boton} rounded-2`}>
             Registrarse

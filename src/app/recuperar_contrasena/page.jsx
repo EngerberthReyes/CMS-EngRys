@@ -13,12 +13,12 @@ const RecuperarContraseña = () => {
     <>
       <head>
         <title>Recuperar Contraseña</title>
-        <link rel="icon" href="/eye-solid.svg" />
+        <link rel="icon" href="/favicon.ico" />
       </head>
-      <body>
-        <section className={stylesContrasena.contenedor_general}></section>
+      <body className={stylesContrasena.body}>
+        <section className={`${stylesContrasena.contenedor_general} w-50`}></section>
         <form className={stylesContrasena.contenedor_form}>
-          <h1 className={stylesContrasena.titulo_form}>Recuperar Algo</h1>
+          <h1 className={stylesContrasena.titulo_form}>Recuperar Contraseña</h1>
           <label className={stylesContrasena.label}>Algo</label>
           <input
             className={`${stylesContrasena.input_texto} rounded-2`}
@@ -37,11 +37,14 @@ const RecuperarContraseña = () => {
               height={20}
               src={`/eye-solid.svg`}
             />
-            <section className={stylesContrasena.cotenedor_passoword_perdida}>
-              <Link className={stylesContrasena.link_password} href="/">
-                Volver al Inicio Sesión
-              </Link>
-            </section>
+          </section>
+          <section className={stylesContrasena.contenedor_passoword_perdida}>
+            <Link
+              className={stylesContrasena.link_password}
+              href="/"
+            >
+              Volver a Inicio de Sesión
+            </Link>
           </section>
           <button className={`${stylesContrasena.boton} rounded-2`}>
             Continuar
