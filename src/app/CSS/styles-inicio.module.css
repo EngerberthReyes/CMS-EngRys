@@ -15,7 +15,14 @@
 .seccionPrincipal {
   background-color: #eeeeee;
   width: 66%;
-  margin: 0 0px 0px 2%;
+  margin: 0 0 0 2%;
+  border: 2px solid #0f0f0f;
+}
+
+.seccionSecundaria {
+  width: 34%;
+  margin: 0 2% 0 0;
+  background-color: #eeeeee;
   border: 2px solid #0f0f0f;
 }
 
