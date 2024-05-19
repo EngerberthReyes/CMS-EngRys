@@ -1,3 +1,14 @@
+#body {
+  background: url("../../../public/LunaLava.png") center center fixed;
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+  row-gap: 5%;
+}
+
 .header {
   background-color: #eeeeee;
   width: 100vw;
@@ -34,6 +45,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
+
   .contenedor_form {
     background-color: #0f0f0f;
     border: 2px solid #eeeeee;

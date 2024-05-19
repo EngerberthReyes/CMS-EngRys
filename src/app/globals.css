@@ -17,17 +17,6 @@
   }
 }
 
-body:before {
-  filter: blur(2px);
-  content: "";
-  position: absolute;
-  height: 100%; 
-  width: 100%;
-  background: url("../../public/Anarcocapitalismo.png") center center fixed;
-  background-size: cover;
-  z-index: -1;
-}
-
 html, body {
   color: rgb(var(--foreground-rgb));
   height: 100%;

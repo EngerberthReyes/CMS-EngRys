@@ -1,7 +1,12 @@
-.body {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+#body_modificable::before {
+  background: #eeeeee;
+  filter: blur(20px);
+  background-size: cover;
+  z-index: -1;
+  content: "";
+  position: absolute;
+  height: 100%; 
+  width: 100%;
 }
 
 .contenedor_general {
@@ -99,6 +104,12 @@
 }
 
 @media (prefers-color-scheme: dark) {
+
+  #body_modificable::before {
+    background: url("../../../public/LunaLava.png") center center fixed;
+}
+
+
   .contenedor_form {
     background-color: #0f0f0f;
     border: 2px solid #eeeeee;

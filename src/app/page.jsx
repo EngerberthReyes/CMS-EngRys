@@ -12,7 +12,7 @@ const Inicio = () => {
         <title>inicio - CMS</title>
         <link rel="icon" href="/favicon.ico" />
       </head>
-      <body style={{ justifyContent: "flex-start", alignItems: "flex-start", flexDirection: "column", rowGap: "5%"}}>
+      <body id={stylesInicio.body}>
         <header className={stylesInicio.header}>
           <h1>CMS</h1>
           <button className={`${stylesInicio.boton} rounded-2`}>

@@ -15,7 +15,7 @@ const Login = () => {
         <title>Iniciar Sesión</title>
         <link rel="icon" href="../favicon.ico" />
       </head>
-      <body className={stylesLogin.body}>
+      <body id={stylesLogin.body_modificable}>
         <section className={`${stylesLogin.contenedor_general} w-50`}></section>
         <form className={stylesLogin.contenedor_form}>
           <h1 className={stylesLogin.titulo_form}>Iniciar Sesión</h1>
