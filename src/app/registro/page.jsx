@@ -15,7 +15,7 @@ const Registro = () => {
         <title>Registrar Cuenta</title>
         <link rel="icon" href="/favicon.ico" />
       </head>
-      <body className={stylesRegistro.body}>
+      <body id={stylesRegistro.body}>
         <section className={`${stylesRegistro.contenedor_general} w-50`}></section>
         <form className={stylesRegistro.contenedor_form}>
           <h1 className={stylesRegistro.titulo_form}>Registrar Cuenta</h1>

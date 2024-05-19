@@ -15,7 +15,7 @@ const RecuperarContraseña = () => {
         <title>Recuperar Contraseña</title>
         <link rel="icon" href="/favicon.ico" />
       </head>
-      <body className={stylesContrasena.body}>
+      <body id={stylesContrasena.body}>
         <section className={`${stylesContrasena.contenedor_general} w-50`}></section>
         <form className={stylesContrasena.contenedor_form}>
           <h1 className={stylesContrasena.titulo_form}>Recuperar Contraseña</h1>
