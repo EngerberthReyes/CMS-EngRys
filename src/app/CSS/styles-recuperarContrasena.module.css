@@ -1,3 +1,9 @@
+.body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .contenedor_general {
   background: url("../../../public/Anarcocapitalismo.png") center center;
   background-position: center;
