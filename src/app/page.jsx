@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import stylesInicio from "./CSS/styles-inicio.module.css";
 
-const Login = () => {
+const Inicio = () => {
   const mostrarPassword = () => {
     alert("Le Diste Click a La Contraseña");
   };
@@ -58,4 +58,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Inicio;
