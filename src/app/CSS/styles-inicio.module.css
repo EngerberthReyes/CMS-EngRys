@@ -38,6 +38,12 @@
   border: 2px solid #0f0f0f;
 }
 
+.seccionElementos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+}
+
 .seccionSecundaria {
   width: 34%;
   margin: 0 2% 0 0;
@@ -53,7 +59,6 @@
 }
 
 @media (prefers-color-scheme: dark) {
-
   #body::before {
     background: url("../../../public/LunaLava.png") center center fixed;
     background-size: cover;
