@@ -41,7 +41,7 @@ const RecuperarContraseña = () => {
           <section className={stylesContrasena.contenedor_passoword_perdida}>
             <Link
               className={stylesContrasena.link_password}
-              href="/"
+              href="../iniciar_sesion"
             >
               Volver a Inicio de Sesión
             </Link>

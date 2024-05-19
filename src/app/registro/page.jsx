@@ -41,7 +41,7 @@ const Registro = () => {
           <section className={stylesRegistro.contenedor_passoword_perdida}>
             <Link
               className={stylesRegistro.link_password}
-              href="/"
+              href="../iniciar_sesion"
             >
               ¿Ya tienes una cuenta?
             </Link>

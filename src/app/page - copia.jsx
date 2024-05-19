@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import stylesLogin from "./CSS/styles-login.module.css";
 
-const Index = () => {
+const Login = () => {
   const mostrarPassword = () => {
     alert("Le Diste Click a La Contraseña");
   };
@@ -58,4 +58,4 @@ const Index = () => {
   );
 };
 
-export default Index;
+export default Login;
