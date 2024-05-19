@@ -12,7 +12,7 @@ const Login = () => {
   return (
     <>
       <head>
-        <title>Iniciar Sesión</title>
+        <title>inicio - CMS</title>
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body className={stylesLogin.body}>
