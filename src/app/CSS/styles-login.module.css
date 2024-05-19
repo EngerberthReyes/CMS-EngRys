@@ -15,17 +15,17 @@
   justify-content: center;
   align-items: center;
   height: 71%;
-  color: #28a745;
+  color: #000000;
   text-align: center;
   flex-direction: column;
-  background-color: #c20505;
+  background-color: #eeeeee;
   margin-left: 2.5rem;
   margin-right: 2.5rem;
   border-radius: 1rem;
   gap: 0.5rem;
 }
 
-.cotenedor_passoword_perdida {
+.contenedor_passoword_perdida {
   width: 85%;
   position: relative;
   display: flex;
@@ -35,15 +35,20 @@
   overflow: hidden;
 }
 
+.contenedor_passoword_perdida :is(a) {
+  color: #000000;
+  text-decoration: none;
+}
+
 .titulo_form {
-  color: #ffffff;
+  color: #000000;
   margin: 5% 0;
   align-self: flex-start;
   margin-left: 7.5%;
 }
 
 .label {
-  color: #ffffff;
+  color: #000000;
   align-self: flex-start;
   margin-left: 8%;
 }
@@ -54,6 +59,7 @@
   margin-bottom: 5%;
   outline: none;
   padding: 0.9rem;
+  border: 2px solid #000000;
 }
 
 .contenedor_input_password {
@@ -78,14 +84,38 @@
 }
 
 .boton {
-  background: #ff0000;
+  background: #2212b1;
   width: 85%;
   height: 11%;
   margin: 4% 0 5% 0;
   color: #ffffff;
 }
 
-@media (width < 890px) {
+@media (prefers-color-scheme: dark) {
+  .contenedor_form {
+    background-color: #0f0f0f;
+  }
+
+  .contenedor_passoword_perdida :is(a) {
+    color: #eeeeee;
+    text-decoration: none;
+  }
+
+  .titulo_form {
+    color: #eeeeee
+  }
+
+  .label {
+    color: #eeeeee;
+  }
+
+  .boton {
+    background: #eeeeee;
+    color: #0f0f0f;
+  }
+}
+
+@media (width < 890px), (height < 200px) {
   .contenedor_general {
     width: 100% !important;
     background: url("../../../public/epigrafe73.png") center center;
@@ -100,12 +130,14 @@
   }
 }
 
-@media (width < 800px) {
-  .cotenedor_passoword_perdida {
+@media (width < 800px), (height < 200px) {
+  .contenedor_passoword_perdida {
     flex-wrap: wrap;
     align-items: center;
     height: 20%;
     color: #28a745;
     gap: 0.5rem;
+    color: #000000;
+    text-decoration: none;
   }
 }

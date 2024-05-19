@@ -38,7 +38,7 @@ const Index = () => {
               src={`/eye-solid.svg`}
             />
           </section>
-          <section className={stylesLogin.cotenedor_passoword_perdida}>
+          <section className={stylesLogin.contenedor_passoword_perdida}>
             <Link className={stylesLogin.link_password} href="/registro">
               ¿Aún No Tienes Cuenta?
             </Link>
