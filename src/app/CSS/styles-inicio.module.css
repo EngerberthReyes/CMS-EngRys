@@ -4,11 +4,19 @@
   height: 12%;
 }
 
+.main {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 100vw;
+  column-gap: 4%;
+}
+
 .seccionPrincipal {
   background-color: #eeeeee;
-  width: 96vw;
-  margin: 0 2%;
-  border: 2px solid #0f0f0f
+  width: 66%;
+  margin: 0 0px 0px 2%;
+  border: 2px solid #0f0f0f;
 }
 
 .boton {
