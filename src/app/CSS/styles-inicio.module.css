@@ -20,7 +20,7 @@
 .header {
   background-color: #eeeeee;
   display: flex;
-  justify-content: space-evenly;
+  justify-content: space-around;
   align-items: center;
   width: 100vw;
   height: 12%;
@@ -39,7 +39,6 @@
     color: #eeeeee;
     border-color: #eeeeee;
   }
-
 }
 
 .main {
@@ -53,12 +52,12 @@
 .seccionPrincipal {
   background-color: #eeeeee;
   width: 66%;
-  margin: 0 0 0 2%;
-  border: 2px solid #0f0f0f;
+  margin: 0 2% 0 0;
+  border-radius: 4px;
 }
 
 .seccionGrid {
-  margin: 1%;
+  margin: 2%;
 }
 
 .seccionElementos {
@@ -68,9 +67,14 @@
   gap: 1rem;
 }
 
+.elemento {
+  border: 2px solid #eeeeee;
+  border-radius: 4px;
+}
+
 .seccionSecundaria {
   width: 34%;
-  margin: 0 2% 0 0;
+  margin: 0 0 0 2%;
   background-color: #eeeeee;
   border: 2px solid #0f0f0f;
 }
@@ -103,6 +107,15 @@
       color: #0f0f0f;
       border-color: #0f0f0f;
     }
+  }
+
+  .elemento {
+    border-color: #eeeeee;
+  }
+
+  .seccionPrincipal {
+    color: #eeeeee;
+    background-color: #0f0f0f;
   }
 
   .contenedor_form {
