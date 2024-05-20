@@ -79,6 +79,16 @@
   gap: 1rem;
 }
 
+.seccionAjustes {
+  margin: 2%;
+}
+
+.seccionFlex {
+  display: flex;
+  flex-direction: column;
+  row-gap: 1rem;
+}
+
 .elemento {
   border: 2px solid #eeeeee;
   border-radius: 4px;
@@ -88,8 +98,9 @@
   width: 34%;
   margin: 0 0 0 2%;
   background-color: #eeeeee;
-  border: 2px solid #0f0f0f;
+  color: #0f0f0f;
   height: 100%;
+  border-radius: 4px;
 }
 
 .boton {
@@ -129,6 +140,11 @@
   .seccionPrincipal {
     color: #eeeeee;
     background-color: #0f0f0f;
+  }
+
+  .seccionSecundaria {
+    background-color: #0f0f0f;
+    color: #eeeeee;
   }
 
   .contenedor_form {

@@ -26,9 +26,9 @@ const Inicio = () => {
         </header>
         <main className={stylesInicio.main}>
           <section className={stylesInicio.seccionSecundaria}>
-            <section>
+            <section className={stylesInicio.seccionAjustes}>
               <h1>Lateral</h1>
-              <section>
+              <section className={stylesInicio.seccionFlex}>
                 <section>Cajas2</section>
                 <section>Cajas2</section>
                 <section>Cajas2</section>
