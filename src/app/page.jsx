@@ -24,7 +24,7 @@ const Inicio = () => {
             <section>
               <h1>Aqui va algo</h1>
               <section className={stylesInicio.seccionElementos}>
-                <section><Image src={"/epigrafe73.png"} width={200} height={200}/></section>
+                <section><Image src={"/IMG/epigrafe73.png"} width={200} height={200}/></section>
                 <section>Cajas</section>
                 <section>Cajas</section>
                 <section>Cajas</section>
