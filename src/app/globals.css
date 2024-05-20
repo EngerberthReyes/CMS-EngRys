@@ -8,6 +8,11 @@
   --background-end-rgb: 255, 255, 255;
 }
 
+::selection {
+  background: #0f0f0f;
+  color: #eeeeee;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;
@@ -15,6 +20,12 @@
     --background-end-rgb: 0, 0, 0;
     --background-oscuro: #0f0f0f;
   }
+
+  ::selection {
+    background: #eeeeee;
+    color: #0f0f0f;
+  }
+
 }
 
 html, body {

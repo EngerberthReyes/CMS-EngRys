@@ -14,7 +14,7 @@ const Inicio = () => {
       </head>
       <body id={stylesInicio.body}>
         <header className={stylesInicio.header}>
-          <h1>CMS</h1>
+          <h1 className={stylesInicio.tituloHeader}>CMS</h1>
           <Link className={stylesInicio.enlace} href="/iniciar_sesion">
             Iniciar Sesión
           </Link>

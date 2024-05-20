@@ -26,6 +26,10 @@
   height: 12%;
 }
 
+.tituloHeader {
+  margin: 0;
+}
+
 .enlace {
   color: #0f0f0f;
   text-decoration: none;
