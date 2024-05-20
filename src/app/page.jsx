@@ -15,12 +15,17 @@ const Inicio = () => {
       <body id={stylesInicio.body}>
         <header className={stylesInicio.header}>
           <h1 className={stylesInicio.tituloHeader}>CMS</h1>
-          <Link className={stylesInicio.enlace} href="/iniciar_sesion">
-            Iniciar Sesión
-          </Link>
+          <section className={stylesInicio.seccionEnlace}>
+            <Link className={stylesInicio.enlace} href="/iniciar_sesion">
+              Iniciar Sesión
+            </Link>
+            <Link className={stylesInicio.enlace} href="/registro">
+              Registrarse
+            </Link>
+          </section>
         </header>
         <main className={stylesInicio.main}>
-        <section className={stylesInicio.seccionSecundaria}>
+          <section className={stylesInicio.seccionSecundaria}>
             <section>
               <h1>Lateral</h1>
               <section>
