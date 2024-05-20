@@ -96,11 +96,18 @@
 }
 
 .boton {
-  background: #2212b1;
+  background-color: #2212b1;
   width: 85%;
   height: 11%;
   margin: 4% 0 5% 0;
   color: #ffffff;
+  transition: background-color 500ms ease, color 500ms ease;
+
+  &:hover {
+    background-color: #1277b1;
+    color: #eeeeee;
+  }
+
 }
 
 @media (prefers-color-scheme: dark) {
@@ -130,6 +137,12 @@
   .boton {
     background: #eeeeee;
     color: #0f0f0f;
+
+    &:hover {
+      background-color: #494949;
+      color: #eeeeee;
+    }
+  
   }
 }
 
