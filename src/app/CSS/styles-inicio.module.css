@@ -19,8 +19,27 @@
 
 .header {
   background-color: #eeeeee;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
   width: 100vw;
   height: 12%;
+}
+
+.enlace {
+  color: #0f0f0f;
+  text-decoration: none;
+  border: 2px solid #0f0f0f;
+  border-radius: 5px;
+  padding: 0.5%;
+  transition: background-color 500ms ease, border-color 500ms ease;
+
+  &:hover {
+    background-color: #0f0f0f;
+    color: #eeeeee;
+    border-color: #eeeeee;
+  }
+
 }
 
 .main {
@@ -36,6 +55,10 @@
   width: 66%;
   margin: 0 0 0 2%;
   border: 2px solid #0f0f0f;
+}
+
+.seccionGrid {
+  margin: 1%;
 }
 
 .seccionElementos {
@@ -64,6 +87,22 @@
     background: url("../../../public/LunaLava.png") center center fixed;
     background-size: cover;
     background-repeat: no-repeat;
+  }
+
+  .header {
+    background-color: #0f0f0f;
+    color: #eeeeee;
+  }
+
+  .enlace {
+    color: #eeeeee;
+    border-color: #eeeeee;
+
+    &:hover {
+      background-color: #eeeeee;
+      color: #0f0f0f;
+      border-color: #0f0f0f;
+    }
   }
 
   .contenedor_form {

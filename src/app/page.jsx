@@ -15,16 +15,16 @@ const Inicio = () => {
       <body id={stylesInicio.body}>
         <header className={stylesInicio.header}>
           <h1>CMS</h1>
-          <button className={`${stylesInicio.boton} rounded-2`}>
+          <Link className={stylesInicio.enlace} href="/">
             Iniciar Sesión
-          </button>
+          </Link>
         </header>
         <main className={stylesInicio.main}>
           <section className={stylesInicio.seccionPrincipal}>
-            <section>
+            <section className={stylesInicio.seccionGrid}>
               <h1>Aqui va algo</h1>
               <section className={stylesInicio.seccionElementos}>
-                <section><Image src={"/IMG/epigrafe73.png"} width={200} height={200}/></section>
+                <section><Image src={"/IMG/epigrafe73.png"} width={200} height={200} alt={"Imagen"} /></section>
                 <section>Cajas</section>
                 <section>Cajas</section>
                 <section>Cajas</section>
