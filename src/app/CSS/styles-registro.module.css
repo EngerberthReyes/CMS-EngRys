@@ -55,10 +55,6 @@
   overflow: hidden;
 }
 
-.contenedor_input_password {
-  margin-bottom: 5%;
-}
-
 .contenedor_passoword_perdida :is(a) {
   color: #000000;
   text-decoration: none;
@@ -82,7 +78,7 @@
   height: 2.5rem;
   margin-bottom: 5%;
   outline: none;
-  padding: 0.9rem;
+  padding: 1.4rem 0.9rem;
   border: 2px solid #000000;
 }
 
@@ -91,16 +87,25 @@
   width: 100%;
 }
 
-.input_texto:last-of-type {
-  margin-bottom: 0;
+.input_fecha {
+  margin-bottom: 5%;
+}
+
+.input_ultimo {
+  margin: 0%;
 }
 
 .icono_password {
   position: absolute;
-  top: 29%;
+  top: 19%;
   right: 10%;
   margin: 0;
   cursor: pointer;
+}
+
+.icono_ultimo {
+  top: 30%;
+  width: 3%;
 }
 
 .boton {

@@ -46,6 +46,11 @@ const Registro = () => {
             className={`${stylesRegistro.input_texto} rounded-2`}
             type="text"
           />
+                    <label className={stylesRegistro.label}>Fecha de Nacimiento</label>
+          <input
+            className={`${stylesRegistro.input_texto} ${stylesRegistro.input_fecha} rounded-2`}
+            type="date"
+          />
           <label className={stylesRegistro.labelClave}>Contraseña</label>
           <section className={stylesRegistro.contenedor_input_password}>
             <input
@@ -63,22 +68,17 @@ const Registro = () => {
           <label className={stylesRegistro.labelClave}>Repetir Contraseña</label>
           <section className={stylesRegistro.contenedor_input_password}>
             <input
-              className={`${stylesRegistro.input_texto} rounded-2`}
+              className={`${stylesRegistro.input_texto} ${stylesRegistro.input_ultimo} rounded-2`}
               type="text"
             />
             <Image
-              className={stylesRegistro.icono_password}
+              className={`${stylesRegistro.icono_password} ${stylesRegistro.icono_ultimo}`}
               onClick={mostrarPassword}
               width={20}
               height={20}
               src={`/eye-solid.svg`}
             />
           </section>
-          <label className={stylesRegistro.label}>Fecha de Nacimiento</label>
-          <input
-            className={`${stylesRegistro.input_texto} rounded-2`}
-            type="text"
-          />
           <section className={stylesRegistro.contenedor_passoword_perdida}>
             <Link
               className={stylesRegistro.link_password}
