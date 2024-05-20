@@ -1,6 +1,7 @@
 #body::before {
   background: #eeeeee;
   filter: blur(6px);
+  position: fixed;
   background-size: cover;
   z-index: -1;
   content: "";
@@ -9,13 +10,19 @@
   width: 100%;
 }
 
+#body {
+  justify-content: flex-end;
+  align-items: flex-start;
+}
+
 .contenedor_general {
   background: url("../../../public/Anarcocapitalismo.png") center center;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  position: fixed;
   top: 0;
-  left: 0;
+  right: 53%;
   height: 100vh;
   z-index: 1000;
 }
@@ -25,15 +32,16 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 71%;
+  height: auto;
   color: #000000;
   text-align: center;
   flex-direction: column;
   background-color: #eeeeee;
-  margin-left: 2.5rem;
-  margin-right: 2.5rem;
+  margin-right: 1.5rem;
   border-radius: 1rem;
   gap: 0.5rem;
+  position: relative;
+  top: 2%;
   border: 2px solid #0f0f0f;
 }
 
@@ -45,6 +53,10 @@
   column-gap: 20%;
   margin: 4% 0 0 0;
   overflow: hidden;
+}
+
+.contenedor_input_password {
+  margin-bottom: 5%;
 }
 
 .contenedor_passoword_perdida :is(a) {
@@ -59,7 +71,7 @@
   margin-left: 7.5%;
 }
 
-.label {
+.label, .labelClave {
   color: #000000;
   align-self: flex-start;
   margin-left: 8%;
@@ -77,10 +89,6 @@
 .contenedor_input_password {
   position: relative;
   width: 100%;
-}
-
-.label:last-of-type {
-  margin-top: 5%;
 }
 
 .input_texto:last-of-type {
@@ -113,6 +121,7 @@
 @media (prefers-color-scheme: dark) {
 
   #body::before {
+    position: fixed;
     background: url("../../../public/LunaLava.png") center center fixed;
   }
 
@@ -131,6 +140,10 @@
   }
 
   .label {
+    color: #eeeeee;
+  }
+
+  .labelClave {
     color: #eeeeee;
   }
 
