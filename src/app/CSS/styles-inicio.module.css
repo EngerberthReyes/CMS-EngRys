@@ -1,7 +1,8 @@
 #body::before {
-  background: #eeeeee;
-  filter: blur(4px);
+  background: url("../../../public/LunaLava.png") center center fixed;
   background-size: cover;
+  background-repeat: no-repeat;
+  filter: blur(4px);
   z-index: -1;
   content: "";
   position: absolute;
