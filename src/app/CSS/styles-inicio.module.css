@@ -91,7 +91,7 @@
 }
 
 .elemento {
-  border: 2px solid #eeeeee;
+  border: 2px solid #0f0f0f;
   border-radius: 4px;
 }
 
@@ -102,13 +102,6 @@
   color: #0f0f0f;
   height: 100%;
   border-radius: 4px;
-}
-
-.boton {
-  background: #2212b1;
-  width: 10%;
-  height: 10%;
-  color: #ffffff;
 }
 
 @media (prefers-color-scheme: dark) {
