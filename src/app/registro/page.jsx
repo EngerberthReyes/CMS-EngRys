@@ -54,7 +54,7 @@ const Registro = () => {
 
   const [mostrarClave, setMostrarClave] = useState();
 
-  console.log(mostrarClave)
+  console.log(mostrarClave);
 
   const [mostrarSegundaClave, setMostrarSegundaClave] = useState();
 
@@ -65,7 +65,7 @@ const Registro = () => {
       return;
     }
 
-    setClaveActiva(false)
+    setClaveActiva(false);
 
     if (claveInput === clave) {
       setMostrarClave(claveInput);
@@ -129,14 +129,14 @@ const Registro = () => {
               type={mostrarClave ? "text" : "password"}
             />
             {temaActual === "oscuro" && mostrarClave && !claveActiva ? (
-                <Image
-                  className={stylesRegistro.icono_password}
-                  onClick={() => mostrarPassword("")}
-                  width={20}
-                  height={20}
-                  src={`/BlancoAbierto.svg`}
-                />
-              ) : null}
+              <Image
+                className={stylesRegistro.icono_password}
+                onClick={() => mostrarPassword("")}
+                width={20}
+                height={20}
+                src={`/BlancoAbierto.svg`}
+              />
+            ) : null}
             {temaActual === "oscuro" && clave && claveActiva ? (
               <Image
                 className={stylesRegistro.icono_password}
