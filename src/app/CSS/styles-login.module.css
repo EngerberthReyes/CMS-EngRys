@@ -1,6 +1,7 @@
 #body_modificable::before {
-  background: #eeeeee;
+  background: url("../../../public/LunaLava.png") center center fixed;
   filter: blur(6px);
+  position: fixed;
   background-size: cover;
   z-index: -1;
   content: "";
@@ -9,13 +10,19 @@
   width: 100%;
 }
 
+#body_modificable {
+  justify-content: flex-end;
+  align-items: center;
+}
+
 .contenedor_general {
   background: url("../../../public/Anarcocapitalismo.png") center center;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
+  position: fixed;
   top: 0;
-  left: 0;
+  right: 53%;
   height: 100vh;
   z-index: 1000;
 }
@@ -25,16 +32,27 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 71%;
+  height: auto;
   color: #000000;
   text-align: center;
   flex-direction: column;
   background-color: #eeeeee;
-  margin-left: 2.5rem;
-  margin-right: 2.5rem;
+  margin-right: 1.5rem;
   border-radius: 1rem;
   gap: 0.5rem;
   border: 2px solid #0f0f0f;
+}
+
+.seccionNacionalidad {
+  display: flex;
+  gap: 2%;
+  width: 85%;
+}
+
+.seleccionNacionalidad {
+  width: 15% !important;
+  height: 3.1rem !important;
+  padding: 0% 2% !important;
 }
 
 .contenedor_passoword_perdida {
@@ -43,7 +61,6 @@
   display: flex;
   justify-content: center;
   column-gap: 20%;
-  margin: 4% 0 0 0;
   overflow: hidden;
 }
 
@@ -59,7 +76,8 @@
   margin-left: 7.5%;
 }
 
-.label {
+.label,
+.labelClave {
   color: #000000;
   align-self: flex-start;
   margin-left: 8%;
@@ -70,8 +88,13 @@
   height: 2.5rem;
   margin-bottom: 5%;
   outline: none;
-  padding: 0.9rem;
+  padding: 1.4rem 0.9rem;
   border: 2px solid #000000;
+  transition: box-shadow 500ms ease;
+
+  &:focus {
+    box-shadow: 3px 0px 11px 0px #0f0f0f;
+  }
 }
 
 .contenedor_input_password {
@@ -79,32 +102,44 @@
   width: 100%;
 }
 
-.label:last-of-type {
-  margin-top: 5%;
+.input_fecha {
+  margin-bottom: 5%;
 }
 
-.input_texto:last-of-type {
-  margin-bottom: 0;
+.input_ultimo {
+  margin: 0%;
 }
 
 .icono_password {
   position: absolute;
-  top: 29%;
-  right: 10%;
+  top: 19%;
+  right: 10.1%;
   margin: 0;
   cursor: pointer;
 }
 
+.icono_ultimo {
+  top: 32%;
+  right: 10%;
+}
+
 .boton {
-  background: #2212b1;
+  background-color: #2212b1;
   width: 85%;
-  height: 11%;
+  height: 4rem;
   margin: 4% 0 5% 0;
   color: #ffffff;
+  transition: background-color 500ms ease, color 500ms ease;
+
+  &:hover {
+    background-color: #1277b1;
+    color: #eeeeee;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
-  #body_modificable::before {
+  #body::before {
+    position: fixed;
     background: url("../../../public/LunaLava.png") center center fixed;
   }
 
@@ -126,9 +161,29 @@
     color: #eeeeee;
   }
 
+  .input_texto {
+    color: #eeeeee;
+    background: #000000;
+    border-color: #eeeeee;
+
+    &:focus {
+      box-shadow: 3px 0px 11px 0px #b9b9b9;
+    }
+
+  }
+
+  .labelClave {
+    color: #eeeeee;
+  }
+
   .boton {
     background: #eeeeee;
     color: #0f0f0f;
+
+    &:hover {
+      background-color: #494949;
+      color: #eeeeee;
+    }
   }
 }
 
@@ -151,7 +206,6 @@
   .contenedor_passoword_perdida {
     flex-wrap: wrap;
     align-items: center;
-    height: 20%;
     color: #28a745;
     gap: 0.5rem;
     color: #000000;
