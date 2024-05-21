@@ -38,13 +38,15 @@ const Registro = () => {
           />
           <label className={stylesRegistro.label}>Nacionalidad</label>
           <section className={stylesRegistro.seccionNacionalidad}>
-          <select
-            className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} rounded-2`}
-          ></select>
-          <input
-            className={`${stylesRegistro.input_texto} rounded-2`}
-            type="text"
-          />
+            <select
+              className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} rounded-2`}
+            >
+              <option>V</option>
+            </select>
+            <input
+              className={`${stylesRegistro.input_texto} rounded-2`}
+              type="text"
+            />
           </section>
           <label className={stylesRegistro.label}>Correo Electrónico</label>
           <input
