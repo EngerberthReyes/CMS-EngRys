@@ -46,8 +46,7 @@ const Registro = () => {
             <select
               className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} rounded-2`}
             >
-              <option>Nacionalidad</option>
-              <option defaultValue>V</option>
+              <option>V</option>
             </select>
             <input
               className={`${stylesRegistro.input_texto} rounded-2`}
