@@ -10,6 +10,24 @@ const Registro = () => {
 
   const [segundaClave, setSegundaClave] = useState();
 
+  const [claveActiva, setClaveActiva] = useState(true);
+
+  const manejarCambioDeTema = (event) => {
+    const modoOscuro = event.matches;
+
+    document.body.classList.toggle("modo-oscuro", modoOscuro);
+    return modoOscuro ? "oscuro" : "claro";
+  };
+
+  const consultaModoOscuro = window.matchMedia("(prefers-color-scheme: dark)");
+  consultaModoOscuro.addEventListener("change", manejarCambioDeTema);
+
+  const temaActual = manejarCambioDeTema({
+    matches: consultaModoOscuro.matches,
+  });
+
+  console.log(temaActual);
+
   console.log(clave);
 
   console.log(segundaClave);
@@ -36,13 +54,18 @@ const Registro = () => {
 
   const [mostrarClave, setMostrarClave] = useState();
 
+  console.log(mostrarClave)
+
   const [mostrarSegundaClave, setMostrarSegundaClave] = useState();
 
   const mostrarPassword = (claveInput) => {
-    if (!claveInput) {
-      alert("Ingresa una clave");
+    if (claveInput === "") {
+      setClaveActiva(true);
+      setMostrarClave(false);
       return;
     }
+
+    setClaveActiva(false)
 
     if (claveInput === clave) {
       setMostrarClave(claveInput);
@@ -105,20 +128,45 @@ const Registro = () => {
               onChange={obtenerClave}
               type={mostrarClave ? "text" : "password"}
             />
-                                    <Image
-              className={`${stylesRegistro.icono_password}`}
-              onClick={() => mostrarPassword(segundaClave)}
-              width={20}
-              height={20}
-              src={`/eye-regular.svg`}
-            />
-            <Image
-              className={stylesRegistro.icono_password}
-              onClick={() => mostrarPassword(clave)}
-              width={20}
-              height={20}
-              src={`/eye-solid.svg`}
-            />
+            {temaActual === "oscuro" && mostrarClave && !claveActiva ? (
+                <Image
+                  className={stylesRegistro.icono_password}
+                  onClick={() => mostrarPassword("")}
+                  width={20}
+                  height={20}
+                  src={`/BlancoAbierto.svg`}
+                />
+              ) : null}
+            {temaActual === "oscuro" && clave && claveActiva ? (
+              <Image
+                className={stylesRegistro.icono_password}
+                onClick={() => mostrarPassword(clave)}
+                width={20}
+                height={20}
+                src={`/BlancoAbiertoOblicua.svg`}
+              />
+            ) : null}
+
+            {temaActual === "claro" &&
+              clave(
+                <Image
+                  className={stylesRegistro.icono_password}
+                  onClick={() => mostrarPassword("")}
+                  width={20}
+                  height={20}
+                  src={`/NegroAbiertoOblicua.svg`}
+                />
+              )}
+            {temaActual === "claro" &&
+              clave(
+                <Image
+                  className={stylesRegistro.icono_password}
+                  onClick={() => mostrarPassword("")}
+                  width={20}
+                  height={20}
+                  src={`/NegroAbiertoOblicua.svg`}
+                />
+              )}
           </section>
           <label className={stylesRegistro.labelClave}>
             Repetir Contraseña
@@ -129,20 +177,40 @@ const Registro = () => {
               onChange={obtenerSegundaClave}
               type={mostrarSegundaClave ? "text" : "password"}
             />
-                        <Image
-              className={`${stylesRegistro.icono_password} ${stylesRegistro.icono_ultimo}`}
-              onClick={() => mostrarPassword(segundaClave)}
-              width={20}
-              height={20}
-              src={`/eye-regular.svg`}
-            />
-            <Image
-              className={`${stylesRegistro.icono_password} ${stylesRegistro.icono_ultimo}`}
-              onClick={() => mostrarPassword(segundaClave)}
-              width={20}
-              height={20}
-              src={`/eye-solid.svg`}
-            />
+            {temaActual === "oscuro" && segundaClave ? (
+              <Image
+                className={`${stylesRegistro.icono_password} ${stylesRegistro.icono_ultimo}`}
+                onClick={() => mostrarPassword(segundaClave)}
+                width={20}
+                height={20}
+                src={`/eye-solid.svg`}
+              />
+            ) : (
+              <Image
+                className={`${stylesRegistro.icono_password} ${stylesRegistro.icono_ultimo}`}
+                onClick={() => mostrarPassword(segundaClave)}
+                width={20}
+                height={20}
+                src={`/BlancoAbierto.svg`}
+              />
+            )}
+            {temaActual === "claro" && segundaClave ? (
+              <Image
+                className={`${stylesRegistro.icono_password} ${stylesRegistro.icono_ultimo}`}
+                onClick={() => mostrarPassword("")}
+                width={20}
+                height={20}
+                src={`/NegroAbiertoOblicua.svg`}
+              />
+            ) : (
+              <Image
+                className={`${stylesRegistro.icono_password} ${stylesRegistro.icono_ultimo}`}
+                onClick={() => mostrarPassword("")}
+                width={20}
+                height={20}
+                src={`/NegroAbiertoOblicua.svg`}
+              />
+            )}
           </section>
           <section className={stylesRegistro.contenedor_passoword_perdida}>
             <Link
