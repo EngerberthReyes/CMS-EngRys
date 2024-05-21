@@ -65,7 +65,9 @@ const Registro = () => {
       setClaveActiva(true);
       setMostrarClave(false);
       return;
-    } else if (claveInput === "SegundaClave") {
+    }
+
+    if (claveInput === "SegundaClave") {
       setSegundaClaveActiva(true);
       setMostrarSegundaClave(false);
       return;
@@ -154,10 +156,7 @@ const Registro = () => {
                 src={`/BlancoAbiertoOblicua.svg`}
               />
             ) : null}
-                        {temaActual === "claro" &&
-            mostrarClave &&
-            !claveActiva &&
-            clave ? (
+            {temaActual === "claro" && mostrarClave && !claveActiva && clave ? (
               <Image
                 className={stylesRegistro.icono_password}
                 onClick={() => mostrarPassword("PrimeraClave")}
@@ -206,7 +205,7 @@ const Registro = () => {
                 src={`/BlancoAbiertoOblicua.svg`}
               />
             ) : null}
-                        {temaActual === "claro" &&
+            {temaActual === "claro" &&
             mostrarSegundaClave &&
             !segundaClaveActiva &&
             segundaClave ? (
