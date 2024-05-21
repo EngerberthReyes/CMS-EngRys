@@ -32,16 +32,12 @@ const Registro = () => {
             type="text"
           />
           <label className={stylesRegistro.label}>Cédula</label>
-          <input
-            className={`${stylesRegistro.input_texto} rounded-2`}
-            type="text"
-          />
-          <label className={stylesRegistro.label}>Nacionalidad</label>
           <section className={stylesRegistro.seccionNacionalidad}>
             <select
               className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} rounded-2`}
             >
-              <option>V</option>
+              <option>Nacionalidad</option>
+              <option selected>V</option>
             </select>
             <input
               className={`${stylesRegistro.input_texto} rounded-2`}
