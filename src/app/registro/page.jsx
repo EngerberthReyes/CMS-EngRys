@@ -28,12 +28,6 @@ const Registro = () => {
     matches: consultaModoOscuro.matches,
   });
 
-  console.log(temaActual);
-
-  console.log(clave);
-
-  console.log(segundaClave);
-
   const obtenerClave = (event) => {
     setClave(event.target.value);
   };
@@ -55,8 +49,6 @@ const Registro = () => {
   };
 
   const [mostrarClave, setMostrarClave] = useState();
-
-  console.log(mostrarClave);
 
   const [mostrarSegundaClave, setMostrarSegundaClave] = useState(false);
 
@@ -83,7 +75,6 @@ const Registro = () => {
     }
   };
 
-  console.log("Nuevo Mensaje");
   return (
     <>
       <head>
@@ -162,7 +153,7 @@ const Registro = () => {
                 onClick={() => mostrarPassword("PrimeraClave")}
                 width={20}
                 height={20}
-                src={`/BlancoAbierto.svg`}
+                src={`/OjoNegroAbierto.svg`}
               />
             ) : null}
             {temaActual === "claro" && clave && claveActiva ? (
@@ -171,7 +162,7 @@ const Registro = () => {
                 onClick={() => mostrarPassword(clave)}
                 width={20}
                 height={20}
-                src={`/BlancoAbiertoOblicua.svg`}
+                src={`/OjoNegroAbiertoOblicuo.svg`}
               />
             ) : null}
           </section>
@@ -214,7 +205,7 @@ const Registro = () => {
                 onClick={() => mostrarPassword("SegundaClave")}
                 width={20}
                 height={20}
-                src={`/BlancoAbierto.svg`}
+                src={`/OjoNegroAbierto.svg`}
               />
             ) : null}
             {temaActual === "claro" && segundaClave && segundaClaveActiva ? (
@@ -223,7 +214,7 @@ const Registro = () => {
                 onClick={() => mostrarPassword(segundaClave)}
                 width={20}
                 height={20}
-                src={`/BlancoAbiertoOblicua.svg`}
+                src={`/OjoNegroAbiertoOblicuo.svg`}
               />
             ) : null}
           </section>
