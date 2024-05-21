@@ -12,7 +12,6 @@
 
 #body_modificable {
   justify-content: flex-end;
-  align-items: center;
 }
 
 .contenedor_general {
@@ -59,7 +58,7 @@
   width: 85%;
   position: relative;
   display: flex;
-  justify-content: center;
+  justify-content: flex-end;
   column-gap: 20%;
   overflow: hidden;
 }
@@ -86,7 +85,7 @@
 .input_texto {
   width: 85%;
   height: 2.5rem;
-  margin-bottom: 5%;
+  margin-bottom: 4%;
   outline: none;
   padding: 1.4rem 0.9rem;
   border: 2px solid #000000;
@@ -169,7 +168,6 @@
     &:focus {
       box-shadow: 3px 0px 11px 0px #b9b9b9;
     }
-
   }
 
   .labelClave {
