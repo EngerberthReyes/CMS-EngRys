@@ -58,7 +58,7 @@ const Registro = () => {
 
   console.log(mostrarClave);
 
-  const [mostrarSegundaClave, setMostrarSegundaClave] = useState();
+  const [mostrarSegundaClave, setMostrarSegundaClave] = useState(false);
 
   const mostrarPassword = (claveInput) => {
     if (claveInput === "PrimeraClave") {
@@ -154,6 +154,27 @@ const Registro = () => {
                 src={`/BlancoAbiertoOblicua.svg`}
               />
             ) : null}
+                        {temaActual === "claro" &&
+            mostrarClave &&
+            !claveActiva &&
+            clave ? (
+              <Image
+                className={stylesRegistro.icono_password}
+                onClick={() => mostrarPassword("PrimeraClave")}
+                width={20}
+                height={20}
+                src={`/BlancoAbierto.svg`}
+              />
+            ) : null}
+            {temaActual === "claro" && clave && claveActiva ? (
+              <Image
+                className={stylesRegistro.icono_password}
+                onClick={() => mostrarPassword(clave)}
+                width={20}
+                height={20}
+                src={`/BlancoAbiertoOblicua.svg`}
+              />
+            ) : null}
           </section>
           <label className={stylesRegistro.labelClave}>
             Repetir Contraseña
@@ -177,6 +198,27 @@ const Registro = () => {
               />
             ) : null}
             {temaActual === "oscuro" && segundaClave && segundaClaveActiva ? (
+              <Image
+                className={`${stylesRegistro.icono_password} ${stylesRegistro.icono_ultimo}`}
+                onClick={() => mostrarPassword(segundaClave)}
+                width={20}
+                height={20}
+                src={`/BlancoAbiertoOblicua.svg`}
+              />
+            ) : null}
+                        {temaActual === "claro" &&
+            mostrarSegundaClave &&
+            !segundaClaveActiva &&
+            segundaClave ? (
+              <Image
+                className={`${stylesRegistro.icono_password} ${stylesRegistro.icono_ultimo}`}
+                onClick={() => mostrarPassword("SegundaClave")}
+                width={20}
+                height={20}
+                src={`/BlancoAbierto.svg`}
+              />
+            ) : null}
+            {temaActual === "claro" && segundaClave && segundaClaveActiva ? (
               <Image
                 className={`${stylesRegistro.icono_password} ${stylesRegistro.icono_ultimo}`}
                 onClick={() => mostrarPassword(segundaClave)}
