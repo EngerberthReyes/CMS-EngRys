@@ -47,7 +47,7 @@ const Registro = () => {
           <label className={stylesRegistro.label}>Correo Electrónico</label>
           <input
             className={`${stylesRegistro.input_texto} rounded-2`}
-            type="text"
+            type="email"
           />
           <label className={stylesRegistro.label}>Fecha de Nacimiento</label>
           <input
