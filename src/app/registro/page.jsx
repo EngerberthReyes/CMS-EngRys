@@ -6,17 +6,16 @@ import { useState, useEffect } from "react";
 import stylesRegistro from "../CSS/styles-registro.module.css";
 
 const Registro = () => {
-
   const clave = useState();
 
-  console.log(clave)
+  console.log(clave);
 
   const mostrarPassword = () => {
-    alert("Mostrando Contraseña")
-  }
+    alert("Mostrando Contraseña");
+  };
 
   const obtenerClave = (event) => {
-    console.log(event.target.value)
+    console.log(event.target.value);
   };
   console.log("Nuevo Mensaje");
   return (
@@ -50,7 +49,7 @@ const Registro = () => {
             </select>
             <input
               className={`${stylesRegistro.input_texto} rounded-2`}
-              type="text"
+              type="number"
             />
           </section>
           <label className={stylesRegistro.label}>Correo Electrónico</label>
