@@ -2,11 +2,21 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState, useEffect } from "react";
 import stylesRegistro from "../CSS/styles-registro.module.css";
 
 const Registro = () => {
+
+  const clave = useState();
+
+  console.log(clave)
+
   const mostrarPassword = () => {
-    alert("Le Diste Click a La Contraseña");
+    alert("Mostrando Contraseña")
+  }
+
+  const obtenerClave = (event) => {
+    console.log(event.target.value)
   };
   console.log("Nuevo Mensaje");
   return (
@@ -37,7 +47,7 @@ const Registro = () => {
               className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} rounded-2`}
             >
               <option>Nacionalidad</option>
-              <option selected>V</option>
+              <option defaultValue>V</option>
             </select>
             <input
               className={`${stylesRegistro.input_texto} rounded-2`}
@@ -58,7 +68,8 @@ const Registro = () => {
           <section className={stylesRegistro.contenedor_input_password}>
             <input
               className={`${stylesRegistro.input_texto} rounded-2`}
-              type="text"
+              onChange={obtenerClave}
+              type="password"
             />
             <Image
               className={stylesRegistro.icono_password}
@@ -74,7 +85,7 @@ const Registro = () => {
           <section className={stylesRegistro.contenedor_input_password}>
             <input
               className={`${stylesRegistro.input_texto} ${stylesRegistro.input_ultimo} rounded-2`}
-              type="text"
+              type="password"
             />
             <Image
               className={`${stylesRegistro.icono_password} ${stylesRegistro.icono_ultimo}`}
