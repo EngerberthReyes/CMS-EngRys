@@ -34,8 +34,18 @@ const Registro = () => {
     }
   };
 
-  const mostrarPassword = () => {
-    alert("Mostrando Contraseña");
+  const [mostrarClave, setMostrarClave] = useState();
+
+  const [mostrarSegundaClave, setMostrarSegundaClave] = useState();
+
+  const mostrarPassword = (claveInput) => {
+    if (!claveInput) {
+      alert("Nada");
+    } else if (claveInput === clave) {
+      setMostrarClave(claveInput);
+    } else if (claveInput === segundaClave) {
+      setMostrarSegundaClave(segundaClave);
+    }
   };
 
   console.log("Nuevo Mensaje");
@@ -88,11 +98,11 @@ const Registro = () => {
             <input
               className={`${stylesRegistro.input_texto} rounded-2`}
               onChange={obtenerClave}
-              type="password"
+              type={mostrarClave ? "text" : "password"}
             />
             <Image
               className={stylesRegistro.icono_password}
-              onClick={mostrarPassword}
+              onClick={() => mostrarPassword(clave)}
               width={20}
               height={20}
               src={`/eye-solid.svg`}
@@ -105,11 +115,11 @@ const Registro = () => {
             <input
               className={`${stylesRegistro.input_texto} ${stylesRegistro.input_ultimo} rounded-2`}
               onChange={obtenerSegundaClave}
-              type="password"
+              type={mostrarSegundaClave ? "text" : "password"}
             />
             <Image
               className={`${stylesRegistro.icono_password} ${stylesRegistro.icono_ultimo}`}
-              onClick={mostrarPassword}
+              onClick={() => mostrarPassword(segundaClave)}
               width={20}
               height={20}
               src={`/eye-solid.svg`}
