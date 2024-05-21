@@ -122,7 +122,7 @@
 .boton {
   background-color: #2212b1;
   width: 85%;
-  height: 8vh;
+  height: 4rem;
   margin: 4% 0 5% 0;
   color: #ffffff;
   transition: background-color 500ms ease, color 500ms ease;
