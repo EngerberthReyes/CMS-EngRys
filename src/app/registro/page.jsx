@@ -6,17 +6,38 @@ import { useState, useEffect } from "react";
 import stylesRegistro from "../CSS/styles-registro.module.css";
 
 const Registro = () => {
-  const clave = useState();
+  const [clave, setClave] = useState();
+
+  const [segundaClave, setSegundaClave] = useState();
 
   console.log(clave);
+
+  console.log(segundaClave);
+
+  const obtenerClave = (event) => {
+    setClave(event.target.value);
+  };
+
+  const obtenerSegundaClave = (event) => {
+    setSegundaClave(event.target.value);
+  };
+
+  const verificacion = () => {
+    if (clave && segundaClave) {
+      if (clave === segundaClave) {
+        alert("¡Es correcto!");
+      } else {
+        alert("Las claves no coinciden.");
+      }
+    } else {
+      alert("Por favor ingresa ambas claves.");
+    }
+  };
 
   const mostrarPassword = () => {
     alert("Mostrando Contraseña");
   };
 
-  const obtenerClave = (event) => {
-    console.log(event.target.value);
-  };
   console.log("Nuevo Mensaje");
   return (
     <>
@@ -49,7 +70,7 @@ const Registro = () => {
             </select>
             <input
               className={`${stylesRegistro.input_texto} rounded-2`}
-              type="number"
+              type="text"
             />
           </section>
           <label className={stylesRegistro.label}>Correo Electrónico</label>
@@ -83,6 +104,7 @@ const Registro = () => {
           <section className={stylesRegistro.contenedor_input_password}>
             <input
               className={`${stylesRegistro.input_texto} ${stylesRegistro.input_ultimo} rounded-2`}
+              onChange={obtenerSegundaClave}
               type="password"
             />
             <Image
@@ -101,7 +123,10 @@ const Registro = () => {
               ¿Ya tienes una cuenta?
             </Link>
           </section>
-          <button className={`${stylesRegistro.boton} rounded-2`}>
+          <button
+            className={`${stylesRegistro.boton} rounded-2`}
+            onClick={verificacion}
+          >
             Registrarse
           </button>
         </form>
