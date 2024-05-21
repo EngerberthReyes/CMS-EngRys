@@ -37,16 +37,21 @@ const Registro = () => {
             type="text"
           />
           <label className={stylesRegistro.label}>Nacionalidad</label>
+          <section className={stylesRegistro.seccionNacionalidad}>
+          <select
+            className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} rounded-2`}
+          ></select>
           <input
             className={`${stylesRegistro.input_texto} rounded-2`}
             type="text"
           />
+          </section>
           <label className={stylesRegistro.label}>Correo Electrónico</label>
           <input
             className={`${stylesRegistro.input_texto} rounded-2`}
             type="text"
           />
-                    <label className={stylesRegistro.label}>Fecha de Nacimiento</label>
+          <label className={stylesRegistro.label}>Fecha de Nacimiento</label>
           <input
             className={`${stylesRegistro.input_texto} ${stylesRegistro.input_fecha} rounded-2`}
             type="date"
@@ -65,7 +70,9 @@ const Registro = () => {
               src={`/eye-solid.svg`}
             />
           </section>
-          <label className={stylesRegistro.labelClave}>Repetir Contraseña</label>
+          <label className={stylesRegistro.labelClave}>
+            Repetir Contraseña
+          </label>
           <section className={stylesRegistro.contenedor_input_password}>
             <input
               className={`${stylesRegistro.input_texto} ${stylesRegistro.input_ultimo} rounded-2`}

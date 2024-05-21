@@ -43,6 +43,15 @@
   border: 2px solid #0f0f0f;
 }
 
+.seccionNacionalidad {
+  display: flex;
+  width: 85%;
+}
+
+.seleccionNacionalidad {
+  width: 15% !important;
+}
+
 .contenedor_passoword_perdida {
   width: 85%;
   position: relative;
