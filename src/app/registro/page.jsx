@@ -12,6 +12,8 @@ const Registro = () => {
 
   const [claveActiva, setClaveActiva] = useState(true);
 
+  const [segundaClaveActiva, setSegundaClaveActiva] = useState(true);
+
   const manejarCambioDeTema = (event) => {
     const modoOscuro = event.matches;
 
@@ -59,20 +61,23 @@ const Registro = () => {
   const [mostrarSegundaClave, setMostrarSegundaClave] = useState();
 
   const mostrarPassword = (claveInput) => {
-    if (claveInput === "") {
+    if (claveInput === "PrimeraClave") {
       setClaveActiva(true);
       setMostrarClave(false);
       return;
+    } else if (claveInput === "SegundaClave") {
+      setSegundaClaveActiva(true);
+      setMostrarSegundaClave(false);
+      return;
     }
-
-    setClaveActiva(false);
 
     if (claveInput === clave) {
       setMostrarClave(claveInput);
+      setClaveActiva(false);
     } else if (claveInput === segundaClave) {
       setMostrarSegundaClave(claveInput);
+      setSegundaClaveActiva(false);
     } else {
-      alert("Clave incorrecta");
     }
   };
 
@@ -128,10 +133,13 @@ const Registro = () => {
               onChange={obtenerClave}
               type={mostrarClave ? "text" : "password"}
             />
-            {temaActual === "oscuro" && mostrarClave && !claveActiva ? (
+            {temaActual === "oscuro" &&
+            mostrarClave &&
+            !claveActiva &&
+            clave ? (
               <Image
                 className={stylesRegistro.icono_password}
-                onClick={() => mostrarPassword("")}
+                onClick={() => mostrarPassword("PrimeraClave")}
                 width={20}
                 height={20}
                 src={`/BlancoAbierto.svg`}
@@ -146,27 +154,6 @@ const Registro = () => {
                 src={`/BlancoAbiertoOblicua.svg`}
               />
             ) : null}
-
-            {temaActual === "claro" &&
-              clave(
-                <Image
-                  className={stylesRegistro.icono_password}
-                  onClick={() => mostrarPassword("")}
-                  width={20}
-                  height={20}
-                  src={`/NegroAbiertoOblicua.svg`}
-                />
-              )}
-            {temaActual === "claro" &&
-              clave(
-                <Image
-                  className={stylesRegistro.icono_password}
-                  onClick={() => mostrarPassword("")}
-                  width={20}
-                  height={20}
-                  src={`/NegroAbiertoOblicua.svg`}
-                />
-              )}
           </section>
           <label className={stylesRegistro.labelClave}>
             Repetir Contraseña
@@ -177,40 +164,27 @@ const Registro = () => {
               onChange={obtenerSegundaClave}
               type={mostrarSegundaClave ? "text" : "password"}
             />
-            {temaActual === "oscuro" && segundaClave ? (
+            {temaActual === "oscuro" &&
+            mostrarSegundaClave &&
+            !segundaClaveActiva &&
+            segundaClave ? (
               <Image
                 className={`${stylesRegistro.icono_password} ${stylesRegistro.icono_ultimo}`}
-                onClick={() => mostrarPassword(segundaClave)}
-                width={20}
-                height={20}
-                src={`/eye-solid.svg`}
-              />
-            ) : (
-              <Image
-                className={`${stylesRegistro.icono_password} ${stylesRegistro.icono_ultimo}`}
-                onClick={() => mostrarPassword(segundaClave)}
+                onClick={() => mostrarPassword("SegundaClave")}
                 width={20}
                 height={20}
                 src={`/BlancoAbierto.svg`}
               />
-            )}
-            {temaActual === "claro" && segundaClave ? (
+            ) : null}
+            {temaActual === "oscuro" && segundaClave && segundaClaveActiva ? (
               <Image
                 className={`${stylesRegistro.icono_password} ${stylesRegistro.icono_ultimo}`}
-                onClick={() => mostrarPassword("")}
+                onClick={() => mostrarPassword(segundaClave)}
                 width={20}
                 height={20}
-                src={`/NegroAbiertoOblicua.svg`}
+                src={`/BlancoAbiertoOblicua.svg`}
               />
-            ) : (
-              <Image
-                className={`${stylesRegistro.icono_password} ${stylesRegistro.icono_ultimo}`}
-                onClick={() => mostrarPassword("")}
-                width={20}
-                height={20}
-                src={`/NegroAbiertoOblicua.svg`}
-              />
-            )}
+            ) : null}
           </section>
           <section className={stylesRegistro.contenedor_passoword_perdida}>
             <Link
