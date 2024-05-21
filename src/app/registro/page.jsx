@@ -40,11 +40,16 @@ const Registro = () => {
 
   const mostrarPassword = (claveInput) => {
     if (!claveInput) {
-      alert("Nada");
-    } else if (claveInput === clave) {
+      alert("Ingresa una clave");
+      return;
+    }
+
+    if (claveInput === clave) {
       setMostrarClave(claveInput);
     } else if (claveInput === segundaClave) {
-      setMostrarSegundaClave(segundaClave);
+      setMostrarSegundaClave(claveInput);
+    } else {
+      alert("Clave incorrecta");
     }
   };
 
@@ -100,6 +105,13 @@ const Registro = () => {
               onChange={obtenerClave}
               type={mostrarClave ? "text" : "password"}
             />
+                                    <Image
+              className={`${stylesRegistro.icono_password}`}
+              onClick={() => mostrarPassword(segundaClave)}
+              width={20}
+              height={20}
+              src={`/eye-regular.svg`}
+            />
             <Image
               className={stylesRegistro.icono_password}
               onClick={() => mostrarPassword(clave)}
@@ -116,6 +128,13 @@ const Registro = () => {
               className={`${stylesRegistro.input_texto} ${stylesRegistro.input_ultimo} rounded-2`}
               onChange={obtenerSegundaClave}
               type={mostrarSegundaClave ? "text" : "password"}
+            />
+                        <Image
+              className={`${stylesRegistro.icono_password} ${stylesRegistro.icono_ultimo}`}
+              onClick={() => mostrarPassword(segundaClave)}
+              width={20}
+              height={20}
+              src={`/eye-regular.svg`}
             />
             <Image
               className={`${stylesRegistro.icono_password} ${stylesRegistro.icono_ultimo}`}
