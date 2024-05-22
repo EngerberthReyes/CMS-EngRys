@@ -350,125 +350,137 @@ const Registro = () => {
           )}
           {pasoFormulario === 3 && (
             <>
-              <label className={stylesRegistro.label}>Correo Electrónico</label>
-              <input
-                className={`${stylesRegistro.input_texto} rounded-2 mb-4`}
-                type="email"
-              />
-              <label className={stylesRegistro.label}>
+              <label className={stylesRegistro.label}>País</label>
+              <select
+                className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-4`}
+              >
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+              </select>
+              <section className={stylesRegistro.seccionInformacionPais}>
+                <section>
+                <label className={`${stylesRegistro.label} m-0`}>
                 Fecha de Nacimiento
               </label>
-              <input
-                className={`${stylesRegistro.input_texto} ${stylesRegistro.input_fecha} rounded-2 mb-4`}
-                type="date"
-              />
-              <label className={stylesRegistro.labelClave}>Contraseña</label>
-              <section className={stylesRegistro.contenedor_input_password}>
-                <input
-                  className={`${stylesRegistro.input_texto} rounded-2 mb-4`}
-                  onChange={obtenerClave}
-                  type={mostrarClave ? "text" : "password"}
-                />
-                {temaActual === "oscuro" &&
-                mostrarClave &&
-                !claveActiva &&
-                clave ? (
-                  <Image
-                    className={stylesRegistro.icono_password}
-                    onClick={() => mostrarPassword("PrimeraClave")}
-                    width={20}
-                    height={20}
-                    src={`/BlancoAbierto.svg`}
-                  />
-                ) : null}
-                {temaActual === "oscuro" && clave && claveActiva ? (
-                  <Image
-                    className={stylesRegistro.icono_password}
-                    onClick={() => mostrarPassword(clave)}
-                    width={20}
-                    height={20}
-                    src={`/BlancoAbiertoOblicua.svg`}
-                  />
-                ) : null}
-                {temaActual === "claro" &&
-                mostrarClave &&
-                !claveActiva &&
-                clave ? (
-                  <Image
-                    className={stylesRegistro.icono_password}
-                    onClick={() => mostrarPassword("PrimeraClave")}
-                    width={20}
-                    height={20}
-                    src={`/OjoNegroAbierto.svg`}
-                  />
-                ) : null}
-                {temaActual === "claro" && clave && claveActiva ? (
-                  <Image
-                    className={stylesRegistro.icono_password}
-                    onClick={() => mostrarPassword(clave)}
-                    width={20}
-                    height={20}
-                    src={`/OjoNegroAbiertoOblicuo.svg`}
-                  />
-                ) : null}
+              <select
+                className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-4`}
+              >
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+              </select>
               </section>
-              <label className={stylesRegistro.labelClave}>
-                Repetir Contraseña
+              <section>
+              <label className={`${stylesRegistro.label} m-0`}>
+                Fecha de Nacimiento
               </label>
-              <section className={stylesRegistro.contenedor_input_password}>
-                <input
-                  className={`${stylesRegistro.input_texto} ${stylesRegistro.input_ultimo} rounded-2`}
-                  onChange={obtenerSegundaClave}
-                  type={mostrarSegundaClave ? "text" : "password"}
-                />
-                {temaActual === "oscuro" &&
-                mostrarSegundaClave &&
-                !segundaClaveActiva &&
-                segundaClave ? (
-                  <Image
-                    className={`${stylesRegistro.icono_password} ${stylesRegistro.icono_ultimo}`}
-                    onClick={() => mostrarPassword("SegundaClave")}
-                    width={20}
-                    height={20}
-                    src={`/BlancoAbierto.svg`}
-                  />
-                ) : null}
-                {temaActual === "oscuro" &&
-                segundaClave &&
-                segundaClaveActiva ? (
-                  <Image
-                    className={`${stylesRegistro.icono_password} ${stylesRegistro.icono_ultimo}`}
-                    onClick={() => mostrarPassword(segundaClave)}
-                    width={20}
-                    height={20}
-                    src={`/BlancoAbiertoOblicua.svg`}
-                  />
-                ) : null}
-                {temaActual === "claro" &&
-                mostrarSegundaClave &&
-                !segundaClaveActiva &&
-                segundaClave ? (
-                  <Image
-                    className={`${stylesRegistro.icono_password} ${stylesRegistro.icono_ultimo}`}
-                    onClick={() => mostrarPassword("SegundaClave")}
-                    width={20}
-                    height={20}
-                    src={`/OjoNegroAbierto.svg`}
-                  />
-                ) : null}
-                {temaActual === "claro" &&
-                segundaClave &&
-                segundaClaveActiva ? (
-                  <Image
-                    className={`${stylesRegistro.icono_password} ${stylesRegistro.icono_ultimo}`}
-                    onClick={() => mostrarPassword(segundaClave)}
-                    width={20}
-                    height={20}
-                    src={`/OjoNegroAbiertoOblicuo.svg`}
-                  />
-                ) : null}
+              <select
+                className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-4`}
+              >
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+              </select>
               </section>
-              <section className={stylesRegistro.contenedor_passoword_perdida}>
+              <section>
+              <label className={`${stylesRegistro.label} m-0`}>
+                Fecha de Nacimiento
+              </label>
+              <select
+                className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-4`}
+              >
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+              </select>
+              </section>
+              <section>
+              <label className={`${stylesRegistro.label} m-0`}>
+                Fecha de Nacimiento
+              </label>
+              <select
+                className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-4`}
+              >
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+              </select>
+              </section>
+              <section>
+              <label className={`${stylesRegistro.label} m-0`}>
+                Fecha de Nacimiento
+              </label>
+              <select
+                className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-4`}
+              >
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+                <option>Venezuela</option>
+              </select>
+              </section>
+              </section>
+              <label className={stylesRegistro.label}>
+                Dirección
+              </label>
+              <textarea
+                className={`${stylesRegistro.input_texto} rounded-2 mb-4`}
+              />
+              <section className={`${stylesRegistro.contenedor_passoword_perdida} rounded-2 mt-0`}>
                 <Link
                   className={stylesRegistro.link_password}
                   href="../iniciar_sesion"

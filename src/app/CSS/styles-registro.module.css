@@ -55,6 +55,18 @@
   padding: 0% 2% !important;
 }
 
+.seleccionPais {
+  width: 85% !important;
+}
+
+.seccionInformacionPais {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  align-self: normal;
+  width: 90%;
+  place-self: center;
+}
+
 .seleccionGenero {
   width: 100%;
   display: flex;
