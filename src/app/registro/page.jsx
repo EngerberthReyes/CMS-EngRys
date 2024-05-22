@@ -369,118 +369,118 @@ const Registro = () => {
               </select>
               <section className={stylesRegistro.seccionInformacionPais}>
                 <section>
-                <label className={`${stylesRegistro.label} m-0`}>
-                Estado
-              </label>
-              <select
-                className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-4`}
-              >
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-              </select>
+                  <label className={`${stylesRegistro.label} m-0`}>
+                    Estado
+                  </label>
+                  <select
+                    className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-4`}
+                  >
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                  </select>
+                </section>
+                <section>
+                  <label className={`${stylesRegistro.label} m-0`}>
+                    Ciudad
+                  </label>
+                  <select
+                    className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-4`}
+                  >
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                  </select>
+                </section>
+                <section>
+                  <label className={`${stylesRegistro.label} m-0`}>
+                    Municipio
+                  </label>
+                  <select
+                    className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-4`}
+                  >
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                  </select>
+                </section>
+                <section>
+                  <label className={`${stylesRegistro.label} m-0`}>
+                    Parroquia
+                  </label>
+                  <select
+                    className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-4`}
+                  >
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                  </select>
+                </section>
+                <section>
+                  <label className={`${stylesRegistro.label} m-0`}>
+                    Codigo Postal
+                  </label>
+                  <select
+                    className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-4`}
+                  >
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                    <option>Venezuela</option>
+                  </select>
+                </section>
               </section>
-              <section>
-              <label className={`${stylesRegistro.label} m-0`}>
-                Ciudad
-              </label>
-              <select
-                className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-4`}
-              >
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-              </select>
-              </section>
-              <section>
-              <label className={`${stylesRegistro.label} m-0`}>
-                Municipio
-              </label>
-              <select
-                className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-4`}
-              >
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-              </select>
-              </section>
-              <section>
-              <label className={`${stylesRegistro.label} m-0`}>
-                Parroquia
-              </label>
-              <select
-                className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-4`}
-              >
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-              </select>
-              </section>
-              <section>
-              <label className={`${stylesRegistro.label} m-0`}>
-                Codigo Postal
-              </label>
-              <select
-                className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-4`}
-              >
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-              </select>
-              </section>
-              </section>
-              <label className={stylesRegistro.label}>
-                Dirección
-              </label>
+              <label className={stylesRegistro.label}>Dirección</label>
               <textarea
                 className={`${stylesRegistro.input_texto} rounded-2 mb-4`}
               />
-              <section className={`${stylesRegistro.contenedor_passoword_perdida} rounded-2 mt-0`}>
+              <section
+                className={`${stylesRegistro.contenedor_passoword_perdida} rounded-2 mt-0`}
+              >
                 <Link
                   className={stylesRegistro.link_password}
                   href="../iniciar_sesion"
