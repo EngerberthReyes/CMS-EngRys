@@ -86,7 +86,7 @@ const Login = () => {
         <form className={stylesLogin.contenedor_form}>
           <h1 className={stylesLogin.titulo_form}>Iniciar Sesión</h1>
           <label className={stylesLogin.label}>
-            Nombre o Correo Electrónico
+            Correo Electrónico
           </label>
           <input
             className={`${stylesLogin.input_texto} rounded-2`}
