@@ -88,9 +88,9 @@
 }
 
 .textarea {
-  padding: 1rem;
-  height: auto;
-  resize: none;
+  padding: 1rem !important;
+  height: auto !important;
+  resize: none !important;
 }
 
 .seccionBoton {
