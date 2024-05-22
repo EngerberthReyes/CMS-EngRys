@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import stylesInicio from "./CSS/styles-inicio.module.css";
+import stylesInicio from "../CSS/styles-sobreNosotros.module.css";
 
 const Inicio = () => {
   console.log("Nuevo Mensaje");
