@@ -117,7 +117,6 @@
   color: #000000;
   margin: 5% 0;
   align-self: flex-start;
-  margin-left: 7.5%;
 }
 
 .label,
@@ -160,6 +159,14 @@
   right: 10.1%;
   margin: 0;
   cursor: pointer;
+}
+
+.seccionTitulo {
+  width: 85%;
+  color: #eeeeee;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .icono_ultimo {

@@ -21,6 +21,8 @@ const Registro = () => {
 
   const [pasoFormulario, setPasoFormulario] = useState(1);
 
+  const [numeroFormulario, setNumeroFormulario] = useState(1);
+
   const manejarCambioDeTema = (event) => {
     const modoOscuro = event.matches;
 
@@ -86,10 +88,12 @@ const Registro = () => {
     /*if (pasoFormulario === 1) {
       Aqui se pueden añadir los datos del primer formulario
     } */
+    setNumeroFormulario(numeroFormulario + 1)
     setPasoFormulario(pasoFormulario + 1);
   };
 
   const formularioPrevio = () => {
+    setNumeroFormulario(numeroFormulario - 1)
     setPasoFormulario(pasoFormulario - 1);
   };
 
@@ -120,7 +124,10 @@ const Registro = () => {
           className={stylesRegistro.contenedor_form}
           onSubmit={handleSubmit(onSubmit)}
         >
+          <section className={stylesRegistro.seccionTitulo}>
           <h1 className={stylesRegistro.titulo_form}>Registrar Cuenta</h1>
+          <h1>{numeroFormulario}</h1>
+          </section>
           {pasoFormulario === 1 && (
             <>
               <label className={stylesRegistro.label}>Nombres</label>
