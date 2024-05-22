@@ -151,7 +151,7 @@ const Registro = () => {
               >
                 <label
                   htmlFor="masculino"
-                  className={`${stylesRegistro.label} ${stylesRegistro.labelRadio}`}
+                  className={`${stylesRegistro.label} ${stylesRegistro.labelRadio} rounded-2`}
                 >
                   <section className={stylesRegistro.seccionRadio}>
                     Masculino
@@ -165,7 +165,7 @@ const Registro = () => {
                 </label>
                 <label
                   htmlFor="femenino"
-                  className={`${stylesRegistro.label} ${stylesRegistro.labelRadio}`}
+                  className={`${stylesRegistro.label} ${stylesRegistro.labelRadio} rounded-2`}
                 >
                   <section className={stylesRegistro.seccionRadio}>
                     Femenino
