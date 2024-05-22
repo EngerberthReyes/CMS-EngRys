@@ -88,12 +88,12 @@ const Registro = () => {
     /*if (pasoFormulario === 1) {
       Aqui se pueden añadir los datos del primer formulario
     } */
-    setNumeroFormulario(numeroFormulario + 1)
+    setNumeroFormulario(numeroFormulario + 1);
     setPasoFormulario(pasoFormulario + 1);
   };
 
   const formularioPrevio = () => {
-    setNumeroFormulario(numeroFormulario - 1)
+    setNumeroFormulario(numeroFormulario - 1);
     setPasoFormulario(pasoFormulario - 1);
   };
 
@@ -125,8 +125,8 @@ const Registro = () => {
           onSubmit={handleSubmit(onSubmit)}
         >
           <section className={stylesRegistro.seccionTitulo}>
-          <h1 className={stylesRegistro.titulo_form}>Registrar Cuenta</h1>
-          <h1>{numeroFormulario}</h1>
+            <h1 className={stylesRegistro.titulo_form}>Registrar Cuenta</h1>
+            <h1>{numeroFormulario}</h1>
           </section>
           {pasoFormulario === 1 && (
             <>
@@ -185,6 +185,14 @@ const Registro = () => {
                   </section>
                 </label>
               </section>
+              <section className={stylesRegistro.contenedor_passoword_perdida}>
+                <Link
+                  className={stylesRegistro.link_password}
+                  href="../iniciar_sesion"
+                >
+                  ¿Ya tienes una cuenta?
+                </Link>
+              </section>
               <button
                 className={`${stylesRegistro.boton} rounded-2`}
                 type="button"
@@ -195,6 +203,298 @@ const Registro = () => {
             </>
           )}
           {pasoFormulario === 2 && (
+            <>
+              <label className={stylesRegistro.label}>Correo Electrónico</label>
+              <input
+                className={`${stylesRegistro.input_texto} rounded-2 mb-4`}
+                type="email"
+              />
+              <label className={stylesRegistro.label}>
+                Fecha de Nacimiento
+              </label>
+              <input
+                className={`${stylesRegistro.input_texto} ${stylesRegistro.input_fecha} rounded-2 mb-4`}
+                type="date"
+              />
+              <label className={stylesRegistro.labelClave}>Contraseña</label>
+              <section className={stylesRegistro.contenedor_input_password}>
+                <input
+                  className={`${stylesRegistro.input_texto} rounded-2 mb-4`}
+                  onChange={obtenerClave}
+                  type={mostrarClave ? "text" : "password"}
+                />
+                {temaActual === "oscuro" &&
+                mostrarClave &&
+                !claveActiva &&
+                clave ? (
+                  <Image
+                    className={stylesRegistro.icono_password}
+                    onClick={() => mostrarPassword("PrimeraClave")}
+                    width={20}
+                    height={20}
+                    src={`/BlancoAbierto.svg`}
+                  />
+                ) : null}
+                {temaActual === "oscuro" && clave && claveActiva ? (
+                  <Image
+                    className={stylesRegistro.icono_password}
+                    onClick={() => mostrarPassword(clave)}
+                    width={20}
+                    height={20}
+                    src={`/BlancoAbiertoOblicua.svg`}
+                  />
+                ) : null}
+                {temaActual === "claro" &&
+                mostrarClave &&
+                !claveActiva &&
+                clave ? (
+                  <Image
+                    className={stylesRegistro.icono_password}
+                    onClick={() => mostrarPassword("PrimeraClave")}
+                    width={20}
+                    height={20}
+                    src={`/OjoNegroAbierto.svg`}
+                  />
+                ) : null}
+                {temaActual === "claro" && clave && claveActiva ? (
+                  <Image
+                    className={stylesRegistro.icono_password}
+                    onClick={() => mostrarPassword(clave)}
+                    width={20}
+                    height={20}
+                    src={`/OjoNegroAbiertoOblicuo.svg`}
+                  />
+                ) : null}
+              </section>
+              <label className={stylesRegistro.labelClave}>
+                Repetir Contraseña
+              </label>
+              <section className={stylesRegistro.contenedor_input_password}>
+                <input
+                  className={`${stylesRegistro.input_texto} ${stylesRegistro.input_ultimo} rounded-2`}
+                  onChange={obtenerSegundaClave}
+                  type={mostrarSegundaClave ? "text" : "password"}
+                />
+                {temaActual === "oscuro" &&
+                mostrarSegundaClave &&
+                !segundaClaveActiva &&
+                segundaClave ? (
+                  <Image
+                    className={`${stylesRegistro.icono_password} ${stylesRegistro.icono_ultimo}`}
+                    onClick={() => mostrarPassword("SegundaClave")}
+                    width={20}
+                    height={20}
+                    src={`/BlancoAbierto.svg`}
+                  />
+                ) : null}
+                {temaActual === "oscuro" &&
+                segundaClave &&
+                segundaClaveActiva ? (
+                  <Image
+                    className={`${stylesRegistro.icono_password} ${stylesRegistro.icono_ultimo}`}
+                    onClick={() => mostrarPassword(segundaClave)}
+                    width={20}
+                    height={20}
+                    src={`/BlancoAbiertoOblicua.svg`}
+                  />
+                ) : null}
+                {temaActual === "claro" &&
+                mostrarSegundaClave &&
+                !segundaClaveActiva &&
+                segundaClave ? (
+                  <Image
+                    className={`${stylesRegistro.icono_password} ${stylesRegistro.icono_ultimo}`}
+                    onClick={() => mostrarPassword("SegundaClave")}
+                    width={20}
+                    height={20}
+                    src={`/OjoNegroAbierto.svg`}
+                  />
+                ) : null}
+                {temaActual === "claro" &&
+                segundaClave &&
+                segundaClaveActiva ? (
+                  <Image
+                    className={`${stylesRegistro.icono_password} ${stylesRegistro.icono_ultimo}`}
+                    onClick={() => mostrarPassword(segundaClave)}
+                    width={20}
+                    height={20}
+                    src={`/OjoNegroAbiertoOblicuo.svg`}
+                  />
+                ) : null}
+              </section>
+              <section className={stylesRegistro.contenedor_passoword_perdida}>
+                <Link
+                  className={stylesRegistro.link_password}
+                  href="../iniciar_sesion"
+                >
+                  ¿Ya tienes una cuenta?
+                </Link>
+              </section>
+              <section className={stylesRegistro.seccionBoton}>
+                <button
+                  type="button"
+                  className={`${stylesRegistro.boton} rounded-2`}
+                  onClick={formularioPrevio}
+                >
+                  Atrás
+                </button>
+                <button
+                  className={`${stylesRegistro.boton} rounded-2`}
+                  type="button"
+                  onClick={siguienteFormulario}
+                >
+                  Siguiente
+                </button>
+              </section>
+            </>
+          )}
+          {pasoFormulario === 3 && (
+            <>
+              <label className={stylesRegistro.label}>Correo Electrónico</label>
+              <input
+                className={`${stylesRegistro.input_texto} rounded-2 mb-4`}
+                type="email"
+              />
+              <label className={stylesRegistro.label}>
+                Fecha de Nacimiento
+              </label>
+              <input
+                className={`${stylesRegistro.input_texto} ${stylesRegistro.input_fecha} rounded-2 mb-4`}
+                type="date"
+              />
+              <label className={stylesRegistro.labelClave}>Contraseña</label>
+              <section className={stylesRegistro.contenedor_input_password}>
+                <input
+                  className={`${stylesRegistro.input_texto} rounded-2 mb-4`}
+                  onChange={obtenerClave}
+                  type={mostrarClave ? "text" : "password"}
+                />
+                {temaActual === "oscuro" &&
+                mostrarClave &&
+                !claveActiva &&
+                clave ? (
+                  <Image
+                    className={stylesRegistro.icono_password}
+                    onClick={() => mostrarPassword("PrimeraClave")}
+                    width={20}
+                    height={20}
+                    src={`/BlancoAbierto.svg`}
+                  />
+                ) : null}
+                {temaActual === "oscuro" && clave && claveActiva ? (
+                  <Image
+                    className={stylesRegistro.icono_password}
+                    onClick={() => mostrarPassword(clave)}
+                    width={20}
+                    height={20}
+                    src={`/BlancoAbiertoOblicua.svg`}
+                  />
+                ) : null}
+                {temaActual === "claro" &&
+                mostrarClave &&
+                !claveActiva &&
+                clave ? (
+                  <Image
+                    className={stylesRegistro.icono_password}
+                    onClick={() => mostrarPassword("PrimeraClave")}
+                    width={20}
+                    height={20}
+                    src={`/OjoNegroAbierto.svg`}
+                  />
+                ) : null}
+                {temaActual === "claro" && clave && claveActiva ? (
+                  <Image
+                    className={stylesRegistro.icono_password}
+                    onClick={() => mostrarPassword(clave)}
+                    width={20}
+                    height={20}
+                    src={`/OjoNegroAbiertoOblicuo.svg`}
+                  />
+                ) : null}
+              </section>
+              <label className={stylesRegistro.labelClave}>
+                Repetir Contraseña
+              </label>
+              <section className={stylesRegistro.contenedor_input_password}>
+                <input
+                  className={`${stylesRegistro.input_texto} ${stylesRegistro.input_ultimo} rounded-2`}
+                  onChange={obtenerSegundaClave}
+                  type={mostrarSegundaClave ? "text" : "password"}
+                />
+                {temaActual === "oscuro" &&
+                mostrarSegundaClave &&
+                !segundaClaveActiva &&
+                segundaClave ? (
+                  <Image
+                    className={`${stylesRegistro.icono_password} ${stylesRegistro.icono_ultimo}`}
+                    onClick={() => mostrarPassword("SegundaClave")}
+                    width={20}
+                    height={20}
+                    src={`/BlancoAbierto.svg`}
+                  />
+                ) : null}
+                {temaActual === "oscuro" &&
+                segundaClave &&
+                segundaClaveActiva ? (
+                  <Image
+                    className={`${stylesRegistro.icono_password} ${stylesRegistro.icono_ultimo}`}
+                    onClick={() => mostrarPassword(segundaClave)}
+                    width={20}
+                    height={20}
+                    src={`/BlancoAbiertoOblicua.svg`}
+                  />
+                ) : null}
+                {temaActual === "claro" &&
+                mostrarSegundaClave &&
+                !segundaClaveActiva &&
+                segundaClave ? (
+                  <Image
+                    className={`${stylesRegistro.icono_password} ${stylesRegistro.icono_ultimo}`}
+                    onClick={() => mostrarPassword("SegundaClave")}
+                    width={20}
+                    height={20}
+                    src={`/OjoNegroAbierto.svg`}
+                  />
+                ) : null}
+                {temaActual === "claro" &&
+                segundaClave &&
+                segundaClaveActiva ? (
+                  <Image
+                    className={`${stylesRegistro.icono_password} ${stylesRegistro.icono_ultimo}`}
+                    onClick={() => mostrarPassword(segundaClave)}
+                    width={20}
+                    height={20}
+                    src={`/OjoNegroAbiertoOblicuo.svg`}
+                  />
+                ) : null}
+              </section>
+              <section className={stylesRegistro.contenedor_passoword_perdida}>
+                <Link
+                  className={stylesRegistro.link_password}
+                  href="../iniciar_sesion"
+                >
+                  ¿Ya tienes una cuenta?
+                </Link>
+              </section>
+              <section className={stylesRegistro.seccionBoton}>
+                <button
+                  type="button"
+                  className={`${stylesRegistro.boton} rounded-2`}
+                  onClick={formularioPrevio}
+                >
+                  Atrás
+                </button>
+                <button
+                  className={`${stylesRegistro.boton} rounded-2`}
+                  type="button"
+                  onClick={siguienteFormulario}
+                >
+                  Siguiente
+                </button>
+              </section>
+            </>
+          )}
+          {pasoFormulario === 4 && (
             <>
               <label className={stylesRegistro.label}>Correo Electrónico</label>
               <input
