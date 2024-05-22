@@ -12,7 +12,7 @@
 
 #body {
   justify-content: flex-end;
-  align-items: flex-start;
+  align-items: center;
 }
 
 .contenedor_general {
@@ -53,6 +53,49 @@
   width: 15% !important;
   height: 3.1rem !important;
   padding: 0% 2% !important;
+}
+
+.seleccionGenero {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  height: 3.1rem !important;
+  align-items: center;
+  padding: 0% 2% !important;
+}
+
+.seccionRadio {
+  width: 64%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 3rem;
+  border-radius: 4px;
+  padding: 4%;
+}
+
+.seccionBoton {
+  width: 90%;
+  display: flex;
+  justify-content: space-between;
+  column-gap: 8%;
+  align-items: center;
+}
+
+.labelRadio {
+  align-self: center !important;
+  display: flex;
+  border: 2px solid #000000;
+  cursor: pointer;
+  width: 30%;
+  border-radius: 4px;
+  background: #eeeeee;
+  margin: 0 !important;
+  justify-content: center;
+  transition: box-shadow 500ms ease;
+  &:hover {
+    box-shadow: 3px 0px 11px 0px #0f0f0f;
+  }
 }
 
 .contenedor_passoword_perdida {
@@ -170,11 +213,27 @@
     &:focus {
       box-shadow: 3px 0px 11px 0px #b9b9b9;
     }
-
   }
 
   .labelClave {
     color: #eeeeee;
+  }
+  
+  .labelRadio {
+    border-color: #eeeeee;
+    background: #000000;
+    color: #eeeeee;
+    &:hover {
+      box-shadow: 2px 0px 11px 0px #eeeeee;
+    }
+  }
+
+  .seccionBoton {
+    width: 90%;
+    display: flex;
+    justify-content: space-between;
+    column-gap: 8%;
+    align-items: center;
   }
 
   .boton {
