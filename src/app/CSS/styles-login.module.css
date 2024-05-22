@@ -58,7 +58,7 @@
   width: 85%;
   position: relative;
   display: flex;
-  justify-content: flex-end;
+  justify-content: space-between;
   column-gap: 20%;
   overflow: hidden;
 }

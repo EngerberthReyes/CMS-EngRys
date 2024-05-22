@@ -143,6 +143,9 @@ const Login = () => {
             <Link className={stylesLogin.link_password} href="../registro">
               ¿Aun no tienes una cuenta?
             </Link>
+            <Link className={stylesLogin.link_password} href="../recuperar_contrasena">
+              ¿Se ha olvido de su contraseña?
+            </Link>
           </section>
           <button
             className={`${stylesLogin.boton} rounded-2`}
