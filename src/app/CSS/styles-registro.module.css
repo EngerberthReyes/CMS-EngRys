@@ -87,6 +87,12 @@
   padding: 4%;
 }
 
+.textarea {
+  padding: 1rem;
+  height: auto;
+  resize: none;
+}
+
 .seccionBoton {
   width: 90%;
   display: flex;
@@ -238,7 +244,7 @@
   .labelClave {
     color: #eeeeee;
   }
-  
+
   .labelRadio {
     border-color: #eeeeee;
     background: #000000;

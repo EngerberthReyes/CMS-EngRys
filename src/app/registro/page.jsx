@@ -476,8 +476,8 @@ const Registro = () => {
               </section>
               <label className={stylesRegistro.label}>Dirección</label>
               <textarea
-                className={`${stylesRegistro.input_texto} rounded-2 mb-4`}
-              />
+                className={`${stylesRegistro.input_texto} ${stylesRegistro.textarea} rounded-2 mb-4`}
+              ></textarea>
               <section
                 className={`${stylesRegistro.contenedor_passoword_perdida} rounded-2 mt-0`}
               >
