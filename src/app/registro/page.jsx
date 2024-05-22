@@ -191,20 +191,20 @@ const Registro = () => {
             <>
               <label className={stylesRegistro.label}>Correo Electrónico</label>
               <input
-                className={`${stylesRegistro.input_texto} rounded-2 mb-2`}
+                className={`${stylesRegistro.input_texto} rounded-2 mb-4`}
                 type="email"
               />
               <label className={stylesRegistro.label}>
                 Fecha de Nacimiento
               </label>
               <input
-                className={`${stylesRegistro.input_texto} ${stylesRegistro.input_fecha} rounded-2`}
+                className={`${stylesRegistro.input_texto} ${stylesRegistro.input_fecha} rounded-2 mb-4`}
                 type="date"
               />
               <label className={stylesRegistro.labelClave}>Contraseña</label>
               <section className={stylesRegistro.contenedor_input_password}>
                 <input
-                  className={`${stylesRegistro.input_texto} rounded-2`}
+                  className={`${stylesRegistro.input_texto} rounded-2 mb-4`}
                   onChange={obtenerClave}
                   type={mostrarClave ? "text" : "password"}
                 />
