@@ -352,7 +352,7 @@ const Registro = () => {
             <>
               <label className={stylesRegistro.label}>País</label>
               <select
-                className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-4`}
+                className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-4 mt-0`}
               >
                 <option>Venezuela</option>
                 <option>Venezuela</option>
@@ -370,7 +370,7 @@ const Registro = () => {
               <section className={stylesRegistro.seccionInformacionPais}>
                 <section>
                 <label className={`${stylesRegistro.label} m-0`}>
-                Fecha de Nacimiento
+                Estado
               </label>
               <select
                 className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-4`}
@@ -391,7 +391,7 @@ const Registro = () => {
               </section>
               <section>
               <label className={`${stylesRegistro.label} m-0`}>
-                Fecha de Nacimiento
+                Ciudad
               </label>
               <select
                 className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-4`}
@@ -412,7 +412,7 @@ const Registro = () => {
               </section>
               <section>
               <label className={`${stylesRegistro.label} m-0`}>
-                Fecha de Nacimiento
+                Municipio
               </label>
               <select
                 className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-4`}
@@ -433,7 +433,7 @@ const Registro = () => {
               </section>
               <section>
               <label className={`${stylesRegistro.label} m-0`}>
-                Fecha de Nacimiento
+                Parroquia
               </label>
               <select
                 className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-4`}
@@ -454,7 +454,7 @@ const Registro = () => {
               </section>
               <section>
               <label className={`${stylesRegistro.label} m-0`}>
-                Fecha de Nacimiento
+                Codigo Postal
               </label>
               <select
                 className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-4`}
