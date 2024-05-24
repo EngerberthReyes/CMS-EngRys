@@ -130,17 +130,25 @@ const Registro = () => {
           </section>
           {pasoFormulario === 1 && (
             <>
-              <label className={stylesRegistro.label}>Nombres</label>
+              <label htmlFor="nombre" className={stylesRegistro.label}>
+                Nombres
+              </label>
               <input
+                id="nombre"
                 className={`${stylesRegistro.input_texto} rounded-2`}
                 type="text"
               />
-              <label className={stylesRegistro.label}>Apellidos</label>
+              <label htmlFor="apellido" className={stylesRegistro.label}>
+                Apellidos
+              </label>
               <input
+                id="apellido"
                 className={`${stylesRegistro.input_texto} rounded-2`}
                 type="text"
               />
-              <label className={stylesRegistro.label}>Cédula</label>
+              <label htmlFor="cedula" className={stylesRegistro.label}>
+                Cédula
+              </label>
               <section className={stylesRegistro.seccionNacionalidad}>
                 <select
                   className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} rounded-2`}
@@ -148,15 +156,19 @@ const Registro = () => {
                   <option>V</option>
                 </select>
                 <input
+                  id="cedula"
                   className={`${stylesRegistro.input_texto} rounded-2`}
                   type="text"
                 />
               </section>
-              <label className={stylesRegistro.label}>Sexo</label>
+              <label htmlFor="sexo" className={stylesRegistro.label}>
+                Sexo
+              </label>
               <section
                 className={`${stylesRegistro.seleccionGenero} rounded-2`}
               >
                 <label
+                  id="sexo"
                   htmlFor="masculino"
                   className={`${stylesRegistro.label} ${stylesRegistro.labelRadio} rounded-2`}
                 >
@@ -167,6 +179,7 @@ const Registro = () => {
                       checked={genero === "masculino"}
                       onChange={seleccionGenero}
                       type="radio"
+                      name="radio"
                     />
                   </section>
                 </label>
@@ -204,21 +217,28 @@ const Registro = () => {
           )}
           {pasoFormulario === 2 && (
             <>
-              <label className={stylesRegistro.label}>Correo Electrónico</label>
+              <label htmlFor="correo" className={stylesRegistro.label}>
+                Correo Electrónico
+              </label>
               <input
+                id="correo"
                 className={`${stylesRegistro.input_texto} rounded-2 mb-4`}
                 type="email"
               />
-              <label className={stylesRegistro.label}>
+              <label htmlFor="nacimiento" className={stylesRegistro.label}>
                 Fecha de Nacimiento
               </label>
               <input
+                id="nacimiento"
                 className={`${stylesRegistro.input_texto} ${stylesRegistro.input_fecha} rounded-2 mb-4`}
                 type="date"
               />
-              <label className={stylesRegistro.labelClave}>Contraseña</label>
+              <label htmlFor="clave" className={stylesRegistro.labelClave}>
+                Contraseña
+              </label>
               <section className={stylesRegistro.contenedor_input_password}>
                 <input
+                  id="clave"
                   className={`${stylesRegistro.input_texto} rounded-2 mb-4`}
                   onChange={obtenerClave}
                   type={mostrarClave ? "text" : "password"}
@@ -266,11 +286,15 @@ const Registro = () => {
                   />
                 ) : null}
               </section>
-              <label className={stylesRegistro.labelClave}>
+              <label
+                htmlFor="repetirClave"
+                className={stylesRegistro.labelClave}
+              >
                 Repetir Contraseña
               </label>
               <section className={stylesRegistro.contenedor_input_password}>
                 <input
+                  id="repetirClave"
                   className={`${stylesRegistro.input_texto} ${stylesRegistro.input_ultimo} rounded-2`}
                   onChange={obtenerSegundaClave}
                   type={mostrarSegundaClave ? "text" : "password"}
@@ -350,8 +374,11 @@ const Registro = () => {
           )}
           {pasoFormulario === 3 && (
             <>
-              <label className={stylesRegistro.label}>País</label>
+              <label htmlFor="pais" className={stylesRegistro.label}>
+                País
+              </label>
               <select
+                id="pais"
                 className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-4 mt-0`}
               >
                 <option>Venezuela</option>
@@ -369,10 +396,14 @@ const Registro = () => {
               </select>
               <section className={stylesRegistro.seccionInformacionPais}>
                 <section>
-                  <label className={`${stylesRegistro.label} m-0`}>
+                  <label
+                    htmlFor="estado"
+                    className={`${stylesRegistro.label} m-0`}
+                  >
                     Estado
                   </label>
                   <select
+                    id="estado"
                     className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-4`}
                   >
                     <option>Venezuela</option>
@@ -390,10 +421,14 @@ const Registro = () => {
                   </select>
                 </section>
                 <section>
-                  <label className={`${stylesRegistro.label} m-0`}>
+                  <label
+                    htmlFor="ciudad"
+                    className={`${stylesRegistro.label} m-0`}
+                  >
                     Ciudad
                   </label>
                   <select
+                    id="ciudad"
                     className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-4`}
                   >
                     <option>Venezuela</option>
@@ -411,10 +446,14 @@ const Registro = () => {
                   </select>
                 </section>
                 <section>
-                  <label className={`${stylesRegistro.label} m-0`}>
+                  <label
+                    htmlFor="municipio"
+                    className={`${stylesRegistro.label} m-0`}
+                  >
                     Municipio
                   </label>
                   <select
+                    id="municipio"
                     className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-4`}
                   >
                     <option>Venezuela</option>
@@ -432,10 +471,14 @@ const Registro = () => {
                   </select>
                 </section>
                 <section>
-                  <label className={`${stylesRegistro.label} m-0`}>
+                  <label
+                    htmlFor="parroquia"
+                    className={`${stylesRegistro.label} m-0`}
+                  >
                     Parroquia
                   </label>
                   <select
+                    id="parroquia"
                     className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-4`}
                   >
                     <option>Venezuela</option>
@@ -453,10 +496,14 @@ const Registro = () => {
                   </select>
                 </section>
                 <section>
-                  <label className={`${stylesRegistro.label} m-0`}>
+                  <label
+                    htmlFor="codigo"
+                    className={`${stylesRegistro.label} m-0`}
+                  >
                     Codigo Postal
                   </label>
                   <select
+                    id="codigo"
                     className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-4`}
                   >
                     <option>Venezuela</option>
@@ -474,8 +521,11 @@ const Registro = () => {
                   </select>
                 </section>
               </section>
-              <label className={stylesRegistro.label}>Dirección</label>
+              <label htmlFor="direccion" className={stylesRegistro.label}>
+                Dirección Completa
+              </label>
               <textarea
+                id="direccion"
                 className={`${stylesRegistro.input_texto} ${stylesRegistro.textarea} rounded-2 mb-4`}
               ></textarea>
               <section
@@ -508,124 +558,39 @@ const Registro = () => {
           )}
           {pasoFormulario === 4 && (
             <>
-              <label className={stylesRegistro.label}>Correo Electrónico</label>
+              <label htmlFor="facebook" className={stylesRegistro.label}>
+                ¿Tienes Facebook? [Campo Opcional]
+              </label>
               <input
+                id="facebook"
                 className={`${stylesRegistro.input_texto} rounded-2 mb-4`}
-                type="email"
+                type="text"
               />
-              <label className={stylesRegistro.label}>
-                Fecha de Nacimiento
+              <label htmlFor="instagram" className={stylesRegistro.label}>
+                ¿Tienes Instagram? [Campo Opcional]
               </label>
               <input
+                id="instagram"
                 className={`${stylesRegistro.input_texto} ${stylesRegistro.input_fecha} rounded-2 mb-4`}
-                type="date"
+                type="text"
               />
-              <label className={stylesRegistro.labelClave}>Contraseña</label>
-              <section className={stylesRegistro.contenedor_input_password}>
-                <input
-                  className={`${stylesRegistro.input_texto} rounded-2 mb-4`}
-                  onChange={obtenerClave}
-                  type={mostrarClave ? "text" : "password"}
-                />
-                {temaActual === "oscuro" &&
-                mostrarClave &&
-                !claveActiva &&
-                clave ? (
-                  <Image
-                    className={stylesRegistro.icono_password}
-                    onClick={() => mostrarPassword("PrimeraClave")}
-                    width={20}
-                    height={20}
-                    src={`/BlancoAbierto.svg`}
-                  />
-                ) : null}
-                {temaActual === "oscuro" && clave && claveActiva ? (
-                  <Image
-                    className={stylesRegistro.icono_password}
-                    onClick={() => mostrarPassword(clave)}
-                    width={20}
-                    height={20}
-                    src={`/BlancoAbiertoOblicua.svg`}
-                  />
-                ) : null}
-                {temaActual === "claro" &&
-                mostrarClave &&
-                !claveActiva &&
-                clave ? (
-                  <Image
-                    className={stylesRegistro.icono_password}
-                    onClick={() => mostrarPassword("PrimeraClave")}
-                    width={20}
-                    height={20}
-                    src={`/OjoNegroAbierto.svg`}
-                  />
-                ) : null}
-                {temaActual === "claro" && clave && claveActiva ? (
-                  <Image
-                    className={stylesRegistro.icono_password}
-                    onClick={() => mostrarPassword(clave)}
-                    width={20}
-                    height={20}
-                    src={`/OjoNegroAbiertoOblicuo.svg`}
-                  />
-                ) : null}
-              </section>
-              <label className={stylesRegistro.labelClave}>
-                Repetir Contraseña
+              <label htmlFor="x" className={stylesRegistro.labelClave}>
+                ¿Tienes X [Twitter]? [Campo Opcional]
               </label>
-              <section className={stylesRegistro.contenedor_input_password}>
-                <input
-                  className={`${stylesRegistro.input_texto} ${stylesRegistro.input_ultimo} rounded-2`}
-                  onChange={obtenerSegundaClave}
-                  type={mostrarSegundaClave ? "text" : "password"}
-                />
-                {temaActual === "oscuro" &&
-                mostrarSegundaClave &&
-                !segundaClaveActiva &&
-                segundaClave ? (
-                  <Image
-                    className={`${stylesRegistro.icono_password} ${stylesRegistro.icono_ultimo}`}
-                    onClick={() => mostrarPassword("SegundaClave")}
-                    width={20}
-                    height={20}
-                    src={`/BlancoAbierto.svg`}
-                  />
-                ) : null}
-                {temaActual === "oscuro" &&
-                segundaClave &&
-                segundaClaveActiva ? (
-                  <Image
-                    className={`${stylesRegistro.icono_password} ${stylesRegistro.icono_ultimo}`}
-                    onClick={() => mostrarPassword(segundaClave)}
-                    width={20}
-                    height={20}
-                    src={`/BlancoAbiertoOblicua.svg`}
-                  />
-                ) : null}
-                {temaActual === "claro" &&
-                mostrarSegundaClave &&
-                !segundaClaveActiva &&
-                segundaClave ? (
-                  <Image
-                    className={`${stylesRegistro.icono_password} ${stylesRegistro.icono_ultimo}`}
-                    onClick={() => mostrarPassword("SegundaClave")}
-                    width={20}
-                    height={20}
-                    src={`/OjoNegroAbierto.svg`}
-                  />
-                ) : null}
-                {temaActual === "claro" &&
-                segundaClave &&
-                segundaClaveActiva ? (
-                  <Image
-                    className={`${stylesRegistro.icono_password} ${stylesRegistro.icono_ultimo}`}
-                    onClick={() => mostrarPassword(segundaClave)}
-                    width={20}
-                    height={20}
-                    src={`/OjoNegroAbiertoOblicuo.svg`}
-                  />
-                ) : null}
-              </section>
+              <input
+                id="x"
+                className={`${stylesRegistro.input_texto} rounded-2 mb-4`}
+                onChange={obtenerClave}
+                type="text"
+              />
+              <label htmlFor="tiktok" className={stylesRegistro.labelClave}>
+                ¿Tienes Tiktok? [Campo Opcional]
+              </label>
+              <input
+                id="tiktok"
+                className={`${stylesRegistro.input_texto} ${stylesRegistro.input_ultimo} rounded-2`}
+                type="text"
+              />
               <section className={stylesRegistro.contenedor_passoword_perdida}>
                 <Link
                   className={stylesRegistro.link_password}
