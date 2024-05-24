@@ -581,7 +581,7 @@ const Registro = () => {
           {pasoFormulario === 4 && (
             <>
               <label htmlFor="facebook" className={stylesRegistro.label}>
-                ¿Tienes Facebook? [Campo Opcional]
+              ¿Tienes Facebook?, Introduzca la URL hacia su Perfil de Facebook [Campo Opcional]
               </label>
               <input
                 id="facebook"
@@ -589,7 +589,7 @@ const Registro = () => {
                 type="text"
               />
               <label htmlFor="instagram" className={stylesRegistro.label}>
-                ¿Tienes Instagram? [Campo Opcional]
+              ¿Tienes Tiktok?, Introduzca la URL hacia su Perfil de Instagram [Campo Opcional]
               </label>
               <input
                 id="instagram"
@@ -597,7 +597,7 @@ const Registro = () => {
                 type="text"
               />
               <label htmlFor="x" className={stylesRegistro.labelClave}>
-                ¿Tienes X [Twitter]? [Campo Opcional]
+              ¿Tienes X [Twitter]?, Introduzca la URL hacia su Perfil de X [Campo Opcional]
               </label>
               <input
                 id="x"
@@ -606,7 +606,7 @@ const Registro = () => {
                 type="text"
               />
               <label htmlFor="tiktok" className={stylesRegistro.labelClave}>
-                ¿Tienes Tiktok?, Introduzca la URL hacia su Perfil [Campo Opcional]
+                ¿Tienes Tiktok?, Introduzca la URL hacia su Perfil de Tiktok [Campo Opcional]
               </label>
               <input
                 id="tiktok"
