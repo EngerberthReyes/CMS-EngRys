@@ -136,7 +136,7 @@ const Registro = () => {
           {pasoFormulario === 1 && (
             <>
               <label htmlFor="nombre" className={stylesRegistro.label}>
-                Nombres
+                Nombre Completo
               </label>
               <input
                 id="nombre"
