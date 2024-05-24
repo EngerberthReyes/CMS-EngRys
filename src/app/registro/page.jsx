@@ -7,7 +7,12 @@ import { useForm } from "react-hook-form";
 import stylesRegistro from "../CSS/styles-registro.module.css";
 
 const Registro = () => {
-  const { register, handleSubmit, setValue } = useForm();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+    setValue,
+  } = useForm();
 
   const [clave, setClave] = useState();
 
@@ -137,7 +142,24 @@ const Registro = () => {
                 id="nombre"
                 className={`${stylesRegistro.input_texto} rounded-2`}
                 type="text"
+                {...register("nombres", {
+                  required: {
+                    value: true, // Indica que el campo es requerido
+                    message: "Introduzca sus Nombres",
+                  },
+                  pattern: {
+                    value: /^[a-zA-Z]+$/,
+                    message: "Solo se Permiten Letras",
+                  },
+                })}
               />
+              {errors.nombres && (
+                <section>
+                  <p className={stylesRegistro.errorInput}>
+                    {errors.nombres.message}
+                  </p>
+                </section>
+              )}
               <label htmlFor="apellido" className={stylesRegistro.label}>
                 Apellidos
               </label>
@@ -584,13 +606,30 @@ const Registro = () => {
                 type="text"
               />
               <label htmlFor="tiktok" className={stylesRegistro.labelClave}>
-                ¿Tienes Tiktok? [Campo Opcional]
+                ¿Tienes Tiktok?, Introduzca la URL hacia su Perfil [Campo Opcional]
               </label>
               <input
                 id="tiktok"
                 className={`${stylesRegistro.input_texto} ${stylesRegistro.input_ultimo} rounded-2`}
                 type="text"
+                {...register("tiktok", {
+                  required: {
+                    value: false, // Indica si el campo es requerido
+                    message: "Introduzca una URL Validad",
+                  },
+                  pattern: {
+                    value: /^[a-zA-Z]+$/,
+                    message: "Solo se Permiten Letras",
+                  },
+                })}
               />
+              {errors.tiktok && (
+                <section className={stylesRegistro.contenedor_errorInput}>
+                  <p className={stylesRegistro.errorInput}>
+                    {errors.tiktok.message}
+                  </p>
+                </section>
+              )}
               <section className={stylesRegistro.contenedor_passoword_perdida}>
                 <Link
                   className={stylesRegistro.link_password}

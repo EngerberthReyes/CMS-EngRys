@@ -207,6 +207,21 @@
   }
 }
 
+.contenedor_errorInput {
+  position: relative;
+  right: 31.5%;
+  height: 0;
+}
+
+.errorInput {
+  color: #d80000;
+  font-weight: 600;
+}
+
+.contenedor_errorInput {
+  background-color: red;
+}
+
 @media (prefers-color-scheme: dark) {
   #body::before {
     position: fixed;
@@ -216,6 +231,17 @@
   .contenedor_form {
     background-color: #0f0f0f;
     border: 2px solid #eeeeee;
+  }
+
+  .contenedor_errorInput {
+    position: relative;
+    right: 31.5%;
+    height: 0;
+  }
+
+  .errorInput {
+    color: #d80000;
+    font-weight: 600;
   }
 
   .contenedor_passoword_perdida :is(a) {
