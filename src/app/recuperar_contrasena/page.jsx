@@ -82,55 +82,6 @@ const recuperarClave = () => {
               <p className={stylesClave.errorInput}>{errors.correo.message}</p>
             </section>
           )}
-          <label htmlFor="clave" className={stylesClave.labelClave}>
-            Contraseña
-          </label>
-          <section className={stylesClave.contenedor_input_password}>
-            <input
-              id="clave"
-              className={`${stylesClave.input_texto} rounded-2`}
-              type={mostrarClave ? "text" : "password"}
-              {...register("clave", {
-                required: "Introduzca una Contraseña",
-                minLength: {
-                  value: 8,
-                  message: "La Contraseña debe tener al menos 8 caracteres",
-                },
-              })}
-            />
-            {mostrarClave ? (
-              <Image
-                className={stylesClave.icono_password}
-                onClick={() => mostrarPassword(clave)}
-                width={20}
-                height={20}
-                src={
-                  temaActual === "oscuro"
-                    ? `/BlancoAbierto.svg`
-                    : `/OjoNegroAbierto.svg`
-                }
-                alt="Ocultar Contraseña"
-              />
-            ) : (
-              <Image
-                className={stylesClave.icono_password}
-                onClick={() => mostrarPassword(clave)}
-                width={20}
-                height={20}
-                src={
-                  temaActual === "oscuro"
-                    ? `/BlancoAbiertoOblicua.svg`
-                    : `/OjoNegroAbiertoOblicuo.svg`
-                }
-                alt="Mostrar Contraseña"
-              />
-            )}
-          </section>
-          {errors.clave && (
-            <section className={stylesClave.seccionError}>
-              <p className={stylesClave.errorInput}>{errors.clave.message}</p>
-            </section>
-          )}
           <section className={stylesClave.contenedor_passoword_perdida}>
             <Link className={stylesClave.link_password} href="../registro">
               ¿Aun no tienes una cuenta?
@@ -150,24 +101,24 @@ const recuperarClave = () => {
             Iniciar Sesión
           </button>
           <button
-          className={`${stylesClave.boton} rounded-2`}
-          onClick={async () => {
-            try {
-              const respuesta = await fetch("/API/sendemail", {
-                method: "POST",
-              });
-              if (!respuesta.ok) {
-                throw new Error('Error en la solicitud');
+            className={`${stylesClave.boton} rounded-2`}
+            onClick={async () => {
+              try {
+                const respuesta = await fetch("/API/sendemail", {
+                  method: "POST",
+                });
+                if (!respuesta.ok) {
+                  throw new Error("Error en la solicitud");
+                }
+                const datos = await respuesta.json();
+                console.log(datos);
+              } catch (error) {
+                console.error("Error:", error);
               }
-              const datos = await respuesta.json();
-              console.log(datos);
-            } catch (error) {
-              console.error('Error:', error);
-            }
-          }}
-        >
-          Enviar Correo
-        </button>
+            }}
+          >
+            Enviar Correo
+          </button>
         </form>
       </body>
     </>

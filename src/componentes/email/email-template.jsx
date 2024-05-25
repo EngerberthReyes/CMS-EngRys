@@ -1,6 +1,6 @@
 import * as React from "react";
 
-export const EmailTemplate = ({ firstName }) => (
+export const EmailTemplate = ({ firstName, codigo }) => (
   <section
     style={{
       height: "30rem",
