@@ -4,75 +4,49 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import stylesClave from "../CSS/styles-recuperarContrasena.module.css";
+import { useForm } from "react-hook-form";
 
-const Login = () => {
-  const [clave, setClave] = useState();
+const recuperarClave = () => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors, isValid },
+  } = useForm({
+    mode: "onChange",
+  });
 
-  const [segundaClave, setSegundaClave] = useState();
+  const [mostrarClave, setMostrarClave] = useState(false);
+  const [temaActual, setTemaActual] = useState();
 
-  const [claveActiva, setClaveActiva] = useState(true);
+  const clave = watch("clave");
 
-  const [segundaClaveActiva, setSegundaClaveActiva] = useState(true);
+  const mostrarPassword = () => {
+    setMostrarClave(!mostrarClave);
+  };
 
   const manejarCambioDeTema = (event) => {
     const modoOscuro = event.matches;
 
     document.body.classList.toggle("modo-oscuro", modoOscuro);
-    return modoOscuro ? "oscuro" : "claro";
+    setTemaActual(modoOscuro ? "oscuro" : "claro");
   };
 
-  const consultaModoOscuro = window.matchMedia("(prefers-color-scheme: dark)");
-  consultaModoOscuro.addEventListener("change", manejarCambioDeTema);
+  useEffect(() => {
+    const consultaModoOscuro = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    );
+    consultaModoOscuro.addEventListener("change", manejarCambioDeTema);
 
-  const temaActual = manejarCambioDeTema({
-    matches: consultaModoOscuro.matches,
-  });
+    setTemaActual(consultaModoOscuro.matches ? "oscuro" : "claro");
 
-  const obtenerClave = (event) => {
-    setClave(event.target.value);
-  };
+    return () => {
+      consultaModoOscuro.removeEventListener("change", manejarCambioDeTema);
+    };
+  }, []);
 
-  const obtenerSegundaClave = (event) => {
-    setSegundaClave(event.target.value);
-  };
-
-  const verificacion = () => {
-    if (clave && segundaClave) {
-      if (clave === segundaClave) {
-        alert("¡Es correcto!");
-      } else {
-        alert("Las claves no coinciden.");
-      }
-    } else {
-      alert("Por favor ingresa ambas claves.");
-    }
-  };
-
-  const [mostrarClave, setMostrarClave] = useState();
-
-  const [mostrarSegundaClave, setMostrarSegundaClave] = useState(false);
-
-  const mostrarPassword = (claveInput) => {
-    if (claveInput === "PrimeraClave") {
-      setClaveActiva(true);
-      setMostrarClave(false);
-      return;
-    }
-
-    if (claveInput === "SegundaClave") {
-      setSegundaClaveActiva(true);
-      setMostrarSegundaClave(false);
-      return;
-    }
-
-    if (claveInput === clave) {
-      setMostrarClave(claveInput);
-      setClaveActiva(false);
-    } else if (claveInput === segundaClave) {
-      setMostrarSegundaClave(claveInput);
-      setSegundaClaveActiva(false);
-    } else {
-    }
+  const enviarDatos = (datos) => {
+    console.log(datos);
   };
 
   return (
@@ -83,80 +57,121 @@ const Login = () => {
       </head>
       <body id={stylesClave.body_modificable}>
         <section className={`${stylesClave.contenedor_general} w-50`}></section>
-        <form className={stylesClave.contenedor_form}>
+        <form
+          className={stylesClave.contenedor_form}
+          onSubmit={handleSubmit(enviarDatos)}
+        >
           <h1 className={stylesClave.titulo_form}>Recuperar Contraseña</h1>
-          <label className={stylesClave.label}>
-            Algo Que Aun No Se
+          <label htmlFor="correo" className={stylesClave.label}>
+            Correo Electrónico
           </label>
           <input
+            id="correo"
             className={`${stylesClave.input_texto} rounded-2`}
-            type="text"
+            type="email"
+            {...register("correo", {
+              required: "Introduzca su Correo Electrónico",
+              pattern: {
+                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                message: "Formato de Correo Electrónico Inválido",
+              },
+            })}
           />
-          <label className={stylesClave.labelClave}>Contraseña</label>
+          {errors.correo && (
+            <section className={stylesClave.seccionError}>
+              <p className={stylesClave.errorInput}>{errors.correo.message}</p>
+            </section>
+          )}
+          <label htmlFor="clave" className={stylesClave.labelClave}>
+            Contraseña
+          </label>
           <section className={stylesClave.contenedor_input_password}>
             <input
+              id="clave"
               className={`${stylesClave.input_texto} rounded-2`}
-              onChange={obtenerClave}
               type={mostrarClave ? "text" : "password"}
+              {...register("clave", {
+                required: "Introduzca una Contraseña",
+                minLength: {
+                  value: 8,
+                  message: "La Contraseña debe tener al menos 8 caracteres",
+                },
+              })}
             />
-            {temaActual === "oscuro" &&
-            mostrarClave &&
-            !claveActiva &&
-            clave ? (
-              <Image
-                className={stylesClave.icono_password}
-                onClick={() => mostrarPassword("PrimeraClave")}
-                width={20}
-                height={20}
-                src={`/BlancoAbierto.svg`}
-              />
-            ) : null}
-            {temaActual === "oscuro" && clave && claveActiva ? (
+            {mostrarClave ? (
               <Image
                 className={stylesClave.icono_password}
                 onClick={() => mostrarPassword(clave)}
                 width={20}
                 height={20}
-                src={`/BlancoAbiertoOblicua.svg`}
+                src={
+                  temaActual === "oscuro"
+                    ? `/BlancoAbierto.svg`
+                    : `/OjoNegroAbierto.svg`
+                }
+                alt="Ocultar Contraseña"
               />
-            ) : null}
-            {temaActual === "claro" && mostrarClave && !claveActiva && clave ? (
-              <Image
-                className={stylesClave.icono_password}
-                onClick={() => mostrarPassword("PrimeraClave")}
-                width={20}
-                height={20}
-                src={`/OjoNegroAbierto.svg`}
-              />
-            ) : null}
-            {temaActual === "claro" && clave && claveActiva ? (
+            ) : (
               <Image
                 className={stylesClave.icono_password}
                 onClick={() => mostrarPassword(clave)}
                 width={20}
                 height={20}
-                src={`/OjoNegroAbiertoOblicuo.svg`}
+                src={
+                  temaActual === "oscuro"
+                    ? `/BlancoAbiertoOblicua.svg`
+                    : `/OjoNegroAbiertoOblicuo.svg`
+                }
+                alt="Mostrar Contraseña"
               />
-            ) : null}
+            )}
           </section>
+          {errors.clave && (
+            <section className={stylesClave.seccionError}>
+              <p className={stylesClave.errorInput}>{errors.clave.message}</p>
+            </section>
+          )}
           <section className={stylesClave.contenedor_passoword_perdida}>
             <Link className={stylesClave.link_password} href="../registro">
               ¿Aun no tienes una cuenta?
             </Link>
-            <Link className={stylesClave.link_password} href="../iniciar_sesion">
-              ¿Ya tienes una cuenta?
+            <Link
+              className={stylesClave.link_password}
+              href="../recuperar_contrasena"
+            >
+              ¿Se ha olvido de su contraseña?
             </Link>
           </section>
           <button
+            disabled={!isValid}
+            type="submit"
             className={`${stylesClave.boton} rounded-2`}
-            onClick={verificacion}
           >
-            Continuar
+            Iniciar Sesión
           </button>
+          <button
+          className={`${stylesClave.boton} rounded-2`}
+          onClick={async () => {
+            try {
+              const respuesta = await fetch("/API/sendemail", {
+                method: "POST",
+              });
+              if (!respuesta.ok) {
+                throw new Error('Error en la solicitud');
+              }
+              const datos = await respuesta.json();
+              console.log(datos);
+            } catch (error) {
+              console.error('Error:', error);
+            }
+          }}
+        >
+          Enviar Correo
+        </button>
         </form>
       </body>
     </>
   );
 };
 
-export default Login;
+export default recuperarClave;
