@@ -95,12 +95,6 @@ const recuperarClave = () => {
           </section>
           <button
             disabled={!isValid}
-            type="submit"
-            className={`${stylesClave.boton} rounded-2`}
-          >
-            Iniciar Sesión
-          </button>
-          <button
             className={`${stylesClave.boton} rounded-2`}
             onClick={async () => {
               try {
@@ -117,7 +111,7 @@ const recuperarClave = () => {
               }
             }}
           >
-            Enviar Correo
+            Enviar Codigo de Verificación
           </button>
         </form>
       </body>
