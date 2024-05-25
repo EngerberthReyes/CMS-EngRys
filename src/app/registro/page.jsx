@@ -17,14 +17,12 @@ const Registro = () => {
   });
 
   const [fechaActual, setFechaActual] = useState("");
-
   const [genero, setGenero] = useState(null);
-
   const [pasoFormulario, setPasoFormulario] = useState(1);
-
   const [numeroFormulario, setNumeroFormulario] = useState(1);
-
   const [temaActual, setTemaActual] = useState("oscuro");
+  const [mostrarClave, setMostrarClave] = useState(false);
+  const [mostrarSegundaClave, setMostrarSegundaClave] = useState(false);
 
   const manejarCambioDeTema = (event) => {
     const modoOscuro = event.matches;
@@ -46,27 +44,14 @@ const Registro = () => {
     };
   }, []);
 
-  const obtenerClave = (pasandoClave) => {
-    setClave(pasandoClave);
-  };
-
-  const obtenerSegundaClave = (pasandoSegundaClave) => {
-    setSegundaClave(pasandoSegundaClave);
-  };
-
-  const [mostrarClave, setMostrarClave] = useState(false);
-  const [mostrarSegundaClave, setMostrarSegundaClave] = useState(false);
-
   const clave = watch("clave");
   const confirmacionClave = watch("repetirClave");
 
   const mostrarPassword = (clave) => {
-    // Lógica para mostrar u ocultar la contraseña
     setMostrarClave(!mostrarClave);
   };
 
   const confirmarPassword = (confirmacionClave) => {
-    // Lógica para confirmar la contraseña
     setMostrarSegundaClave(!mostrarSegundaClave);
   };
 
