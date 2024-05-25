@@ -147,6 +147,14 @@
   margin-left: 8%;
 }
 
+.seccionFecha {
+  width: 85%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
 .input_texto {
   width: 85%;
   height: 2.5rem;
@@ -178,6 +186,7 @@
 
 .input_fecha {
   margin-bottom: 2%;
+  width: 24%;
 }
 
 .input_ultimo {

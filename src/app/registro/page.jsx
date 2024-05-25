@@ -287,8 +287,8 @@ const Registro = () => {
                   </p>
                 </section>
               )}
-
-              <label htmlFor="nacimiento" className={stylesRegistro.label}>
+<section className={stylesRegistro.seccionFecha}>
+              <label htmlFor="nacimiento" className={`${stylesRegistro.label} m-0`}>
                 Fecha de Nacimiento
               </label>
               <input
@@ -300,6 +300,7 @@ const Registro = () => {
                   required: "Introduzca su Fecha de Nacimiento",
                 })}
               />
+              </section>
               {errors.nacimiento && (
                 <section className={stylesRegistro.seccionError}>
                   <p className={stylesRegistro.errorInput}>
