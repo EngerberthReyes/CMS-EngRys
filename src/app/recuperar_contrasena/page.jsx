@@ -88,9 +88,9 @@ const recuperarClave = () => {
             </Link>
             <Link
               className={stylesClave.link_password}
-              href="../recuperar_contrasena"
+              href="../iniciar_sesion"
             >
-              ¿Se ha olvido de su contraseña?
+              ¿Ya tienes una cuenta?
             </Link>
           </section>
           <button
