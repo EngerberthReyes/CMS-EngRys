@@ -631,48 +631,90 @@ const Registro = () => {
           {pasoFormulario === 4 && (
             <>
               <label htmlFor="facebook" className={stylesRegistro.label}>
-                ¿Tienes Facebook?, Introduzca la URL hacia su Perfil de Facebook
+                ¿Tienes Facebook? Introduzca la URL hacia su Perfil de Facebook
                 [Campo Opcional]
               </label>
               <input
                 id="facebook"
-                className={`${stylesRegistro.input_texto} rounded-2 mb-4`}
+                className={`${stylesRegistro.input_texto} rounded-2 mb-2`}
                 type="text"
+                {...register("facebook", {
+                  pattern: {
+                    value:
+                      /^(https?:\/\/)?(www\.)?facebook\.com\/[a-zA-Z0-9(\.\?)?]/,
+                    message: "Introduzca una URL válida de Facebook",
+                  },
+                })}
               />
+              {errors.facebook && (
+                <section className={stylesRegistro.seccionError}>
+                  <p className={stylesRegistro.errorInput}>
+                    {errors.facebook.message}
+                  </p>
+                </section>
+              )}
+
               <label htmlFor="instagram" className={stylesRegistro.label}>
-                ¿Tienes Tiktok?, Introduzca la URL hacia su Perfil de Instagram
-                [Campo Opcional]
+                ¿Tienes Instagram? Introduzca la URL hacia su Perfil de
+                Instagram [Campo Opcional]
               </label>
               <input
                 id="instagram"
-                className={`${stylesRegistro.input_texto} ${stylesRegistro.input_fecha} rounded-2 mb-4`}
+                className={`${stylesRegistro.input_texto} ${stylesRegistro.input_fecha} rounded-2 mb-2`}
                 type="text"
+                {...register("instagram", {
+                  pattern: {
+                    value:
+                      /^(https?:\/\/)?(www\.)?instagram\.com\/[a-zA-Z0-9(\.\?)?]/,
+                    message: "Introduzca una URL válida de Instagram",
+                  },
+                })}
               />
+              {errors.instagram && (
+                <section className={stylesRegistro.seccionError}>
+                  <p className={stylesRegistro.errorInput}>
+                    {errors.instagram.message}
+                  </p>
+                </section>
+              )}
+
               <label htmlFor="x" className={stylesRegistro.labelClave}>
-                ¿Tienes X [Twitter]?, Introduzca la URL hacia su Perfil de X
+                ¿Tienes X (Twitter)? Introduzca la URL hacia su Perfil de X
                 [Campo Opcional]
               </label>
               <input
                 id="x"
-                className={`${stylesRegistro.input_texto} rounded-2 mb-4`}
+                className={`${stylesRegistro.input_texto} rounded-2 mb-2`}
                 type="text"
+                {...register("x", {
+                  pattern: {
+                    value:
+                      /^(https?:\/\/)?(www\.)?(x\.com|twitter\.com)\/[a-zA-Z0-9(\.\?)?]/,
+                    message: "Introduzca una URL válida de X (Twitter)",
+                  },
+                })}
               />
+              {errors.x && (
+                <section className={stylesRegistro.seccionError}>
+                  <p className={stylesRegistro.errorInput}>
+                    {errors.x.message}
+                  </p>
+                </section>
+              )}
+
               <label htmlFor="tiktok" className={stylesRegistro.labelClave}>
-                ¿Tienes Tiktok?, Introduzca la URL hacia su Perfil de Tiktok
+                ¿Tienes Tiktok? Introduzca la URL hacia su Perfil de Tiktok
                 [Campo Opcional]
               </label>
               <input
                 id="tiktok"
-                className={`${stylesRegistro.input_texto} ${stylesRegistro.input_ultimo} rounded-2`}
+                className={`${stylesRegistro.input_texto} ${stylesRegistro.input_ultimo} rounded-2 mb-2`}
                 type="text"
                 {...register("tiktok", {
-                  required: {
-                    value: false,
-                    message: "Introduzca una URL Validad",
-                  },
                   pattern: {
-                    value: /^[a-zA-Z]+$/,
-                    message: "Solo se Permiten Letras",
+                    value:
+                      /^(https?:\/\/)?(www\.)?tiktok\.com\/@[a-zA-Z0-9(\.\?)?]/,
+                    message: "Introduzca una URL válida de Tiktok",
                   },
                 })}
               />
@@ -683,6 +725,7 @@ const Registro = () => {
                   </p>
                 </section>
               )}
+
               <section className={stylesRegistro.contenedor_passoword_perdida}>
                 <Link
                   className={stylesRegistro.link_password}
