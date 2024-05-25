@@ -449,21 +449,20 @@ const Registro = () => {
               </label>
               <select
                 id="pais"
-                className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-4 mt-0`}
+                className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-2 mt-0`}
+                {...register("pais", { required: "Seleccione un país" })}
               >
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
-                <option>Venezuela</option>
+                <option value="">Seleccione un país</option>
+                <option value="Venezuela">Venezuela</option>
               </select>
+              {errors.pais && (
+                <section className={stylesRegistro.seccionError}>
+                  <p className={stylesRegistro.errorInput}>
+                    {errors.pais.message}
+                  </p>
+                </section>
+              )}
+
               <section className={stylesRegistro.seccionInformacionPais}>
                 <section>
                   <label
@@ -474,21 +473,19 @@ const Registro = () => {
                   </label>
                   <select
                     id="estado"
-                    className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-4`}
+                    className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-2`}
+                    {...register("estado", {
+                      required: "Seleccione un estado",
+                    })}
                   >
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
+                    <option value="">Seleccione un estado</option>
+                    <option value="Venezuela">Venezuela</option>
                   </select>
+                  {errors.estado && (
+                    <p className={stylesRegistro.errorInput}>
+                      {errors.estado.message}
+                    </p>
+                  )}
                 </section>
                 <section>
                   <label
@@ -499,21 +496,19 @@ const Registro = () => {
                   </label>
                   <select
                     id="ciudad"
-                    className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-4`}
+                    className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-2`}
+                    {...register("ciudad", {
+                      required: "Seleccione una ciudad",
+                    })}
                   >
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
+                    <option value="">Seleccione una ciudad</option>
+                    <option value="Venezuela">Venezuela</option>
                   </select>
+                  {errors.ciudad && (
+                    <p className={stylesRegistro.errorInput}>
+                      {errors.ciudad.message}
+                    </p>
+                  )}
                 </section>
                 <section>
                   <label
@@ -524,21 +519,19 @@ const Registro = () => {
                   </label>
                   <select
                     id="municipio"
-                    className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-4`}
+                    className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-2`}
+                    {...register("municipio", {
+                      required: "Seleccione un municipio",
+                    })}
                   >
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
+                    <option value="">Seleccione un municipio</option>
+                    <option value="Venezuela">Venezuela</option>
                   </select>
+                  {errors.municipio && (
+                    <p className={stylesRegistro.errorInput}>
+                      {errors.municipio.message}
+                    </p>
+                  )}
                 </section>
                 <section>
                   <label
@@ -549,55 +542,63 @@ const Registro = () => {
                   </label>
                   <select
                     id="parroquia"
-                    className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-4`}
+                    className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-2`}
+                    {...register("parroquia", {
+                      required: "Seleccione una parroquia",
+                    })}
                   >
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
+                    <option value="">Seleccione una parroquia</option>
+                    <option value="Venezuela">Venezuela</option>
                   </select>
+                  {errors.parroquia && (
+                    <p className={stylesRegistro.errorInput}>
+                      {errors.parroquia.message}
+                    </p>
+                  )}
                 </section>
                 <section>
                   <label
                     htmlFor="codigo"
                     className={`${stylesRegistro.label} m-0`}
                   >
-                    Codigo Postal
+                    Código Postal
                   </label>
                   <select
                     id="codigo"
-                    className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-4`}
+                    className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-2`}
+                    {...register("codigo", {
+                      required: "Seleccione un código postal",
+                    })}
                   >
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
-                    <option>Venezuela</option>
+                    <option value="">Seleccione un código postal</option>
+                    <option value="Venezuela">Venezuela</option>
                   </select>
+                  {errors.codigo && (
+                    <p className={stylesRegistro.errorInput}>
+                      {errors.codigo.message}
+                    </p>
+                  )}
                 </section>
               </section>
+
               <label htmlFor="direccion" className={stylesRegistro.label}>
                 Dirección Completa
               </label>
               <textarea
                 id="direccion"
-                className={`${stylesRegistro.input_texto} ${stylesRegistro.textarea} rounded-2 mb-4`}
+                className={`${stylesRegistro.input_texto} ${stylesRegistro.textarea} rounded-2 mb-2`}
+                {...register("direccion", {
+                  required: "Ingrese su dirección completa",
+                })}
               ></textarea>
+              {errors.direccion && (
+                <section className={stylesRegistro.seccionError}>
+                  <p className={stylesRegistro.errorInput}>
+                    {errors.direccion.message}
+                  </p>
+                </section>
+              )}
+
               <section
                 className={`${stylesRegistro.contenedor_passoword_perdida} rounded-2 mt-0`}
               >
@@ -619,6 +620,7 @@ const Registro = () => {
                 <button
                   className={`${stylesRegistro.boton} rounded-2`}
                   type="button"
+                  disabled={!isValid}
                   onClick={siguienteFormulario}
                 >
                   Siguiente
@@ -653,7 +655,6 @@ const Registro = () => {
               <input
                 id="x"
                 className={`${stylesRegistro.input_texto} rounded-2 mb-4`}
-                onChange={obtenerClave}
                 type="text"
               />
               <label htmlFor="tiktok" className={stylesRegistro.labelClave}>
@@ -666,7 +667,7 @@ const Registro = () => {
                 type="text"
                 {...register("tiktok", {
                   required: {
-                    value: false, // Indica si el campo es requerido
+                    value: false,
                     message: "Introduzca una URL Validad",
                   },
                   pattern: {
