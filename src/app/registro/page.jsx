@@ -287,19 +287,22 @@ const Registro = () => {
                   </p>
                 </section>
               )}
-<section className={stylesRegistro.seccionFecha}>
-              <label htmlFor="nacimiento" className={`${stylesRegistro.label} m-0`}>
-                Fecha de Nacimiento
-              </label>
-              <input
-                id="nacimiento"
-                className={`${stylesRegistro.input_texto} ${stylesRegistro.input_fecha} rounded-2`}
-                type="date"
-                max={fechaActual}
-                {...register("nacimiento", {
-                  required: "Introduzca su Fecha de Nacimiento",
-                })}
-              />
+              <section className={stylesRegistro.seccionFecha}>
+                <label
+                  htmlFor="nacimiento"
+                  className={`${stylesRegistro.label} m-0`}
+                >
+                  Fecha de Nacimiento
+                </label>
+                <input
+                  id="nacimiento"
+                  className={`${stylesRegistro.input_texto} ${stylesRegistro.input_fecha} rounded-2`}
+                  type="date"
+                  max={fechaActual}
+                  {...register("nacimiento", {
+                    required: "Introduzca su Fecha de Nacimiento",
+                  })}
+                />
               </section>
               {errors.nacimiento && (
                 <section className={stylesRegistro.seccionError}>
