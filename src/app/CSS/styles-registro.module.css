@@ -307,16 +307,19 @@
   .boton {
     background: #eeeeee;
     color: #0f0f0f;
+ /* transition: box-shadow 500ms ease; */
 
     &:hover {
-      background-color: #494949;
-      color: #eeeeee;
+      /* box-shadow: 5px 5px 0 1px #eeeeee; */
+      background-color: #d1d1d1;
+      color: #000000;
     }
   }
 
   .boton:disabled {
     background-color: #1e1e1e;
     color: #a1a1a1;
+    box-shadow: none;
   }
 
 }
