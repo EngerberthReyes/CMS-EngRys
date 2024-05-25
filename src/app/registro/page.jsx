@@ -10,17 +10,13 @@ const Registro = () => {
   const {
     register,
     handleSubmit,
-    formState: { errors },
-    setValue,
-  } = useForm();
+    watch,
+    formState: { errors, isValid },
+  } = useForm({
+    mode: "onChange",
+  });
 
-  const [clave, setClave] = useState();
-
-  const [segundaClave, setSegundaClave] = useState();
-
-  const [claveActiva, setClaveActiva] = useState(true);
-
-  const [segundaClaveActiva, setSegundaClaveActiva] = useState(true);
+  const [fechaActual, setFechaActual] = useState("");
 
   const [genero, setGenero] = useState(null);
 
@@ -28,65 +24,50 @@ const Registro = () => {
 
   const [numeroFormulario, setNumeroFormulario] = useState(1);
 
+  const [temaActual, setTemaActual] = useState("oscuro");
+
   const manejarCambioDeTema = (event) => {
     const modoOscuro = event.matches;
 
     document.body.classList.toggle("modo-oscuro", modoOscuro);
-    return modoOscuro ? "oscuro" : "claro";
+    setTemaActual(modoOscuro ? "oscuro" : "claro");
   };
 
-  const consultaModoOscuro = window.matchMedia("(prefers-color-scheme: dark)");
-  consultaModoOscuro.addEventListener("change", manejarCambioDeTema);
+  useEffect(() => {
+    const consultaModoOscuro = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    );
+    consultaModoOscuro.addEventListener("change", manejarCambioDeTema);
 
-  const temaActual = manejarCambioDeTema({
-    matches: consultaModoOscuro.matches,
-  });
+    setTemaActual(consultaModoOscuro.matches ? "oscuro" : "claro");
 
-  const obtenerClave = (event) => {
-    setClave(event.target.value);
+    return () => {
+      consultaModoOscuro.removeEventListener("change", manejarCambioDeTema);
+    };
+  }, []);
+
+  const obtenerClave = (pasandoClave) => {
+    setClave(pasandoClave);
   };
 
-  const obtenerSegundaClave = (event) => {
-    setSegundaClave(event.target.value);
+  const obtenerSegundaClave = (pasandoSegundaClave) => {
+    setSegundaClave(pasandoSegundaClave);
   };
 
-  const verificacion = () => {
-    if (clave && segundaClave) {
-      if (clave === segundaClave) {
-        alert("¡Es correcto!");
-      } else {
-        alert("Las claves no coinciden.");
-      }
-    } else {
-      alert("Por favor ingresa ambas claves.");
-    }
-  };
-
-  const [mostrarClave, setMostrarClave] = useState();
-
+  const [mostrarClave, setMostrarClave] = useState(false);
   const [mostrarSegundaClave, setMostrarSegundaClave] = useState(false);
 
-  const mostrarPassword = (claveInput) => {
-    if (claveInput === "PrimeraClave") {
-      setClaveActiva(true);
-      setMostrarClave(false);
-      return;
-    }
+  const clave = watch("clave");
+  const confirmacionClave = watch("repetirClave");
 
-    if (claveInput === "SegundaClave") {
-      setSegundaClaveActiva(true);
-      setMostrarSegundaClave(false);
-      return;
-    }
+  const mostrarPassword = (clave) => {
+    // Lógica para mostrar u ocultar la contraseña
+    setMostrarClave(!mostrarClave);
+  };
 
-    if (claveInput === clave) {
-      setMostrarClave(claveInput);
-      setClaveActiva(false);
-    } else if (claveInput === segundaClave) {
-      setMostrarSegundaClave(claveInput);
-      setSegundaClaveActiva(false);
-    } else {
-    }
+  const confirmarPassword = (confirmacionClave) => {
+    // Lógica para confirmar la contraseña
+    setMostrarSegundaClave(!mostrarSegundaClave);
   };
 
   const siguienteFormulario = () => {
@@ -110,6 +91,11 @@ const Registro = () => {
       setGenero(valorGenero);
     }
   };
+
+  useEffect(() => {
+    const fechaHoy = new Date().toISOString().split("T")[0];
+    setFechaActual(fechaHoy);
+  }, []);
 
   const onSubmit = (data) => {
     console.log(data);
@@ -144,22 +130,23 @@ const Registro = () => {
                 type="text"
                 {...register("nombres", {
                   required: {
-                    value: true, // Indica que el campo es requerido
-                    message: "Introduzca sus Nombres",
+                    value: true,
+                    message: "Introduzca su Nombre Completo",
                   },
                   pattern: {
-                    value: /^[a-zA-Z]+$/,
+                    value: /^[a-zA-Z\s]+$/,
                     message: "Solo se Permiten Letras",
                   },
                 })}
               />
               {errors.nombres && (
-                <section>
+                <section className={stylesRegistro.seccionError}>
                   <p className={stylesRegistro.errorInput}>
                     {errors.nombres.message}
                   </p>
                 </section>
               )}
+
               <label htmlFor="apellido" className={stylesRegistro.label}>
                 Apellidos
               </label>
@@ -167,22 +154,59 @@ const Registro = () => {
                 id="apellido"
                 className={`${stylesRegistro.input_texto} rounded-2`}
                 type="text"
+                {...register("apellido", {
+                  required: {
+                    value: true,
+                    message: "Introduzca Sus Apellidos",
+                  },
+                  pattern: {
+                    value: /^[a-zA-Z\s]+$/,
+                    message: "Solo se Permiten Letras",
+                  },
+                })}
               />
+              {errors.apellido && (
+                <section className={stylesRegistro.seccionError}>
+                  <p className={stylesRegistro.errorInput}>
+                    {errors.apellido.message}
+                  </p>
+                </section>
+              )}
+
               <label htmlFor="cedula" className={stylesRegistro.label}>
                 Cédula
               </label>
               <section className={stylesRegistro.seccionNacionalidad}>
                 <select
                   className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} rounded-2`}
+                  id="nacionalidad"
                 >
-                  <option>V</option>
+                  <option value="V">V</option>
                 </select>
                 <input
                   id="cedula"
                   className={`${stylesRegistro.input_texto} rounded-2`}
-                  type="text"
+                  type="number"
+                  {...register("cedula", {
+                    required: {
+                      value: true,
+                      message: "Introduzca Su Cédula",
+                    },
+                    pattern: {
+                      value: /^[0-9]+$/,
+                      message: "Solo se Permiten Numeros",
+                    },
+                  })}
                 />
               </section>
+              {errors.cedula && (
+                <section className={stylesRegistro.seccionError}>
+                  <p className={stylesRegistro.errorInput}>
+                    {errors.cedula.message}
+                  </p>
+                </section>
+              )}
+
               <label htmlFor="sexo" className={stylesRegistro.label}>
                 Sexo
               </label>
@@ -190,7 +214,6 @@ const Registro = () => {
                 className={`${stylesRegistro.seleccionGenero} rounded-2`}
               >
                 <label
-                  id="sexo"
                   htmlFor="masculino"
                   className={`${stylesRegistro.label} ${stylesRegistro.labelRadio} rounded-2`}
                 >
@@ -198,10 +221,14 @@ const Registro = () => {
                     Masculino
                     <input
                       id="masculino"
-                      checked={genero === "masculino"}
-                      onChange={seleccionGenero}
                       type="radio"
-                      name="radio"
+                      value="masculino"
+                      {...register("sexo", {
+                        required: {
+                          value: true,
+                          message: "Introduzca su Sexo",
+                        },
+                      })}
                     />
                   </section>
                 </label>
@@ -213,13 +240,25 @@ const Registro = () => {
                     Femenino
                     <input
                       id="femenino"
-                      checked={genero === "femenino"}
-                      onChange={seleccionGenero}
                       type="radio"
+                      value="femenino"
+                      {...register("sexo", {
+                        required: {
+                          value: true,
+                          message: "Introduzca su Sexo",
+                        },
+                      })}
                     />
                   </section>
                 </label>
               </section>
+              {errors.sexo && (
+                <section className={stylesRegistro.seccionError}>
+                  <p className={stylesRegistro.errorInput}>
+                    {errors.sexo.message}
+                  </p>
+                </section>
+              )}
               <section className={stylesRegistro.contenedor_passoword_perdida}>
                 <Link
                   className={stylesRegistro.link_password}
@@ -228,9 +267,11 @@ const Registro = () => {
                   ¿Ya tienes una cuenta?
                 </Link>
               </section>
+
               <button
                 className={`${stylesRegistro.boton} rounded-2`}
                 type="button"
+                disabled={!isValid}
                 onClick={siguienteFormulario}
               >
                 Siguiente
@@ -244,70 +285,96 @@ const Registro = () => {
               </label>
               <input
                 id="correo"
-                className={`${stylesRegistro.input_texto} rounded-2 mb-4`}
+                className={`${stylesRegistro.input_texto} rounded-2`}
                 type="email"
+                {...register("correo", {
+                  required: "Introduzca su Correo Electrónico",
+                  pattern: {
+                    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                    message: "Formato de Correo Electrónico Inválido",
+                  },
+                })}
               />
+              {errors.correo && (
+                <section className={stylesRegistro.seccionError}>
+                  <p className={stylesRegistro.errorInput}>
+                    {errors.correo.message}
+                  </p>
+                </section>
+              )}
+
               <label htmlFor="nacimiento" className={stylesRegistro.label}>
                 Fecha de Nacimiento
               </label>
               <input
                 id="nacimiento"
-                className={`${stylesRegistro.input_texto} ${stylesRegistro.input_fecha} rounded-2 mb-4`}
+                className={`${stylesRegistro.input_texto} ${stylesRegistro.input_fecha} rounded-2`}
                 type="date"
+                max={fechaActual}
+                {...register("nacimiento", {
+                  required: "Introduzca su Fecha de Nacimiento",
+                })}
               />
+              {errors.nacimiento && (
+                <section className={stylesRegistro.seccionError}>
+                  <p className={stylesRegistro.errorInput}>
+                    {errors.nacimiento.message}
+                  </p>
+                </section>
+              )}
+
               <label htmlFor="clave" className={stylesRegistro.labelClave}>
                 Contraseña
               </label>
               <section className={stylesRegistro.contenedor_input_password}>
                 <input
                   id="clave"
-                  className={`${stylesRegistro.input_texto} rounded-2 mb-4`}
-                  onChange={obtenerClave}
+                  className={`${stylesRegistro.input_texto} rounded-2`}
                   type={mostrarClave ? "text" : "password"}
+                  {...register("clave", {
+                    required: "Introduzca una Contraseña",
+                    minLength: {
+                      value: 8,
+                      message: "La Contraseña debe tener al menos 8 caracteres",
+                    },
+                  })}
                 />
-                {temaActual === "oscuro" &&
-                mostrarClave &&
-                !claveActiva &&
-                clave ? (
-                  <Image
-                    className={stylesRegistro.icono_password}
-                    onClick={() => mostrarPassword("PrimeraClave")}
-                    width={20}
-                    height={20}
-                    src={`/BlancoAbierto.svg`}
-                  />
-                ) : null}
-                {temaActual === "oscuro" && clave && claveActiva ? (
+                {mostrarClave ? (
                   <Image
                     className={stylesRegistro.icono_password}
                     onClick={() => mostrarPassword(clave)}
                     width={20}
                     height={20}
-                    src={`/BlancoAbiertoOblicua.svg`}
+                    src={
+                      temaActual === "oscuro"
+                        ? `/BlancoAbierto.svg`
+                        : `/OjoNegroAbierto.svg`
+                    }
+                    alt="Ocultar Contraseña"
                   />
-                ) : null}
-                {temaActual === "claro" &&
-                mostrarClave &&
-                !claveActiva &&
-                clave ? (
-                  <Image
-                    className={stylesRegistro.icono_password}
-                    onClick={() => mostrarPassword("PrimeraClave")}
-                    width={20}
-                    height={20}
-                    src={`/OjoNegroAbierto.svg`}
-                  />
-                ) : null}
-                {temaActual === "claro" && clave && claveActiva ? (
+                ) : (
                   <Image
                     className={stylesRegistro.icono_password}
                     onClick={() => mostrarPassword(clave)}
                     width={20}
                     height={20}
-                    src={`/OjoNegroAbiertoOblicuo.svg`}
+                    src={
+                      temaActual === "oscuro"
+                        ? `/BlancoAbiertoOblicua.svg`
+                        : `/OjoNegroAbiertoOblicuo.svg`
+                    }
+                    alt="Mostrar Contraseña"
                   />
-                ) : null}
+                )}
               </section>
+              {errors.clave && (
+                <section className={stylesRegistro.seccionError}>
+                  <p className={stylesRegistro.errorInput}>
+                    {errors.clave.message}
+                  </p>
+                </section>
+              )}
+
               <label
                 htmlFor="repetirClave"
                 className={stylesRegistro.labelClave}
@@ -318,56 +385,51 @@ const Registro = () => {
                 <input
                   id="repetirClave"
                   className={`${stylesRegistro.input_texto} ${stylesRegistro.input_ultimo} rounded-2`}
-                  onChange={obtenerSegundaClave}
                   type={mostrarSegundaClave ? "text" : "password"}
+                  {...register("repetirClave", {
+                    required: "Repita la Contraseña",
+                    validate: (value) =>
+                      value === clave || "Las Contraseñas no coinciden",
+                  })}
                 />
-                {temaActual === "oscuro" &&
-                mostrarSegundaClave &&
-                !segundaClaveActiva &&
-                segundaClave ? (
+                {mostrarSegundaClave ? (
                   <Image
                     className={`${stylesRegistro.icono_password} ${stylesRegistro.icono_ultimo}`}
-                    onClick={() => mostrarPassword("SegundaClave")}
+                    onClick={() => confirmarPassword(confirmacionClave)}
                     width={20}
                     height={20}
-                    src={`/BlancoAbierto.svg`}
+                    src={
+                      temaActual === "oscuro"
+                        ? `/BlancoAbierto.svg`
+                        : `/OjoNegroAbierto.svg`
+                    }
+                    alt="Ocultar Contraseña"
                   />
-                ) : null}
-                {temaActual === "oscuro" &&
-                segundaClave &&
-                segundaClaveActiva ? (
+                ) : (
                   <Image
                     className={`${stylesRegistro.icono_password} ${stylesRegistro.icono_ultimo}`}
-                    onClick={() => mostrarPassword(segundaClave)}
+                    onClick={() => confirmarPassword(confirmacionClave)}
                     width={20}
                     height={20}
-                    src={`/BlancoAbiertoOblicua.svg`}
+                    src={
+                      temaActual === "oscuro"
+                        ? `/BlancoAbiertoOblicua.svg`
+                        : `/OjoNegroAbiertoOblicuo.svg`
+                    }
+                    alt="Mostrar Contraseña"
                   />
-                ) : null}
-                {temaActual === "claro" &&
-                mostrarSegundaClave &&
-                !segundaClaveActiva &&
-                segundaClave ? (
-                  <Image
-                    className={`${stylesRegistro.icono_password} ${stylesRegistro.icono_ultimo}`}
-                    onClick={() => mostrarPassword("SegundaClave")}
-                    width={20}
-                    height={20}
-                    src={`/OjoNegroAbierto.svg`}
-                  />
-                ) : null}
-                {temaActual === "claro" &&
-                segundaClave &&
-                segundaClaveActiva ? (
-                  <Image
-                    className={`${stylesRegistro.icono_password} ${stylesRegistro.icono_ultimo}`}
-                    onClick={() => mostrarPassword(segundaClave)}
-                    width={20}
-                    height={20}
-                    src={`/OjoNegroAbiertoOblicuo.svg`}
-                  />
-                ) : null}
+                )}
               </section>
+              {errors.repetirClave && (
+                <section
+                  className={`${stylesRegistro.seccionError} ${stylesRegistro.seccionError_ultimo}`}
+                >
+                  <p className={stylesRegistro.errorInput}>
+                    {errors.repetirClave.message}
+                  </p>
+                </section>
+              )}
+
               <section className={stylesRegistro.contenedor_passoword_perdida}>
                 <Link
                   className={stylesRegistro.link_password}
@@ -387,6 +449,7 @@ const Registro = () => {
                 <button
                   className={`${stylesRegistro.boton} rounded-2`}
                   type="button"
+                  disabled={!isValid}
                   onClick={siguienteFormulario}
                 >
                   Siguiente
@@ -581,7 +644,8 @@ const Registro = () => {
           {pasoFormulario === 4 && (
             <>
               <label htmlFor="facebook" className={stylesRegistro.label}>
-              ¿Tienes Facebook?, Introduzca la URL hacia su Perfil de Facebook [Campo Opcional]
+                ¿Tienes Facebook?, Introduzca la URL hacia su Perfil de Facebook
+                [Campo Opcional]
               </label>
               <input
                 id="facebook"
@@ -589,7 +653,8 @@ const Registro = () => {
                 type="text"
               />
               <label htmlFor="instagram" className={stylesRegistro.label}>
-              ¿Tienes Tiktok?, Introduzca la URL hacia su Perfil de Instagram [Campo Opcional]
+                ¿Tienes Tiktok?, Introduzca la URL hacia su Perfil de Instagram
+                [Campo Opcional]
               </label>
               <input
                 id="instagram"
@@ -597,7 +662,8 @@ const Registro = () => {
                 type="text"
               />
               <label htmlFor="x" className={stylesRegistro.labelClave}>
-              ¿Tienes X [Twitter]?, Introduzca la URL hacia su Perfil de X [Campo Opcional]
+                ¿Tienes X [Twitter]?, Introduzca la URL hacia su Perfil de X
+                [Campo Opcional]
               </label>
               <input
                 id="x"
@@ -606,7 +672,8 @@ const Registro = () => {
                 type="text"
               />
               <label htmlFor="tiktok" className={stylesRegistro.labelClave}>
-                ¿Tienes Tiktok?, Introduzca la URL hacia su Perfil de Tiktok [Campo Opcional]
+                ¿Tienes Tiktok?, Introduzca la URL hacia su Perfil de Tiktok
+                [Campo Opcional]
               </label>
               <input
                 id="tiktok"
@@ -624,7 +691,7 @@ const Registro = () => {
                 })}
               />
               {errors.tiktok && (
-                <section className={stylesRegistro.contenedor_errorInput}>
+                <section className={stylesRegistro.seccionError}>
                   <p className={stylesRegistro.errorInput}>
                     {errors.tiktok.message}
                   </p>
