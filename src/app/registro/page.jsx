@@ -102,7 +102,7 @@ const Registro = () => {
         >
           <section className={stylesRegistro.seccionTitulo}>
             <h1 className={stylesRegistro.titulo_form}>Registrar Cuenta</h1>
-            <h1>{numeroFormulario}</h1>
+            <h1>0{numeroFormulario}</h1>
           </section>
           {pasoFormulario === 1 && (
             <>

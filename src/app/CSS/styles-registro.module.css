@@ -186,7 +186,7 @@
 
 .input_fecha {
   margin-bottom: 2%;
-  width: 24%;
+  width: 26%;
 }
 
 .input_ultimo {
@@ -231,6 +231,11 @@
   color: #d80000;
   font-weight: 600;
   margin-bottom: 2%;
+}
+
+.boton:disabled {
+  background-color: #1e1e1e;
+  color: #a1a1a1;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -308,6 +313,12 @@
       color: #eeeeee;
     }
   }
+
+  .boton:disabled {
+    background-color: #1e1e1e;
+    color: #a1a1a1;
+  }
+
 }
 
 @media (width < 890px), (height < 200px) {
