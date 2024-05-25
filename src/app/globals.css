@@ -21,6 +21,11 @@ input[type=number] { -moz-appearance:textfield; }
   color: #eeeeee;
 }
 
+input::selection {
+  background: #eeeeee;
+  color: #0f0f0f;
+}
+
 @media (prefers-color-scheme: dark) {
   :root {
     --foreground-rgb: 255, 255, 255;

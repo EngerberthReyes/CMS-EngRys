@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import stylesClave from "../CSS/styles-recuperarContrasena.module.css";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 
 const recuperarClave = () => {
   const {
@@ -16,14 +17,7 @@ const recuperarClave = () => {
     mode: "onChange",
   });
 
-  const [mostrarClave, setMostrarClave] = useState(false);
   const [temaActual, setTemaActual] = useState();
-
-  const clave = watch("clave");
-
-  const mostrarPassword = () => {
-    setMostrarClave(!mostrarClave);
-  };
 
   const manejarCambioDeTema = (event) => {
     const modoOscuro = event.matches;
@@ -45,8 +39,34 @@ const recuperarClave = () => {
     };
   }, []);
 
-  const enviarDatos = (datos) => {
-    console.log(datos);
+  const generarCodigoRandom = (longitud) => {
+    const caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+    let codigo = "";
+    for (let i = 0; i < longitud; i++) {
+      const indiceAleatorio = Math.floor(Math.random() * caracteres.length);
+      codigo += caracteres[indiceAleatorio];
+    }
+    return codigo;
+  };
+
+  const enviarDatos = async (dato) => {
+    const codigo = generarCodigoRandom(11);
+    try {
+      const correoElectronico = dato.correo;
+      const respuesta = await axios.post("/API/sendemail", {
+        codigo,
+        correoElectronico,
+      });
+  
+      if (respuesta.status < 200 || respuesta.status >= 300) {
+        throw new Error("Error en la solicitud");
+      }
+  
+      const datos = respuesta.data;
+      console.log(datos);
+    } catch (error) {
+      console.error("Error:", error);
+    }
   };
 
   return (
@@ -96,20 +116,6 @@ const recuperarClave = () => {
           <button
             disabled={!isValid}
             className={`${stylesClave.boton} rounded-2`}
-            onClick={async () => {
-              try {
-                const respuesta = await fetch("/API/sendemail", {
-                  method: "POST",
-                });
-                if (!respuesta.ok) {
-                  throw new Error("Error en la solicitud");
-                }
-                const datos = await respuesta.json();
-                console.log(datos);
-              } catch (error) {
-                console.error("Error:", error);
-              }
-            }}
           >
             Enviar Codigo de Verificación
           </button>
