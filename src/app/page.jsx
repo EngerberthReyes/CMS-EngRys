@@ -9,7 +9,7 @@ const Inicio = () => {
   return (
     <>
       <head>
-        <title>inicio - EpíComputers</title>
+        <title>EpíComputers</title>
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body id={stylesInicio.body}>
