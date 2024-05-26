@@ -5,16 +5,14 @@
   filter: blur(3px);
   z-index: -1;
   content: "";
-  position: absolute;
+  position: fixed;
   height: 100%;
   width: 100%;
 }
 
 #body {
-  display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  flex-direction: column;
+  display: inline-block;
+  overflow-x: hidden;
   row-gap: 5%;
 }
 
@@ -64,6 +62,7 @@
   align-items: flex-start;
   width: 100vw;
   column-gap: 2%;
+  margin: 1% 0;
 }
 
 .seccionPrincipal {
@@ -101,15 +100,20 @@
 
 .seccionSecundaria {
   width: 34%;
-  margin: 0 0 0 2%;
+  margin: 0 0 0 1%;
   background-color: #eeeeee;
   color: #0f0f0f;
   height: 100%;
   border-radius: 4px;
 }
 
+.seccionSecundariaAjuste {
+  display: inline-block;
+  margin: 0.5% 0.5% 0 0.5%;
+  width: 99%;
+}
+
 @media (prefers-color-scheme: dark) {
-  
   .header {
     background-color: #0f0f0f9e;
     color: #eeeeee;

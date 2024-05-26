@@ -37,44 +37,136 @@ const Inicio = () => {
             </Link>
           </section>
         </header>
-        <main className={stylesInicio.main}>
-          <section className={stylesInicio.seccionSecundaria}>
-            <section className={stylesInicio.seccionAjustes}>
-              <h1>Lateral</h1>
-              <section className={stylesInicio.seccionFlex}>
-                <section>Cajas2</section>
-                <section>Cajas2</section>
-                <section>Cajas2</section>
-                <section>Cajas2</section>
-                <section>Cajas2</section>
-                <section>Cajas2</section>
-                <section>Cajas2</section>
-                <section>Cajas2</section>
-                <section>Cajas2</section>
+        <main>
+          <section className={`${stylesInicio.main} ${stylesInicio.seccionSecundariaAjuste}`}>
+            <section className={`${stylesInicio.seccionPrincipal} ${stylesInicio.seccionSecundariaAjuste}`}>
+              <section className={stylesInicio.seccionGrid}>
+                <h1>Aqui va algo</h1>
+                <section className={stylesInicio.seccionElementos}>
+                  <section>
+                    <Image
+                      className={stylesInicio.elemento}
+                      src={"/IMG/epigrafe73.png"}
+                      width={200}
+                      height={200}
+                      alt={"Imagen"}
+                    />
+                  </section>
+                  <section>
+                    <Image
+                      className={stylesInicio.elemento}
+                      src={"/IMG/epigrafe73.png"}
+                      width={200}
+                      height={200}
+                      alt={"Imagen"}
+                    />
+                  </section>
+                  <section>
+                    <Image
+                      className={stylesInicio.elemento}
+                      src={"/IMG/epigrafe73.png"}
+                      width={200}
+                      height={200}
+                      alt={"Imagen"}
+                    />
+                  </section>
+                  <section>
+                    <Image
+                      className={stylesInicio.elemento}
+                      src={"/IMG/epigrafe73.png"}
+                      width={200}
+                      height={200}
+                      alt={"Imagen"}
+                    />
+                  </section>
+                  <section>
+                    <Image
+                      className={stylesInicio.elemento}
+                      src={"/IMG/epigrafe73.png"}
+                      width={200}
+                      height={200}
+                      alt={"Imagen"}
+                    />
+                  </section>
+                  <section>
+                    <Image
+                      className={stylesInicio.elemento}
+                      src={"/IMG/epigrafe73.png"}
+                      width={200}
+                      height={200}
+                      alt={"Imagen"}
+                    />
+                  </section>
+                  <section>
+                    <Image
+                      className={stylesInicio.elemento}
+                      src={"/IMG/epigrafe73.png"}
+                      width={200}
+                      height={200}
+                      alt={"Imagen"}
+                    />
+                  </section>
+                  <section>
+                    <Image
+                      className={stylesInicio.elemento}
+                      src={"/IMG/epigrafe73.png"}
+                      width={200}
+                      height={200}
+                      alt={"Imagen"}
+                    />
+                  </section>
+                  <section>
+                    <Image
+                      className={stylesInicio.elemento}
+                      src={"/IMG/epigrafe73.png"}
+                      width={200}
+                      height={200}
+                      alt={"Imagen"}
+                    />
+                  </section>
+                </section>
               </section>
             </section>
           </section>
-          <section className={stylesInicio.seccionPrincipal}>
-            <section className={stylesInicio.seccionGrid}>
-              <h1>Aqui va algo</h1>
-              <section className={stylesInicio.seccionElementos}>
-                <section>
-                  <Image
-                    className={stylesInicio.elemento}
-                    src={"/IMG/epigrafe73.png"}
-                    width={200}
-                    height={200}
-                    alt={"Imagen"}
-                  />
+          <section className={stylesInicio.main}>
+            <section className={stylesInicio.seccionSecundaria}>
+              <section className={stylesInicio.seccionAjustes}>
+                <h1>Lateral</h1>
+                <section className={stylesInicio.seccionFlex}>
+                  <section>Cajas2</section>
+                  <section>Cajas2</section>
+                  <section>Cajas2</section>
+                  <section>Cajas2</section>
+                  <section>Cajas2</section>
+                  <section>Cajas2</section>
+                  <section>Cajas2</section>
+                  <section>Cajas2</section>
+                  <section>Cajas2</section>
                 </section>
-                <section>Cajas</section>
-                <section>Cajas</section>
-                <section>Cajas</section>
-                <section>Cajas</section>
-                <section>Cajas</section>
-                <section>Cajas</section>
-                <section>Cajas</section>
-                <section>Cajas</section>
+              </section>
+            </section>
+            <section className={stylesInicio.seccionPrincipal}>
+              <section className={stylesInicio.seccionGrid}>
+                <h1>Aqui va algo</h1>
+                <section className={stylesInicio.seccionElementos}>
+                  <section>
+                    <Image
+                      className={stylesInicio.elemento}
+                      src={"/IMG/epigrafe73.png"}
+                      width={200}
+                      height={200}
+                      alt={"Imagen"}
+                    />
+                  </section>
+                  <section>Cajas</section>
+                  <section>Cajas</section>
+                  <section>Cajas</section>
+                  <section>Cajas</section>
+                  <section>Cajas</section>
+                  <section>Cajas</section>
+                  <section>Cajas</section>
+                  <section>Cajas</section>
+                </section>
               </section>
             </section>
           </section>
