@@ -17,7 +17,6 @@ const Registro = () => {
   });
 
   const [fechaActual, setFechaActual] = useState("");
-  const [genero, setGenero] = useState(null);
   const [pasoFormulario, setPasoFormulario] = useState(1);
   const [numeroFormulario, setNumeroFormulario] = useState(1);
   const [temaActual, setTemaActual] = useState("oscuro");
@@ -56,9 +55,6 @@ const Registro = () => {
   };
 
   const siguienteFormulario = () => {
-    /*if (pasoFormulario === 1) {
-      Aqui se pueden añadir los datos del primer formulario
-    } */
     setNumeroFormulario(numeroFormulario + 1);
     setPasoFormulario(pasoFormulario + 1);
   };
@@ -66,15 +62,6 @@ const Registro = () => {
   const formularioPrevio = () => {
     setNumeroFormulario(numeroFormulario - 1);
     setPasoFormulario(pasoFormulario - 1);
-  };
-
-  const seleccionGenero = (event) => {
-    const valorGenero = event.target.id;
-    if (genero === valorGenero) {
-      setGenero(null);
-    } else {
-      setGenero(valorGenero);
-    }
   };
 
   useEffect(() => {
@@ -167,6 +154,7 @@ const Registro = () => {
                   id="nacionalidad"
                 >
                   <option value="V">V</option>
+                  <option value="E">E</option>
                 </select>
                 <input
                   id="cedula"
@@ -207,7 +195,7 @@ const Registro = () => {
                     <input
                       id="masculino"
                       type="radio"
-                      value="masculino"
+                      value="Masculino"
                       {...register("sexo", {
                         required: {
                           value: true,
@@ -226,7 +214,7 @@ const Registro = () => {
                     <input
                       id="femenino"
                       type="radio"
-                      value="femenino"
+                      value="Femenino"
                       {...register("sexo", {
                         required: {
                           value: true,
@@ -645,7 +633,7 @@ const Registro = () => {
                 {...register("facebook", {
                   pattern: {
                     value:
-                      /^(https?:\/\/)?(www\.)?facebook\.com\/[a-zA-Z0-9(\.\?)?]/,
+                    /^https:\/\/(www\.)?facebook\.com\/[a-zA-Z0-9._\-?&=]+/,
                     message: "Introduzca una URL válida de Facebook",
                   },
                 })}
@@ -664,7 +652,7 @@ const Registro = () => {
               </label>
               <input
                 id="instagram"
-                className={`${stylesRegistro.input_texto} ${stylesRegistro.input_fecha} rounded-2 mb-2`}
+                className={`${stylesRegistro.input_texto} rounded-2 mb-2`}
                 type="text"
                 {...register("instagram", {
                   pattern: {

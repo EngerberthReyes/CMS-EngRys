@@ -38,8 +38,12 @@ const Inicio = () => {
           </section>
         </header>
         <main>
-          <section className={`${stylesInicio.main} ${stylesInicio.seccionSecundariaAjuste}`}>
-            <section className={`${stylesInicio.seccionPrincipal} ${stylesInicio.seccionSecundariaAjuste}`}>
+          <section
+            className={`${stylesInicio.main} ${stylesInicio.seccionSecundariaAjuste}`}
+          >
+            <section
+              className={`${stylesInicio.seccionPrincipal} ${stylesInicio.seccionSecundariaAjuste}`}
+            >
               <section className={stylesInicio.seccionGrid}>
                 <h1>Aqui va algo</h1>
                 <section className={stylesInicio.seccionElementos}>
