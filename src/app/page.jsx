@@ -9,12 +9,20 @@ const Inicio = () => {
   return (
     <>
       <head>
-        <title>inicio - CMS</title>
+        <title>inicio - EpíComputers</title>
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body id={stylesInicio.body}>
         <header className={stylesInicio.header}>
-          <h1 className={stylesInicio.tituloHeader}>CMS</h1>
+          <h1 className={stylesInicio.tituloHeader}>EpíComputers</h1>
+          <section className={stylesInicio.seccionEnlace}>
+            <Link className={stylesInicio.enlace} href="/iniciar_sesion">
+              Sobre Nosotros
+            </Link>
+            <Link className={stylesInicio.enlace} href="/registro">
+              Contactanos
+            </Link>
+          </section>
           <section className={stylesInicio.seccionEnlace}>
             <Link className={stylesInicio.enlace} href="/iniciar_sesion">
               Iniciar Sesión
