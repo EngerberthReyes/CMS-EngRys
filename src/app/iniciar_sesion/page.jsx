@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import stylesLogin from "../CSS/styles-login.module.css";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 
 const Login = () => {
   const {
@@ -45,7 +46,14 @@ const Login = () => {
     };
   }, []);
 
-  const enviarDatos = (datos) => {
+  const enviarDatos = async (datos) => {
+    
+    try {
+      const respuesta = await axios.post('/API', { algo });
+    } catch (error) {
+      console.error(error)
+    }
+    
     console.log(datos);
   };
 
