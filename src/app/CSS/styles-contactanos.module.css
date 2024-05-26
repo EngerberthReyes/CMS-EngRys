@@ -41,6 +41,11 @@
   margin: 0;
 }
 
+.enlaceNormal {
+  text-decoration: none;
+  color: #0f0f0f;
+}
+
 .enlace {
   color: #0f0f0f;
   text-decoration: none;
@@ -116,6 +121,11 @@
 @media (prefers-color-scheme: dark) {
   .header {
     background-color: #0f0f0f9e;
+    color: #eeeeee;
+  }
+
+  .enlaceNormal {
+    text-decoration: none;
     color: #eeeeee;
   }
 

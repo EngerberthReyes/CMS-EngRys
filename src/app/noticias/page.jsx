@@ -9,12 +9,12 @@ const Noticias = () => {
   return (
     <>
       <head>
-        <title>EpíComputers</title>
+        <title>Noticias - EpíComputers</title>
         <link rel="icon" href="/IMG/Icono No Lineal.png" type="Image/png" />
       </head>
       <body id={stylesNoticias.body}>
         <header className={stylesNoticias.header}>
-          <h1 className={stylesNoticias.tituloHeader}>EpíComputers</h1>
+          <Link className={stylesNoticias.enlaceNormal} href={'/'}><h1 className={stylesNoticias.tituloHeader}>EpíComputers</h1></Link>
           <section
             className={`${stylesNoticias.seccionEnlace} ${stylesNoticias.seccionEnlaceAumentada}`}
           >

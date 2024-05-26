@@ -9,12 +9,12 @@ const Contactanos = () => {
   return (
     <>
       <head>
-        <title>EpíComputers</title>
+        <title>Contáctanos - EpíComputers</title>
         <link rel="icon" href="/IMG/Icono No Lineal.png" type="Image/png" />
       </head>
       <body id={stylesContactanos.body}>
         <header className={stylesContactanos.header}>
-          <h1 className={stylesContactanos.tituloHeader}>EpíComputers</h1>
+        <Link className={stylesContactanos.enlaceNormal} href={'/'}><h1 className={stylesContactanos.tituloHeader}>EpíComputers</h1></Link>
           <section
             className={`${stylesContactanos.seccionEnlace} ${stylesContactanos.seccionEnlaceAumentada}`}
           >
