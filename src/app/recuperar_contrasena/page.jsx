@@ -53,6 +53,7 @@ const recuperarClave = () => {
     const codigo = generarCodigoRandom(11);
     try {
       const correoElectronico = dato.correo;
+      console.log(correoElectronico)
       const respuesta = await axios.post("/API/sendemail", {
         codigo,
         correoElectronico,
