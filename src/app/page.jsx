@@ -14,7 +14,9 @@ const Inicio = () => {
       </head>
       <body id={stylesInicio.body}>
         <header className={stylesInicio.header}>
-          <h1 className={stylesInicio.tituloHeader}>EpíComputers</h1>
+          <Link className={stylesInicio.enlaceNormal} href={"/"}>
+            <h1 className={stylesInicio.tituloHeader}>EpíComputers</h1>
+          </Link>
           <section
             className={`${stylesInicio.seccionEnlace} ${stylesInicio.seccionEnlaceAumentada}`}
           >

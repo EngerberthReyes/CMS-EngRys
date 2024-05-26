@@ -41,6 +41,11 @@
   margin: 0;
 }
 
+.enlaceNormal {
+  text-decoration: none;
+  color: #0f0f0f;
+}
+
 .enlace {
   color: #0f0f0f;
   text-decoration: none;
@@ -141,6 +146,11 @@
 
   .seccionSecundaria {
     background-color: #0f0f0f;
+    color: #eeeeee;
+  }
+
+  .enlaceNormal {
+    text-decoration: none;
     color: #eeeeee;
   }
 
