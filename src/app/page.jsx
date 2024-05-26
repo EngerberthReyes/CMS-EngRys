@@ -10,7 +10,7 @@ const Inicio = () => {
     <>
       <head>
         <title>EpíComputers</title>
-        <link rel="icon" href="/IMG/Icono No Lineal.png" type="Image/png" />
+        <link rel="icon" href="/IMG/iconoNoLineal.png" type="Image/png" />
       </head>
       <body id={stylesInicio.body}>
         <header className={stylesInicio.header}>
@@ -46,87 +46,17 @@ const Inicio = () => {
             <section
               className={`${stylesInicio.seccionPrincipal} ${stylesInicio.seccionSecundariaAjuste}`}
             >
-              <section className={stylesInicio.seccionGrid}>
-                <h1>Aqui va algo</h1>
+              <section className={stylesInicio.seccionFlexPrincipal}>
+                <section className={stylesInicio.secctionInformacion}>
+                  <h1 className={stylesInicio.tituloSeccion}>Aqui va algo</h1>
+                </section>
                 <section className={stylesInicio.seccionElementos}>
                   <section>
                     <Image
                       className={stylesInicio.elemento}
-                      src={"/IMG/epigrafe73.png"}
-                      width={200}
-                      height={200}
-                      alt={"Imagen"}
-                    />
-                  </section>
-                  <section>
-                    <Image
-                      className={stylesInicio.elemento}
-                      src={"/IMG/epigrafe73.png"}
-                      width={200}
-                      height={200}
-                      alt={"Imagen"}
-                    />
-                  </section>
-                  <section>
-                    <Image
-                      className={stylesInicio.elemento}
-                      src={"/IMG/epigrafe73.png"}
-                      width={200}
-                      height={200}
-                      alt={"Imagen"}
-                    />
-                  </section>
-                  <section>
-                    <Image
-                      className={stylesInicio.elemento}
-                      src={"/IMG/epigrafe73.png"}
-                      width={200}
-                      height={200}
-                      alt={"Imagen"}
-                    />
-                  </section>
-                  <section>
-                    <Image
-                      className={stylesInicio.elemento}
-                      src={"/IMG/epigrafe73.png"}
-                      width={200}
-                      height={200}
-                      alt={"Imagen"}
-                    />
-                  </section>
-                  <section>
-                    <Image
-                      className={stylesInicio.elemento}
-                      src={"/IMG/epigrafe73.png"}
-                      width={200}
-                      height={200}
-                      alt={"Imagen"}
-                    />
-                  </section>
-                  <section>
-                    <Image
-                      className={stylesInicio.elemento}
-                      src={"/IMG/epigrafe73.png"}
-                      width={200}
-                      height={200}
-                      alt={"Imagen"}
-                    />
-                  </section>
-                  <section>
-                    <Image
-                      className={stylesInicio.elemento}
-                      src={"/IMG/epigrafe73.png"}
-                      width={200}
-                      height={200}
-                      alt={"Imagen"}
-                    />
-                  </section>
-                  <section>
-                    <Image
-                      className={stylesInicio.elemento}
-                      src={"/IMG/epigrafe73.png"}
-                      width={200}
-                      height={200}
+                      src={"/IMG/PCGamer.png"}
+                      width={900}
+                      height={720}
                       alt={"Imagen"}
                     />
                   </section>

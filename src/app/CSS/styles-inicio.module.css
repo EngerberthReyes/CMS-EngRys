@@ -76,8 +76,20 @@
   border-radius: 4px;
 }
 
-.seccionGrid {
+.seccionFlexPrincipal {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
   margin: 2%;
+  height: 32rem;
+}
+
+.secctionInformacion {
+  height: 100%;
+}
+
+.tituloSeccion {
+  margin: 0 6rem;
 }
 
 .seccionElementos {
@@ -174,5 +186,19 @@
   .boton {
     background: #eeeeee;
     color: #0f0f0f;
+  }
+}
+
+@media (width <= 1000px) {
+  .seccionFlexPrincipal {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin: 2%;
+  }
+
+  .tituloSeccion {
+    margin: 1rem 0 2rem 0;
   }
 }
