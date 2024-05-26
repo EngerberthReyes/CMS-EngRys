@@ -1,8 +1,8 @@
 #body::before {
-  background: url("../../../public/LunaLava.png") center center fixed;
+  background: url("../../../public/Patron Lineal.png") center center fixed;
   background-size: cover;
   background-repeat: no-repeat;
-  filter: blur(4px);
+  filter: blur(3px);
   z-index: -1;
   content: "";
   position: absolute;
@@ -109,12 +109,7 @@
 }
 
 @media (prefers-color-scheme: dark) {
-  #body::before {
-    background: url("../../../public/LunaLava.png") center center fixed;
-    background-size: cover;
-    background-repeat: no-repeat;
-  }
-
+  
   .header {
     background-color: #0f0f0f9e;
     color: #eeeeee;

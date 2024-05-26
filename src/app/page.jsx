@@ -10,7 +10,7 @@ const Inicio = () => {
     <>
       <head>
         <title>EpíComputers</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/IMG/Icono No Lineal.png" type="Image/png" />
       </head>
       <body id={stylesInicio.body}>
         <header className={stylesInicio.header}>
