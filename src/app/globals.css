@@ -14,6 +14,11 @@ input[type=number]::-webkit-outer-spin-button {
   margin: 0; 
 }
 
+@font-face {
+  font-family: 'ProximaNovaRegular';
+  src: url('./CSS/Fuentes/ProximaNovaRegular.otf');
+}
+
 input[type=number] { -moz-appearance:textfield; }
 
 ::selection {
@@ -43,6 +48,7 @@ input::selection {
 
 html, body {
   color: rgb(var(--foreground-rgb));
+  font-family: ProximaNovaRegular, 'ProximaNovaRegular' !important;
   height: 100%;
   width: 100%;
   display: flex;
