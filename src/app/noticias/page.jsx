@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import Post from "@/componentes/post/post.jsx"
 import stylesNoticias from "../CSS/styles-noticias.module.css";
 
 const Noticias = () => {
@@ -55,6 +56,7 @@ const Noticias = () => {
                 </section>
               </section>
             </section>
+            <section>
             <section className={stylesNoticias.seccionPrincipal}>
               <section className={stylesNoticias.seccionGrid}>
                 <h1>Aqui va algo</h1>
@@ -68,6 +70,8 @@ const Noticias = () => {
                   <section>Cajas</section>
                 </section>
               </section>
+            </section>
+            <Post  />
             </section>
             <section className={stylesNoticias.seccionTerciaria}>
               <section className={stylesNoticias.seccionAjustes}>

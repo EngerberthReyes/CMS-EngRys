@@ -1,0 +1,206 @@
+#body::before {
+    background: url("../../../public/Patron Lineal.png") center center fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    z-index: -1;
+    content: "";
+    position: fixed;
+    height: 100%;
+    width: 100%;
+  }
+  
+  #body {
+    display: inline-block;
+    overflow-x: hidden;
+    row-gap: 5%;
+  }
+  
+  .header {
+    background-color: #0f0f0f9e;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100vw;
+    height: 12%;
+  }
+  
+  .seccionEnlace {
+    display: flex;
+    align-self: center;
+    justify-content: center;
+    gap: 8%;
+    width: 20%;
+  }
+  
+  .seccionEnlaceAumentada {
+    width: 30%;
+  }
+  
+  .tituloHeader {
+    margin: 0;
+  }
+  
+  .enlaceNormal {
+    text-decoration: none;
+    color: #0f0f0f;
+  }
+  
+  .enlace {
+    color: #0f0f0f;
+    text-decoration: none;
+    border: 2px solid #0f0f0f;
+    border-radius: 5px;
+    padding: 3%;
+    transition: background-color 500ms ease, border-color 500ms ease;
+  
+    &:hover {
+      background-color: #0f0f0f;
+      color: #eeeeee;
+      border-color: #eeeeee;
+    }
+  }
+  
+  .main {
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    width: 100vw;
+    column-gap: 2%;
+    margin: 1% 0;
+  }
+  
+  .seccionPrincipal {
+    background-color: #eeeeee;
+    margin-top: 2%;
+    width: 100%;
+    border-radius: 4px;
+  }
+  
+  .seccionGrid {
+    width: 44rem;
+    padding: 2%;
+  }
+  
+  .seccionElementos {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    place-items: center;
+    gap: 1rem;
+  }
+  
+  .seccionAjustes {
+    margin: 2%;
+  }
+  
+  .seccionFlex {
+    display: flex;
+    flex-direction: column;
+    row-gap: 1rem;
+  }
+  
+  .elemento {
+    border: 2px solid #0f0f0f;
+    border-radius: 4px;
+  }
+  
+  .seccionSecundaria,
+  .seccionTerciaria {
+    width: 34%;
+    margin: 0 0 0 1%;
+    background-color: #eeeeee;
+    color: #0f0f0f;
+    height: 100%;
+    border-radius: 4px;
+  }
+  
+  .seccionTerciaria {
+    margin: 0 1% 0 0;
+  }
+  
+  .seccionSecundariaAjuste {
+    display: inline-block;
+    margin: 0.5% 0.5% 0 0.5%;
+    width: 99%;
+  }
+  
+  .textArea {
+    width: 100%;
+    field-sizing: content;
+    resize: none;
+    padding: 1%;
+    border: 1px solid #0f0f0f;
+    border-radius: 4px;
+    transition: box-shadow 500ms ease;
+    &:focus {
+      box-shadow: 3px 0px 11px 0px #0f0f0f;
+    }
+  }
+  
+  @media (prefers-color-scheme: dark) {
+    .header {
+      background-color: #0f0f0f9e;
+      color: #eeeeee;
+    }
+  
+    .textArea {
+      border: 1px solid #eeeeee;
+      &:focus {
+        box-shadow: 3px 0px 11px 0px #b9b9b9;
+      }
+    }
+  
+    .enlaceNormal {
+      text-decoration: none;
+      color: #eeeeee;
+    }
+  
+    .enlace {
+      color: #eeeeee;
+      border-color: #eeeeee;
+  
+      &:hover {
+        background-color: #eeeeee;
+        color: #0f0f0f;
+        border-color: #0f0f0f;
+      }
+    }
+  
+    .elemento {
+      border-color: #eeeeee;
+    }
+  
+    .seccionPrincipal {
+      color: #eeeeee;
+      background-color: #0f0f0f;
+    }
+  
+    .seccionSecundaria,
+    .seccionTerciaria {
+      background-color: #0f0f0f;
+      color: #eeeeee;
+    }
+  
+    .contenedor_form {
+      background-color: #0f0f0f;
+      border: 2px solid #eeeeee;
+    }
+  
+    .contenedor_passoword_perdida :is(a) {
+      color: #eeeeee;
+      text-decoration: none;
+    }
+  
+    .titulo_form {
+      color: #eeeeee;
+    }
+  
+    .label {
+      color: #eeeeee;
+    }
+  
+    .boton {
+      background: #eeeeee;
+      color: #0f0f0f;
+    }
+  }
+  
