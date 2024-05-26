@@ -633,7 +633,7 @@ const Registro = () => {
                 {...register("facebook", {
                   pattern: {
                     value:
-                    /^https:\/\/(www\.)?facebook\.com\/[a-zA-Z0-9._\-?&=]+/,
+                      /^https:\/\/(www\.)?facebook\.com\/[a-zA-Z0-9._\-?&=]+/,
                     message: "Introduzca una URL válida de Facebook",
                   },
                 })}
@@ -657,7 +657,7 @@ const Registro = () => {
                 {...register("instagram", {
                   pattern: {
                     value:
-                      /^(https?:\/\/)?(www\.)?instagram\.com\/[a-zA-Z0-9(\.\?)?]/,
+                      /^https:\/\/(www\.)?instagram\.com\/[a-zA-Z0-9._\-?&=]+/,
                     message: "Introduzca una URL válida de Instagram",
                   },
                 })}
@@ -681,7 +681,7 @@ const Registro = () => {
                 {...register("x", {
                   pattern: {
                     value:
-                      /^(https?:\/\/)?(www\.)?(x\.com|twitter\.com)\/[a-zA-Z0-9(\.\?)?]/,
+                      /^https:\/\/(www\.)?(x\.com|twitter\.com)\/[a-zA-Z0-9._\-?&=]+/,
                     message: "Introduzca una URL válida de X (Twitter)",
                   },
                 })}
@@ -705,7 +705,7 @@ const Registro = () => {
                 {...register("tiktok", {
                   pattern: {
                     value:
-                      /^(https?:\/\/)?(www\.)?tiktok\.com\/@[a-zA-Z0-9(\.\?)?]/,
+                      /^https:\/\/(www\.)?tiktok\.com\/@[a-zA-Z0-9._\-?&=]+/,
                     message: "Introduzca una URL válida de Tiktok",
                   },
                 })}
