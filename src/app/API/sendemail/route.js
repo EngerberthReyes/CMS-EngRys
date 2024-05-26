@@ -11,7 +11,7 @@ export const POST = async (request) => {
       from: "EpíComputers <onboarding@resend.dev>",
       to: [correoElectronico],
       subject: "Recuperar Contraseña - EpíComputers",
-      react: EmailTemplate({ firstName: "Fzst", codigo: codigo }),
+      react: EmailTemplate({ firstName: "Engerberth Reyes", codigo: codigo }),
       text: "",
     });
 
