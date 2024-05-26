@@ -15,11 +15,16 @@ const Inicio = () => {
       <body id={stylesInicio.body}>
         <header className={stylesInicio.header}>
           <h1 className={stylesInicio.tituloHeader}>EpíComputers</h1>
-          <section className={stylesInicio.seccionEnlace}>
-            <Link className={stylesInicio.enlace} href="/iniciar_sesion">
+          <section
+            className={`${stylesInicio.seccionEnlace} ${stylesInicio.seccionEnlaceAumentada}`}
+          >
+            <Link className={stylesInicio.enlace} href="/noticias">
+              Noticias
+            </Link>
+            <Link className={stylesInicio.enlace} href="/sobre_nosotros">
               Sobre Nosotros
             </Link>
-            <Link className={stylesInicio.enlace} href="/registro">
+            <Link className={stylesInicio.enlace} href="/contactanos">
               Contactanos
             </Link>
           </section>
