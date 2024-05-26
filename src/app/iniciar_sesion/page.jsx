@@ -149,25 +149,6 @@ const Login = () => {
           >
             Iniciar Sesión
           </button>
-          <button
-          className={`${stylesLogin.boton} rounded-2`}
-          onClick={async () => {
-            try {
-              const respuesta = await fetch("/API/sendemail", {
-                method: "POST",
-              });
-              if (!respuesta.ok) {
-                throw new Error('Error en la solicitud');
-              }
-              const datos = await respuesta.json();
-              console.log(datos);
-            } catch (error) {
-              console.error('Error:', error);
-            }
-          }}
-        >
-          Enviar Correo
-        </button>
         </form>
       </body>
     </>
