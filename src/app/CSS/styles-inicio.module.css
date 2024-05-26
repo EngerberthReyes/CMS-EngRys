@@ -19,7 +19,7 @@
 }
 
 .header {
-  background-color: #eeeeee;
+  background-color: #0f0f0f9e;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -116,7 +116,7 @@
   }
 
   .header {
-    background-color: #0f0f0f;
+    background-color: #0f0f0f9e;
     color: #eeeeee;
   }
 
