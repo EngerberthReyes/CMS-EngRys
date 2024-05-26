@@ -25,7 +25,7 @@ const Inicio = () => {
               Sobre Nosotros
             </Link>
             <Link className={stylesInicio.enlace} href="/contactanos">
-              Contactanos
+              Contáctanos
             </Link>
           </section>
           <section className={stylesInicio.seccionEnlace}>
