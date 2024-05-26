@@ -48,7 +48,7 @@ const Inicio = () => {
             >
               <section className={stylesInicio.seccionFlexPrincipal}>
                 <section className={stylesInicio.secctionInformacion}>
-                  <h1 className={stylesInicio.tituloSeccion}>PC Gamer de Tus Sueños</h1>
+                  <h1 className={stylesInicio.tituloSeccion}>La PC Gamer de Tus Sueños</h1>
                 </section>
                 <section className={stylesInicio.seccionElementos}>
                   <section>
