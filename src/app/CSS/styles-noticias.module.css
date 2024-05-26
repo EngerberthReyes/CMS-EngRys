@@ -102,7 +102,8 @@
   border-radius: 4px;
 }
 
-.seccionSecundaria, .seccionTerciaria {
+.seccionSecundaria,
+.seccionTerciaria {
   width: 34%;
   margin: 0 0 0 1%;
   background-color: #eeeeee;
@@ -126,14 +127,25 @@
   field-sizing: content;
   resize: none;
   padding: 1%;
-  border: 1px solid #eeeeee;
+  border: 1px solid #0f0f0f;
   border-radius: 4px;
+  transition: box-shadow 500ms ease;
+  &:focus {
+    box-shadow: 3px 0px 11px 0px #0f0f0f;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
   .header {
     background-color: #0f0f0f9e;
     color: #eeeeee;
+  }
+
+  .textArea {
+    border: 1px solid #eeeeee;
+    &:focus {
+      box-shadow: 3px 0px 11px 0px #b9b9b9;
+    }
   }
 
   .enlaceNormal {
@@ -161,7 +173,8 @@
     background-color: #0f0f0f;
   }
 
-  .seccionSecundaria, .seccionTerciaria  {
+  .seccionSecundaria,
+  .seccionTerciaria {
     background-color: #0f0f0f;
     color: #eeeeee;
   }
