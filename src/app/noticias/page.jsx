@@ -38,100 +38,6 @@ const Noticias = () => {
           </section>
         </header>
         <main>
-          <section
-            className={`${stylesNoticias.main} ${stylesNoticias.seccionSecundariaAjuste}`}
-          >
-            <section
-              className={`${stylesNoticias.seccionPrincipal} ${stylesNoticias.seccionSecundariaAjuste}`}
-            >
-              <section className={stylesNoticias.seccionGrid}>
-                <h1>Aqui va algo</h1>
-                <section className={stylesNoticias.seccionElementos}>
-                  <section>
-                    <Image
-                      className={stylesNoticias.elemento}
-                      src={"/IMG/epigrafe73.png"}
-                      width={200}
-                      height={200}
-                      alt={"Imagen"}
-                    />
-                  </section>
-                  <section>
-                    <Image
-                      className={stylesNoticias.elemento}
-                      src={"/IMG/epigrafe73.png"}
-                      width={200}
-                      height={200}
-                      alt={"Imagen"}
-                    />
-                  </section>
-                  <section>
-                    <Image
-                      className={stylesNoticias.elemento}
-                      src={"/IMG/epigrafe73.png"}
-                      width={200}
-                      height={200}
-                      alt={"Imagen"}
-                    />
-                  </section>
-                  <section>
-                    <Image
-                      className={stylesNoticias.elemento}
-                      src={"/IMG/epigrafe73.png"}
-                      width={200}
-                      height={200}
-                      alt={"Imagen"}
-                    />
-                  </section>
-                  <section>
-                    <Image
-                      className={stylesNoticias.elemento}
-                      src={"/IMG/epigrafe73.png"}
-                      width={200}
-                      height={200}
-                      alt={"Imagen"}
-                    />
-                  </section>
-                  <section>
-                    <Image
-                      className={stylesNoticias.elemento}
-                      src={"/IMG/epigrafe73.png"}
-                      width={200}
-                      height={200}
-                      alt={"Imagen"}
-                    />
-                  </section>
-                  <section>
-                    <Image
-                      className={stylesNoticias.elemento}
-                      src={"/IMG/epigrafe73.png"}
-                      width={200}
-                      height={200}
-                      alt={"Imagen"}
-                    />
-                  </section>
-                  <section>
-                    <Image
-                      className={stylesNoticias.elemento}
-                      src={"/IMG/epigrafe73.png"}
-                      width={200}
-                      height={200}
-                      alt={"Imagen"}
-                    />
-                  </section>
-                  <section>
-                    <Image
-                      className={stylesNoticias.elemento}
-                      src={"/IMG/epigrafe73.png"}
-                      width={200}
-                      height={200}
-                      alt={"Imagen"}
-                    />
-                  </section>
-                </section>
-              </section>
-            </section>
-          </section>
           <section className={stylesNoticias.main}>
             <section className={stylesNoticias.seccionSecundaria}>
               <section className={stylesNoticias.seccionAjustes}>
@@ -152,24 +58,30 @@ const Noticias = () => {
             <section className={stylesNoticias.seccionPrincipal}>
               <section className={stylesNoticias.seccionGrid}>
                 <h1>Aqui va algo</h1>
+                <section>
+                  <textarea className={stylesNoticias.textArea}></textarea>
+                </section>
                 <section className={stylesNoticias.seccionElementos}>
-                  <section>
-                    <Image
-                      className={stylesNoticias.elemento}
-                      src={"/IMG/epigrafe73.png"}
-                      width={200}
-                      height={200}
-                      alt={"Imagen"}
-                    />
-                  </section>
                   <section>Cajas</section>
                   <section>Cajas</section>
                   <section>Cajas</section>
                   <section>Cajas</section>
-                  <section>Cajas</section>
-                  <section>Cajas</section>
-                  <section>Cajas</section>
-                  <section>Cajas</section>
+                </section>
+              </section>
+            </section>
+            <section className={stylesNoticias.seccionTerciaria}>
+              <section className={stylesNoticias.seccionAjustes}>
+                <h1>Lateral</h1>
+                <section className={stylesNoticias.seccionFlex}>
+                  <section>Cajas2</section>
+                  <section>Cajas2</section>
+                  <section>Cajas2</section>
+                  <section>Cajas2</section>
+                  <section>Cajas2</section>
+                  <section>Cajas2</section>
+                  <section>Cajas2</section>
+                  <section>Cajas2</section>
+                  <section>Cajas2</section>
                 </section>
               </section>
             </section>

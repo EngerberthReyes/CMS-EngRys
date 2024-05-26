@@ -71,13 +71,13 @@
 
 .seccionPrincipal {
   background-color: #eeeeee;
-  width: 66%;
-  margin: 0 2% 0 0;
+  width: 75%;
   border-radius: 4px;
 }
 
 .seccionGrid {
-  margin: 2%;
+  width: 44rem;
+  padding: 2%;
 }
 
 .seccionElementos {
@@ -102,7 +102,7 @@
   border-radius: 4px;
 }
 
-.seccionSecundaria {
+.seccionSecundaria, .seccionTerciaria {
   width: 34%;
   margin: 0 0 0 1%;
   background-color: #eeeeee;
@@ -111,10 +111,23 @@
   border-radius: 4px;
 }
 
+.seccionTerciaria {
+  margin: 0 1% 0 0;
+}
+
 .seccionSecundariaAjuste {
   display: inline-block;
   margin: 0.5% 0.5% 0 0.5%;
   width: 99%;
+}
+
+.textArea {
+  width: 100%;
+  field-sizing: content;
+  resize: none;
+  padding: 1%;
+  border: 1px solid #eeeeee;
+  border-radius: 4px;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -148,7 +161,7 @@
     background-color: #0f0f0f;
   }
 
-  .seccionSecundaria {
+  .seccionSecundaria, .seccionTerciaria  {
     background-color: #0f0f0f;
     color: #eeeeee;
   }
