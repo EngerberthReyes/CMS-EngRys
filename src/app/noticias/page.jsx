@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import stylesNoticias from "../CSS/styles-noticias.module.css";
+import { Water_Brush } from "next/font/google";
 
 const Noticias = () => {
   const {
@@ -23,6 +24,9 @@ const Noticias = () => {
   const [nombreImagen, setNombreImagen] = useState();
   const [imagen, setImagen] = useState();
   const [temaActual, setTemaActual] = useState();
+  const mensaje = watch("mensaje");
+
+  console.log(mensaje);
 
   console.log(nombreImagen, imagen);
 
@@ -66,8 +70,11 @@ const Noticias = () => {
       nombreImagen: nombreImagen,
       imagen: imagen,
     };
+    if (postEnviado) {
+      setPost([...post, postEnviado]);
+      setImagen(false);
+    }
 
-    setPost([...post, postEnviado]);
     try {
       const respuesta = await axios.post("/API", { algo });
     } catch (error) {
@@ -147,17 +154,30 @@ const Noticias = () => {
                         className={stylesNoticias.textArea}
                         onKeyDown={enviarComentarioTecla}
                         {...register("mensaje", {
-                          required: "Introduzca Algún Mensaje",
+                          required: false,
                         })}
                       ></textarea>
                       <button
-                        disabled={!isValid}
+                        disabled={!mensaje && !imagen}
                         className={`${stylesNoticias.enlace} ${stylesNoticias.botonEnviar}`}
                         type="submit"
                       >
                         Enviar
                       </button>
                     </form>
+                    {imagen && (
+                      <>
+                        <section
+                          className={stylesNoticias.lineaPunteada}
+                        ></section>
+                        <Image
+                          alt={nombreImagen}
+                          src={imagen}
+                          width={1000}
+                          height={1000}
+                        />
+                      </>
+                    )}
                   </section>
                   <section className={stylesNoticias.lineaPunteada}></section>
                   <section className={stylesNoticias.seccionElementos}>
