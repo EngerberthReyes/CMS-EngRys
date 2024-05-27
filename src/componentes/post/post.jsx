@@ -21,6 +21,9 @@ const Post = ({ post }) => {
               <section>
                 <h1>{elementoPost.mensaje}</h1>
               </section>
+              {elementoPost.imagen && (
+                <Image src={elementoPost.imagen} width={1000} height={1000} />
+              )}
               <section className={stylesNoticias.seccionElementos}>
                 <section>Cajas</section>
                 <section>Cajas</section>

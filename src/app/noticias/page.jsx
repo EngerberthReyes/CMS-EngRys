@@ -20,7 +20,11 @@ const Noticias = () => {
   });
 
   const [post, setPost] = useState([]);
+  const [nombreImagen, setNombreImagen] = useState();
+  const [imagen, setImagen] = useState();
   const [temaActual, setTemaActual] = useState();
+
+  console.log(nombreImagen, imagen);
 
   const manejarCambioDeTema = (event) => {
     const modoOscuro = event.matches;
@@ -42,13 +46,28 @@ const Noticias = () => {
     };
   }, []);
 
-  const agregarImagen = () => {};
+  const agregarImagen = (event) => {
+    const archivo = event.target.files[0];
+    if (archivo) {
+      const nombreImage = archivo.name;
+      const imagenObtenida = URL.createObjectURL(archivo);
+      setNombreImagen(nombreImage);
+      setImagen(imagenObtenida);
+    } else {
+      console.log("No hay Archivo");
+    }
+  };
 
   console.log(post);
 
   const enviarPost = async (nuevoPost) => {
-    console.log(post);
-    setPost([...post, nuevoPost]);
+    const postEnviado = {
+      mensaje: nuevoPost.mensaje,
+      nombreImagen: nombreImagen,
+      imagen: imagen,
+    };
+
+    setPost([...post, postEnviado]);
     try {
       const respuesta = await axios.post("/API", { algo });
     } catch (error) {
@@ -147,10 +166,14 @@ const Noticias = () => {
                         className={stylesNoticias.inputFile}
                         htmlFor="imagen"
                       ></label>
-                      <input id="imagen" type="file" />
+                      <input
+                        id="imagen"
+                        accept=".png, .jpg, .gif, .jpeg"
+                        onChange={agregarImagen}
+                        type="file"
+                      />
                       {temaActual && (
                         <Image
-                          onClick={() => agregarImagen}
                           width={20}
                           height={20}
                           src={
