@@ -199,6 +199,17 @@
   overflow: hidden;
 }
 
+.item {
+  border: 2px dashed #0f0f0f;
+  padding: 4%;
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
 @media (prefers-color-scheme: dark) {
   .header {
     background-color: #0f0f0f9e;
@@ -210,6 +221,10 @@
     &:focus {
       box-shadow: 3px 0px 11px 0px #b9b9b9;
     }
+  }
+  
+  .item {
+    border-color:#eeeeee;
   }
 
   .lineaPunteada {

@@ -119,10 +119,10 @@ const Noticias = () => {
                   </section>
                   <section className={stylesNoticias.lineaPunteada}></section>
                   <section className={stylesNoticias.seccionElementos}>
-                    <section>Cajas</section>
-                    <section>Cajas</section>
-                    <section>Cajas</section>
-                    <section>Cajas</section>
+                    <section className={stylesNoticias.item}>Cajas</section>
+                    <section className={stylesNoticias.item}>Cajas</section>
+                    <section className={stylesNoticias.item}>Cajas</section>
+                    <section className={stylesNoticias.item}>Cajas</section>
                   </section>
                 </section>
               </section>
