@@ -20,6 +20,8 @@ const Noticias = () => {
 
   const [post, setPost] = useState([]);
 
+  console.log(post);
+
   const enviarPost = async (nuevoPost) => {
     console.log(post);
     setPost([...post, nuevoPost]);
