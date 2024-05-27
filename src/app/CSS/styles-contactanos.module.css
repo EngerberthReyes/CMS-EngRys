@@ -117,6 +117,21 @@
   width: 99%;
 }
 
+.enlace {
+  color: #eeeeee;
+  border-color: #eeeeee;
+
+  &:hover {
+    background-color: #eeeeee;
+    color: #0f0f0f;
+  }
+}
+
+.enlaceNormal {
+  text-decoration: none;
+  color: #eeeeee;
+}
+
 @media (prefers-color-scheme: dark) {
   .header {
     background-color: #0f0f0f9e;

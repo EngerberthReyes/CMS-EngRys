@@ -42,7 +42,7 @@
 
 .enlaceNormal {
   text-decoration: none;
-  color: #0f0f0f;
+  color: #eeeeee;
 }
 
 .enlace {
@@ -105,6 +105,26 @@
 .botonEnviar {
   align-self: flex-end;
   padding: 0.5rem 2rem;
+  background-color: #eeeeee;
+  color: #0f0f0f !important;
+  border-color: #0f0f0f !important;
+
+  &:hover {
+    border-color: #eeeeee;
+    color: #eeeeee !important;
+    background-color: #0f0f0f !important;
+  }
+
+}
+
+.botonEnviar:disabled {
+  background-color: #8b8b8b !important;
+  color: #0f0f0f;
+  border-color: transparent !important;
+
+  &:hover {
+    color: #0f0f0f !important;
+  }
 }
 
 .elemento {
@@ -137,12 +157,28 @@
   field-sizing: content;
   resize: none;
   padding: 1%;
+  outline: none;
   border: 1px solid #0f0f0f;
   border-radius: 4px;
   transition: box-shadow 500ms ease;
   &:focus {
     box-shadow: 3px 0px 11px 0px #0f0f0f;
   }
+}
+
+.enlace {
+  color: #eeeeee;
+  border-color: #eeeeee;
+
+  &:hover {
+    background-color: #eeeeee;
+    color: #0f0f0f;
+  }
+}
+
+.enlaceNormal {
+  text-decoration: none;
+  color: #eeeeee;
 }
 
 .seccionCentral {
@@ -159,6 +195,31 @@
     border: 1px solid #eeeeee;
     &:focus {
       box-shadow: 3px 0px 11px 0px #b9b9b9;
+    }
+  }
+
+  .botonEnviar {
+    align-self: flex-end;
+    padding: 0.5rem 2rem;
+    background-color: #eeeeee;
+    color: #0f0f0f !important;
+    border-color: #eeeeee !important;
+  
+    &:hover {
+      border-color: #eeeeee;
+      color: #eeeeee !important;
+      background-color: #0f0f0f !important;
+    }
+  
+  }
+  
+  .botonEnviar:disabled {
+    background-color: #2c2c2c !important;
+    color: #eeeeee !important;
+    border-color: transparent !important;
+  
+    &:hover {
+      color: #eeeeee !important;
     }
   }
 
