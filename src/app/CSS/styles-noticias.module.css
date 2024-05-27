@@ -208,6 +208,23 @@
   align-items: center;
   border-radius: 4px;
   cursor: pointer;
+  transition: background-color 500ms ease;
+
+  &:hover:nth-child(1) {
+    background-color: #0077ffc4;
+  }
+
+  &:hover:nth-child(2) {
+    background-color: gainsboro;
+  }
+
+  &:hover:nth-child(3) {
+    background-color: red;
+  }
+
+  &:hover:nth-child(4) {
+    background-color: red;
+  }
 }
 
 @media (prefers-color-scheme: dark) {
