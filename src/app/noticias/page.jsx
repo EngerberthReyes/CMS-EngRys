@@ -2,11 +2,30 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import Post from "@/componentes/post/post.jsx"
+import Post from "@/componentes/post/post.jsx";
+import { useForm } from "react-hook-form";
 import stylesNoticias from "../CSS/styles-noticias.module.css";
 
 const Noticias = () => {
-  console.log("Nuevo Mensaje");
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors, isValid },
+  } = useForm({
+    mode: "onChange",
+  });
+
+  const enviarPost = async (datos) => {
+    console.log(datos);
+    try {
+      const respuesta = await axios.post("/API", { algo });
+    } catch (error) {
+      console.error(error);
+    }
+
+    console.log(datos);
+  };
   return (
     <>
       <head>
@@ -15,7 +34,9 @@ const Noticias = () => {
       </head>
       <body id={stylesNoticias.body}>
         <header className={stylesNoticias.header}>
-          <Link className={stylesNoticias.enlaceNormal} href={'/'}><h1 className={stylesNoticias.tituloHeader}>EpíComputers</h1></Link>
+          <Link className={stylesNoticias.enlaceNormal} href={"/"}>
+            <h1 className={stylesNoticias.tituloHeader}>EpíComputers</h1>
+          </Link>
           <section
             className={`${stylesNoticias.seccionEnlace} ${stylesNoticias.seccionEnlaceAumentada}`}
           >
@@ -57,21 +78,35 @@ const Noticias = () => {
               </section>
             </section>
             <section>
-            <section className={stylesNoticias.seccionPrincipal}>
-              <section className={stylesNoticias.seccionGrid}>
-                <h1>Aqui va algo</h1>
-                <section>
-                  <textarea className={stylesNoticias.textArea}></textarea>
-                </section>
-                <section className={stylesNoticias.seccionElementos}>
-                  <section>Cajas</section>
-                  <section>Cajas</section>
-                  <section>Cajas</section>
-                  <section>Cajas</section>
+              <section className={stylesNoticias.seccionPrincipal}>
+                <section className={stylesNoticias.seccionGrid}>
+                  <h1>Aqui va algo</h1>
+                  <section className={stylesNoticias.seccionPost}>
+                    <form className={stylesNoticias.formulario} onSubmit={handleSubmit(enviarPost)}>
+                      <textarea
+                        className={stylesNoticias.textArea}
+                        {...register("mensaje", {
+                          required: "Introduzca Algún Mensaje",
+                        })}
+                      ></textarea>
+                      <button
+                        disabled={!isValid}
+                        className={`${stylesNoticias.enlace} ${stylesNoticias.botonEnviar}`}
+                        type="submit"
+                      >
+                        Enviar
+                      </button>
+                    </form>
+                  </section>
+                  <section className={stylesNoticias.seccionElementos}>
+                    <section>Cajas</section>
+                    <section>Cajas</section>
+                    <section>Cajas</section>
+                    <section>Cajas</section>
+                  </section>
                 </section>
               </section>
-            </section>
-            <Post  />
+              <Post />
             </section>
             <section className={stylesNoticias.seccionTerciaria}>
               <section className={stylesNoticias.seccionAjustes}>
