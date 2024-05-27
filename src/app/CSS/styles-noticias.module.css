@@ -147,6 +147,8 @@
 }
 
 .seccionTerciaria {
+  position: sticky;
+  top: 2%;
   margin: 0 1% 0 0;
 }
 
