@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import stylesNoticias from "../CSSComponentes/post.module.css";
+import stylesPost from "../CSSComponentes/post.module.css";
 
 const Post = ({ post }) => {
   console.log(post);
@@ -14,21 +14,25 @@ const Post = ({ post }) => {
         .map((elementoPost, index) => (
           <section
             key={elementoPost.id}
-            className={stylesNoticias.seccionPrincipal}
+            className={stylesPost.seccionPrincipal}
           >
-            <section className={stylesNoticias.seccionGrid}>
+            <section className={stylesPost.seccionGrid}>
               <h1>Aqui va algo</h1>
               <section>
                 <h1>{elementoPost.mensaje}</h1>
               </section>
               {elementoPost.imagen && (
-                <Image src={elementoPost.imagen} width={1000} height={1000} />
+                <>
+                  <section className={stylesPost.lineaPunteada}></section>
+                  <Image src={elementoPost.imagen} width={1000} height={1000} />
+                </>
               )}
-              <section className={stylesNoticias.seccionElementos}>
-                <section>Cajas</section>
-                <section>Cajas</section>
-                <section>Cajas</section>
-                <section>Cajas</section>
+              <section className={stylesPost.lineaPunteada}></section>
+              <section className={stylesPost.seccionElementos}>
+                <section className={stylesPost.item}>Cajas</section>
+                <section className={stylesPost.item}>Cajas</section>
+                <section className={stylesPost.item}>Cajas</section>
+                <section className={stylesPost.item}>Cajas</section>
               </section>
             </section>
           </section>
