@@ -31,7 +31,14 @@ const Noticias = () => {
     } catch (error) {
       console.error(error);
     }
-    reset()
+    reset();
+  };
+
+  const enviarComentarioTecla = (event) => {
+    if (event.key === 'Enter' && !event.shiftKey) {
+      event.preventDefault();
+      handleSubmit(enviarPost)();
+    }
   };
 
   return (
@@ -96,6 +103,7 @@ const Noticias = () => {
                     >
                       <textarea
                         className={stylesNoticias.textArea}
+                        onKeyDown={enviarComentarioTecla}
                         {...register("mensaje", {
                           required: "Introduzca Algún Mensaje",
                         })}
