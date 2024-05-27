@@ -35,7 +35,7 @@ const Noticias = () => {
   };
 
   const enviarComentarioTecla = (event) => {
-    if (event.key === 'Enter' && !event.shiftKey) {
+    if (event.key === "Enter" && !event.shiftKey) {
       event.preventDefault();
       handleSubmit(enviarPost)();
     }
