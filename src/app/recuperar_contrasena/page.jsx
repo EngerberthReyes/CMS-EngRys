@@ -53,16 +53,16 @@ const recuperarClave = () => {
     const codigo = generarCodigoRandom(11);
     try {
       const correoElectronico = dato.correo;
-      console.log(correoElectronico)
+      console.log(correoElectronico);
       const respuesta = await axios.post("/API/sendemail", {
         codigo,
         correoElectronico,
       });
-  
+
       if (respuesta.status < 200 || respuesta.status >= 300) {
         throw new Error("Error en la solicitud");
       }
-  
+
       const datos = respuesta.data;
       console.log(datos);
     } catch (error) {
@@ -77,7 +77,11 @@ const recuperarClave = () => {
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body id={stylesClave.body_modificable}>
-        <section className={`${stylesClave.contenedor_general} w-50`}></section>
+        <section className={`${stylesClave.contenedor_general} w-50`}>
+          <Link className={stylesClave.enlace} href="/">
+            Página Principal
+          </Link>
+        </section>
         <form
           className={stylesClave.contenedor_form}
           onSubmit={handleSubmit(enviarDatos)}

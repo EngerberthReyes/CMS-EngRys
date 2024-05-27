@@ -47,13 +47,12 @@ const Login = () => {
   }, []);
 
   const enviarDatos = async (datos) => {
-    
     try {
-      const respuesta = await axios.post('/API', { algo });
+      const respuesta = await axios.post("/API", { algo });
     } catch (error) {
-      console.error(error)
+      console.error(error);
     }
-    
+
     console.log(datos);
   };
 
@@ -64,7 +63,11 @@ const Login = () => {
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body id={stylesLogin.body_modificable}>
-        <section className={`${stylesLogin.contenedor_general} w-50`}></section>
+        <section className={`${stylesLogin.contenedor_general} w-50`}>
+          <Link className={stylesLogin.enlace} href="/">
+            Página Principal
+          </Link>
+        </section>
         <form
           className={stylesLogin.contenedor_form}
           onSubmit={handleSubmit(enviarDatos)}

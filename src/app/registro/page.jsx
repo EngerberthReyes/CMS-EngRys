@@ -80,9 +80,11 @@ const Registro = () => {
         <link rel="icon" href="/favicon.ico" />
       </head>
       <body id={stylesRegistro.body}>
-        <section
-          className={`${stylesRegistro.contenedor_general} w-50`}
-        ></section>
+        <section className={`${stylesRegistro.contenedor_general} w-50`}>
+          <Link className={stylesRegistro.enlace} href="/">
+            Página Principal
+          </Link>
+        </section>
         <form
           className={stylesRegistro.contenedor_form}
           onSubmit={handleSubmit(onSubmit)}

@@ -238,6 +238,25 @@
   color: #a1a1a1;
 }
 
+.enlace {
+  color: #0f0f0f;
+  text-decoration: none;
+  border: 2px solid #0f0f0f;
+  border-radius: 5px;
+  padding: 2%;
+  z-index: 100;
+  position: absolute;
+  top: 1%;
+  left: 7%;
+  transition: background-color 500ms ease, border-color 500ms ease;
+
+  &:hover {
+    background-color: #0f0f0f;
+    color: #eeeeee;
+    border-color: #eeeeee;
+  }
+}
+
 @media (prefers-color-scheme: dark) {
   #body::before {
     position: fixed;
@@ -253,6 +272,18 @@
     position: relative;
     right: 31.5%;
     height: 0;
+  }
+
+  .enlace {
+    color: #eeeeee;
+    border-color: #eeeeee;
+    background-color: #0f0f0f;
+  
+    &:hover {
+      background-color: #eeeeee;
+      color: #0f0f0f;
+      border-color: #0f0f0f;
+    }
   }
 
   .errorInput {
