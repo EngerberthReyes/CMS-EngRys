@@ -23,12 +23,16 @@ const Noticias = () => {
   const [post, setPost] = useState([]);
   const [nombreImagen, setNombreImagen] = useState();
   const [imagen, setImagen] = useState();
+  const [imagenWidth, setImagenWidth] = useState();
+  const [imagenHeight, setImagenHeight] = useState();
   const [temaActual, setTemaActual] = useState();
   const mensaje = watch("mensaje");
 
   console.log(mensaje);
 
   console.log(nombreImagen, imagen);
+
+  console.log(imagenHeight);
 
   const manejarCambioDeTema = (event) => {
     const modoOscuro = event.matches;
@@ -55,6 +59,8 @@ const Noticias = () => {
     if (archivo) {
       const nombreImage = archivo.name;
       const imagenObtenida = URL.createObjectURL(archivo);
+      setImagenWidth(1000);
+      setImagenHeight(1000);
       setNombreImagen(nombreImage);
       setImagen(imagenObtenida);
       event.target.value = "";
@@ -173,10 +179,11 @@ const Noticias = () => {
                           className={stylesNoticias.lineaPunteada}
                         ></section>
                         <Image
+                          className={stylesNoticias.imagen}
                           alt={nombreImagen}
                           src={imagen}
-                          width={1000}
-                          height={1000}
+                          property
+                          fill
                         />
                       </>
                     )}
