@@ -278,7 +278,7 @@
     color: #eeeeee;
     border-color: #eeeeee;
     background-color: #0f0f0f;
-  
+
     &:hover {
       background-color: #eeeeee;
       color: #0f0f0f;
@@ -338,7 +338,7 @@
   .boton {
     background: #eeeeee;
     color: #0f0f0f;
- /* transition: box-shadow 500ms ease; */
+    /* transition: box-shadow 500ms ease; */
 
     &:hover {
       /* box-shadow: 5px 5px 0 1px #eeeeee; */
@@ -352,7 +352,6 @@
     color: #a1a1a1;
     box-shadow: none;
   }
-
 }
 
 @media (width < 890px), (height < 200px) {
