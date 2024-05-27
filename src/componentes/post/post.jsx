@@ -12,7 +12,7 @@ const Post = ({ post }) => {
         .slice()
         .reverse()
         .map((elementoPost, index) => (
-          <section key={index} className={stylesNoticias.seccionPrincipal}>
+          <section key={elementoPost.id} className={stylesNoticias.seccionPrincipal}>
             <section className={stylesNoticias.seccionGrid}>
               <h1>Aqui va algo</h1>
               <section>

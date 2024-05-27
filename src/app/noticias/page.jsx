@@ -13,6 +13,7 @@ const Noticias = () => {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors, isValid },
   } = useForm({
     mode: "onChange",
@@ -30,6 +31,7 @@ const Noticias = () => {
     } catch (error) {
       console.error(error);
     }
+    reset()
   };
 
   return (
