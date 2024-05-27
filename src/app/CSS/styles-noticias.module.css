@@ -215,15 +215,15 @@
   }
 
   &:hover:nth-child(2) {
-    background-color: gainsboro;
+    background-color: #dc143cc4;
   }
 
   &:hover:nth-child(3) {
-    background-color: red;
+    background-color: #2d0097c4;
   }
 
   &:hover:nth-child(4) {
-    background-color: red;
+    background-color: #009ba7c4;
   }
 }
 
