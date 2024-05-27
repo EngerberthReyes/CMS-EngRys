@@ -42,7 +42,7 @@ const Noticias = () => {
     };
   }, []);
 
-  const agregarImagen = () => {}
+  const agregarImagen = () => {};
 
   console.log(post);
 
@@ -143,7 +143,10 @@ const Noticias = () => {
                   <section className={stylesNoticias.lineaPunteada}></section>
                   <section className={stylesNoticias.seccionElementos}>
                     <section className={stylesNoticias.item}>
-                      <label className={stylesNoticias.inputFile} htmlFor="imagen" ></label>
+                      <label
+                        className={stylesNoticias.inputFile}
+                        htmlFor="imagen"
+                      ></label>
                       <input id="imagen" type="file" />
                       {temaActual && (
                         <Image
