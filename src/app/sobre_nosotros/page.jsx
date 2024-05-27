@@ -10,7 +10,7 @@ const SobreNosotros = () => {
     <>
       <head>
         <title>Sobre Nosotros - EpíComputers</title>
-        <link rel="icon" href="/IMG/Icono No Lineal.png" type="Image/png" />
+        <link rel="icon" href="./IMG/IconoNoLineal.png" />
       </head>
       <body id={stylesNosotros.body}>
         <header className={stylesNosotros.header}>

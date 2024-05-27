@@ -60,7 +60,7 @@ const Login = () => {
     <>
       <head>
         <title>Iniciar Sesión</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="./IMG/IconoNoLineal.png" />
       </head>
       <body id={stylesLogin.body_modificable}>
         <section className={`${stylesLogin.contenedor_general} w-50`}>

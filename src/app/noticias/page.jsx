@@ -45,7 +45,7 @@ const Noticias = () => {
     <>
       <head>
         <title>Noticias - EpíComputers</title>
-        <link rel="icon" href="/IMG/Icono No Lineal.png" type="Image/png" />
+        <link rel="icon" href="./IMG/IconoNoLineal.png" />
       </head>
       <body id={stylesNoticias.body}>
         <header className={stylesNoticias.header}>

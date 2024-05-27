@@ -74,7 +74,7 @@ const recuperarClave = () => {
     <>
       <head>
         <title>Recuperar Contraseña</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="./IMG/IconoNoLineal.png" />
       </head>
       <body id={stylesClave.body_modificable}>
         <section className={`${stylesClave.contenedor_general} w-50`}>

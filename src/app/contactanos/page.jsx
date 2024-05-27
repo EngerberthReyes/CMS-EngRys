@@ -10,7 +10,7 @@ const Contactanos = () => {
     <>
       <head>
         <title>Contáctanos - EpíComputers</title>
-        <link rel="icon" href="/IMG/Icono No Lineal.png" type="Image/png" />
+        <link rel="icon" href="./IMG/IconoNoLineal.png" />
       </head>
       <body id={stylesContactanos.body}>
         <header className={stylesContactanos.header}>

@@ -77,7 +77,7 @@ const Registro = () => {
     <>
       <head>
         <title>Registrar Cuenta</title>
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="./IMG/IconoNoLineal.png" />
       </head>
       <body id={stylesRegistro.body}>
         <section className={`${stylesRegistro.contenedor_general} w-50`}>
