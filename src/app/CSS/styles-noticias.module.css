@@ -103,6 +103,7 @@
 }
 
 .botonEnviar {
+  align-self: flex-end;
   padding: 0.5rem 2rem;
 }
 
@@ -142,6 +143,10 @@
   &:focus {
     box-shadow: 3px 0px 11px 0px #0f0f0f;
   }
+}
+
+.seccionCentral {
+  margin-bottom: 1rem;
 }
 
 @media (prefers-color-scheme: dark) {

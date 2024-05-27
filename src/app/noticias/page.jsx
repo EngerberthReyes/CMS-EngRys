@@ -3,7 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import Post from "@/componentes/post/post.jsx";
+import { useState } from "react";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 import stylesNoticias from "../CSS/styles-noticias.module.css";
 
 const Noticias = () => {
@@ -16,16 +18,18 @@ const Noticias = () => {
     mode: "onChange",
   });
 
-  const enviarPost = async (datos) => {
-    console.log(datos);
+  const [post, setPost] = useState([]);
+
+  const enviarPost = async (nuevoPost) => {
+    console.log(post);
+    setPost([...post, nuevoPost]);
     try {
       const respuesta = await axios.post("/API", { algo });
     } catch (error) {
       console.error(error);
     }
-
-    console.log(datos);
   };
+
   return (
     <>
       <head>
@@ -77,12 +81,15 @@ const Noticias = () => {
                 </section>
               </section>
             </section>
-            <section>
+            <section className={stylesNoticias.seccionCentral}>
               <section className={stylesNoticias.seccionPrincipal}>
                 <section className={stylesNoticias.seccionGrid}>
-                  <h1>Aqui va algo</h1>
+                  <h1>Publica Algo...</h1>
                   <section className={stylesNoticias.seccionPost}>
-                    <form className={stylesNoticias.formulario} onSubmit={handleSubmit(enviarPost)}>
+                    <form
+                      className={stylesNoticias.formulario}
+                      onSubmit={handleSubmit(enviarPost)}
+                    >
                       <textarea
                         className={stylesNoticias.textArea}
                         {...register("mensaje", {
@@ -106,7 +113,7 @@ const Noticias = () => {
                   </section>
                 </section>
               </section>
-              <Post />
+              {post && <Post post={post} />}
             </section>
             <section className={stylesNoticias.seccionTerciaria}>
               <section className={stylesNoticias.seccionAjustes}>
