@@ -57,6 +57,7 @@ const Noticias = () => {
       const imagenObtenida = URL.createObjectURL(archivo);
       setNombreImagen(nombreImage);
       setImagen(imagenObtenida);
+      event.target.value = "";
     } else {
       console.log("No hay Archivo");
     }
@@ -72,6 +73,7 @@ const Noticias = () => {
     };
     if (postEnviado) {
       setPost([...post, postEnviado]);
+      setNombreImagen("");
       setImagen(false);
     }
 
