@@ -189,6 +189,16 @@
   margin-bottom: 1rem;
 }
 
+.lineaPunteada {
+  border-top-color: #eeeeee;
+  margin: 4% 0;
+  height: 0;
+  line-height: 0;
+  border-top-width: 2px;
+  border-top-style: dashed;
+  overflow: hidden;
+}
+
 @media (prefers-color-scheme: dark) {
   .header {
     background-color: #0f0f0f9e;
@@ -200,6 +210,10 @@
     &:focus {
       box-shadow: 3px 0px 11px 0px #b9b9b9;
     }
+  }
+
+  .lineaPunteada {
+    border-top-color: #a8a8a8;
   }
 
   .botonEnviar {

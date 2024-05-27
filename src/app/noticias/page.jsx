@@ -117,6 +117,7 @@ const Noticias = () => {
                       </button>
                     </form>
                   </section>
+                  <section className={stylesNoticias.lineaPunteada}></section>
                   <section className={stylesNoticias.seccionElementos}>
                     <section>Cajas</section>
                     <section>Cajas</section>
