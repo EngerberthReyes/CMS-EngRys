@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Post from "@/componentes/post/post.jsx";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import stylesNoticias from "../CSS/styles-noticias.module.css";
@@ -20,6 +20,27 @@ const Noticias = () => {
   });
 
   const [post, setPost] = useState([]);
+  const [temaActual, setTemaActual] = useState();
+
+  const manejarCambioDeTema = (event) => {
+    const modoOscuro = event.matches;
+
+    document.body.classList.toggle("modo-oscuro", modoOscuro);
+    setTemaActual(modoOscuro ? "oscuro" : "claro");
+  };
+
+  useEffect(() => {
+    const consultaModoOscuro = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    );
+    consultaModoOscuro.addEventListener("change", manejarCambioDeTema);
+
+    setTemaActual(consultaModoOscuro.matches ? "oscuro" : "claro");
+
+    return () => {
+      consultaModoOscuro.removeEventListener("change", manejarCambioDeTema);
+    };
+  }, []);
 
   console.log(post);
 
@@ -119,7 +140,23 @@ const Noticias = () => {
                   </section>
                   <section className={stylesNoticias.lineaPunteada}></section>
                   <section className={stylesNoticias.seccionElementos}>
-                    <section className={stylesNoticias.item}>Cajas</section>
+                    <section className={stylesNoticias.item}>
+                      {" "}
+                      {temaActual && (
+                        <Image
+                          className={stylesNoticias.icono_password}
+                          onClick={() => agregarImagen}
+                          width={20}
+                          height={20}
+                          src={
+                            temaActual === "oscuro"
+                              ? `/plus-solid-black.svg`
+                              : `/plus-solid-white.svg`
+                          }
+                          alt="Agregar Imagen"
+                        />
+                      )}
+                    </section>
                     <section className={stylesNoticias.item}>Cajas</section>
                     <section className={stylesNoticias.item}>Cajas</section>
                     <section className={stylesNoticias.item}>Cajas</section>
