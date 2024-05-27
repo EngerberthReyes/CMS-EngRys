@@ -24,7 +24,7 @@ const Post = ({ post }) => {
               {elementoPost.imagen && (
                 <>
                   <section className={stylesPost.lineaPunteada}></section>
-                  <Image src={elementoPost.imagen} width={1000} height={1000} />
+                  <Image alt={elementoPost.nombreImagen} src={elementoPost.imagen} width={1000} height={1000} />
                 </>
               )}
               <section className={stylesPost.lineaPunteada}></section>
