@@ -144,7 +144,6 @@ const Noticias = () => {
                       {" "}
                       {temaActual && (
                         <Image
-                          className={stylesNoticias.icono_password}
                           onClick={() => agregarImagen}
                           width={20}
                           height={20}
