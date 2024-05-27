@@ -49,6 +49,20 @@ input::selection {
   }
 }
 
+input[type=file],
+input[type=file]::-webkit-file-upload-button {
+    cursor: pointer; 
+}
+
+input {
+  display: none;
+}
+
+input[type="file"]::file-selector-button {
+  color: transparent !important;
+  background-color: #fff !important;
+}
+
 html,
 body {
   color: rgb(var(--foreground-rgb));

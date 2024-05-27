@@ -42,6 +42,8 @@ const Noticias = () => {
     };
   }, []);
 
+  const agregarImagen = () => {}
+
   console.log(post);
 
   const enviarPost = async (nuevoPost) => {
@@ -141,7 +143,8 @@ const Noticias = () => {
                   <section className={stylesNoticias.lineaPunteada}></section>
                   <section className={stylesNoticias.seccionElementos}>
                     <section className={stylesNoticias.item}>
-                      {" "}
+                      <label className={stylesNoticias.inputFile} htmlFor="imagen" ></label>
+                      <input id="imagen" type="file" />
                       {temaActual && (
                         <Image
                           onClick={() => agregarImagen}
