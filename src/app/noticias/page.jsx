@@ -95,7 +95,7 @@ const Noticias = () => {
             <section className={stylesNoticias.seccionCentral}>
               <section className={stylesNoticias.seccionPrincipal}>
                 <section className={stylesNoticias.seccionGrid}>
-                  <h1>Publica Algo...</h1>
+                  <h1>Pública Algo...</h1>
                   <section className={stylesNoticias.seccionPost}>
                     <form
                       className={stylesNoticias.formulario}
