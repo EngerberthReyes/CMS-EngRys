@@ -61,11 +61,7 @@ body {
   align-items: center;
 }
 
-input {
-  field-sizing: content;
-}
-
-textarea {
+textarea, input {
   field-sizing: content;
 }
 
