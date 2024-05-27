@@ -84,6 +84,7 @@
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
   place-items: center;
+  margin: 4% 0 1% 0;
   gap: 1rem;
 }
 
