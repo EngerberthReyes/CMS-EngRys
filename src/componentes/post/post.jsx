@@ -28,15 +28,31 @@ const Post = ({ post }) => {
                 {elementoPost.imagen && (
                   <>
                     {elementoPost.imagen.map((archivo, index) => (
-                      <section key={index}>
-                        <Image
-                          className={stylesPost.imagen}
-                          alt={archivo.name}
-                          src={URL.createObjectURL(archivo)}
-                          property
-                          fill
-                        />
-                      </section>
+                      <>
+                        <section key={index}>
+                          {elementoPost.imagen &&
+                          archivo.name.includes(".mp4") ? (
+                            <>
+                              <video
+                                className={stylesPost.imagen}
+                                alt={archivo.name.includes(".mp4")}
+                                src={URL.createObjectURL(archivo)}
+                                property
+                                fill
+                                controls
+                              ></video>
+                            </>
+                          ) : (
+                            <Image
+                              className={stylesPost.imagen}
+                              alt={archivo.name}
+                              src={URL.createObjectURL(archivo)}
+                              property
+                              fill
+                            />
+                          )}
+                        </section>
+                      </>
                     ))}
                   </>
                 )}

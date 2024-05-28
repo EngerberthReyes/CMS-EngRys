@@ -50,8 +50,9 @@ const Noticias = () => {
     };
   }, []);
 
-  const agregarImagen = (event) => {
+  const agregarArchivo = (event) => {
     const archivos = event.target.files;
+    console.log(archivos);
     if (archivos && archivos.length > 0) {
       const archivosRecorridos = Object.values(archivos);
       const nuevasImagenes = [...imagen, ...archivosRecorridos];
@@ -180,13 +181,26 @@ const Noticias = () => {
                       {imagen &&
                         imagen.map((archivo, index) => (
                           <section key={index}>
-                            <Image
-                              className={stylesNoticias.imagen}
-                              alt={nombreImagen}
-                              src={URL.createObjectURL(archivo)}
-                              property
-                              fill
-                            />
+                            <>
+                              {archivo.name.includes(".mp4") ? (
+                                <video
+                                  className={stylesNoticias.imagen}
+                                  alt={archivo.name.includes(".mp4")}
+                                  src={URL.createObjectURL(archivo)}
+                                  property
+                                  fill
+                                  controls
+                                ></video>
+                              ) : (
+                                <Image
+                                  className={stylesNoticias.imagen}
+                                  alt={nombreImagen}
+                                  src={URL.createObjectURL(archivo)}
+                                  property
+                                  fill
+                                />
+                              )}
+                            </>
                           </section>
                         ))}
                     </section>
@@ -222,8 +236,8 @@ const Noticias = () => {
                       <input
                         id="imagen"
                         multiple
-                        accept=".png, .jpg, .gif, .jpeg"
-                        onChange={agregarImagen}
+                        accept=".png, .jpg, .gif, .jpeg, .mp4"
+                        onChange={agregarArchivo}
                         type="file"
                       />
                       {temaActual && (
