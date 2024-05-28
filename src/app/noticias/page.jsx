@@ -55,17 +55,15 @@ const Noticias = () => {
   }, []);
 
   const agregarImagen = (event) => {
-    const archivo = event.target.files[0];
-    if (archivo) {
-      const nombreImage = archivo.name;
-      const imagenObtenida = URL.createObjectURL(archivo);
-      setImagenWidth(1000);
-      setImagenHeight(1000);
-      setNombreImagen(nombreImage);
-      setImagen(imagenObtenida);
+    const archivos = event.target.files;
+    if (archivos && archivos.length > 0) {
+      const archivosRecorridos = Object.values(archivos);
+      const nombres = archivosRecorridos.map((archivo) => archivo.name);
+      setNombreImagen(nombres);
+      setImagen(archivosRecorridos);
       event.target.value = "";
     } else {
-      console.log("No hay Archivo");
+      console.log("No hay archivo seleccionado");
     }
   };
 
@@ -156,6 +154,7 @@ const Noticias = () => {
                   <section className={stylesNoticias.seccionPost}>
                     <form
                       className={stylesNoticias.formulario}
+                      encType="multipart/form-data"
                       onSubmit={handleSubmit(enviarPost)}
                     >
                       <textarea
@@ -174,19 +173,24 @@ const Noticias = () => {
                       </button>
                     </form>
                     {imagen && (
-                      <>
-                        <section
-                          className={stylesNoticias.lineaPunteada}
-                        ></section>
-                        <Image
-                          className={stylesNoticias.imagen}
-                          alt={nombreImagen}
-                          src={imagen}
-                          property
-                          fill
-                        />
-                      </>
+                      <section
+                        className={stylesNoticias.lineaPunteada}
+                      ></section>
                     )}
+                    <section className={stylesNoticias.seccionGridImagenes}>
+                      {imagen &&
+                        imagen.map((archivo, index) => (
+                          <section key={index}>
+                            <Image
+                              className={stylesNoticias.imagen}
+                              alt={nombreImagen}
+                              src={URL.createObjectURL(archivo)}
+                              property
+                              fill
+                            />
+                          </section>
+                        ))}
+                    </section>
                   </section>
                   <section className={stylesNoticias.lineaPunteada}></section>
                   <section className={stylesNoticias.seccionElementos}>
@@ -197,6 +201,7 @@ const Noticias = () => {
                       ></label>
                       <input
                         id="imagen"
+                        multiple
                         accept=".png, .jpg, .gif, .jpeg"
                         onChange={agregarImagen}
                         type="file"

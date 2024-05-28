@@ -179,6 +179,21 @@
   border-color:#0f0f0f;
 }
 
+.seccionGridImagenes {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 1%;
+}
+
+.imagen {
+  position: relative !important;
+  position: relative !important;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
 @media (prefers-color-scheme: dark) {
   .header {
     background-color: #0f0f0f9e;

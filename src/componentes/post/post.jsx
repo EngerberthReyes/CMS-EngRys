@@ -21,12 +21,24 @@ const Post = ({ post }) => {
               <section>
                 <h1>{elementoPost.mensaje}</h1>
               </section>
-              {elementoPost.imagen && (
-                <>
-                  <section className={stylesPost.lineaPunteada}></section>
-                  <Image alt={elementoPost.nombreImagen} src={elementoPost.imagen} width={1000} height={1000} />
-                </>
-              )}
+              <section className={stylesPost.lineaPunteada}></section>
+              <section className={stylesPost.seccionGridImagenes}>
+                {elementoPost.imagen && (
+                  <>
+                    {elementoPost.imagen.map((archivo, index) => (
+                      <section key={index}>
+                        <Image
+                          className={stylesPost.imagen}
+                          alt={archivo.name}
+                          src={URL.createObjectURL(archivo)}
+                          property
+                          fill
+                        />
+                      </section>
+                    ))}
+                  </>
+                )}
+              </section>
               <section className={stylesPost.lineaPunteada}></section>
               <section className={stylesPost.seccionElementos}>
                 <section className={stylesPost.item}>Cajas</section>
