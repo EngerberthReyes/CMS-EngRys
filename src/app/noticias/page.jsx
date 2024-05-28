@@ -220,10 +220,11 @@ const Noticias = () => {
                               : `${stylesNoticias.parrafoImagen}`
                           }`}
                         >
-                          Archivos Restantes:{" "}
+                          Puede Agregar:{" "}
                           {imagenesPorExceso < 10
                             ? `0${imagenesPorExceso}`
-                            : imagenesPorExceso}
+                            : imagenesPorExceso}{" "}
+                          Archivos
                         </p>
                       </section>
                     )}
