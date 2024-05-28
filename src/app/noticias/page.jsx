@@ -62,7 +62,7 @@ const Noticias = () => {
       setImagen(imagenesRestantes);
       event.target.value = "";
     } else {
-      console.log("No Selecciono Ningun Archivo");
+      console.log("Se Selecciono Ningun Archivo");
     }
   };
 
