@@ -29,6 +29,8 @@ const Noticias = () => {
   const [temaActual, setTemaActual] = useState();
   const mensaje = watch("mensaje");
 
+  console.log(imagenesPorExceso);
+
   console.log(mensaje);
 
   console.log(nombreImagen, imagen);
@@ -61,9 +63,7 @@ const Noticias = () => {
       const archivosRecorridos = Object.values(archivos);
       const nuevasImagenes = [...imagen, ...archivosRecorridos];
       const imagenesRestantes = nuevasImagenes.slice(0, 12);
-
       setImagenesPorExceso(`${12 - imagenesRestantes.length}`);
-
       const nombres = imagenesRestantes.map((archivo) => archivo.name);
       setNombreImagen(nombres);
       setImagen(imagenesRestantes);
@@ -198,9 +198,24 @@ const Noticias = () => {
                         ))}
                     </section>
                     {imagen.length > 0 && (
-                      <section className={stylesNoticias.seccionImagenAdvertencia}>
-                        <p className={stylesNoticias.parrafoImagen}>Solo Se Puede Agregar 12 Imágenes</p>
-                        <p className={stylesNoticias.parrafoImagen}>Imágenes Restantes: {imagenesPorExceso}</p>
+                      <section
+                        className={stylesNoticias.seccionImagenAdvertencia}
+                      >
+                        <p className={stylesNoticias.parrafoImagen}>
+                          Solo Se Puede Agregar 12 Imágenes
+                        </p>
+                        <p
+                          className={`${
+                            imagenesPorExceso == "0"
+                              ? `${stylesNoticias.parrafoAdvertencia}`
+                              : `stylesNoticias.parrafoImagen`
+                          }`}
+                        >
+                          Imágenes Restantes:{" "}
+                          {imagenesPorExceso < 10
+                            ? `0${imagenesPorExceso}`
+                            : imagenesPorExceso}
+                        </p>
                       </section>
                     )}
                   </section>

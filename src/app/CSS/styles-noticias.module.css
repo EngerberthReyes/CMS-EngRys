@@ -256,12 +256,17 @@
 }
 
 .seccionImagenAdvertencia {
-  margin-top: 1rem;
+  margin-top: 2rem;
 }
 
 .parrafoImagen {
   font-weight: 600;
   margin: 0;
+}
+
+.parrafoAdvertencia {
+  color: #e60000;
+  font-weight: 600;
 }
 
 @media (prefers-color-scheme: dark) {
