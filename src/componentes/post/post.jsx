@@ -33,9 +33,9 @@ const Post = ({ post }) => {
                           {elementoPost.imagen &&
                           archivo.name.includes(".mp4") ? (
                             <>
+                              {console.log(archivo.name)}
                               <video
                                 className={stylesPost.imagen}
-                                alt={archivo.name.includes(".mp4")}
                                 src={URL.createObjectURL(archivo)}
                                 property
                                 fill
@@ -45,7 +45,6 @@ const Post = ({ post }) => {
                           ) : (
                             <Image
                               className={stylesPost.imagen}
-                              alt={archivo.name}
                               src={URL.createObjectURL(archivo)}
                               property
                               fill
