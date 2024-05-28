@@ -80,7 +80,7 @@ const Noticias = () => {
       setPost([...post, postEnviado]);
       setNombreImagen([]);
       setImagen([]);
-      setInterructor(true)
+      setInterructor(true);
     }
 
     try {
