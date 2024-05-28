@@ -19,7 +19,7 @@ const Post = ({ post }) => {
             <section className={stylesPost.seccionGrid}>
               <h1>Las Opciones Van Aqui Arriba</h1>
               <section>
-                <h1>{elementoPost.mensaje}</h1>
+                <h1 className={stylesPost.mensaje}>{elementoPost.mensaje}</h1>
               </section>
               {elementoPost.imagen.length > 0 && (
                 <section className={stylesPost.lineaPunteada}></section>

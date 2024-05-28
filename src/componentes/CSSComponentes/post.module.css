@@ -194,6 +194,10 @@
   border-radius: 4px;
 }
 
+.mensaje {
+  margin: 0;
+}
+
 @media (prefers-color-scheme: dark) {
   .header {
     background-color: #0f0f0f9e;
