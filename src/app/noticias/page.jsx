@@ -22,6 +22,7 @@ const Noticias = () => {
   const [post, setPost] = useState([]);
   const [nombreImagen, setNombreImagen] = useState([]);
   const [imagen, setImagen] = useState([]);
+  const [interructor, setInterructor] = useState(true);
   const [imagenesPorExceso, setImagenesPorExceso] = useState();
   const [temaActual, setTemaActual] = useState();
   const mensaje = watch("mensaje");
@@ -52,7 +53,6 @@ const Noticias = () => {
 
   const agregarArchivo = (event) => {
     const archivos = event.target.files;
-    console.log(archivos);
     if (archivos && archivos.length > 0) {
       const archivosRecorridos = Object.values(archivos);
       const nuevasImagenes = [...imagen, ...archivosRecorridos];
@@ -61,6 +61,7 @@ const Noticias = () => {
       const nombres = imagenesRestantes.map((archivo) => archivo.name);
       setNombreImagen(nombres);
       setImagen(imagenesRestantes);
+      setInterructor(false);
       event.target.value = "";
     } else {
       console.log("Se Selecciono Ningun Archivo");
@@ -79,6 +80,7 @@ const Noticias = () => {
       setPost([...post, postEnviado]);
       setNombreImagen([]);
       setImagen([]);
+      setInterructor(true)
     }
 
     try {
@@ -165,7 +167,7 @@ const Noticias = () => {
                         })}
                       ></textarea>
                       <button
-                        disabled={!mensaje && !imagen}
+                        disabled={!mensaje && interructor}
                         className={`${stylesNoticias.enlace} ${stylesNoticias.botonEnviar}`}
                         type="submit"
                       >
@@ -209,7 +211,7 @@ const Noticias = () => {
                         className={stylesNoticias.seccionImagenAdvertencia}
                       >
                         <p className={stylesNoticias.parrafoImagen}>
-                          Solo Se Puede Agregar 12 Imágenes
+                          Solo Se Puede Agregar 12 Archivos
                         </p>
                         <p
                           className={`${
@@ -218,7 +220,7 @@ const Noticias = () => {
                               : `${stylesNoticias.parrafoImagen}`
                           }`}
                         >
-                          Imágenes Restantes:{" "}
+                          Archivos Restantes:{" "}
                           {imagenesPorExceso < 10
                             ? `0${imagenesPorExceso}`
                             : imagenesPorExceso}
@@ -236,7 +238,7 @@ const Noticias = () => {
                       <input
                         id="imagen"
                         multiple
-                        accept=".png, .jpg, .gif, .jpeg, .mp4"
+                        accept=".png, .mp4, .gif, .mp4, .jpeg"
                         onChange={agregarArchivo}
                         type="file"
                       />
