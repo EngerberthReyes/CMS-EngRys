@@ -33,7 +33,6 @@ const Post = ({ post }) => {
                           {elementoPost.imagen &&
                           archivo.name.includes(".mp4") ? (
                             <>
-                              {console.log(archivo.name)}
                               <video
                                 className={stylesPost.imagen}
                                 src={URL.createObjectURL(archivo)}
