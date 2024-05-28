@@ -255,6 +255,15 @@
   border-radius: 4px;
 }
 
+.seccionImagenAdvertencia {
+  margin-top: 1rem;
+}
+
+.parrafoImagen {
+  font-weight: 600;
+  margin: 0;
+}
+
 @media (prefers-color-scheme: dark) {
   .header {
     background-color: #0f0f0f9e;

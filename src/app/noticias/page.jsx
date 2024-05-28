@@ -22,9 +22,10 @@ const Noticias = () => {
 
   const [post, setPost] = useState([]);
   const [nombreImagen, setNombreImagen] = useState();
-  const [imagen, setImagen] = useState();
+  const [imagen, setImagen] = useState([]);
   const [imagenWidth, setImagenWidth] = useState();
   const [imagenHeight, setImagenHeight] = useState();
+  const [imagenesPorExceso, setImagenesPorExceso] = useState();
   const [temaActual, setTemaActual] = useState();
   const mensaje = watch("mensaje");
 
@@ -59,9 +60,13 @@ const Noticias = () => {
     if (archivos && archivos.length > 0) {
       const archivosRecorridos = Object.values(archivos);
       const nuevasImagenes = [...imagen, ...archivosRecorridos];
-      const nombres = nuevasImagenes.map((archivo) => archivo.name);
+      const imagenesRestantes = nuevasImagenes.slice(0, 12);
+
+      setImagenesPorExceso(`${12 - imagenesRestantes.length}`);
+
+      const nombres = imagenesRestantes.map((archivo) => archivo.name);
       setNombreImagen(nombres);
-      setImagen(nuevasImagenes);
+      setImagen(imagenesRestantes);
       event.target.value = "";
     } else {
       console.log("No Selecciono Ningun Archivo");
@@ -173,7 +178,7 @@ const Noticias = () => {
                         Enviar
                       </button>
                     </form>
-                    {imagen && (
+                    {imagen.length > 0 && (
                       <section
                         className={stylesNoticias.lineaPunteada}
                       ></section>
@@ -192,6 +197,12 @@ const Noticias = () => {
                           </section>
                         ))}
                     </section>
+                    {imagen.length > 0 && (
+                      <section className={stylesNoticias.seccionImagenAdvertencia}>
+                        <p className={stylesNoticias.parrafoImagen}>Solo Se Puede Agregar 12 Imágenes</p>
+                        <p className={stylesNoticias.parrafoImagen}>Imágenes Restantes: {imagenesPorExceso}</p>
+                      </section>
+                    )}
                   </section>
                   <section className={stylesNoticias.lineaPunteada}></section>
                   <section className={stylesNoticias.seccionElementos}>
