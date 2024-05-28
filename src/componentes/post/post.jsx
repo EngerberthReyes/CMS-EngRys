@@ -17,7 +17,7 @@ const Post = ({ post }) => {
             className={stylesPost.seccionPrincipal}
           >
             <section className={stylesPost.seccionGrid}>
-              <h1>Aqui va algo</h1>
+              <h1>Las Opciones Van Aqui Arriba</h1>
               <section>
                 <h1>{elementoPost.mensaje}</h1>
               </section>
