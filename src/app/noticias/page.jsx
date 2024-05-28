@@ -58,9 +58,10 @@ const Noticias = () => {
     const archivos = event.target.files;
     if (archivos && archivos.length > 0) {
       const archivosRecorridos = Object.values(archivos);
-      const nombres = archivosRecorridos.map((archivo) => archivo.name);
+      const nuevasImagenes = [...imagen, ...archivosRecorridos];
+      const nombres = nuevasImagenes.map((archivo) => archivo.name);
       setNombreImagen(nombres);
-      setImagen(archivosRecorridos);
+      setImagen(nuevasImagenes);
       event.target.value = "";
     } else {
       console.log("No Selecciono Ningun Archivo");
