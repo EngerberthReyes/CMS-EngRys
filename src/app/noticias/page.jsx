@@ -63,7 +63,7 @@ const Noticias = () => {
       setImagen(archivosRecorridos);
       event.target.value = "";
     } else {
-      console.log("No hay archivo seleccionado");
+      console.log("No Selecciono Ningun Archivo");
     }
   };
 
