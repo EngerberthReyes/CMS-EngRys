@@ -20,21 +20,15 @@ const Noticias = () => {
   });
 
   const [post, setPost] = useState([]);
-  const [nombreImagen, setNombreImagen] = useState();
+  const [nombreImagen, setNombreImagen] = useState([]);
   const [imagen, setImagen] = useState([]);
-  const [imagenWidth, setImagenWidth] = useState();
-  const [imagenHeight, setImagenHeight] = useState();
   const [imagenesPorExceso, setImagenesPorExceso] = useState();
   const [temaActual, setTemaActual] = useState();
   const mensaje = watch("mensaje");
 
-  console.log(imagenesPorExceso);
-
   console.log(mensaje);
 
   console.log(nombreImagen, imagen);
-
-  console.log(imagenHeight);
 
   const manejarCambioDeTema = (event) => {
     const modoOscuro = event.matches;
@@ -82,8 +76,8 @@ const Noticias = () => {
     };
     if (postEnviado) {
       setPost([...post, postEnviado]);
-      setNombreImagen("");
-      setImagen(false);
+      setNombreImagen([]);
+      setImagen([]);
     }
 
     try {
