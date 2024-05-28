@@ -7,7 +7,6 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import stylesNoticias from "../CSS/styles-noticias.module.css";
-import { Water_Brush } from "next/font/google";
 
 const Noticias = () => {
   const {
@@ -208,7 +207,7 @@ const Noticias = () => {
                           className={`${
                             imagenesPorExceso == "0"
                               ? `${stylesNoticias.parrafoAdvertencia}`
-                              : `stylesNoticias.parrafoImagen`
+                              : `${stylesNoticias.parrafoImagen}`
                           }`}
                         >
                           Imágenes Restantes:{" "}
