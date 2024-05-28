@@ -21,7 +21,9 @@ const Post = ({ post }) => {
               <section>
                 <h1>{elementoPost.mensaje}</h1>
               </section>
-              <section className={stylesPost.lineaPunteada}></section>
+              {elementoPost.imagen && (
+                <section className={stylesPost.lineaPunteada}></section>
+              )}
               <section className={stylesPost.seccionGridImagenes}>
                 {elementoPost.imagen && (
                   <>
