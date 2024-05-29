@@ -180,31 +180,31 @@ const Noticias = () => {
                       ></section>
                     )}
                     <section className={stylesNoticias.seccionGridImagenes}>
-                      {imagen &&
-                        imagen.map((archivo, index) => (
-                          <section key={index}>
-                            <>
+                      {imagen && (
+                        <section className={stylesNoticias.seccionGridImagenes}>
+                          {imagen.map((archivo, index) => (
+                            <section
+                              key={index}
+                              className={stylesNoticias.imagen}
+                            >
                               {archivo.name.includes(".mp4") ? (
                                 <video
                                   className={stylesNoticias.imagen}
-                                  alt={archivo.name.includes(".mp4")}
+                                  alt={`${index + 1}`}
                                   src={URL.createObjectURL(archivo)}
-                                  property
-                                  fill
                                   controls
                                 ></video>
                               ) : (
-                                <Image
+                                <img
                                   className={stylesNoticias.imagen}
-                                  alt={nombreImagen}
+                                  alt={`${index + 1}`}
                                   src={URL.createObjectURL(archivo)}
-                                  property
-                                  fill
                                 />
                               )}
-                            </>
-                          </section>
-                        ))}
+                            </section>
+                          ))}
+                        </section>
+                      )}
                     </section>
                     {imagen.length > 0 && (
                       <section

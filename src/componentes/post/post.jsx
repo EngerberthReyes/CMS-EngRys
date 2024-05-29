@@ -42,11 +42,9 @@ const Post = ({ post }) => {
                               ></video>
                             </>
                           ) : (
-                            <Image
+                            <img
                               className={stylesPost.imagen}
                               src={URL.createObjectURL(archivo)}
-                              property
-                              fill
                             />
                           )}
                         </section>
