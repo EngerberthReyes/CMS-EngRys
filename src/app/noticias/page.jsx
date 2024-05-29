@@ -211,7 +211,7 @@ const Noticias = () => {
                         className={stylesNoticias.seccionImagenAdvertencia}
                       >
                         <p className={stylesNoticias.parrafoImagen}>
-                          Solo Se Puede Agregar 12 Archivos
+                          Solo Se Puede Agregar 12 Archivos Más
                         </p>
                         <p
                           className={`${
