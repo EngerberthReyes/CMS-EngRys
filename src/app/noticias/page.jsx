@@ -92,7 +92,11 @@ const Noticias = () => {
   };
 
   const enviarComentarioTecla = (event) => {
-    if (event.key === "Enter" && !event.shiftKey) {
+    if (
+      event.key === "Enter" &&
+      mensaje.replace(/[\n\r]/g, "").trim().length > 0 &&
+      !event.shiftKey
+    ) {
       event.preventDefault();
       handleSubmit(enviarPost)();
     }
@@ -167,7 +171,7 @@ const Noticias = () => {
                         })}
                       ></textarea>
                       <button
-                        disabled={!mensaje && interructor}
+                        disabled={(!mensaje || mensaje.replace(/[\n\r]/g, "").trim().length <= 0) && interructor}
                         className={`${stylesNoticias.enlace} ${stylesNoticias.botonEnviar}`}
                         type="submit"
                       >
