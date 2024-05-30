@@ -171,7 +171,12 @@ const Noticias = () => {
                         })}
                       ></textarea>
                       <button
-                        disabled={(!mensaje || mensaje.replace(/[\n\r]/g, "").trim().length <= 0) && interructor}
+                        disabled={
+                          (!mensaje ||
+                            mensaje.replace(/[\n\r]/g, "").trim().length <=
+                              0) &&
+                          interructor
+                        }
                         className={`${stylesNoticias.enlace} ${stylesNoticias.botonEnviar}`}
                         type="submit"
                       >
