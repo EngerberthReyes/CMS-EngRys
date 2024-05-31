@@ -1,6 +1,22 @@
 import { conexion } from "@/db/database.js";
 import { NextResponse } from "next/server";
 
+export const GET = async () => {
+  try {
+    consulta = `
+    SELECT * from direcciones;
+    `;
+
+    const respuesta = await conexion.query(consulta);
+
+    console.log(respuesta);
+
+    return NextResponse.json({
+      mensaje: "GOD",
+    });
+  } catch (error) {}
+};
+
 export const POST = async (request) => {
   try {
     const {
@@ -49,13 +65,22 @@ export const POST = async (request) => {
       repetirClave
     );
 
+    const consultaGrabar = `INSERT INTO direcciones (id_direccion, id_codigo_postal, direccion_completa) values ($1, $2, $3);`;
+
+    const grabador = conexion.query(consultaGrabar, [null, 1, direccion]);
+
     return NextResponse.json(
-      { mensaje: "Todo salió bien" },
+      { mensaje: "Todo salió bien", grabado: grabador },
       {
         status: 200,
       }
     );
   } catch (error) {
-    console.error(error);
+    return NextResponse.json(
+      { error: error },
+      {
+        status: 500,
+      }
+    );
   }
 };

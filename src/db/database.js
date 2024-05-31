@@ -6,6 +6,6 @@ export const conexion = mysql({
     user: "root",
     password: "",
     port: 3306,
-    database: "alguna",
+    database: "cms",
   },
 });
