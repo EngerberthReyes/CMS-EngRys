@@ -3,9 +3,51 @@ import { NextResponse } from "next/server";
 
 export const POST = async (request) => {
   try {
-    const { codigo, correoElectronico } = await request.json();
+    const {
+      nombres,
+      apellido,
+      cedula,
+      sexo,
+      nacimiento,
+      direccion,
+      pais,
+      estado,
+      ciudad,
+      municipio,
+      parroquia,
+      codigo,
+      facebook,
+      instagram,
+      x,
+      tiktok,
+      sitio_web,
+      correo,
+      clave,
+      repetirClave,
+    } = await request.json();
 
-    console.log(datos);
+    console.log(
+      nombres,
+      apellido,
+      cedula,
+      sexo,
+      nacimiento,
+      direccion,
+      pais,
+      estado,
+      ciudad,
+      municipio,
+      parroquia,
+      codigo,
+      facebook,
+      instagram,
+      x,
+      tiktok,
+      sitio_web,
+      correo,
+      clave,
+      repetirClave
+    );
 
     return NextResponse.json(
       { mensaje: "Todo salió bien" },
