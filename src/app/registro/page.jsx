@@ -598,6 +598,29 @@ const Registro = () => {
                   </p>
                 </section>
               )}
+              <label htmlFor="sitio_web" className={stylesRegistro.label}>
+                ¿Tienes Un Sitio Web? Introduzca la URL hacia su Sitio Web
+                [Campo Opcional]
+              </label>
+              <input
+                id="sitio_web"
+                className={`${stylesRegistro.input_texto} rounded-2 mb-2`}
+                type="text"
+                {...register("sitio_web", {
+                  pattern: {
+                    value:
+                      /^https:\/\/([a-z0-9.-]+\.[a-z]{2,6}\b)(:[0-9]+)?\/?.*$/,
+                    message: "Introduzca una URL Veridica y Segura",
+                  },
+                })}
+              />
+              {errors.sitio_web && (
+                <section className={stylesRegistro.seccionError}>
+                  <p className={stylesRegistro.errorInput}>
+                    {errors.sitio_web.message}
+                  </p>
+                </section>
+              )}
 
               <section
                 className={`${stylesRegistro.contenedor_passoword_perdida} rounded-2 mt-0`}
