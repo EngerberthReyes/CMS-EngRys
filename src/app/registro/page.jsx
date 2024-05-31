@@ -338,189 +338,6 @@ const Registro = () => {
           )}
           {pasoFormulario === 2 && (
             <>
-              <label htmlFor="correo" className={stylesRegistro.label}>
-                Correo Electrónico
-              </label>
-              <input
-                id="correo"
-                className={`${stylesRegistro.input_texto} rounded-2`}
-                type="email"
-                {...register("correo", {
-                  required: "Introduzca su Correo Electrónico",
-                  pattern: {
-                    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                    message: "Formato de Correo Electrónico Inválido",
-                  },
-                })}
-              />
-              {errors.correo && (
-                <section className={stylesRegistro.seccionError}>
-                  <p className={stylesRegistro.errorInput}>
-                    {errors.correo.message}
-                  </p>
-                </section>
-              )}
-              <section className={stylesRegistro.seccionFecha}>
-                <label
-                  htmlFor="nacimiento"
-                  className={`${stylesRegistro.label} m-0`}
-                >
-                  Fecha de Nacimiento
-                </label>
-                <input
-                  id="nacimiento"
-                  className={`${stylesRegistro.input_texto} ${stylesRegistro.input_fecha} rounded-2`}
-                  type="date"
-                  max={fechaActual}
-                  {...register("nacimiento", {
-                    required: "Introduzca su Fecha de Nacimiento",
-                  })}
-                />
-              </section>
-              {errors.nacimiento && (
-                <section className={stylesRegistro.seccionError}>
-                  <p className={stylesRegistro.errorInput}>
-                    {errors.nacimiento.message}
-                  </p>
-                </section>
-              )}
-
-              <label htmlFor="clave" className={stylesRegistro.labelClave}>
-                Contraseña
-              </label>
-              <section className={stylesRegistro.contenedor_input_password}>
-                <input
-                  id="clave"
-                  className={`${stylesRegistro.input_texto} rounded-2`}
-                  type={mostrarClave ? "text" : "password"}
-                  {...register("clave", {
-                    required: "Introduzca una Contraseña",
-                    minLength: {
-                      value: 8,
-                      message: "La Contraseña debe tener al menos 8 caracteres",
-                    },
-                  })}
-                />
-                {mostrarClave ? (
-                  <Image
-                    className={stylesRegistro.icono_password}
-                    onClick={() => mostrarPassword(clave)}
-                    width={20}
-                    height={20}
-                    src={
-                      temaActual === "oscuro"
-                        ? `/BlancoAbierto.svg`
-                        : `/OjoNegroAbierto.svg`
-                    }
-                    alt="Ocultar Contraseña"
-                  />
-                ) : (
-                  <Image
-                    className={stylesRegistro.icono_password}
-                    onClick={() => mostrarPassword(clave)}
-                    width={20}
-                    height={20}
-                    src={
-                      temaActual === "oscuro"
-                        ? `/BlancoAbiertoOblicua.svg`
-                        : `/OjoNegroAbiertoOblicuo.svg`
-                    }
-                    alt="Mostrar Contraseña"
-                  />
-                )}
-              </section>
-              {errors.clave && (
-                <section className={stylesRegistro.seccionError}>
-                  <p className={stylesRegistro.errorInput}>
-                    {errors.clave.message}
-                  </p>
-                </section>
-              )}
-
-              <label
-                htmlFor="repetirClave"
-                className={stylesRegistro.labelClave}
-              >
-                Repetir Contraseña
-              </label>
-              <section className={stylesRegistro.contenedor_input_password}>
-                <input
-                  id="repetirClave"
-                  className={`${stylesRegistro.input_texto} ${stylesRegistro.input_ultimo} rounded-2`}
-                  type={mostrarSegundaClave ? "text" : "password"}
-                  {...register("repetirClave", {
-                    required: "Repita la Contraseña",
-                    validate: (value) =>
-                      value === clave || "Las Contraseñas no coinciden",
-                  })}
-                />
-                {mostrarSegundaClave ? (
-                  <Image
-                    className={`${stylesRegistro.icono_password} ${stylesRegistro.icono_ultimo}`}
-                    onClick={() => confirmarPassword(confirmacionClave)}
-                    width={20}
-                    height={20}
-                    src={
-                      temaActual === "oscuro"
-                        ? `/BlancoAbierto.svg`
-                        : `/OjoNegroAbierto.svg`
-                    }
-                    alt="Ocultar Contraseña"
-                  />
-                ) : (
-                  <Image
-                    className={`${stylesRegistro.icono_password} ${stylesRegistro.icono_ultimo}`}
-                    onClick={() => confirmarPassword(confirmacionClave)}
-                    width={20}
-                    height={20}
-                    src={
-                      temaActual === "oscuro"
-                        ? `/BlancoAbiertoOblicua.svg`
-                        : `/OjoNegroAbiertoOblicuo.svg`
-                    }
-                    alt="Mostrar Contraseña"
-                  />
-                )}
-              </section>
-              {errors.repetirClave && (
-                <section
-                  className={`${stylesRegistro.seccionError} ${stylesRegistro.seccionError_ultimo}`}
-                >
-                  <p className={stylesRegistro.errorInput}>
-                    {errors.repetirClave.message}
-                  </p>
-                </section>
-              )}
-
-              <section className={stylesRegistro.contenedor_passoword_perdida}>
-                <Link
-                  className={stylesRegistro.link_password}
-                  href="../iniciar_sesion"
-                >
-                  ¿Ya tienes una cuenta?
-                </Link>
-              </section>
-              <section className={stylesRegistro.seccionBoton}>
-                <button
-                  type="button"
-                  className={`${stylesRegistro.boton} rounded-2`}
-                  onClick={formularioPrevio}
-                >
-                  Atrás
-                </button>
-                <button
-                  className={`${stylesRegistro.boton} rounded-2`}
-                  type="button"
-                  disabled={!isValid}
-                  onClick={siguienteFormulario}
-                >
-                  Siguiente
-                </button>
-              </section>
-            </>
-          )}
-          {pasoFormulario === 3 && (
-            <>
               <label htmlFor="pais" className={stylesRegistro.label}>
                 País
               </label>
@@ -657,28 +474,7 @@ const Registro = () => {
                   )}
                 </section>
               </section>
-
-              <label htmlFor="direccion" className={stylesRegistro.label}>
-                Dirección Completa
-              </label>
-              <textarea
-                id="direccion"
-                className={`${stylesRegistro.input_texto} ${stylesRegistro.textarea} rounded-2 mb-2`}
-                {...register("direccion", {
-                  required: "Ingrese su dirección completa",
-                })}
-              ></textarea>
-              {errors.direccion && (
-                <section className={stylesRegistro.seccionError}>
-                  <p className={stylesRegistro.errorInput}>
-                    {errors.direccion.message}
-                  </p>
-                </section>
-              )}
-
-              <section
-                className={`${stylesRegistro.contenedor_passoword_perdida} rounded-2 mt-0`}
-              >
+              <section className={stylesRegistro.contenedor_passoword_perdida}>
                 <Link
                   className={stylesRegistro.link_password}
                   href="../iniciar_sesion"
@@ -705,7 +501,7 @@ const Registro = () => {
               </section>
             </>
           )}
-          {pasoFormulario === 4 && (
+          {pasoFormulario === 3 && (
             <>
               <label htmlFor="facebook" className={stylesRegistro.label}>
                 ¿Tienes Facebook? Introduzca la URL hacia su Perfil de Facebook
@@ -799,6 +595,167 @@ const Registro = () => {
                 <section className={stylesRegistro.seccionError}>
                   <p className={stylesRegistro.errorInput}>
                     {errors.tiktok.message}
+                  </p>
+                </section>
+              )}
+
+              <section
+                className={`${stylesRegistro.contenedor_passoword_perdida} rounded-2 mt-0`}
+              >
+                <Link
+                  className={stylesRegistro.link_password}
+                  href="../iniciar_sesion"
+                >
+                  ¿Ya tienes una cuenta?
+                </Link>
+              </section>
+              <section className={stylesRegistro.seccionBoton}>
+                <button
+                  type="button"
+                  className={`${stylesRegistro.boton} rounded-2`}
+                  onClick={formularioPrevio}
+                >
+                  Atrás
+                </button>
+                <button
+                  className={`${stylesRegistro.boton} rounded-2`}
+                  type="button"
+                  disabled={!isValid}
+                  onClick={siguienteFormulario}
+                >
+                  Siguiente
+                </button>
+              </section>
+            </>
+          )}
+          {pasoFormulario === 4 && (
+            <>
+              <label htmlFor="correo" className={stylesRegistro.label}>
+                Correo Electrónico
+              </label>
+              <input
+                id="correo"
+                className={`${stylesRegistro.input_texto} rounded-2`}
+                type="email"
+                {...register("correo", {
+                  required: "Introduzca su Correo Electrónico",
+                  pattern: {
+                    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                    message: "Formato de Correo Electrónico Inválido",
+                  },
+                })}
+              />
+              {errors.correo && (
+                <section className={stylesRegistro.seccionError}>
+                  <p className={stylesRegistro.errorInput}>
+                    {errors.correo.message}
+                  </p>
+                </section>
+              )}
+
+              <label htmlFor="clave" className={stylesRegistro.labelClave}>
+                Contraseña
+              </label>
+              <section className={stylesRegistro.contenedor_input_password}>
+                <input
+                  id="clave"
+                  className={`${stylesRegistro.input_texto} rounded-2`}
+                  type={mostrarClave ? "text" : "password"}
+                  {...register("clave", {
+                    required: "Introduzca una Contraseña",
+                    minLength: {
+                      value: 8,
+                      message: "La Contraseña debe tener al menos 8 caracteres",
+                    },
+                  })}
+                />
+                {mostrarClave ? (
+                  <Image
+                    className={stylesRegistro.icono_password}
+                    onClick={() => mostrarPassword(clave)}
+                    width={20}
+                    height={20}
+                    src={
+                      temaActual === "oscuro"
+                        ? `/BlancoAbierto.svg`
+                        : `/OjoNegroAbierto.svg`
+                    }
+                    alt="Ocultar Contraseña"
+                  />
+                ) : (
+                  <Image
+                    className={stylesRegistro.icono_password}
+                    onClick={() => mostrarPassword(clave)}
+                    width={20}
+                    height={20}
+                    src={
+                      temaActual === "oscuro"
+                        ? `/BlancoAbiertoOblicua.svg`
+                        : `/OjoNegroAbiertoOblicuo.svg`
+                    }
+                    alt="Mostrar Contraseña"
+                  />
+                )}
+              </section>
+              {errors.clave && (
+                <section className={stylesRegistro.seccionError}>
+                  <p className={stylesRegistro.errorInput}>
+                    {errors.clave.message}
+                  </p>
+                </section>
+              )}
+
+              <label
+                htmlFor="repetirClave"
+                className={stylesRegistro.labelClave}
+              >
+                Repetir Contraseña
+              </label>
+              <section className={stylesRegistro.contenedor_input_password}>
+                <input
+                  id="repetirClave"
+                  className={`${stylesRegistro.input_texto} ${stylesRegistro.input_ultimo} rounded-2`}
+                  type={mostrarSegundaClave ? "text" : "password"}
+                  {...register("repetirClave", {
+                    required: "Repita la Contraseña",
+                    validate: (value) =>
+                      value === clave || "Las Contraseñas no coinciden",
+                  })}
+                />
+                {mostrarSegundaClave ? (
+                  <Image
+                    className={`${stylesRegistro.icono_password} ${stylesRegistro.icono_ultimo}`}
+                    onClick={() => confirmarPassword(confirmacionClave)}
+                    width={20}
+                    height={20}
+                    src={
+                      temaActual === "oscuro"
+                        ? `/BlancoAbierto.svg`
+                        : `/OjoNegroAbierto.svg`
+                    }
+                    alt="Ocultar Contraseña"
+                  />
+                ) : (
+                  <Image
+                    className={`${stylesRegistro.icono_password} ${stylesRegistro.icono_ultimo}`}
+                    onClick={() => confirmarPassword(confirmacionClave)}
+                    width={20}
+                    height={20}
+                    src={
+                      temaActual === "oscuro"
+                        ? `/BlancoAbiertoOblicua.svg`
+                        : `/OjoNegroAbiertoOblicuo.svg`
+                    }
+                    alt="Mostrar Contraseña"
+                  />
+                )}
+              </section>
+              {errors.repetirClave && (
+                <section
+                  className={`${stylesRegistro.seccionError} ${stylesRegistro.seccionError_ultimo}`}
+                >
+                  <p className={stylesRegistro.errorInput}>
+                    {errors.repetirClave.message}
                   </p>
                 </section>
               )}
