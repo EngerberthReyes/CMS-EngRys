@@ -96,7 +96,7 @@ const Registro = () => {
           {pasoFormulario === 1 && (
             <>
               <label htmlFor="nombre" className={stylesRegistro.label}>
-                Nombre Completo
+                Nombres
               </label>
               <input
                 id="nombre"
@@ -181,59 +181,111 @@ const Registro = () => {
                   </p>
                 </section>
               )}
-
-              <label htmlFor="sexo" className={stylesRegistro.label}>
-                Sexo
-              </label>
               <section
-                className={`${stylesRegistro.seleccionGenero} rounded-2`}
+                style={{
+                  width: "85%",
+                  display: "flex",
+                  alignItems: "center",
+                }}
               >
-                <label
-                  htmlFor="masculino"
-                  className={`${stylesRegistro.label} ${stylesRegistro.labelRadio} rounded-2`}
+                <section
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    width: "100%",
+                  }}
                 >
-                  <section className={stylesRegistro.seccionRadio}>
-                    Masculino
-                    <input
-                      id="masculino"
-                      type="radio"
-                      value="Masculino"
-                      {...register("sexo", {
-                        required: {
-                          value: true,
-                          message: "Introduzca su Sexo",
-                        },
-                      })}
-                    />
+                  <label
+                    htmlFor="sexo"
+                    className={stylesRegistro.label}
+                    style={{ margin: "2% 0" }}
+                  >
+                    Sexo
+                  </label>
+
+                  <section
+                    style={{
+                      width: "100%",
+                      display: "flex",
+                      justifyContent: "flex-start",
+                      alignItems: "center",
+                      gap: "2rem",
+                    }}
+                  >
+                    <label
+                      htmlFor="masculino"
+                      className={`${stylesRegistro.label} ${stylesRegistro.labelRadio} rounded-2`}
+                    >
+                      <section className={stylesRegistro.seccionRadio}>
+                        Masculino
+                        <input
+                          id="masculino"
+                          type="radio"
+                          value="Masculino"
+                          {...register("sexo", {
+                            required: {
+                              value: true,
+                              message: "Introduzca su Sexo",
+                            },
+                          })}
+                        />
+                      </section>
+                    </label>
+                    <label
+                      htmlFor="femenino"
+                      className={`${stylesRegistro.label} ${stylesRegistro.labelRadio} rounded-2`}
+                    >
+                      <section className={stylesRegistro.seccionRadio}>
+                        Femenino
+                        <input
+                          id="femenino"
+                          type="radio"
+                          value="Femenino"
+                          {...register("sexo", {
+                            required: {
+                              value: true,
+                              message: "Introduzca su Sexo",
+                            },
+                          })}
+                        />
+                      </section>
+                    </label>
+                    {errors.sexo && (
+                      <section className={stylesRegistro.seccionError}>
+                        <p className={stylesRegistro.errorInput}>
+                          {errors.sexo.message}
+                        </p>
+                      </section>
+                    )}
                   </section>
-                </label>
-                <label
-                  htmlFor="femenino"
-                  className={`${stylesRegistro.label} ${stylesRegistro.labelRadio} rounded-2`}
-                >
-                  <section className={stylesRegistro.seccionRadio}>
-                    Femenino
-                    <input
-                      id="femenino"
-                      type="radio"
-                      value="Femenino"
-                      {...register("sexo", {
-                        required: {
-                          value: true,
-                          message: "Introduzca su Sexo",
-                        },
-                      })}
-                    />
-                  </section>
-                </label>
-              </section>
-              {errors.sexo && (
-                <section className={stylesRegistro.seccionError}>
-                  <p className={stylesRegistro.errorInput}>
-                    {errors.sexo.message}
-                  </p>
                 </section>
-              )}
+                <section
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    alignItems: "flex-end",
+                    justifyContent: "flex-end",
+                    width: "48%",
+                  }}
+                >
+                  <label
+                    htmlFor="nacimiento"
+                    style={{ margin: "4% 0" }}
+                    className={`${stylesRegistro.label}`}
+                  >
+                    Fecha de Nacimiento
+                  </label>
+                  <input
+                    id="nacimiento"
+                    className={`${stylesRegistro.input_texto} ${stylesRegistro.input_fecha} rounded-2`}
+                    type="date"
+                    max={fechaActual}
+                    {...register("nacimiento", {
+                      required: "Introduzca su Fecha de Nacimiento",
+                    })}
+                  />
+                </section>
+              </section>
               <section className={stylesRegistro.contenedor_passoword_perdida}>
                 <Link
                   className={stylesRegistro.link_password}
