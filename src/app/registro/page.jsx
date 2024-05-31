@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
+import axios from "axios";
 import stylesRegistro from "../CSS/styles-registro.module.css";
 
 const Registro = () => {
@@ -70,7 +71,75 @@ const Registro = () => {
   }, []);
 
   const onSubmit = (data) => {
-    console.log(data);
+    const {
+      nombres,
+      apellido,
+      cedula,
+      sexo,
+      nacimiento,
+      direccion,
+      pais,
+      estado,
+      ciudad,
+      municipio,
+      parroquia,
+      codigo,
+      facebook,
+      instagram,
+      x,
+      tiktok,
+      sitio_web,
+      correo,
+      clave,
+      repetirClave,
+    } = data;
+
+    console.log(
+      nombres,
+      apellido,
+      cedula,
+      sexo,
+      nacimiento,
+      direccion,
+      pais,
+      estado,
+      ciudad,
+      municipio,
+      parroquia,
+      codigo,
+      facebook,
+      instagram,
+      x,
+      tiktok,
+      sitio_web,
+      correo,
+      clave,
+      repetirClave
+    );
+
+    const repuesta = axios.post("../API/personas", {
+      nombres,
+      apellido,
+      cedula,
+      sexo,
+      nacimiento,
+      direccion,
+      pais,
+      estado,
+      ciudad,
+      municipio,
+      parroquia,
+      codigo,
+      facebook,
+      instagram,
+      x,
+      tiktok,
+      sitio_web,
+      correo,
+      clave,
+      repetirClave,
+    });
+    console.log(repuesta);
   };
 
   return (
