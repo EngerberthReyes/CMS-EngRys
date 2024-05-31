@@ -1,4 +1,4 @@
-import { conexion } from "@/db/database.jsx";
+import { conexion } from "@/db/database.js";
 import { NextResponse } from "next/server";
 
 export const POST = async (request) => {
