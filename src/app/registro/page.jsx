@@ -71,13 +71,16 @@ const Registro = () => {
   }, []);
   const [estado, setEstado] = useState([]);
   const [ciudad, setCiudad] = useState([]);
+  const [municipio, setMunicipio] = useState([]);
+  const [parroquia, setParroquia] = useState([]);
+  const [codigoPostal, setCodigoPostal] = useState([]);
 
   const venezuela = async () => {
     try {
       const venezuela = await axios.get("../API/personas");
-  
+
       const locacionesVenezuela = venezuela.data;
-  
+
       const estados = locacionesVenezuela.map((localidades) => {
         return localidades.estado;
       });
@@ -86,14 +89,23 @@ const Registro = () => {
         return localidades.ciudad;
       });
 
+      const municipios = locacionesVenezuela.map((localidades) => {
+        return localidades.municipio;
+      });
+
+      const parroquias = locacionesVenezuela.map((localidades) => {
+        return localidades.parroquia;
+      });
 
       setEstado(estados);
       setCiudad(ciudades);
+      setMunicipio(municipios);
+      setParroquia(parroquias);
     } catch (error) {
       console.error(error);
     }
   };
-  
+
   useEffect(() => {
     venezuela();
   }, []);
@@ -501,10 +513,9 @@ const Registro = () => {
                     })}
                   >
                     <option value="">Seleccione un Municipio</option>
-                    <option value="Ayacucho">Municipio Ayacucho</option>
-                    <option value="Ayacucho">Municipio Ayacucho</option>
-                    <option value="Ayacucho">Municipio Ayacucho</option>
-                    <option value="Ayacucho">Municipio Ayacucho</option>
+                    {municipio.map((itemMunicipio) => {
+                      return <option>{itemMunicipio}</option>;
+                    })}
                   </select>
                   {errors.municipio && (
                     <p className={stylesRegistro.errorInput}>
@@ -526,8 +537,11 @@ const Registro = () => {
                       required: "Seleccione una parroquia",
                     })}
                   >
-                    <option value="">Seleccione una parroquia</option>
-                    <option value="Venezuela">Venezuela</option>
+                    <option value="">Seleccione una Parroquia</option>
+                    <option value="">Seleccione un Municipio</option>
+                    {parroquia.map((itemParroquia) => {
+                      return <option>{itemParroquia}</option>;
+                    })}
                   </select>
                   {errors.parroquia && (
                     <p className={stylesRegistro.errorInput}>
