@@ -45,7 +45,44 @@ const Registro = () => {
   }, []);
 
   const clave = watch("clave");
+  const cedula = Number(watch("cedula"));
   const confirmacionClave = watch("repetirClave");
+  const [cedulas, setCedulas] = useState([]);
+  const [mensajeCedula, setMensajeCedula] = useState('');
+  const [estatusCedula, setEstatusCedula] = useState(true);
+
+  const obtenerCedulasDeBaseDeDatos = async () => {
+    try {
+      const datosRepetidos = await axios.get("../API/personas");
+      const dataPersona = datosRepetidos.data.personas;
+      const cedulasObtenidas = dataPersona.map((itemCedula) => {
+        return itemCedula.cedula;
+      });
+      setCedulas(cedulasObtenidas);
+    } catch (error) {
+      console.error(
+        "Error al obtener las cédulas de la base de datos: ",
+        error
+      );
+      throw new Error("Error al obtener las cédulas de la base de datos.");
+    }
+  };
+
+  useEffect(() => {
+    obtenerCedulasDeBaseDeDatos();
+  }, []);
+
+  useEffect(() => {
+    console.log("Cédulas obtenidas:", cedulas);
+    if (cedulas.length === 0) {
+      console.log("Aún no se han cargado las cédulas de la base de datos.");
+    } else if (cedulas.includes(cedula)) {
+      setMensajeCedula("Esta Cédula Ya Esta Registrada");
+      setEstatusCedula(false)
+    } else {
+      setEstatusCedula(true)
+    }
+  }, [cedulas]);
 
   const mostrarPassword = (clave) => {
     setMostrarClave(!mostrarClave);
@@ -55,7 +92,7 @@ const Registro = () => {
     setMostrarSegundaClave(!mostrarSegundaClave);
   };
 
-  const siguienteFormulario = () => {
+  const siguienteFormulario = async () => {
     setNumeroFormulario(numeroFormulario + 1);
     setPasoFormulario(pasoFormulario + 1);
   };
@@ -73,6 +110,8 @@ const Registro = () => {
   const [ciudad, setCiudad] = useState([]);
   const [municipio, setMunicipio] = useState([]);
   const [parroquia, setParroquia] = useState([]);
+  const [cedulaIngresadaUsuario, setCedula] = useState();
+  console.log(cedulaIngresadaUsuario);
   const [codigoPostal, setCodigoPostal] = useState([
     "1000 - Distrito Capital",
     "1070 - Miranda",
@@ -97,38 +136,6 @@ const Registro = () => {
     "6301 - Nueva Esparta",
     "8001 - Bolívar",
   ]);
-
-  const datosRepetidos = async () => {
-    try {
-      const datosRepetidos = await axios.get("../API/personas");
-
-      const dataPersona = datosRepetidos.data;
-
-      console.log(dataPersona);
-
-      const estados = locacionesVenezuela.map((localidades) => {
-        return localidades.estado;
-      });
-
-      const ciudades = locacionesVenezuela.map((localidades) => {
-        return localidades.ciudad;
-      });
-
-      const municipios = locacionesVenezuela.map((localidades) => {
-        return localidades.municipio;
-      });
-
-      const parroquias = locacionesVenezuela.map((localidades) => {
-        return localidades.parroquia;
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  useEffect(() => {
-    datosRepetidos();
-  }, []);
 
   const venezuela = async () => {
     try {
