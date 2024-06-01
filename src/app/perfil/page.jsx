@@ -125,7 +125,11 @@ const Perfil = () => {
                               src={`/editar-theme-white.svg`}
                               alt="Cambiar Foto de Perfil"
                             />
-                            <input id="cambiarImagen" type="file" />
+                            <input
+                              id="cambiarImagen"
+                              accept=".gif, .png, ,.apng, .jpg, .jpeg"
+                              type="file"
+                            />
                           </section>
                         </label>
                       </>
@@ -145,7 +149,11 @@ const Perfil = () => {
                               src={`/editar-theme-black.svg`}
                               alt="Cambiar Foto de Perfil"
                             />
-                            <input id="cambiarImagen" type="file" />
+                            <input
+                              id="cambiarImagen"
+                              accept=".gif, .png, ,.apng, .jpg, .jpeg"
+                              type="file"
+                            />
                           </section>
                         </label>
                       </>
