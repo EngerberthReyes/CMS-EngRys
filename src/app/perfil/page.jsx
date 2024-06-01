@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Post from "@/componentes/post/post.jsx";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import stylesPerfil from "../CSS/styles-perfil.module.css";
@@ -20,6 +20,7 @@ const Perfil = () => {
   });
 
   const [post, setPost] = useState([]);
+  const [temaActual, setTemaActual] = useState();
 
   console.log(post);
 
@@ -33,6 +34,26 @@ const Perfil = () => {
     }
     reset();
   };
+
+  const manejarCambioDeTema = (event) => {
+    const modoOscuro = event.matches;
+
+    document.body.classList.toggle("modo-oscuro", modoOscuro);
+    setTemaActual(modoOscuro ? "oscuro" : "claro");
+  };
+
+  useEffect(() => {
+    const consultaModoOscuro = window.matchMedia(
+      "(prefers-color-scheme: dark)"
+    );
+    consultaModoOscuro.addEventListener("change", manejarCambioDeTema);
+
+    setTemaActual(consultaModoOscuro.matches ? "oscuro" : "claro");
+
+    return () => {
+      consultaModoOscuro.removeEventListener("change", manejarCambioDeTema);
+    };
+  }, []);
 
   const enviarComentarioTecla = (event) => {
     if (event.key === "Enter" && !event.shiftKey) {
@@ -80,7 +101,40 @@ const Perfil = () => {
               <section className={stylesPerfil.seccionAjustes}>
                 <h1 className={stylesPerfil.titulo}>Perfil</h1>
                 <section className={stylesPerfil.seccionFlex}>
-                  <Image className={stylesPerfil.imagenes} width={200} height={200} src={"/IMG/epigrafe73.png"} alt={"Imagen de Perfil"} />
+                  <Image
+                    className={stylesPerfil.imagenes}
+                    width={200}
+                    height={200}
+                    src={"/IMG/epigrafe73.png"}
+                    alt={"Imagen de Perfil"}
+                  />
+                  <section>
+                    <Image
+                      className={stylesPerfil.icono_edit}
+                      onClick={() => cambiarImagen}
+                      width={20}
+                      height={20}
+                      src={
+                        temaActual === "oscuro"
+                          ? `/BlancoAbierto.svg`
+                          : `/OjoNegroAbierto.svg`
+                      }
+                      alt="Ocultar Contraseña"
+                    />
+                    ) : (
+                    <Image
+                      className={stylesPerfil.icono_edit}
+                      onClick={() => cambiarImagen}
+                      width={20}
+                      height={20}
+                      src={
+                        temaActual === "oscuro"
+                          ? `/BlancoAbiertoOblicua.svg`
+                          : `/OjoNegroAbiertoOblicuo.svg`
+                      }
+                      alt="Mostrar Contraseña"
+                    />
+                  </section>
                   <section className={stylesPerfil.seccionPerfilIzquierdo}>
                     <h1>Tu Nombre:</h1>
                     <section>
