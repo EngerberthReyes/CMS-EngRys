@@ -14,8 +14,9 @@ export const GET = async () => {
     WHERE est.id_estado = cd.id_estado
     AND muni.id_municipio = parr.id_municipio
     ORDER BY RAND()
-    LIMIT 12;
+    LIMIT 23;
     `;
+
     const [respuestaPersona, respuestaPais] = await Promise.all([
       cmsConexion.query(datosUsuario),
       venezuela.query(consultarPais),
