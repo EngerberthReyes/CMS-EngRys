@@ -1,6 +1,6 @@
 import mysql from "serverless-mysql";
 
-export const cms = mysql({
+export const cmsConexion = mysql({
   config: {
     host: "localhost",
     user: "root",

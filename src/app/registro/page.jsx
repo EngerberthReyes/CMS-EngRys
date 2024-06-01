@@ -157,6 +157,8 @@ const Registro = () => {
       repetirClave,
     } = data;
 
+    console.log(data)
+
     try {
       const repuesta = await axios.post("../API/personas", {
         nombres,
@@ -585,7 +587,7 @@ const Registro = () => {
                       required: "Seleccione un código postal",
                     })}
                   >
-                    <option>Seleccione un Código Postal</option>
+                    <option value="">Seleccione un Código Postal</option>
                     {codigoPostal.map((itemPostal) => {
                       return <option value={itemPostal}>{itemPostal}</option>;
                     })}
