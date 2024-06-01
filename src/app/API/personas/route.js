@@ -127,7 +127,7 @@ export const POST = async (request) => {
       id_rol, 
       id_nacionalidad, 
       id_direccion, 
-      nombres, 
+      nombre, 
       apellido, 
       cedula, 
       correo_electronico, 
