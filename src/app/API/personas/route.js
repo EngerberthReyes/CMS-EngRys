@@ -87,7 +87,7 @@ export const POST = async (request) => {
     const grabadorCodigoPostal = await cmsConexion.query(consultaGrabarCodigoPostal, [idParroquia, codigo]);
 
     return NextResponse.json(
-      { Exitoso: idPais },
+      { Exitoso: "Datos Insertados Correctamente" },
       { status: 200 }
     );
 
