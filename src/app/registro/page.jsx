@@ -48,8 +48,8 @@ const Registro = () => {
   const cedula = Number(watch("cedula"));
   const confirmacionClave = watch("repetirClave");
   const [cedulas, setCedulas] = useState([]);
-  const [mensajeCedula, setMensajeCedula] = useState('');
-  const [estatusCedula, setEstatusCedula] = useState(true);
+  const [mensajeCedula, setMensajeCedula] = useState("");
+  const [estatusCedula, setEstatusCedula] = useState(false);
 
   const obtenerCedulasDeBaseDeDatos = async () => {
     try {
@@ -76,13 +76,15 @@ const Registro = () => {
     console.log("Cédulas obtenidas:", cedulas);
     if (cedulas.length === 0) {
       console.log("Aún no se han cargado las cédulas de la base de datos.");
-    } else if (cedulas.includes(cedula)) {
-      setMensajeCedula("Esta Cédula Ya Esta Registrada");
-      setEstatusCedula(false)
     } else {
-      setEstatusCedula(true)
+      if (cedulas.includes(cedula)) {
+        setMensajeCedula("Esta Cédula Ya Esta Registrada");
+        setEstatusCedula(true);
+      } else {
+        setEstatusCedula(false);
+      }
     }
-  }, [cedulas]);
+  }, [cedula]);
 
   const mostrarPassword = (clave) => {
     setMostrarClave(!mostrarClave);
@@ -340,6 +342,11 @@ const Registro = () => {
                   <p className={stylesRegistro.errorInput}>
                     {errors.cedula.message}
                   </p>
+                </section>
+              )}
+              {estatusCedula && (
+                <section className={stylesRegistro.seccionError}>
+                  <p className={stylesRegistro.errorInput}>{mensajeCedula}</p>
                 </section>
               )}
               <section
