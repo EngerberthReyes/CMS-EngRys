@@ -55,7 +55,7 @@ const Registro = () => {
   const [mensajeCorreo, setMensajeCorreo] = useState("");
   const [estatusCorreo, setEstatusCorreo] = useState(false);
 
-  const obtenerCedulasDeBaseDeDatos = async () => {
+  const obtenerInformacionBaseDeDatos = async () => {
     try {
       const datosRepetidos = await axios.get("../API/personas");
       const dataPersona = datosRepetidos.data.personas;
@@ -77,7 +77,7 @@ const Registro = () => {
   };
 
   useEffect(() => {
-    obtenerCedulasDeBaseDeDatos();
+    obtenerInformacionBaseDeDatos();
   }, []);
 
   useEffect(() => {

@@ -92,44 +92,9 @@ const Perfil = () => {
                 </section>
               </section>
             </section>
-            <section className={stylesPerfil.seccionCentral}>
-              <section className={stylesPerfil.seccionPrincipal}>
-                <section className={stylesPerfil.seccionGrid}>
-                  <h1>Perfil</h1>
-                  <section className={stylesPerfil.seccionPost}>
-                    <form
-                      className={stylesPerfil.formulario}
-                      onSubmit={handleSubmit(enviarPost)}
-                    >
-                      <textarea
-                        className={stylesPerfil.textArea}
-                        onKeyDown={enviarComentarioTecla}
-                        {...register("mensaje", {
-                          required: "Introduzca Algún Mensaje",
-                        })}
-                      ></textarea>
-                      <button
-                        disabled={!isValid}
-                        className={`${stylesPerfil.enlace} ${stylesPerfil.botonEnviar}`}
-                        type="submit"
-                      >
-                        Enviar
-                      </button>
-                    </form>
-                  </section>
-                  <section className={stylesPerfil.seccionElementos}>
-                    <section>Cajas</section>
-                    <section>Cajas</section>
-                    <section>Cajas</section>
-                    <section>Cajas</section>
-                  </section>
-                </section>
-              </section>
-              {post && <Post post={post} />}
-            </section>
             <section className={stylesPerfil.seccionTerciaria}>
               <section className={stylesPerfil.seccionAjustes}>
-                <h1>Perfil</h1>
+                <h1>Informacion Personal</h1>
                 <section className={stylesPerfil.seccionFlex}>
                   <section>Cajas2</section>
                   <section>Cajas2</section>

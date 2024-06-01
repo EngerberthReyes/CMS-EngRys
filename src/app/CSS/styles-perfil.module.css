@@ -66,8 +66,8 @@
 
 .main {
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   width: 100vw;
   column-gap: 2%;
   margin: 1% 0;
@@ -138,7 +138,7 @@
 
 .seccionSecundaria,
 .seccionTerciaria {
-  width: 34%;
+  width: 47%;
   margin: 0 0 0 1%;
   background-color: #eeeeee;
   color: #0f0f0f;
