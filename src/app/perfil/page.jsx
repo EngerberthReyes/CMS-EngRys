@@ -110,35 +110,45 @@ const Perfil = () => {
                       alt={"Imagen de Perfil"}
                     />
                     {temaActual === "oscuro" ? (
-                      <section className={stylesPerfil.seccionOscura}>
-                        <Image
-                          className={stylesPerfil.icono_edit}
-                          onClick={() => cambiarImagen}
-                          width={20}
-                          height={20}
-                          src={
-                            temaActual === "oscuro"
-                              ? `/editar-theme-white.svg`
-                              : `/editar-theme-white.svg`
-                          }
-                          alt="Ocultar Contraseña"
-                        />
-                      </section>
+                      <>
+                        <label
+                          className={stylesPerfil.label}
+                          htmlFor="cambiarImagen"
+                        >
+                          <section className={stylesPerfil.seccionOscura}>
+                            <Image
+                              className={stylesPerfil.icono_edit}
+                              onClick={() => cambiarImagen}
+                              width={20}
+                              height={20}
+                              src={`/editar-theme-white.svg`}
+                              alt="Cambiar Foto de Perfil"
+                            />
+
+                            <input id="cambiarImagen" type="file" />
+                          </section>
+                        </label>
+                      </>
                     ) : (
-                      <section className={stylesPerfil.seccionBlanco}>
-                        <Image
-                          className={stylesPerfil.icono_edit}
-                          onClick={() => cambiarImagen}
-                          width={20}
-                          height={20}
-                          src={
-                            temaActual === "claro"
-                              ? `/editar-theme-black.svg`
-                              : `/editar-theme-black.svg`
-                          }
-                          alt="Mostrar Contraseña"
-                        />
-                      </section>
+                      <>
+                      <label
+                        className={stylesPerfil.label}
+                        htmlFor="cambiarImagen"
+                      >
+                        <section className={stylesPerfil.seccionBlanco}>
+                          <Image
+                            className={stylesPerfil.icono_edit}
+                            onClick={() => cambiarImagen}
+                            width={20}
+                            height={20}
+                            src={`/editar-theme-black.svg`}
+                            alt="Cambiar Foto de Perfil"
+                          />
+
+                          <input id="cambiarImagen" type="file" />
+                        </section>
+                      </label>
+                    </>
                     )}
                   </section>
                   <section className={stylesPerfil.seccionPerfilIzquierdo}>

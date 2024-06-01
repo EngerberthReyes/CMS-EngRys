@@ -203,6 +203,10 @@
   }
 }
 
+.label {
+  cursor: pointer;
+}
+
 .enlace {
   color: #eeeeee;
   border-color: #eeeeee;
