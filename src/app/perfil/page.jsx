@@ -80,15 +80,19 @@ const Perfil = () => {
               <section className={stylesPerfil.seccionAjustes}>
                 <h1>Perfil</h1>
                 <section className={stylesPerfil.seccionFlex}>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
+                  <Image width={200} height={200} alt={"Imagen de Perfil"} />
+                  <section>
+                    <h1>Tu Nombre:</h1>
+                    <section>
+                      <p>{"NAME"}</p>
+                    </section>
+                  </section>
+                  <section>
+                    <h1>Sobre Ti:</h1>
+                    <section>
+                      <p>{"Texto Sobre Mi"}</p>
+                    </section>
+                  </section>
                 </section>
               </section>
             </section>
