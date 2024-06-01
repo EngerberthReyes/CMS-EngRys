@@ -98,11 +98,45 @@ const Registro = () => {
     "8001 - Bolívar",
   ]);
 
+  const datosRepetidos = async () => {
+    try {
+      const datosRepetidos = await axios.get("../API/personas");
+
+      const dataPersona = datosRepetidos.data;
+
+      console.log(dataPersona);
+
+      const estados = locacionesVenezuela.map((localidades) => {
+        return localidades.estado;
+      });
+
+      const ciudades = locacionesVenezuela.map((localidades) => {
+        return localidades.ciudad;
+      });
+
+      const municipios = locacionesVenezuela.map((localidades) => {
+        return localidades.municipio;
+      });
+
+      const parroquias = locacionesVenezuela.map((localidades) => {
+        return localidades.parroquia;
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    datosRepetidos();
+  }, []);
+
   const venezuela = async () => {
     try {
       const venezuela = await axios.get("../API/personas");
 
-      const locacionesVenezuela = venezuela.data;
+      const locacionesVenezuela = venezuela.data.paises;
+
+      console.log(locacionesVenezuela);
 
       const estados = locacionesVenezuela.map((localidades) => {
         return localidades.estado;
@@ -158,7 +192,7 @@ const Registro = () => {
       repetirClave,
     } = data;
 
-    console.log(data)
+    console.log(data);
 
     try {
       const repuesta = await axios.post("../API/personas", {
@@ -271,7 +305,9 @@ const Registro = () => {
                 <select
                   className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} rounded-2`}
                   id="nacionalidad"
-                  {...register("nacionalidad", { required: "Seleccione Una Nacionalidad" })}
+                  {...register("nacionalidad", {
+                    required: "Seleccione Una Nacionalidad",
+                  })}
                 >
                   <option value="V">V</option>
                   <option value="E">E</option>
@@ -542,7 +578,9 @@ const Registro = () => {
                   >
                     <option value="">Seleccione un Municipio</option>
                     {municipio.map((itemMunicipio) => {
-                      return <option value={itemMunicipio}>{itemMunicipio}</option>;
+                      return (
+                        <option value={itemMunicipio}>{itemMunicipio}</option>
+                      );
                     })}
                   </select>
                   {errors.municipio && (
@@ -567,7 +605,9 @@ const Registro = () => {
                   >
                     <option value="">Seleccione una Parroquia</option>
                     {parroquia.map((itemParroquia) => {
-                      return <option value={itemParroquia}>{itemParroquia}</option>;
+                      return (
+                        <option value={itemParroquia}>{itemParroquia}</option>
+                      );
                     })}
                   </select>
                   {errors.parroquia && (

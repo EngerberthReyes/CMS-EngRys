@@ -4,25 +4,30 @@ import axios from "axios";
 
 export const GET = async () => {
   try {
-    const consulta = `
-    SELECT * from paises;
+    const datosUsuario = `
+    SELECT cedula from personas;
     `;
 
     const consultarPais = `
     SELECT DISTINCT est.estado, cd.capital, cd.ciudad, muni.municipio, parr.parroquia
     FROM ciudades as cd, estados as est, municipios as muni, parroquias as parr
     WHERE est.id_estado = cd.id_estado
-    AND muni.id_estado = parr.id_municipio
+    AND muni.id_municipio = parr.id_municipio
     ORDER BY RAND()
     LIMIT 12;
     `;
-    const respuestaPais = await venezuela.query(consultarPais);
+    const [respuestaPersona, respuestaPais] = await Promise.all([
+      cmsConexion.query(datosUsuario),
+      venezuela.query(consultarPais),
+    ]);
 
-    const respuesta = await cmsConexion.query(consulta);
+    console.log(respuestaPersona);
+    console.log(respuestaPais);
 
-    console.log(respuesta);
-
-    return NextResponse.json(respuestaPais);
+    return NextResponse.json({
+      personas: respuestaPersona,
+      paises: respuestaPais,
+    });
   } catch (error) {
     console.error(error);
 
