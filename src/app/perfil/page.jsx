@@ -21,8 +21,26 @@ const Perfil = () => {
 
   const [post, setPost] = useState([]);
   const [temaActual, setTemaActual] = useState();
+  const [nombreImagen, setNombreImagen] = useState();
+  const [imagen, setImagen] = useState();
 
   console.log(post);
+
+  const agregarImagen = (event) => {
+    const archivo = event.target.files[0];
+
+    const nombreArchivo = archivo.name;
+
+    console.log(nombreArchivo);
+
+    if (archivo) {
+      setNombreImagen(nombreArchivo);
+      setImagen(URL.createObjectURL(archivo));
+      event.target.value = "";
+    } else {
+      console.log("Se Selecciono Ningun Archivo");
+    }
+  };
 
   const enviarPost = async (nuevoPost) => {
     console.log(post);
@@ -106,8 +124,12 @@ const Perfil = () => {
                       className={stylesPerfil.imagenes}
                       width={200}
                       height={200}
-                      src={"/IMG/epigrafe73.png"}
-                      alt={"Imagen de Perfil"}
+                      src={imagen ? imagen : "/IMG/epigrafe73.png"}
+                      alt={
+                        nombreImagen
+                          ? nombreImagen
+                          : "Imagen de Perfil Por Defecto"
+                      }
                     />
                     {temaActual === "oscuro" ? (
                       <>
@@ -127,6 +149,7 @@ const Perfil = () => {
                             />
                             <input
                               id="cambiarImagen"
+                              onChange={agregarImagen}
                               accept=".gif, .png, ,.apng, .jpg, .jpeg"
                               type="file"
                             />
@@ -151,6 +174,7 @@ const Perfil = () => {
                             />
                             <input
                               id="cambiarImagen"
+                              onChange={agregarImagen}
                               accept=".gif, .png, ,.apng, .jpg, .jpeg"
                               type="file"
                             />

@@ -85,7 +85,8 @@
   align-items: center;
 }
 
-.seccionOscura, .seccionBlanco {
+.seccionOscura,
+.seccionBlanco {
   position: absolute;
   display: flex;
   justify-content: center;
@@ -227,6 +228,7 @@
 }
 
 .imagenes {
+  aspect-ratio: 1 / 1;
   border-radius: 25px;
 }
 
