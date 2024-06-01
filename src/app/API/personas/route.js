@@ -59,12 +59,18 @@ export const POST = async (request) => {
 
     console.log(pais)
 
-    const consultaGrabar = `INSERT INTO paises (id_pais, nombre_pais) values (?, ?);`;
+    const consultaGrabarPais = `INSERT INTO paises (id_pais, nombre_pais) values (?, ?);`;
 
-    const grabador = await cmsConexion.query(consultaGrabar, [null, pais]);
+    const [grabador] = await cmsConexion.query(consultaGrabarPais, [null, pais]);
+
+    const id_pais = grabador.insertId;
+
+    const consultaGrabarEstado = `INSERT INTO estados (id_estado, id_pais, nombre_estado) values (?, ?, ?);`;
+
+    const [grabadorEstado] = await cmsConexion.query(consultaGrabarEstado, [null, id_pais, estado]);
 
     return NextResponse.json(
-      { grabador: grabador },
+      { Exitoso: 'Se Grabo con Exito' },
       {
         status: 200,
       }
