@@ -85,7 +85,7 @@
   align-items: center;
 }
 
-.seccionOscura {
+.seccionOscura, .seccionBlanco {
   position: absolute;
   display: flex;
   justify-content: center;
@@ -94,8 +94,12 @@
   top: 82%;
   left: 60%;
   height: 23%;
-  border-radius: 50%;
+  border-radius: 2rem;
   background: #eeeeee;
+}
+
+.seccionBlanco {
+  background: #0f0f0f;
 }
 
 .seccionPerfilIzquierdo {

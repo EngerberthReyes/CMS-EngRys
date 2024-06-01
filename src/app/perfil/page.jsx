@@ -125,16 +125,16 @@ const Perfil = () => {
                         />
                       </section>
                     ) : (
-                      <section>
+                      <section className={stylesPerfil.seccionBlanco}>
                         <Image
                           className={stylesPerfil.icono_edit}
                           onClick={() => cambiarImagen}
                           width={20}
                           height={20}
                           src={
-                            temaActual === "oscuro"
-                              ? `/BlancoAbiertoOblicua.svg`
-                              : `/OjoNegroAbiertoOblicuo.svg`
+                            temaActual === "blanco"
+                              ? `/editar-theme-black.svg`
+                              : `/editar-theme-black.svg`
                           }
                           alt="Mostrar Contraseña"
                         />
