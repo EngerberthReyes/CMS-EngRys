@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import stylesLogin from "../CSS/styles-login.module.css";
 import { useForm } from "react-hook-form";
@@ -16,6 +17,8 @@ const Login = () => {
   } = useForm({
     mode: "onChange",
   });
+
+  const enrutadorMaster = useRouter();
 
   const [mostrarClave, setMostrarClave] = useState(false);
   const [temaActual, setTemaActual] = useState();
@@ -105,6 +108,8 @@ const Login = () => {
         setEstatusCorreo(true);
       }
     }
+
+    enrutadorMaster.push("../noticias");
 
     try {
       const respuesta = await axios.post("/API", { algo });
