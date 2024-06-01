@@ -146,20 +146,9 @@ const Login = () => {
               required: "Introduzca su Correo Electrónico",
               pattern: {
                 value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                message: "Formato de Correo Electrónico Inválido",
               },
             })}
           />
-          {errors.correo && (
-            <section className={stylesLogin.seccionError}>
-              <p className={stylesLogin.errorInput}>{errors.correo.message}</p>
-            </section>
-          )}
-          {mensajeCorreo && (
-            <section className={stylesLogin.seccionError}>
-              <p className={stylesLogin.errorInput}>{mensajeCorreo}</p>
-            </section>
-          )}
           <label htmlFor="clave" className={stylesLogin.labelClave}>
             Contraseña
           </label>
@@ -200,11 +189,12 @@ const Login = () => {
               />
             )}
           </section>
-          {mensajeClave && (
-            <section className={stylesLogin.seccionError}>
-              <p className={stylesLogin.errorInput}>{mensajeClave}</p>
-            </section>
-          )}
+          {mensajeClave ||
+            (mensajeCorreo && (
+              <section className={stylesLogin.seccionError}>
+                <p className={stylesLogin.errorInput}>{mensajeClave}</p>
+              </section>
+            ))}
           <section className={stylesLogin.contenedor_passoword_perdida}>
             <Link className={stylesLogin.link_password} href="../registro">
               ¿Aun no tienes una cuenta?
