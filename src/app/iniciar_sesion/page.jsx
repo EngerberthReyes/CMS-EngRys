@@ -109,7 +109,7 @@ const Login = () => {
       }
     }
 
-    if (estatusClave === false || estatusCorreo === false) {
+    if (claves.includes(clave) && correos.includes(correo)) {
       enrutadorMaster.push("../noticias");
     } else {
       alert("No");
