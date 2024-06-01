@@ -79,6 +79,10 @@
 
 .seccionImagen {
   position: relative;
+  width: 100%;
+  justify-content: center;
+  display: flex;
+  align-items: center;
 }
 
 .seccionOscura {
@@ -214,7 +218,6 @@
 
 .imagenes {
   border-radius: 25px;
-  margin: 0 auto;
 }
 
 @media (prefers-color-scheme: dark) {
