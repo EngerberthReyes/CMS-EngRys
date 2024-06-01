@@ -46,10 +46,14 @@ const Registro = () => {
 
   const clave = watch("clave");
   const cedula = Number(watch("cedula"));
+  const correo = watch("correo");
   const confirmacionClave = watch("repetirClave");
   const [cedulas, setCedulas] = useState([]);
   const [mensajeCedula, setMensajeCedula] = useState("");
   const [estatusCedula, setEstatusCedula] = useState(false);
+  const [correos, setCorreos] = useState([]);
+  const [mensajeCorreo, setMensajeCorreo] = useState("");
+  const [estatusCorreo, setEstatusCorreo] = useState(false);
 
   const obtenerCedulasDeBaseDeDatos = async () => {
     try {
@@ -58,6 +62,10 @@ const Registro = () => {
       const cedulasObtenidas = dataPersona.map((itemCedula) => {
         return itemCedula.cedula;
       });
+      const correosObtenidos = dataPersona.map((itemCorreo) => {
+        return itemCorreo.correo_electronico;
+      });
+      setCorreos(correosObtenidos);
       setCedulas(cedulasObtenidas);
     } catch (error) {
       console.error(
@@ -75,7 +83,7 @@ const Registro = () => {
   useEffect(() => {
     console.log("Cédulas obtenidas:", cedulas);
     if (cedulas.length === 0) {
-      console.log("Aún no se han cargado las cédulas de la base de datos.");
+      setEstatusCedula(true);
     } else {
       if (cedulas.includes(cedula)) {
         setMensajeCedula("Esta Cédula Ya Esta Registrada");
@@ -85,6 +93,20 @@ const Registro = () => {
       }
     }
   }, [cedula]);
+
+  useEffect(() => {
+    console.log("correos obtenidos:", correos);
+    if (correos.length === 0) {
+      setEstatusCorreo(true);
+    } else {
+      if (correos.includes(correo)) {
+        setMensajeCorreo("Este Correo Electrónico Ya Esta Registrado");
+        setEstatusCorreo(true);
+      } else {
+        setEstatusCorreo(false);
+      }
+    }
+  }, [correo]);
 
   const mostrarPassword = (clave) => {
     setMostrarClave(!mostrarClave);
@@ -857,6 +879,11 @@ const Registro = () => {
                   </p>
                 </section>
               )}
+              {estatusCorreo && (
+                <section className={stylesRegistro.seccionError}>
+                  <p className={stylesRegistro.errorInput}>{mensajeCorreo}</p>
+                </section>
+              )}
 
               <label htmlFor="clave" className={stylesRegistro.labelClave}>
                 Contraseña
@@ -983,7 +1010,7 @@ const Registro = () => {
                 </button>
                 <button
                   className={`${stylesRegistro.boton} rounded-2`}
-                  disabled={!isValid}
+                  disabled={!isValid || estatusCorreo}
                   type="submit"
                 >
                   Registrarse
