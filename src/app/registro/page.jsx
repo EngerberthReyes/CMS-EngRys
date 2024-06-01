@@ -538,7 +538,6 @@ const Registro = () => {
                     })}
                   >
                     <option value="">Seleccione una Parroquia</option>
-                    <option value="">Seleccione un Municipio</option>
                     {parroquia.map((itemParroquia) => {
                       return <option>{itemParroquia}</option>;
                     })}
