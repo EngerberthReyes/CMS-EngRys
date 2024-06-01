@@ -69,8 +69,36 @@ const Registro = () => {
     const fechaHoy = new Date().toISOString().split("T")[0];
     setFechaActual(fechaHoy);
   }, []);
+  const [estado, setEstado] = useState([]);
+  const [ciudad, setCiudad] = useState([]);
 
-  const onSubmit = (data) => {
+  const venezuela = async () => {
+    try {
+      const venezuela = await axios.get("../API/personas");
+  
+      const locacionesVenezuela = venezuela.data;
+  
+      const estados = locacionesVenezuela.map((localidades) => {
+        return localidades.estado;
+      });
+
+      const ciudades = locacionesVenezuela.map((localidades) => {
+        return localidades.ciudad;
+      });
+
+
+      setEstado(estados);
+      setCiudad(ciudades);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  
+  useEffect(() => {
+    venezuela();
+  }, []);
+
+  const onSubmit = async (data) => {
     const {
       nombres,
       apellido,
@@ -94,52 +122,33 @@ const Registro = () => {
       repetirClave,
     } = data;
 
-    console.log(
-      nombres,
-      apellido,
-      cedula,
-      sexo,
-      nacimiento,
-      direccion,
-      pais,
-      estado,
-      ciudad,
-      municipio,
-      parroquia,
-      codigo,
-      facebook,
-      instagram,
-      x,
-      tiktok,
-      sitio_web,
-      correo,
-      clave,
-      repetirClave
-    );
-
-    const repuesta = axios.post("../API/personas", {
-      nombres,
-      apellido,
-      cedula,
-      sexo,
-      nacimiento,
-      direccion,
-      pais,
-      estado,
-      ciudad,
-      municipio,
-      parroquia,
-      codigo,
-      facebook,
-      instagram,
-      x,
-      tiktok,
-      sitio_web,
-      correo,
-      clave,
-      repetirClave,
-    });
-    console.log(repuesta);
+    try {
+      const repuesta = await axios.post("../API/personas", {
+        nombres,
+        apellido,
+        cedula,
+        sexo,
+        nacimiento,
+        direccion,
+        pais,
+        estado,
+        ciudad,
+        municipio,
+        parroquia,
+        codigo,
+        facebook,
+        instagram,
+        x,
+        tiktok,
+        sitio_web,
+        correo,
+        clave,
+        repetirClave,
+      });
+      console.log(repuesta);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
@@ -441,8 +450,10 @@ const Registro = () => {
                       required: "Seleccione un estado",
                     })}
                   >
-                    <option value="">Seleccione un estado</option>
-                    <option value="Venezuela">Venezuela</option>
+                    <option value="">Seleccione un Estado</option>
+                    {estado.map((itemEstado) => {
+                      return <option>{itemEstado}</option>;
+                    })}
                   </select>
                   {errors.estado && (
                     <p className={stylesRegistro.errorInput}>
@@ -461,11 +472,13 @@ const Registro = () => {
                     id="ciudad"
                     className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-2`}
                     {...register("ciudad", {
-                      required: "Seleccione una ciudad",
+                      required: "Seleccione una Ciudad",
                     })}
                   >
-                    <option value="">Seleccione una ciudad</option>
-                    <option value="Venezuela">Venezuela</option>
+                    <option value="">Seleccione una Ciudad</option>
+                    {ciudad.map((itemCiudad) => {
+                      return <option value={itemCiudad}>{itemCiudad}</option>;
+                    })}
                   </select>
                   {errors.ciudad && (
                     <p className={stylesRegistro.errorInput}>
@@ -487,8 +500,11 @@ const Registro = () => {
                       required: "Seleccione un municipio",
                     })}
                   >
-                    <option value="">Seleccione un municipio</option>
-                    <option value="Venezuela">Venezuela</option>
+                    <option value="">Seleccione un Municipio</option>
+                    <option value="Ayacucho">Municipio Ayacucho</option>
+                    <option value="Ayacucho">Municipio Ayacucho</option>
+                    <option value="Ayacucho">Municipio Ayacucho</option>
+                    <option value="Ayacucho">Municipio Ayacucho</option>
                   </select>
                   {errors.municipio && (
                     <p className={stylesRegistro.errorInput}>
@@ -533,8 +549,12 @@ const Registro = () => {
                       required: "Seleccione un código postal",
                     })}
                   >
-                    <option value="">Seleccione un código postal</option>
-                    <option value="Venezuela">Venezuela</option>
+                    <option>Seleccione un código postal</option>
+                    <option value="">Caracas</option>
+                    <option value="">Caracas</option>
+                    <option value="">Caracas</option>
+                    <option value="">Caracas</option>
+                    <option value="">Caracas</option>
                   </select>
                   {errors.codigo && (
                     <p className={stylesRegistro.errorInput}>
