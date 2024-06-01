@@ -154,7 +154,7 @@ export const POST = async (request) => {
         idDireccion,
         nombres,
         apellido,
-        cedula,
+        cedula, /* La Cedula es Unique en la base de datos, por algo no te lo registrara a todos */
         nacimiento,
         correo,
         clave,
