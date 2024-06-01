@@ -57,28 +57,44 @@ export const POST = async (request) => {
       repetirClave,
     } = await request.json();
 
-    console.log(pais)
+    console.log("País:", pais);
 
-    const consultaGrabarPais = `INSERT INTO paises (id_pais, nombre_pais) values (?, ?);`;
+    const consultaGrabarPais = `INSERT INTO paises (nombre_pais) VALUES (?);`;
+    const grabador = await cmsConexion.query(consultaGrabarPais, [pais]);
 
-    const [grabador] = await cmsConexion.query(consultaGrabarPais, [null, pais]);
+    const idPais = grabador.insertId;
+    console.log("ID del País:", idPais);
 
-    const id_pais = grabador.insertId;
+    const consultaGrabarEstado = `INSERT INTO estados (id_pais, nombre_estado) VALUES (?, ?);`;
+    const grabadorEstado = await cmsConexion.query(consultaGrabarEstado, [idPais, estado]);
 
-    const consultaGrabarEstado = `INSERT INTO estados (id_estado, id_pais, nombre_estado) values (?, ?, ?);`;
+    const idEstado = grabadorEstado.insertId;
+    console.log("ID del Estado:", idEstado);
 
-    const [grabadorEstado] = await cmsConexion.query(consultaGrabarEstado, [null, id_pais, estado]);
+    const consultaGrabarMunicipio = `INSERT INTO municipios (id_estado, nombre_municipio) VALUES (?, ?);`;
+    const grabadorMunicipio = await cmsConexion.query(consultaGrabarMunicipio, [idEstado, municipio]);
+
+    const idMunicipio = grabadorMunicipio.insertId;
+    console.log("ID del Municipio:", idMunicipio);
+
+    const consultaGrabarParroquia = `INSERT INTO parroquias (id_municipio, nombre_parroquia) VALUES (?, ?);`;
+    const grabadorParroquia = await cmsConexion.query(consultaGrabarParroquia, [idMunicipio, parroquia]);
+
+    const idParroquia = grabadorParroquia.insertId;
+    console.log("ID de la Parroquia:", idParroquia);
+
+    const consultaGrabarCodigoPostal = `INSERT INTO codigos_postales (id_parroquia, numero_codigo_postal) VALUES (?, ?);`;
+    const grabadorCodigoPostal = await cmsConexion.query(consultaGrabarCodigoPostal, [idParroquia, codigo]);
 
     return NextResponse.json(
-      { Exitoso: 'Se Grabo con Exito' },
-      {
-        status: 200,
-      }
+      { Exitoso: idPais },
+      { status: 200 }
     );
+
   } catch (error) {
-    console.error("Error al grabar el país:", error);
+    console.error("Error al grabar los datos:", error);
     return NextResponse.json(
-      { mensaje: "Ocurrió un error al grabar el país", error: error.message },
+      { mensaje: "Ocurrió un error al grabar los datos", error: error.message },
       { status: 500 }
     );
   }
