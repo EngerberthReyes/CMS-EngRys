@@ -86,10 +86,12 @@ const Login = () => {
       setEstatusClave(true);
     } else {
       if (claves.includes(clave)) {
-        setMensajeClave("Esta Cédula Ya Esta Registrada");
-        setEstatusClave(true);
-      } else {
         setEstatusClave(false);
+      } else {
+        setMensajeClave(
+          "La Contraseña o el Correo Electrónico Deben Estar Incorrectos"
+        );
+        setEstatusClave(true);
       }
     }
 
@@ -98,10 +100,12 @@ const Login = () => {
       setEstatusCorreo(true);
     } else {
       if (correos.includes(correo)) {
-        setMensajeCorreo("Este Correo Electrónico Ya Esta Registrado");
-        setEstatusCorreo(true);
-      } else {
         setEstatusCorreo(false);
+      } else {
+        setEstatusCorreo(
+          "La Contraseña o el Correo Electrónico Deben Estar Incorrectos"
+        );
+        setEstatusCorreo(true);
       }
     }
 
