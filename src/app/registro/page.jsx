@@ -497,7 +497,7 @@ const Registro = () => {
               <button
                 className={`${stylesRegistro.boton} rounded-2`}
                 type="button"
-                disabled={!isValid}
+                disabled={!isValid || estatusCedula}
                 onClick={siguienteFormulario}
               >
                 Siguiente
@@ -983,6 +983,7 @@ const Registro = () => {
                 </button>
                 <button
                   className={`${stylesRegistro.boton} rounded-2`}
+                  disabled={!isValid}
                   type="submit"
                 >
                   Registrarse
