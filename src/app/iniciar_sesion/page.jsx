@@ -111,8 +111,6 @@ const Login = () => {
 
     if (claves.includes(clave) && correos.includes(correo)) {
       enrutadorMaster.push("../noticias");
-    } else {
-      alert("No");
     }
 
     try {
