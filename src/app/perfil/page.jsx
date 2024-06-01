@@ -114,6 +114,7 @@ const Perfil = () => {
                         <label
                           className={stylesPerfil.label}
                           htmlFor="cambiarImagen"
+                          title="Cambiar Foto de Perfil"
                         >
                           <section className={stylesPerfil.seccionOscura}>
                             <Image
@@ -124,31 +125,30 @@ const Perfil = () => {
                               src={`/editar-theme-white.svg`}
                               alt="Cambiar Foto de Perfil"
                             />
-
                             <input id="cambiarImagen" type="file" />
                           </section>
                         </label>
                       </>
                     ) : (
                       <>
-                      <label
-                        className={stylesPerfil.label}
-                        htmlFor="cambiarImagen"
-                      >
-                        <section className={stylesPerfil.seccionBlanco}>
-                          <Image
-                            className={stylesPerfil.icono_edit}
-                            onClick={() => cambiarImagen}
-                            width={20}
-                            height={20}
-                            src={`/editar-theme-black.svg`}
-                            alt="Cambiar Foto de Perfil"
-                          />
-
-                          <input id="cambiarImagen" type="file" />
-                        </section>
-                      </label>
-                    </>
+                        <label
+                          className={stylesPerfil.label}
+                          htmlFor="cambiarImagen"
+                          title="Cambiar Foto de Perfil"
+                        >
+                          <section className={stylesPerfil.seccionBlanco}>
+                            <Image
+                              className={stylesPerfil.icono_edit}
+                              onClick={() => cambiarImagen}
+                              width={20}
+                              height={20}
+                              src={`/editar-theme-black.svg`}
+                              alt="Cambiar Foto de Perfil"
+                            />
+                            <input id="cambiarImagen" type="file" />
+                          </section>
+                        </label>
+                      </>
                     )}
                   </section>
                   <section className={stylesPerfil.seccionPerfilIzquierdo}>
