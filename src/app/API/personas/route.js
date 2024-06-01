@@ -123,7 +123,7 @@ export const POST = async (request) => {
 
     const idNacionalidad = nacionalidad === "V" ? 1 : 2;
 
-    const idRol = 1;
+    const idRol = 2;
 
     const urlPagina = "A";
 
@@ -150,8 +150,8 @@ export const POST = async (request) => {
       sitio_web,
       correo,
       clave,
-      repetirClave,
-     )
+      repetirClave
+    );
 
     const consultaGrabarPersonas = `
     INSERT INTO personas (
@@ -185,7 +185,7 @@ export const POST = async (request) => {
         idDireccion,
         nombres,
         apellido,
-        cedula, /* La Cedula es Unique en la base de datos, por algo no te lo registrara a todos */
+        cedula /* La Cedula es Unique en la base de datos, por algo no te lo registrara a todos */,
         nacimiento,
         correo,
         clave,
