@@ -20,7 +20,7 @@ export const GET = async () => {
 
     const respuesta = await cmsConexion.query(consulta);
 
-    console.log(respuesta)
+    console.log(respuesta);
 
     return NextResponse.json(respuestaPais);
   } catch (error) {
@@ -66,31 +66,75 @@ export const POST = async (request) => {
     console.log("ID del País:", idPais);
 
     const consultaGrabarEstado = `INSERT INTO estados (id_pais, nombre_estado) VALUES (?, ?);`;
-    const grabadorEstado = await cmsConexion.query(consultaGrabarEstado, [idPais, estado]);
+    const grabadorEstado = await cmsConexion.query(consultaGrabarEstado, [
+      idPais,
+      estado,
+    ]);
 
     const idEstado = grabadorEstado.insertId;
     console.log("ID del Estado:", idEstado);
 
     const consultaGrabarMunicipio = `INSERT INTO municipios (id_estado, nombre_municipio) VALUES (?, ?);`;
-    const grabadorMunicipio = await cmsConexion.query(consultaGrabarMunicipio, [idEstado, municipio]);
+    const grabadorMunicipio = await cmsConexion.query(consultaGrabarMunicipio, [
+      idEstado,
+      municipio,
+    ]);
 
     const idMunicipio = grabadorMunicipio.insertId;
     console.log("ID del Municipio:", idMunicipio);
 
     const consultaGrabarParroquia = `INSERT INTO parroquias (id_municipio, nombre_parroquia) VALUES (?, ?);`;
-    const grabadorParroquia = await cmsConexion.query(consultaGrabarParroquia, [idMunicipio, parroquia]);
+    const grabadorParroquia = await cmsConexion.query(consultaGrabarParroquia, [
+      idMunicipio,
+      parroquia,
+    ]);
 
     const idParroquia = grabadorParroquia.insertId;
     console.log("ID de la Parroquia:", idParroquia);
 
     const consultaGrabarCodigoPostal = `INSERT INTO codigos_postales (id_parroquia, numero_codigo_postal) VALUES (?, ?);`;
-    const grabadorCodigoPostal = await cmsConexion.query(consultaGrabarCodigoPostal, [idParroquia, codigo]);
+    const grabadorCodigoPostal = await cmsConexion.query(
+      consultaGrabarCodigoPostal,
+      [idParroquia, codigo]
+    );
+
+    const idCodigoPostal = grabadorCodigoPostal.insertId;
+    console.log("ID de la Codigo Postal:", idCodigoPostal);
+
+    const consultaGrabarDireccion = `INSERT INTO direcciones (id_codigo_postal, direccion_completa) VALUES (?, ?);`;
+    const grabadorDireccion = await cmsConexion.query(consultaGrabarDireccion, [
+      idCodigoPostal,
+      direccion,
+    ]);
+
+    const idDireccion = grabadorDireccion.insertId;
+    console.log("ID de la Direccion:", idDireccion);
+
+    const consultaGrabarPersonas = `INSERT INTO personas (id_persona, 
+    id_genero, 
+    id_rol, 
+    id_nacionalidad, 
+    id_direccion, 
+    nombre, 
+    apellido, 
+    cedula, 
+    correo_electronico, 
+    clave, 
+    facebook, 
+    instagram, 
+    x, 
+    tiktok, 
+    url_pagina, 
+    img_pagina) VALUES (?, ?);`;
+    const grabadorPersonas = await cmsConexion.query(consultaGrabarDireccion, [
+      idDireccion,
+      direccion,
+    ]);
 
     return NextResponse.json(
       { Exitoso: "Datos Insertados Correctamente" },
       { status: 200 }
     );
-
   } catch (error) {
     console.error("Error al grabar los datos:", error);
     return NextResponse.json(
