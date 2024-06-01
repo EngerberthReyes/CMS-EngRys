@@ -78,17 +78,17 @@ const Perfil = () => {
           <section className={stylesPerfil.main}>
             <section className={stylesPerfil.seccionSecundaria}>
               <section className={stylesPerfil.seccionAjustes}>
-                <h1>Perfil</h1>
+                <h1 className={stylesPerfil.titulo}>Perfil</h1>
                 <section className={stylesPerfil.seccionFlex}>
-                  <Image width={200} height={200} alt={"Imagen de Perfil"} />
-                  <section>
+                  <Image className={stylesPerfil.imagenes} width={200} height={200} src={"/IMG/epigrafe73.png"} alt={"Imagen de Perfil"} />
+                  <section className={stylesPerfil.seccionPerfilIzquierdo}>
                     <h1>Tu Nombre:</h1>
                     <section>
                       <p>{"NAME"}</p>
                     </section>
                   </section>
-                  <section>
-                    <h1>Sobre Ti:</h1>
+                  <section className={stylesPerfil.seccionPerfilIzquierdo}>
+                    <h1>Sobre Mi:</h1>
                     <section>
                       <p>{"Texto Sobre Mi"}</p>
                     </section>

@@ -73,6 +73,14 @@
   margin: 1% 0;
 }
 
+.titulo {
+  padding: 1rem 0 0 2rem;
+}
+
+.seccionPerfilIzquierdo {
+  padding: 1rem 0 0 2rem;
+}
+
 .seccionPrincipal {
   background-color: #eeeeee;
   width: 100%;
@@ -187,6 +195,11 @@
 
 .seccionCentral {
   margin-bottom: 1rem;
+}
+
+.imagenes {
+  border-radius: 25px;
+  margin: 0 auto;
 }
 
 @media (prefers-color-scheme: dark) {
