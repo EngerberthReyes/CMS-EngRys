@@ -109,7 +109,7 @@ const Perfil = () => {
                       src={"/IMG/epigrafe73.png"}
                       alt={"Imagen de Perfil"}
                     />
-                    {temaActual ? (
+                    {temaActual === "oscuro" ? (
                       <section className={stylesPerfil.seccionOscura}>
                         <Image
                           className={stylesPerfil.icono_edit}
@@ -132,7 +132,7 @@ const Perfil = () => {
                           width={20}
                           height={20}
                           src={
-                            temaActual === "blanco"
+                            temaActual === "claro"
                               ? `/editar-theme-black.svg`
                               : `/editar-theme-black.svg`
                           }
