@@ -5,7 +5,7 @@ import axios from "axios";
 export const GET = async () => {
   try {
     const datosUsuario = `
-    SELECT cedula, correo_electronico from personas;
+    SELECT cedula, correo_electronico, clave from personas;
     `;
 
     const consultarPais = `

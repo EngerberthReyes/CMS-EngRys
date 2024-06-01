@@ -21,6 +21,38 @@ const Login = () => {
   const [temaActual, setTemaActual] = useState();
 
   const clave = watch("clave");
+  const correo = watch("correo");
+  const [claves, setClaves] = useState([]);
+  const [mensajeClave, setMensajeClave] = useState("");
+  const [estatusClave, setEstatusClave] = useState(false);
+  const [correos, setCorreos] = useState([]);
+  const [mensajeCorreo, setMensajeCorreo] = useState("");
+  const [estatusCorreo, setEstatusCorreo] = useState(false);
+
+  const obtenerInformacionBaseDeDatos = async () => {
+    try {
+      const datosRepetidos = await axios.get("../API/personas");
+      const dataPersona = datosRepetidos.data.personas;
+      const clavesObtenidas = dataPersona.map((itemCedula) => {
+        return itemCedula.clave;
+      });
+      const correosObtenidos = dataPersona.map((itemCorreo) => {
+        return itemCorreo.correo_electronico;
+      });
+      setCorreos(correosObtenidos);
+      setClaves(clavesObtenidas);
+    } catch (error) {
+      console.error(
+        "Error al obtener las cédulas de la base de datos: ",
+        error
+      );
+      throw new Error("Error al obtener las cédulas de la base de datos.");
+    }
+  };
+
+  useEffect(() => {
+    obtenerInformacionBaseDeDatos();
+  }, []);
 
   const mostrarPassword = () => {
     setMostrarClave(!mostrarClave);
@@ -47,6 +79,32 @@ const Login = () => {
   }, []);
 
   const enviarDatos = async (datos) => {
+    const { correo, clave } = datos;
+
+    console.log("Claves obtenidas:", claves);
+    if (clave.length === 0) {
+      setEstatusClave(true);
+    } else {
+      if (claves.includes(clave)) {
+        setMensajeClave("Esta Cédula Ya Esta Registrada");
+        setEstatusClave(true);
+      } else {
+        setEstatusClave(false);
+      }
+    }
+
+    console.log("correos obtenidos:", correos);
+    if (correos.length === 0) {
+      setEstatusCorreo(true);
+    } else {
+      if (correos.includes(correo)) {
+        setMensajeCorreo("Este Correo Electrónico Ya Esta Registrado");
+        setEstatusCorreo(true);
+      } else {
+        setEstatusCorreo(false);
+      }
+    }
+
     try {
       const respuesta = await axios.post("/API", { algo });
     } catch (error) {
@@ -93,6 +151,11 @@ const Login = () => {
               <p className={stylesLogin.errorInput}>{errors.correo.message}</p>
             </section>
           )}
+          {mensajeCorreo && (
+            <section className={stylesLogin.seccionError}>
+              <p className={stylesLogin.errorInput}>{mensajeCorreo}</p>
+            </section>
+          )}
           <label htmlFor="clave" className={stylesLogin.labelClave}>
             Contraseña
           </label>
@@ -103,10 +166,6 @@ const Login = () => {
               type={mostrarClave ? "text" : "password"}
               {...register("clave", {
                 required: "Introduzca una Contraseña",
-                minLength: {
-                  value: 8,
-                  message: "La Contraseña debe tener al menos 8 caracteres",
-                },
               })}
             />
             {mostrarClave ? (
@@ -137,9 +196,9 @@ const Login = () => {
               />
             )}
           </section>
-          {errors.clave && (
+          {mensajeClave && (
             <section className={stylesLogin.seccionError}>
-              <p className={stylesLogin.errorInput}>{errors.clave.message}</p>
+              <p className={stylesLogin.errorInput}>{mensajeClave}</p>
             </section>
           )}
           <section className={stylesLogin.contenedor_passoword_perdida}>
