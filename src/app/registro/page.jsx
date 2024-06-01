@@ -270,6 +270,7 @@ const Registro = () => {
                 <select
                   className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} rounded-2`}
                   id="nacionalidad"
+                  {...register("nacionalidad", { required: "Seleccione Una Nacionalidad" })}
                 >
                   <option value="V">V</option>
                   <option value="E">E</option>
