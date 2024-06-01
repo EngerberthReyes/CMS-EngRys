@@ -114,27 +114,25 @@ export const POST = async (request) => {
 
     const genero = await cmsConexion.query(consultaGenero);
 
-    console.log(idGenero)
+    console.log(idGenero);
 
-    const tipoGeneroPersona = genero.map(itemGenero => {
-      
-      if (itemGenero.tipo_genero === 'Masculino') {
-        return "Masculino"
+    const tipoGeneroPersona = genero.map((itemGenero) => {
+      if (itemGenero.tipo_genero === "Masculino") {
+        return "Masculino";
       } else {
-        return "Femenino"
+        return "Femenino";
       }
-
-    })
+    });
 
     const idGenero = genero.insertId;
-    console.log(idGenero)
+    console.log(idGenero);
 
     const consultaGrabarPersonas = `INSERT INTO personas (id_persona, 
     id_genero, 
     id_rol, 
     id_nacionalidad, 
     id_direccion, 
-    nombre, 
+    nombres, 
     apellido, 
     cedula, 
     correo_electronico, 
@@ -150,7 +148,7 @@ export const POST = async (request) => {
       idGenero,
       "idrol",
       "idnacionalidad",
-      "iddireccion",
+      idDireccion,
       "Nombre",
       "Apellido",
       "Cedula",
