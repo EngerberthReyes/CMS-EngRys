@@ -110,8 +110,23 @@ export const POST = async (request) => {
     const idDireccion = grabadorDireccion.insertId;
     console.log("ID de la Direccion:", idDireccion);
 
-    const idGenero = await axios.get("/");
+    const consultaGenero = `Select tipo_genero from generos`;
 
+    const genero = await cmsConexion.query(consultaGenero);
+
+    console.log(idGenero)
+
+    const tipoGeneroPersona = genero.map(itemGenero => {
+      
+      if (itemGenero.tipo_genero === 'Masculino') {
+        return "Masculino"
+      } else {
+        return "Femenino"
+      }
+
+    })
+
+    const idGenero = genero.insertId;
     console.log(idGenero)
 
     const consultaGrabarPersonas = `INSERT INTO personas (id_persona, 
@@ -132,7 +147,7 @@ export const POST = async (request) => {
     img_pagina) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`;
     const grabadorPersonas = await cmsConexion.query(consultaGrabarPersonas, [
       NULL,
-      "idgenero",
+      idGenero,
       "idrol",
       "idnacionalidad",
       "iddireccion",
