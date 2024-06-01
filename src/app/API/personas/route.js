@@ -135,12 +135,13 @@ export const POST = async (request) => {
       facebook, 
       instagram, 
       x, 
-      tiktok, 
+      tiktok,
+      sitio_web,
       url_pagina, 
-      img_pagina) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);`;
+      img_pagina) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);`;
   
   const grabadorPersonas = await cmsConexion.query(consultaGrabarPersonas, [
-    null, // Corrección aquí: 'null' en lugar de 'NULL'
+    null,
     idGenero,
     idRol,
     idNacionalidad,
@@ -150,10 +151,11 @@ export const POST = async (request) => {
     cedula,
     correo,
     clave,
-    facebook === ""? null : facebook,
-    instagram === ""? null : instagram,
-    x === ""? null : x,
-    tiktok === ""? null : tiktok,
+    facebook === ""? null : "facebook",
+    instagram === ""? null : "instagram",
+    x === ""? null : "x",
+    tiktok === ""? null : "tiktok",
+    sitio_web === "" ? null : sitio_web,
     urlPagina,
     imgPagina,
   ]);
