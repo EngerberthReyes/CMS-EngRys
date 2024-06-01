@@ -119,10 +119,12 @@ export const POST = async (request) => {
 
     const idRol = 1;
 
-    const urlPagina = "A"
+    const urlPagina = "A";
 
     const imgPagina = "A";
-    const consultaGrabarPersonas = `INSERT INTO personas (id_persona, 
+    const consultaGrabarPersonas = `
+    INSERT INTO personas (
+      id_persona, 
       id_genero, 
       id_rol, 
       id_nacionalidad, 
@@ -138,28 +140,35 @@ export const POST = async (request) => {
       tiktok,
       sitio_web,
       url_pagina, 
-      img_pagina) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);`;
-  
-  const grabadorPersonas = await cmsConexion.query(consultaGrabarPersonas, [
-    null,
-    idGenero,
-    idRol,
-    idNacionalidad,
-    idDireccion,
-    nombres,
-    apellido,
-    cedula,
-    correo,
-    clave,
-    facebook === ""? null : "facebook",
-    instagram === ""? null : "instagram",
-    x === ""? null : "x",
-    tiktok === ""? null : "tiktok",
-    sitio_web === "" ? null : sitio_web,
-    urlPagina,
-    imgPagina,
-  ]);
-  
+      img_pagina
+    ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+  `;
+
+    try {
+      const grabadorPersonas = await cmsConexion.query(consultaGrabarPersonas, [
+        null,
+        idGenero,
+        idRol,
+        idNacionalidad,
+        idDireccion,
+        nombres,
+        apellido,
+        cedula,
+        correo,
+        clave,
+        facebook === "" ? null : facebook,
+        instagram === "" ? null : instagram,
+        x === "" ? null : x,
+        tiktok === "" ? null : tiktok,
+        sitio_web === "" ? null : sitio_web,
+        urlPagina,
+        imgPagina,
+      ]);
+
+      console.log("Persona registrada exitosamente:", grabadorPersonas);
+    } catch (error) {
+      console.error("Error al registrar la persona:", error);
+    }
 
     return NextResponse.json(
       { Exitoso: "Datos Insertados Correctamente" },
