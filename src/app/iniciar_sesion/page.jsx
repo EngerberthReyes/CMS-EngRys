@@ -109,7 +109,12 @@ const Login = () => {
       }
     }
 
-    enrutadorMaster.push("../noticias");
+    if (estatusClave === false || estatusCorreo === false) {
+      alert("No")
+    } else {
+     
+      enrutadorMaster.push("../noticias");
+    }
 
     try {
       const respuesta = await axios.post("/API", { algo });
