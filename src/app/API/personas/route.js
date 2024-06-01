@@ -111,52 +111,53 @@ export const POST = async (request) => {
     const idDireccion = grabadorDireccion.insertId;
     console.log("ID de la Direccion:", idDireccion);
 
-    console.log(tipoGeneroPersona)
-
     const idGenero = sexo === "Masculino" ? 1 : 2;
 
     console.log(idGenero);
 
     const idNacionalidad = nacionalidad === "V" ? 1 : 2;
 
+    const idRol = 1;
+
     const urlPagina = "A"
 
     const imgPagina = "A";
-
     const consultaGrabarPersonas = `INSERT INTO personas (id_persona, 
-    id_genero, 
-    id_rol, 
-    id_nacionalidad, 
-    id_direccion, 
-    nombres, 
-    apellido, 
-    cedula, 
-    correo_electronico, 
-    clave, 
-    facebook, 
-    instagram, 
-    x, 
-    tiktok, 
-    url_pagina, 
-    img_pagina) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`;
-    const grabadorPersonas = await cmsConexion.query(consultaGrabarPersonas, [
-      NULL,
-      idGenero,
-      "idrol",
-      idNacionalidad,
-      idDireccion,
-      nombres,
-      apellido,
-      cedula,
-      correo,
-      clave,
-      facebook === "" ? null : facebook,
-      instagram === "" ? null : instagram,
-      x === "" ? null : x,
-      tiktok === "" ? null : tiktok,
-      urlPagina,
-      imgPagina,
-    ]);
+      id_genero, 
+      id_rol, 
+      id_nacionalidad, 
+      id_direccion, 
+      nombres, 
+      apellido, 
+      cedula, 
+      correo_electronico, 
+      clave, 
+      facebook, 
+      instagram, 
+      x, 
+      tiktok, 
+      url_pagina, 
+      img_pagina) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);`;
+  
+  const grabadorPersonas = await cmsConexion.query(consultaGrabarPersonas, [
+    null, // Corrección aquí: 'null' en lugar de 'NULL'
+    idGenero,
+    idRol,
+    idNacionalidad,
+    idDireccion,
+    nombres,
+    apellido,
+    cedula,
+    correo,
+    clave,
+    facebook === ""? null : facebook,
+    instagram === ""? null : instagram,
+    x === ""? null : x,
+    tiktok === ""? null : tiktok,
+    urlPagina,
+    imgPagina,
+  ]);
+  
 
     return NextResponse.json(
       { Exitoso: "Datos Insertados Correctamente" },

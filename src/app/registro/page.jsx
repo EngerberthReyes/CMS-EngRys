@@ -140,6 +140,7 @@ const Registro = () => {
       cedula,
       sexo,
       nacimiento,
+      nacionalidad,
       direccion,
       pais,
       estado,
