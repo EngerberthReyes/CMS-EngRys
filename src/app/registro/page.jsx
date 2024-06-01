@@ -73,7 +73,30 @@ const Registro = () => {
   const [ciudad, setCiudad] = useState([]);
   const [municipio, setMunicipio] = useState([]);
   const [parroquia, setParroquia] = useState([]);
-  const [codigoPostal, setCodigoPostal] = useState([]);
+  const [codigoPostal, setCodigoPostal] = useState([
+    "1000 - Distrito Capital",
+    "1070 - Miranda",
+    "1160 - Vargas",
+    "2001 - Carabobo",
+    "2052 - Falcón",
+    "2101 - Aragua",
+    "2201 - Coyedes",
+    "2301 - Guárico",
+    "3001 - Lara",
+    "3101 - Trujillo",
+    "3137 - Zulia",
+    "3201 - Yaracuy",
+    "3301 - Portuguesa",
+    "5001 - Táchira",
+    "5063 - Apure",
+    "5101 - Mérida",
+    "5201 - Barinas",
+    "6001 - Anzoátegui",
+    "6101 - Sucre",
+    "6201 - Monagas",
+    "6301 - Nueva Esparta",
+    "8001 - Bolívar",
+  ]);
 
   const venezuela = async () => {
     try {
@@ -464,7 +487,7 @@ const Registro = () => {
                   >
                     <option value="">Seleccione un Estado</option>
                     {estado.map((itemEstado) => {
-                      return <option>{itemEstado}</option>;
+                      return <option value={itemEstado}>{itemEstado}</option>;
                     })}
                   </select>
                   {errors.estado && (
@@ -514,7 +537,7 @@ const Registro = () => {
                   >
                     <option value="">Seleccione un Municipio</option>
                     {municipio.map((itemMunicipio) => {
-                      return <option>{itemMunicipio}</option>;
+                      return <option value={itemMunicipio}>{itemMunicipio}</option>;
                     })}
                   </select>
                   {errors.municipio && (
@@ -539,7 +562,7 @@ const Registro = () => {
                   >
                     <option value="">Seleccione una Parroquia</option>
                     {parroquia.map((itemParroquia) => {
-                      return <option>{itemParroquia}</option>;
+                      return <option value={itemParroquia}>{itemParroquia}</option>;
                     })}
                   </select>
                   {errors.parroquia && (
@@ -562,12 +585,10 @@ const Registro = () => {
                       required: "Seleccione un código postal",
                     })}
                   >
-                    <option>Seleccione un código postal</option>
-                    <option value="">Caracas</option>
-                    <option value="">Caracas</option>
-                    <option value="">Caracas</option>
-                    <option value="">Caracas</option>
-                    <option value="">Caracas</option>
+                    <option>Seleccione un Código Postal</option>
+                    {codigoPostal.map((itemPostal) => {
+                      return <option value={itemPostal}>{itemPostal}</option>;
+                    })}
                   </select>
                   {errors.codigo && (
                     <p className={stylesRegistro.errorInput}>
