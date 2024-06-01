@@ -87,24 +87,21 @@ const Login = () => {
     } else {
       if (claves.includes(clave)) {
         setEstatusClave(false);
+        alert("clave bien", clave);
       } else {
-        setMensajeClave(
-          "La Contraseña o el Correo Electrónico Deben Estar Incorrectos"
-        );
         setEstatusClave(true);
       }
     }
 
     console.log("correos obtenidos:", correos);
+    console.log(correo);
     if (correos.length === 0) {
       setEstatusCorreo(true);
     } else {
       if (correos.includes(correo)) {
         setEstatusCorreo(false);
+        alert("correo bien", correo);
       } else {
-        setEstatusCorreo(
-          "La Contraseña o el Correo Electrónico Deben Estar Incorrectos"
-        );
         setEstatusCorreo(true);
       }
     }
@@ -144,9 +141,9 @@ const Login = () => {
             type="email"
             {...register("correo", {
               required: "Introduzca su Correo Electrónico",
-              pattern: {
+              /* pattern: {
                 value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-              },
+              }, */
             })}
           />
           <label htmlFor="clave" className={stylesLogin.labelClave}>
@@ -189,10 +186,12 @@ const Login = () => {
               />
             )}
           </section>
-          {mensajeClave ||
-            (mensajeCorreo && (
+          {estatusCorreo ||
+            (estatusClave && (
               <section className={stylesLogin.seccionError}>
-                <p className={stylesLogin.errorInput}>{mensajeClave}</p>
+                <p className={stylesLogin.errorInput}>
+                  La Contraseña o el Correo Electrónico Deben Estar Incorrectos
+                </p>
               </section>
             ))}
           <section className={stylesLogin.contenedor_passoword_perdida}>
