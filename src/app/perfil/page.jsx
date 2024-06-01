@@ -101,39 +101,45 @@ const Perfil = () => {
               <section className={stylesPerfil.seccionAjustes}>
                 <h1 className={stylesPerfil.titulo}>Perfil</h1>
                 <section className={stylesPerfil.seccionFlex}>
-                  <Image
-                    className={stylesPerfil.imagenes}
-                    width={200}
-                    height={200}
-                    src={"/IMG/epigrafe73.png"}
-                    alt={"Imagen de Perfil"}
-                  />
-                  <section>
+                  <section className={stylesPerfil.seccionImagen}>
                     <Image
-                      className={stylesPerfil.icono_edit}
-                      onClick={() => cambiarImagen}
-                      width={20}
-                      height={20}
-                      src={
-                        temaActual === "oscuro"
-                          ? `/BlancoAbierto.svg`
-                          : `/OjoNegroAbierto.svg`
-                      }
-                      alt="Ocultar Contraseña"
+                      className={stylesPerfil.imagenes}
+                      width={200}
+                      height={200}
+                      src={"/IMG/epigrafe73.png"}
+                      alt={"Imagen de Perfil"}
                     />
+                    {temaActual ? (
+                      <section className={stylesPerfil.seccionOscura}>
+                        <Image
+                          className={stylesPerfil.icono_edit}
+                          onClick={() => cambiarImagen}
+                          width={20}
+                          height={20}
+                          src={
+                            temaActual === "oscuro"
+                              ? `/editar-theme-white.svg`
+                              : `/editar-theme-white.svg`
+                          }
+                          alt="Ocultar Contraseña"
+                        />
+                      </section>
                     ) : (
-                    <Image
-                      className={stylesPerfil.icono_edit}
-                      onClick={() => cambiarImagen}
-                      width={20}
-                      height={20}
-                      src={
-                        temaActual === "oscuro"
-                          ? `/BlancoAbiertoOblicua.svg`
-                          : `/OjoNegroAbiertoOblicuo.svg`
-                      }
-                      alt="Mostrar Contraseña"
-                    />
+                      <section>
+                        <Image
+                          className={stylesPerfil.icono_edit}
+                          onClick={() => cambiarImagen}
+                          width={20}
+                          height={20}
+                          src={
+                            temaActual === "oscuro"
+                              ? `/BlancoAbiertoOblicua.svg`
+                              : `/OjoNegroAbiertoOblicuo.svg`
+                          }
+                          alt="Mostrar Contraseña"
+                        />
+                      </section>
+                    )}
                   </section>
                   <section className={stylesPerfil.seccionPerfilIzquierdo}>
                     <h1>Tu Nombre:</h1>

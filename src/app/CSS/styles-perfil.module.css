@@ -77,6 +77,21 @@
   padding: 1rem 0 0 2rem;
 }
 
+.seccionImagen {
+  position: relative;
+}
+
+.seccionOscura {
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 7%;
+  height: 23%;
+  border-radius: 50%;
+  background: #eeeeee;
+}
+
 .seccionPerfilIzquierdo {
   padding: 1rem 0 0 2rem;
 }
