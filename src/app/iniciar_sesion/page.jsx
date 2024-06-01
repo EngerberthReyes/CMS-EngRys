@@ -186,14 +186,14 @@ const Login = () => {
               />
             )}
           </section>
-          {estatusCorreo ||
-            (estatusClave && (
-              <section className={stylesLogin.seccionError}>
-                <p className={stylesLogin.errorInput}>
-                  La Contraseña o el Correo Electrónico Deben Estar Incorrectos
-                </p>
-              </section>
-            ))}
+          {(estatusCorreo === true || estatusClave === true) && (
+            <section className={stylesLogin.seccionError}>
+              <p className={stylesLogin.errorInput}>
+                La Contraseña o el Correo Electrónico Deben Estar Incorrectos
+              </p>
+            </section>
+          )}
+
           <section className={stylesLogin.contenedor_passoword_perdida}>
             <Link className={stylesLogin.link_password} href="../registro">
               ¿Aun no tienes una cuenta?
