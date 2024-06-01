@@ -110,6 +110,10 @@ export const POST = async (request) => {
     const idDireccion = grabadorDireccion.insertId;
     console.log("ID de la Direccion:", idDireccion);
 
+    const idGenero = await axios.get("/");
+
+    console.log(idGenero)
+
     const consultaGrabarPersonas = `INSERT INTO personas (id_persona, 
     id_genero, 
     id_rol, 
@@ -125,10 +129,24 @@ export const POST = async (request) => {
     x, 
     tiktok, 
     url_pagina, 
-    img_pagina) VALUES (?, ?);`;
-    const grabadorPersonas = await cmsConexion.query(consultaGrabarDireccion, [
-      idDireccion,
-      direccion,
+    img_pagina) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);`;
+    const grabadorPersonas = await cmsConexion.query(consultaGrabarPersonas, [
+      NULL,
+      "idgenero",
+      "idrol",
+      "idnacionalidad",
+      "iddireccion",
+      "Nombre",
+      "Apellido",
+      "Cedula",
+      "CorreoElectronico",
+      "Clave",
+      "Facebook",
+      "Instagram",
+      "X",
+      "TikTok",
+      "URLPagina",
+      "ImgPagina",
     ]);
 
     return NextResponse.json(
