@@ -10,13 +10,11 @@ export const GET = async () => {
 
     const consultarPais = `
     SELECT DISTINCT est.estado, cd.capital, cd.ciudad, muni.municipio, parr.parroquia
-    FROM estados AS est
-    JOIN ciudades AS cd ON est.id_estado = cd.id_estado
-    JOIN municipios AS muni ON est.id_estado = muni.id_estado
-    JOIN parroquias AS parr ON muni.id_municipio = parr.id_municipio
+    FROM ciudades as cd, estados as est, municipios as muni, parroquias as parr
+    WHERE est.id_estado = cd.id_estado
+    AND muni.id_estado = parr.id_municipio
     ORDER BY RAND()
     LIMIT 12;
-    
     `;
     const respuestaPais = await venezuela.query(consultarPais);
 
