@@ -39,6 +39,7 @@ export const POST = async (request) => {
       apellido,
       cedula,
       sexo,
+      nacionalidad,
       nacimiento,
       direccion,
       pais,
@@ -110,22 +111,17 @@ export const POST = async (request) => {
     const idDireccion = grabadorDireccion.insertId;
     console.log("ID de la Direccion:", idDireccion);
 
-    const consultaGenero = `Select tipo_genero from generos`;
+    console.log(tipoGeneroPersona)
 
-    const genero = await cmsConexion.query(consultaGenero);
+    const idGenero = sexo === "Masculino" ? 1 : 2;
 
     console.log(idGenero);
 
-    const tipoGeneroPersona = genero.map((itemGenero) => {
-      if (itemGenero.tipo_genero === "Masculino") {
-        return "Masculino";
-      } else {
-        return "Femenino";
-      }
-    });
+    const idNacionalidad = nacionalidad === "V" ? 1 : 2;
 
-    const idGenero = genero.insertId;
-    console.log(idGenero);
+    const urlPagina = "A"
+
+    const imgPagina = "A";
 
     const consultaGrabarPersonas = `INSERT INTO personas (id_persona, 
     id_genero, 
@@ -147,19 +143,19 @@ export const POST = async (request) => {
       NULL,
       idGenero,
       "idrol",
-      "idnacionalidad",
+      idNacionalidad,
       idDireccion,
-      "Nombre",
-      "Apellido",
-      "Cedula",
-      "CorreoElectronico",
-      "Clave",
-      "Facebook",
-      "Instagram",
-      "X",
-      "TikTok",
-      "URLPagina",
-      "ImgPagina",
+      nombres,
+      apellido,
+      cedula,
+      correo,
+      clave,
+      facebook === "" ? null : facebook,
+      instagram === "" ? null : instagram,
+      x === "" ? null : x,
+      tiktok === "" ? null : tiktok,
+      urlPagina,
+      imgPagina,
     ]);
 
     return NextResponse.json(
