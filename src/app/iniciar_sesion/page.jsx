@@ -110,10 +110,9 @@ const Login = () => {
     }
 
     if (estatusClave === false || estatusCorreo === false) {
-      alert("No")
-    } else {
-     
       enrutadorMaster.push("../noticias");
+    } else {
+      alert("No");
     }
 
     try {
