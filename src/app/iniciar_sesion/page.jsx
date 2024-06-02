@@ -85,32 +85,20 @@ const Login = () => {
     const { correo, clave } = datos;
 
     console.log("Claves obtenidas:", claves);
-    if (clave.length === 0) {
+    if (clave.length === 0 && correos.length === 0) {
       setEstatusClave(true);
-    } else {
-      if (claves.includes(clave)) {
-        setEstatusClave(false);
-        alert("clave bien", clave);
-      } else {
-        setEstatusClave(true);
-      }
-    }
-
-    console.log("correos obtenidos:", correos);
-    console.log(correo);
-    if (correos.length === 0) {
       setEstatusCorreo(true);
     } else {
-      if (correos.includes(correo)) {
+      if (claves.includes(clave) && correos.includes(correo)) {
+        setEstatusClave(false);
+        alert("clave bien", clave);
         setEstatusCorreo(false);
         alert("correo bien", correo);
+        enrutadorMaster.push("../noticias");
       } else {
+        setEstatusClave(true);
         setEstatusCorreo(true);
       }
-    }
-
-    if (claves.includes(clave) && correos.includes(correo)) {
-      enrutadorMaster.push("../noticias");
     }
 
     try {
@@ -196,7 +184,7 @@ const Login = () => {
           {(estatusCorreo === true || estatusClave === true) && (
             <section className={stylesLogin.seccionError}>
               <p className={stylesLogin.errorInput}>
-                La Contraseña o el Correo Electrónico Deben Estar Incorrectos
+                La Contraseña o el Correo Electrónico Son Incorrectos
               </p>
             </section>
           )}
