@@ -42,7 +42,7 @@ export const POST = async (request, response) => {
   try {
     const { correo, clave } = await request.json();
     console.log(correo, clave);
-    // Realizar la consulta SQL con parámetros para evitar SQL Injection
+
     const datosUsuario = `
       SELECT id_persona, nombre, correo_electronico, clave 
       FROM personas
