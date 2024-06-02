@@ -82,8 +82,6 @@ const Login = () => {
       return persona.correo_electronico === correo && persona.clave === clave;
     });
 
-    console.log(resultadoFiltroPersona);
-
     if (resultadoFiltroPersona.length === 0) {
       setEstatusClave(true);
       setEstatusCorreo(true);
@@ -96,7 +94,7 @@ const Login = () => {
 
       try {
         const envio = await axios.get(
-          `../API/personas/usuario/${resultadoFiltroPersona.id_personas}`
+          `../API/personas/${resultadoFiltroPersona[0].id_personas}`
         );
       } catch (error) {
         console.error(error);
