@@ -49,7 +49,7 @@ const Login = () => {
   };
   useEffect(() => {
     obtenerInformacionBaseDeDatos();
-  }, [informacionPersona]);
+  }, [correo]);
 
   const mostrarPassword = () => {
     setMostrarClave(!mostrarClave);
@@ -86,17 +86,16 @@ const Login = () => {
       setEstatusClave(true);
       setEstatusCorreo(true);
     } else {
-      if (resultadoFiltroPersona) {
-        setEstatusClave(false);
-        setEstatusCorreo(false);
-        enrutadorMaster.push("../noticias");
-      }
+      setEstatusClave(false);
+      setEstatusCorreo(false);
+      enrutadorMaster.push("../noticias");
 
       try {
+        // Suponiendo que la ruta correcta sea `/API/personas/${resultadoFiltroPersona[0].id_persona}`
         const envio = await axios.get(
-          `../API/personas/${resultadoFiltroPersona[0].id_personas}`
+          `/API/personas/${resultadoFiltroPersona[0].id_persona}`
         );
-        console.log(envio)
+        console.log(envio.data.personas);
       } catch (error) {
         console.error(error);
       }
