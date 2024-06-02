@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import stylesRegistro from "../CSS/styles-registro.module.css";
 
 const Registro = () => {
@@ -23,6 +24,8 @@ const Registro = () => {
   const [temaActual, setTemaActual] = useState("oscuro");
   const [mostrarClave, setMostrarClave] = useState(false);
   const [mostrarSegundaClave, setMostrarSegundaClave] = useState(false);
+
+  const enrutadorMaster = useRouter();
 
   const manejarCambioDeTema = (event) => {
     const modoOscuro = event.matches;
@@ -249,6 +252,7 @@ const Registro = () => {
         clave,
         repetirClave,
       });
+      enrutadorMaster.push("../");
       console.log(repuesta);
     } catch (error) {
       console.log(error);

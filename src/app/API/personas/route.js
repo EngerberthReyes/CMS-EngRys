@@ -164,11 +164,11 @@ export const POST = async (request) => {
       apellido, 
       cedula,
       fecha_nacimiento,
-      correo_electronico, 
-      clave, 
-      facebook, 
-      instagram, 
-      x, 
+      correo_electronico,
+      clave,
+      facebook,
+      instagram,
+      x,
       tiktok,
       sitio_web,
       url_pagina, 
@@ -176,37 +176,28 @@ export const POST = async (request) => {
     ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
   `;
 
-    try {
-      const grabadorPersonas = await cmsConexion.query(consultaGrabarPersonas, [
-        null,
-        idGenero,
-        idRol,
-        idNacionalidad,
-        idDireccion,
-        nombres,
-        apellido,
-        cedula /* La Cedula es Unique en la base de datos, por algo no te lo registrara a todos */,
-        nacimiento,
-        correo,
-        clave,
-        facebook,
-        instagram,
-        x,
-        tiktok,
-        sitio_web,
-        urlPagina,
-        imgPagina,
-      ]);
+    const grabadorPersonas = await cmsConexion.query(consultaGrabarPersonas, [
+      null,
+      idGenero,
+      idRol,
+      idNacionalidad,
+      idDireccion,
+      nombres,
+      apellido,
+      cedula,
+      nacimiento,
+      correo,
+      clave,
+      facebook,
+      instagram,
+      x,
+      tiktok,
+      sitio_web,
+      urlPagina,
+      imgPagina,
+    ]);
 
-      console.log("Persona registrada exitosamente:", grabadorPersonas);
-    } catch (error) {
-      console.error("Error al registrar la persona:", error);
-    }
-
-    return NextResponse.json(
-      { Exitoso: "Datos Insertados Correctamente" },
-      { status: 200 }
-    );
+    return NextResponse.json({ Exitoso: grabadorPersonas }, { status: 200 });
   } catch (error) {
     console.error("Error al grabar los datos:", error);
     return NextResponse.json(
