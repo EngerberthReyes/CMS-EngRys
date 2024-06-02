@@ -32,24 +32,6 @@ const Login = () => {
   const [mensajeCorreo, setMensajeCorreo] = useState("");
   const [estatusCorreo, setEstatusCorreo] = useState(false);
   const [idPersona, setIdPersona] = useState([]);
-  const [informacionPersona, setInformacionPersona] = useState([]);
-
-  const obtenerInformacionBaseDeDatos = async () => {
-    try {
-      const datosRepetidos = await axios.get("../API/personas");
-      const dataPersona = datosRepetidos.data.personas;
-      setInformacionPersona(dataPersona);
-    } catch (error) {
-      console.error(
-        "Error al obtener las cédulas de la base de datos: ",
-        error
-      );
-      throw new Error("Error al obtener las cédulas de la base de datos.");
-    }
-  };
-  useEffect(() => {
-    obtenerInformacionBaseDeDatos();
-  }, []);
 
   const mostrarPassword = () => {
     setMostrarClave(!mostrarClave);
@@ -78,30 +60,37 @@ const Login = () => {
   const enviarDatos = async (datos) => {
     const { correo, clave } = datos;
 
-    const resultadoFiltroPersona = informacionPersona.filter((persona) => {
-      return persona.correo_electronico === correo && persona.clave === clave;
-    });
+    try {
+      const datosEnviados = await axios.post(`../API/inicioSesion`, {
+        correo,
+        clave,
+      });
 
-    if (resultadoFiltroPersona.length === 0) {
-      setEstatusClave(true);
-      setEstatusCorreo(true);
-    } else {
-      setEstatusClave(false);
-      setEstatusCorreo(false);
-      enrutadorMaster.push("../noticias");
+      if (datosEnviados.data.respuestaUsuario.length === 0) {
+        setEstatusClave(true);
+        setEstatusCorreo(true);
+      } else {
+        setEstatusClave(false);
+        setEstatusCorreo(false);
+        enrutadorMaster.push("../noticias");
+      }
+      console.log(datosEnviados);
+    } catch (error) {
+      console.log(error);
+    }
 
+    /*
       try {
-        // Suponiendo que la ruta correcta sea `/API/personas/${resultadoFiltroPersona[0].id_persona}`
+       
         const envio = await axios.get(
-          `/API/personas/${resultadoFiltroPersona[0].id_persona}`
+          `../API/personas/${resultadoFiltroPersona[0].id_persona}`
         );
         console.log(envio.data.personas);
       } catch (error) {
         console.error(error);
       }
-
-      console.log(datos);
-    }
+*/
+    console.log(datos);
   };
 
   return (
