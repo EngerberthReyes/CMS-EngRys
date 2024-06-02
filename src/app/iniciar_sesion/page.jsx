@@ -49,7 +49,7 @@ const Login = () => {
   };
   useEffect(() => {
     obtenerInformacionBaseDeDatos();
-  }, [correo]);
+  }, []);
 
   const mostrarPassword = () => {
     setMostrarClave(!mostrarClave);
