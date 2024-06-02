@@ -38,12 +38,7 @@ const Login = () => {
     try {
       const datosRepetidos = await axios.get("../API/personas");
       const dataPersona = datosRepetidos.data.personas;
-      const combinados = dataPersona.map((persona) => ({
-        id_personas: persona.id_persona,
-        correos: persona.correo_electronico,
-        claves: persona.clave,
-      }));
-      setInformacionPersona(combinados);
+      setInformacionPersona(dataPersona);
     } catch (error) {
       console.error(
         "Error al obtener las cédulas de la base de datos: ",
@@ -82,10 +77,10 @@ const Login = () => {
   }, []);
 
   const enviarDatos = async (datos) => {
-    const { id_persona, correo, clave } = datos;
+    const { correo, clave } = datos;
 
     const resultadoFiltroPersona = informacionPersona.filter((persona) => {
-      return persona.correos === correo && persona.claves;
+      return persona.correo_electronico === correo && persona.clave === clave;
     });
 
     console.log(resultadoFiltroPersona);
@@ -94,25 +89,24 @@ const Login = () => {
       setEstatusClave(true);
       setEstatusCorreo(true);
     } else {
-      if (resultadoFiltroPersona.length === 1) {
+      if (resultadoFiltroPersona) {
         setEstatusClave(false);
         alert("clave bien", clave);
         setEstatusCorreo(false);
         alert("correo bien", correo);
         enrutadorMaster.push("../noticias");
-      } else {
-        setEstatusClave(true);
-        setEstatusCorreo(true);
       }
-    }
 
-    try {
-      const envio = await axios.get(`../API/personas/usuario/${id_persona}`);
-    } catch (error) {
-      console.error(error);
-    }
+      try {
+        const envio = await axios.get(
+          `../API/personas/usuario/${resultadoFiltroPersona.id_personas}`
+        );
+      } catch (error) {
+        console.error(error);
+      }
 
-    console.log(datos);
+      console.log(datos);
+    }
   };
 
   return (
