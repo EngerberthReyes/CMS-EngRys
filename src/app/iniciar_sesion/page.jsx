@@ -31,19 +31,19 @@ const Login = () => {
   const [correos, setCorreos] = useState([]);
   const [mensajeCorreo, setMensajeCorreo] = useState("");
   const [estatusCorreo, setEstatusCorreo] = useState(false);
+  const [idPersona, setIdPersona] = useState([]);
+  const [informacionPersona, setInformacionPersona] = useState([]);
 
   const obtenerInformacionBaseDeDatos = async () => {
     try {
       const datosRepetidos = await axios.get("../API/personas");
       const dataPersona = datosRepetidos.data.personas;
-      const clavesObtenidas = dataPersona.map((itemCedula) => {
-        return itemCedula.clave;
-      });
-      const correosObtenidos = dataPersona.map((itemCorreo) => {
-        return itemCorreo.correo_electronico;
-      });
-      setCorreos(correosObtenidos);
-      setClaves(clavesObtenidas);
+      const combinados = dataPersona.map((persona) => ({
+        id_personas: persona.id_persona,
+        correos: persona.correo_electronico,
+        claves: persona.clave,
+      }));
+      setInformacionPersona(combinados);
     } catch (error) {
       console.error(
         "Error al obtener las cédulas de la base de datos: ",
@@ -82,14 +82,19 @@ const Login = () => {
   }, []);
 
   const enviarDatos = async (datos) => {
-    const { correo, clave } = datos;
+    const { id_persona, correo, clave } = datos;
 
-    console.log("Claves obtenidas:", claves);
-    if (clave.length === 0 && correos.length === 0) {
+    const resultadoFiltroPersona = informacionPersona.filter((persona) => {
+      return persona.correos === correo && persona.claves;
+    });
+
+    console.log(resultadoFiltroPersona);
+
+    if (resultadoFiltroPersona.length === 0) {
       setEstatusClave(true);
       setEstatusCorreo(true);
     } else {
-      if (claves.includes(clave) && correos.includes(correo)) {
+      if (resultadoFiltroPersona.length === 1) {
         setEstatusClave(false);
         alert("clave bien", clave);
         setEstatusCorreo(false);
@@ -102,7 +107,7 @@ const Login = () => {
     }
 
     try {
-      const respuesta = await axios.post("/API", { algo });
+      const envio = await axios.get(`../API/personas/usuario/${id_persona}`);
     } catch (error) {
       console.error(error);
     }
