@@ -2,7 +2,7 @@ import { cmsConexion, informacionPais as venezuela } from "@/db/database.js";
 import { NextResponse } from "next/server";
 import axios from "axios";
 
-export const GET = async (request, { params: { id_usuario } }) => {
+export const GET = async (request, { params: { usuario } }) => {
   try {
     const datosUsuario = `
     SELECT cedula, correo_electronico, clave from personas where id_persona = ?;
@@ -18,7 +18,7 @@ export const GET = async (request, { params: { id_usuario } }) => {
     `;
 
     const [respuestaPersona, respuestaPais] = await Promise.all([
-      cmsConexion.query(datosUsuario, [Number(id_usuario)]),
+      cmsConexion.query(datosUsuario, [Number(usuario)]),
       venezuela.query(consultarPais),
     ]);
 

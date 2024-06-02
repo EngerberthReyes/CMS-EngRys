@@ -96,6 +96,7 @@ const Login = () => {
         const envio = await axios.get(
           `../API/personas/${resultadoFiltroPersona[0].id_personas}`
         );
+        console.log(envio)
       } catch (error) {
         console.error(error);
       }
