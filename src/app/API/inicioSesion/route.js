@@ -44,7 +44,7 @@ export const POST = async (request, response) => {
     console.log(correo, clave);
     // Realizar la consulta SQL con parámetros para evitar SQL Injection
     const datosUsuario = `
-      SELECT id_persona, cedula, correo_electronico, clave 
+      SELECT id_persona, nombre, correo_electronico, clave 
       FROM personas
       WHERE correo_electronico = ? AND clave = ?;
     `;
