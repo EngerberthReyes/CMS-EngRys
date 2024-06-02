@@ -66,6 +66,8 @@ const Login = () => {
         clave,
       });
 
+      console.log(datosEnviados)
+
       if (datosEnviados.data.respuestaUsuario.length === 0) {
         setEstatusClave(true);
         setEstatusCorreo(true);

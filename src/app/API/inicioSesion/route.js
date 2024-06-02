@@ -1,5 +1,7 @@
 import { cmsConexion, informacionPais as venezuela } from "@/db/database.js";
 import { NextResponse } from "next/server";
+import jwt from "jsonwebtoken";
+import { serialize } from "cookie";
 import axios from "axios";
 
 export const GET = async () => {
@@ -38,7 +40,7 @@ export const GET = async () => {
   }
 };
 
-export const POST = async (request, response) => {
+export const POST = async (request, res) => {
   try {
     const { correo, clave } = await request.json();
     console.log(correo, clave);
@@ -54,15 +56,54 @@ export const POST = async (request, response) => {
       clave,
     ]);
 
+    console.log(respuestaUsuario);
+
+    const resultadoFiltrado = respuestaUsuario.filter((itemsUsuarioBd) => {
+      return (
+        itemsUsuarioBd.correo_electronico === correo &&
+        itemsUsuarioBd.clave === clave
+      );
+    });
+
+    console.log(resultadoFiltrado);
+
+    if (resultadoFiltrado.length === 0) {
+      return new NextResponse(
+        JSON.stringify({ error: "Usuario no encontrado o clave incorrecta" }),
+        { status: 401 }
+      );
+    }
+
+    // Assuming nombreUsuario and correo are defined somewhere above this code
+    const nombreUsuario = "exampleUser";
+    const correao = "example@example.com";
+
+    const cookie = jwt.sign(
+      {
+        exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 31,
+        nombreDeUsuario: nombreUsuario,
+        correoElectronico: correao,
+      },
+      "secret"
+    );
+
+    const serialized = `CookieInformacion=${cookie}; HttpOnly; Secure=${
+      process.env.NODE_ENV === "production"
+    }; SameSite=None; Max-Age=1000*60*60*25*31; Path=/`;
+
+    // Create a NextResponse instance with the cookie and JSON body
+    const response = new NextResponse(JSON.stringify({ respuestaUsuario }), {
+      headers: new Headers({
+        "Set-Cookie": serialized,
+        "Content-Type": "application/json",
+      }),
+    });
+
+    return response;
     console.log(correo, clave);
     console.log(respuestaUsuario);
-    // Retornar la respuesta al cliente
-    return NextResponse.json({
-      respuestaUsuario,
-    });
   } catch (error) {
     console.error("Error al registrar la persona:", error);
-    // Retornar un error al cliente si ocurre una excepción
     return NextResponse.status(500).json({
       error: "Error interno del servidor",
     });
