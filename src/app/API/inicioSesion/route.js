@@ -72,14 +72,14 @@ export const POST = async (request, res) => {
     }
 
     // Assuming nombreUsuario and correo are defined somewhere above this code
-    const nombreUsuario = "exampleUser";
-    const correao = "example@example.com";
+    const nombreUsuario = resultadoFiltrado.nombre;
+    const correoElectronico = resultadoFiltrado.correo_electronico;
 
     const cookie = jwt.sign(
       {
         exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 31,
         nombreDeUsuario: nombreUsuario,
-        correoElectronico: correao,
+        correoElectronicoDeUsuario: correoElectronico,
       },
       "secret"
     );
