@@ -67,11 +67,8 @@ export const POST = async (request, res) => {
 
     console.log(resultadoFiltrado);
 
-    if (resultadoFiltrado.length === 0) {
-      return new NextResponse(
-        JSON.stringify({ error: "Usuario no encontrado o clave incorrecta" }),
-        { status: 401 }
-      );
+    if (respuestaUsuario.length === 0) {
+      return NextResponse.json({ respuestaUsuario });
     }
 
     // Assuming nombreUsuario and correo are defined somewhere above this code
