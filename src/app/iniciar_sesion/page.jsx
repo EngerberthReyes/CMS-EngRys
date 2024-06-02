@@ -47,10 +47,9 @@ const Login = () => {
       throw new Error("Error al obtener las cédulas de la base de datos.");
     }
   };
-
   useEffect(() => {
     obtenerInformacionBaseDeDatos();
-  }, []);
+  }, [informacionPersona]);
 
   const mostrarPassword = () => {
     setMostrarClave(!mostrarClave);
@@ -91,9 +90,7 @@ const Login = () => {
     } else {
       if (resultadoFiltroPersona) {
         setEstatusClave(false);
-        alert("clave bien", clave);
         setEstatusCorreo(false);
-        alert("correo bien", correo);
         enrutadorMaster.push("../noticias");
       }
 
