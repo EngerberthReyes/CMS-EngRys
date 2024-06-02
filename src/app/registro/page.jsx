@@ -290,7 +290,7 @@ const Registro = () => {
                     message: "Introduzca su Nombre Completo",
                   },
                   pattern: {
-                    value: /^[a-zA-Z\s]+$/,
+                    value: /^[a-zA-ZñÑ\s]+$/,
                     message: "Solo se Permiten Letras",
                   },
                 })}
@@ -316,7 +316,7 @@ const Registro = () => {
                     message: "Introduzca Sus Apellidos",
                   },
                   pattern: {
-                    value: /^[a-zA-Z\s]+$/,
+                    value: /^[a-zA-ZñÑ\s]+$/,
                     message: "Solo se Permiten Letras",
                   },
                 })}
