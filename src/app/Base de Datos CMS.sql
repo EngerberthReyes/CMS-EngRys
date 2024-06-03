@@ -86,8 +86,8 @@ CREATE TABLE `generos` (
 --
 
 INSERT INTO `generos` (`id_genero`, `tipo_genero`) VALUES
-(1, 'Masculino'),
-(2, 'Femenino');
+(null, 'Masculino'),
+(null, 'Femenino');
 
 -- --------------------------------------------------------
 
@@ -128,8 +128,8 @@ CREATE TABLE `nacionalidades` (
 --
 
 INSERT INTO `nacionalidades` (`id_nacionalidad`, `nacionalidad`) VALUES
-(1, 'Venezuela'),
-(2, 'Extranjero');
+(null, 'Venezuela'),
+(null, 'Extranjero');
 
 -- --------------------------------------------------------
 
