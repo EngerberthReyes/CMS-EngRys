@@ -9,6 +9,8 @@ export const GET = async (request) => {
 
     console.log(user);
 
+    return NextResponse.json({ user })
+
 
     console.log(request.cookies);
   } catch (error) {
