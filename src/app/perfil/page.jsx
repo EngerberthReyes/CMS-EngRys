@@ -97,10 +97,10 @@ const Perfil = () => {
   const cerrarPerfil = async () => {
     try {
       const respuesta = await axios.get("../API/cerrarPerfil");
-
-      enrutadorMaster.push("/");
     } catch (error) {
       console.log(error);
+    } finally {
+      enrutadorMaster.push("/");
     }
   };
 
