@@ -85,8 +85,8 @@ const Registro = () => {
 
   useEffect(() => {
     console.log("Cédulas obtenidas:", cedulas);
-    if (cedulas.length === 0) {
-      setEstatusCedula(true);
+    if (!cedulas.includes(cedula) && cedulas.length === 0) {
+      setEstatusCedula(false);
     } else {
       if (cedulas.includes(cedula)) {
         setMensajeCedula("Esta Cédula Ya Esta Registrada");
@@ -99,8 +99,8 @@ const Registro = () => {
 
   useEffect(() => {
     console.log("correos obtenidos:", correos);
-    if (correos.length === 0) {
-      setEstatusCorreo(true);
+    if (!correos.includes(correo) && correos.length === 0) {
+      setEstatusCorreo(false);
     } else {
       if (correos.includes(correo)) {
         setMensajeCorreo("Este Correo Electrónico Ya Esta Registrado");
