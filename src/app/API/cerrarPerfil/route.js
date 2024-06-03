@@ -36,7 +36,7 @@ export const GET = (request) => {
     console.log(sesionUsuario);
 
     // Responder con los datos del usuario
-    return NextResponse.json({ sesionUsuario });
+    return NextResponse.json({ response });
   } catch (error) {
     console.error(error);
     return NextResponse.json({ error: error.message }, { status: 401 });

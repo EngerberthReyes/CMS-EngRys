@@ -93,7 +93,7 @@ const Perfil = () => {
 
   const cerrarPerfil = async () => {
     try {
-      const respuesta = await axios.get("../API/perfil");
+      const respuesta = await axios.get("../API/cerrarPerfil");
 
       console.log(respuesta);
 
@@ -146,12 +146,12 @@ const Perfil = () => {
                   <section>{usuario.nombreDeUsuario}</section>
                   <section>{usuario.correoElectronicoDeUsuario}</section>
                 </Link>
-                <Link
+                <button
                   className={`${stylesPerfil.enlace} ${stylesPerfil.usuarioPerfil}`}
-                  href="/perfil"
+                  onClick={() => cerrarPerfil()}
                 >
                   <section>Cerrar Sesión</section>
-                </Link>
+                </button>
               </>
             ) : (
               <>
