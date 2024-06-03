@@ -1,14 +1,19 @@
 import { NextResponse } from "next/server";
-import { verify } from "jsonwebtoken";
+import { jwtVerify } from "jose";
 
-export const middleware = (request) => {
-  const cookieValor = request.cookies.get("cookieInformacion");
-  console.log(cookieValor);
+export const middleware = async (request) => {
+  try {
+    const cookieValor = request.cookies.get("cookieInformacion");
+    if (request.nextUrl.pathname.includes("/perfil")) {
+      if (cookieValor === undefined) {
+        return NextResponse.redirect(new URL("/iniciar_sesion", request.url));
+      }
 
-  if (request.nextUrl.pathname.includes("/perfil")) {
-    if (cookieValor === undefined) {
-      return NextResponse.redirect(new URL("/iniciar_sesion", request.url));
+      const { payload } = await jwtVerify(cookieValor, "secret");
     }
+  } catch (error) {
+    console.log(error);
+    return NextResponse.redirect(new URL("/iniciar_sesion", request.url));
   }
 
   return NextResponse.next();
