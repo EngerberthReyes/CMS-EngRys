@@ -89,9 +89,21 @@ const Perfil = () => {
   };
   useEffect(() => {
     obtenerPerfil();
-  }, [usuario]);
+  }, []);
 
-  const cerrarPerfil = async () => {};
+  const cerrarPerfil = async () => {
+    try {
+      const respuesta = await axios.get("../API/perfil");
+
+      console.log(respuesta);
+
+      const usuarioActivo = respuesta.data.sesionUsuario;
+
+      setUsuario(usuarioActivo);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const enviarComentarioTecla = (event) => {
     if (event.key === "Enter" && !event.shiftKey) {
@@ -126,13 +138,21 @@ const Perfil = () => {
           </section>
           <section className={stylesPerfil.seccionEnlace}>
             {usuario ? (
-              <Link
-                className={`${stylesPerfil.enlace} ${stylesPerfil.usuarioPerfil}`}
-                href="/perfil"
-              >
-                <section>{usuario.nombreDeUsuario}</section>
-                <section>{usuario.correoElectronicoDeUsuario}</section>
-              </Link>
+              <>
+                <Link
+                  className={`${stylesPerfil.enlace} ${stylesPerfil.usuarioPerfil}`}
+                  href="/perfil"
+                >
+                  <section>{usuario.nombreDeUsuario}</section>
+                  <section>{usuario.correoElectronicoDeUsuario}</section>
+                </Link>
+                <Link
+                  className={`${stylesPerfil.enlace} ${stylesPerfil.usuarioPerfil}`}
+                  href="/perfil"
+                >
+                  <section>Cerrar Sesión</section>
+                </Link>
+              </>
             ) : (
               <>
                 <Link className={stylesPerfil.enlace} href="/iniciar_sesion">
