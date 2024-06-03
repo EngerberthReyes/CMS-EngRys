@@ -100,7 +100,7 @@ const Perfil = () => {
   const cerrarPerfil = async () => {
     try {
       const respuesta = await axios.get("../API/cerrarPerfil");
-      setPerfilCerrado(true); // Indicar que el perfil ha sido cerrado
+      setPerfilCerrado(true);
     } catch (error) {
       console.log(error);
     } finally {
