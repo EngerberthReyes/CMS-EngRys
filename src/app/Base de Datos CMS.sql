@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `asignaciones_roles_permisos` (
-  `id_asignacion_rol_permiso` int(11) NOT NULL AUTO_INCREMENT,
+  `id_asignacion_rol_permiso` int(11) NOT NULL,
   `id_rol` int(11) NOT NULL,
   `id_permiso` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -40,7 +40,7 @@ CREATE TABLE `asignaciones_roles_permisos` (
 --
 
 CREATE TABLE `codigos_postales` (
-  `id_codigo_postal` int(11) NOT NULL AUTO_INCREMENT,
+  `id_codigo_postal` int(11) NOT NULL,
   `id_parroquia` int(11) NOT NULL,
   `numero_codigo_postal` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -53,7 +53,7 @@ CREATE TABLE `codigos_postales` (
 --
 
 CREATE TABLE `direcciones` (
-  `id_direccion` int(11) NOT NULL AUTO_INCREMENT,
+  `id_direccion` int(11) NOT NULL,
   `id_codigo_postal` int(11) NOT NULL,
   `direccion_completa` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -65,7 +65,7 @@ CREATE TABLE `direcciones` (
 --
 
 CREATE TABLE `estados` (
-  `id_estado` int(11) NOT NULL AUTO_INCREMENT,
+  `id_estado` int(11) NOT NULL,
   `id_pais` int(11) NOT NULL,
   `nombre_estado` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -77,7 +77,7 @@ CREATE TABLE `estados` (
 --
 
 CREATE TABLE `generos` (
-  `id_genero` int(11) NOT NULL AUTO_INCREMENT,
+  `id_genero` int(11) NOT NULL,
   `tipo_genero` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -86,8 +86,8 @@ CREATE TABLE `generos` (
 --
 
 INSERT INTO `generos` (`id_genero`, `tipo_genero`) VALUES
-(null, 'Masculino'),
-(null, 'Femenino');
+(1, 'Masculino'),
+(2, 'Femenino');
 
 -- --------------------------------------------------------
 
@@ -96,7 +96,7 @@ INSERT INTO `generos` (`id_genero`, `tipo_genero`) VALUES
 --
 
 CREATE TABLE `interfaces` (
-  `id_interfaz` int(11) NOT NULL AUTO_INCREMENT,
+  `id_interfaz` int(11) NOT NULL,
   `nombre_interfaz` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -107,7 +107,7 @@ CREATE TABLE `interfaces` (
 --
 
 CREATE TABLE `municipios` (
-  `id_municipio` int(11) NOT NULL AUTO_INCREMENT,
+  `id_municipio` int(11) NOT NULL,
   `id_estado` int(11) NOT NULL,
   `nombre_municipio` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -119,7 +119,7 @@ CREATE TABLE `municipios` (
 --
 
 CREATE TABLE `nacionalidades` (
-  `id_nacionalidad` int(11) NOT NULL AUTO_INCREMENT,
+  `id_nacionalidad` int(11) NOT NULL,
   `nacionalidad` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -128,8 +128,8 @@ CREATE TABLE `nacionalidades` (
 --
 
 INSERT INTO `nacionalidades` (`id_nacionalidad`, `nacionalidad`) VALUES
-(null, 'Venezuela'),
-(null, 'Extranjero');
+(1, 'Venezuela'),
+(2, 'Extranjero');
 
 -- --------------------------------------------------------
 
@@ -138,7 +138,7 @@ INSERT INTO `nacionalidades` (`id_nacionalidad`, `nacionalidad`) VALUES
 --
 
 CREATE TABLE `options` (
-  `id_obtions` int(11) NOT NULL AUTO_INCREMENT,
+  `id_obtions` int(11) NOT NULL,
   `id_interfaz` int(11) NOT NULL,
   `id_persona` int(11) NOT NULL,
   `titulo` varchar(20) NOT NULL,
@@ -152,7 +152,7 @@ CREATE TABLE `options` (
 --
 
 CREATE TABLE `paises` (
-  `id_pais` int(11) NOT NULL AUTO_INCREMENT,
+  `id_pais` int(11) NOT NULL,
   `nombre_pais` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -163,7 +163,7 @@ CREATE TABLE `paises` (
 --
 
 CREATE TABLE `parroquias` (
-  `id_parroquia` int(11) NOT NULL AUTO_INCREMENT,
+  `id_parroquia` int(11) NOT NULL,
   `id_municipio` int(11) NOT NULL,
   `nombre_parroquia` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -175,7 +175,7 @@ CREATE TABLE `parroquias` (
 --
 
 CREATE TABLE `permisos` (
-  `id_permiso` int(11) NOT NULL AUTO_INCREMENT,
+  `id_permiso` int(11) NOT NULL,
   `nombre_permiso` varchar(50) NOT NULL,
   `descripcion_permiso` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -187,7 +187,7 @@ CREATE TABLE `permisos` (
 --
 
 CREATE TABLE `personas` (
-  `id_persona` int(20) NOT NULL AUTO_INCREMENT,
+  `id_persona` int(20) NOT NULL,
   `id_genero` int(20) NOT NULL,
   `id_rol` int(20) NOT NULL,
   `id_nacionalidad` int(20) NOT NULL,
@@ -214,7 +214,7 @@ CREATE TABLE `personas` (
 --
 
 CREATE TABLE `publicaciones` (
-  `id_publicacion` int(11) NOT NULL AUTO_INCREMENT,
+  `id_publicacion` int(11) NOT NULL,
   `id_persona` int(11) NOT NULL,
   `descripcion_publicacion` varchar(200) NOT NULL,
   `fecha` date NOT NULL,
@@ -228,7 +228,7 @@ CREATE TABLE `publicaciones` (
 --
 
 CREATE TABLE `roles` (
-  `id_rol` int(11) NOT NULL AUTO_INCREMENT,
+  `id_rol` int(11) NOT NULL,
   `nombre_rol` varchar(50) NOT NULL,
   `estatus` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -238,9 +238,9 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id_rol`, `nombre_rol`, `estatus`) VALUES
-(null, 'Administrador', 1),
-(null, 'Usuario', 1),
-(null, 'Invitado', 1);
+(1, 'Administrador', 1),
+(2, 'Usuario', 1),
+(3, 'Invitado', 1);
 
 --
 -- Índices para tablas volcadas
