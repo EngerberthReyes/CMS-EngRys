@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 01-06-2024 a las 07:54:30
+-- Tiempo de generación: 02-06-2024 a las 23:08:10
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -28,7 +28,7 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `asignaciones_roles_permisos` (
-  `id_asignacion_rol_permiso` int(11) NOT NULL,
+  `id_asignacion_rol_permiso` int(11) NOT NULL AUTO_INCREMENT,
   `id_rol` int(11) NOT NULL,
   `id_permiso` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -40,18 +40,11 @@ CREATE TABLE `asignaciones_roles_permisos` (
 --
 
 CREATE TABLE `codigos_postales` (
-  `id_codigo_postal` int(11) NOT NULL,
+  `id_codigo_postal` int(11) NOT NULL AUTO_INCREMENT,
   `id_parroquia` int(11) NOT NULL,
   `numero_codigo_postal` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Volcado de datos para la tabla `codigos_postales`
---
-
-INSERT INTO `codigos_postales` (`id_codigo_postal`, `id_parroquia`, `numero_codigo_postal`) VALUES
-(1, 1, 5001),
-(2, 2, 5001);
 
 -- --------------------------------------------------------
 
@@ -60,17 +53,10 @@ INSERT INTO `codigos_postales` (`id_codigo_postal`, `id_parroquia`, `numero_codi
 --
 
 CREATE TABLE `direcciones` (
-  `id_direccion` int(11) NOT NULL,
+  `id_direccion` int(11) NOT NULL AUTO_INCREMENT,
   `id_codigo_postal` int(11) NOT NULL,
   `direccion_completa` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Volcado de datos para la tabla `direcciones`
---
-
-INSERT INTO `direcciones` (`id_direccion`, `id_codigo_postal`, `direccion_completa`) VALUES
-(1, 2, '334');
 
 -- --------------------------------------------------------
 
@@ -79,18 +65,10 @@ INSERT INTO `direcciones` (`id_direccion`, `id_codigo_postal`, `direccion_comple
 --
 
 CREATE TABLE `estados` (
-  `id_estado` int(11) NOT NULL,
+  `id_estado` int(11) NOT NULL AUTO_INCREMENT,
   `id_pais` int(11) NOT NULL,
   `nombre_estado` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Volcado de datos para la tabla `estados`
---
-
-INSERT INTO `estados` (`id_estado`, `id_pais`, `nombre_estado`) VALUES
-(1, 1, 'Bolívar'),
-(2, 2, 'Bolívar');
 
 -- --------------------------------------------------------
 
@@ -99,7 +77,7 @@ INSERT INTO `estados` (`id_estado`, `id_pais`, `nombre_estado`) VALUES
 --
 
 CREATE TABLE `generos` (
-  `id_genero` int(11) NOT NULL,
+  `id_genero` int(11) NOT NULL AUTO_INCREMENT,
   `tipo_genero` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -118,7 +96,7 @@ INSERT INTO `generos` (`id_genero`, `tipo_genero`) VALUES
 --
 
 CREATE TABLE `interfaces` (
-  `id_interfaz` int(11) NOT NULL,
+  `id_interfaz` int(11) NOT NULL AUTO_INCREMENT,
   `nombre_interfaz` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -129,18 +107,10 @@ CREATE TABLE `interfaces` (
 --
 
 CREATE TABLE `municipios` (
-  `id_municipio` int(11) NOT NULL,
+  `id_municipio` int(11) NOT NULL AUTO_INCREMENT,
   `id_estado` int(11) NOT NULL,
   `nombre_municipio` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Volcado de datos para la tabla `municipios`
---
-
-INSERT INTO `municipios` (`id_municipio`, `id_estado`, `nombre_municipio`) VALUES
-(1, 1, 'Uribante'),
-(2, 2, 'Uribante');
 
 -- --------------------------------------------------------
 
@@ -149,7 +119,7 @@ INSERT INTO `municipios` (`id_municipio`, `id_estado`, `nombre_municipio`) VALUE
 --
 
 CREATE TABLE `nacionalidades` (
-  `id_nacionalidad` int(11) NOT NULL,
+  `id_nacionalidad` int(11) NOT NULL AUTO_INCREMENT,
   `nacionalidad` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
@@ -168,7 +138,7 @@ INSERT INTO `nacionalidades` (`id_nacionalidad`, `nacionalidad`) VALUES
 --
 
 CREATE TABLE `options` (
-  `id_obtions` int(11) NOT NULL,
+  `id_obtions` int(11) NOT NULL AUTO_INCREMENT,
   `id_interfaz` int(11) NOT NULL,
   `id_persona` int(11) NOT NULL,
   `titulo` varchar(20) NOT NULL,
@@ -182,17 +152,9 @@ CREATE TABLE `options` (
 --
 
 CREATE TABLE `paises` (
-  `id_pais` int(11) NOT NULL,
+  `id_pais` int(11) NOT NULL AUTO_INCREMENT,
   `nombre_pais` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Volcado de datos para la tabla `paises`
---
-
-INSERT INTO `paises` (`id_pais`, `nombre_pais`) VALUES
-(1, 'Venezuela'),
-(2, 'Venezuela');
 
 -- --------------------------------------------------------
 
@@ -201,18 +163,10 @@ INSERT INTO `paises` (`id_pais`, `nombre_pais`) VALUES
 --
 
 CREATE TABLE `parroquias` (
-  `id_parroquia` int(11) NOT NULL,
+  `id_parroquia` int(11) NOT NULL AUTO_INCREMENT,
   `id_municipio` int(11) NOT NULL,
   `nombre_parroquia` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Volcado de datos para la tabla `parroquias`
---
-
-INSERT INTO `parroquias` (`id_parroquia`, `id_municipio`, `nombre_parroquia`) VALUES
-(1, 1, 'Victorino'),
-(2, 2, 'Victorino');
 
 -- --------------------------------------------------------
 
@@ -221,7 +175,7 @@ INSERT INTO `parroquias` (`id_parroquia`, `id_municipio`, `nombre_parroquia`) VA
 --
 
 CREATE TABLE `permisos` (
-  `id_permiso` int(11) NOT NULL,
+  `id_permiso` int(11) NOT NULL AUTO_INCREMENT,
   `nombre_permiso` varchar(50) NOT NULL,
   `descripcion_permiso` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -233,22 +187,24 @@ CREATE TABLE `permisos` (
 --
 
 CREATE TABLE `personas` (
-  `id_persona` int(11) NOT NULL,
-  `id_genero` int(11) NOT NULL,
-  `id_rol` int(11) NOT NULL,
-  `id_nacionalidad` int(11) NOT NULL,
-  `id_direccion` int(11) NOT NULL,
-  `nombre` varchar(100) NOT NULL,
-  `apellido` varchar(100) NOT NULL,
-  `cedula` int(11) NOT NULL,
-  `correo_electronico` varchar(50) NOT NULL,
-  `clave` varchar(50) NOT NULL,
-  `facebook` varchar(100) NOT NULL,
-  `instagram` varchar(100) NOT NULL,
-  `x` varchar(100) NOT NULL,
-  `tiktok` varchar(100) NOT NULL,
-  `url_pagina` varchar(45) NOT NULL,
-  `img_pagina` varchar(45) NOT NULL
+  `id_persona` int(20) NOT NULL AUTO_INCREMENT,
+  `id_genero` int(20) NOT NULL,
+  `id_rol` int(20) NOT NULL,
+  `id_nacionalidad` int(20) NOT NULL,
+  `id_direccion` int(20) NOT NULL,
+  `nombre` varchar(200) NOT NULL,
+  `apellido` varchar(200) NOT NULL,
+  `cedula` int(20) NOT NULL,
+  `fecha_nacimiento` date NOT NULL,
+  `correo_electronico` varchar(100) NOT NULL,
+  `clave` varchar(200) NOT NULL,
+  `facebook` varchar(200) DEFAULT NULL,
+  `instagram` varchar(200) DEFAULT NULL,
+  `x` varchar(200) DEFAULT NULL,
+  `tiktok` varchar(200) DEFAULT NULL,
+  `sitio_web` varchar(200) DEFAULT NULL,
+  `url_pagina` varchar(200) DEFAULT NULL,
+  `img_pagina` varchar(200) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
@@ -258,7 +214,7 @@ CREATE TABLE `personas` (
 --
 
 CREATE TABLE `publicaciones` (
-  `id_publicacion` int(11) NOT NULL,
+  `id_publicacion` int(11) NOT NULL AUTO_INCREMENT,
   `id_persona` int(11) NOT NULL,
   `descripcion_publicacion` varchar(200) NOT NULL,
   `fecha` date NOT NULL,
@@ -272,7 +228,7 @@ CREATE TABLE `publicaciones` (
 --
 
 CREATE TABLE `roles` (
-  `id_rol` int(11) NOT NULL,
+  `id_rol` int(11) NOT NULL AUTO_INCREMENT,
   `nombre_rol` varchar(50) NOT NULL,
   `estatus` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
@@ -282,8 +238,9 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id_rol`, `nombre_rol`, `estatus`) VALUES
-(1, 'Administrador', 1),
-(2, 'Usuario', 1);
+(null, 'Administrador', 1),
+(null, 'Usuario', 1),
+(null, 'Invitado', 1);
 
 --
 -- Índices para tablas volcadas
@@ -376,6 +333,7 @@ ALTER TABLE `permisos`
 ALTER TABLE `personas`
   ADD PRIMARY KEY (`id_persona`),
   ADD UNIQUE KEY `cedula_UNIQUE` (`cedula`),
+  ADD UNIQUE KEY `correo_electronico` (`correo_electronico`),
   ADD KEY `fk_personas_generos_idx` (`id_genero`),
   ADD KEY `fk_personas_roles1_idx` (`id_rol`),
   ADD KEY `fk_personas_nacionalidades1_idx` (`id_nacionalidad`),
@@ -393,100 +351,6 @@ ALTER TABLE `publicaciones`
 --
 ALTER TABLE `roles`
   ADD PRIMARY KEY (`id_rol`);
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `asignaciones_roles_permisos`
---
-ALTER TABLE `asignaciones_roles_permisos`
-  MODIFY `id_asignacion_rol_permiso` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `codigos_postales`
---
-ALTER TABLE `codigos_postales`
-  MODIFY `id_codigo_postal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de la tabla `direcciones`
---
-ALTER TABLE `direcciones`
-  MODIFY `id_direccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT de la tabla `estados`
---
-ALTER TABLE `estados`
-  MODIFY `id_estado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de la tabla `generos`
---
-ALTER TABLE `generos`
-  MODIFY `id_genero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de la tabla `interfaces`
---
-ALTER TABLE `interfaces`
-  MODIFY `id_interfaz` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `municipios`
---
-ALTER TABLE `municipios`
-  MODIFY `id_municipio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de la tabla `nacionalidades`
---
-ALTER TABLE `nacionalidades`
-  MODIFY `id_nacionalidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de la tabla `options`
---
-ALTER TABLE `options`
-  MODIFY `id_obtions` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `paises`
---
-ALTER TABLE `paises`
-  MODIFY `id_pais` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de la tabla `parroquias`
---
-ALTER TABLE `parroquias`
-  MODIFY `id_parroquia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
-
---
--- AUTO_INCREMENT de la tabla `permisos`
---
-ALTER TABLE `permisos`
-  MODIFY `id_permiso` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `personas`
---
-ALTER TABLE `personas`
-  MODIFY `id_persona` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `publicaciones`
---
-ALTER TABLE `publicaciones`
-  MODIFY `id_publicacion` int(11) NOT NULL AUTO_INCREMENT;
-
---
--- AUTO_INCREMENT de la tabla `roles`
---
-ALTER TABLE `roles`
-  MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Restricciones para tablas volcadas
