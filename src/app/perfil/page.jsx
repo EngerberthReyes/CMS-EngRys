@@ -72,19 +72,19 @@ const Perfil = () => {
       consultaModoOscuro.removeEventListener("change", manejarCambioDeTema);
     };
   }, []);
-  
+
   const obtenerPerfil = async () => {
     try {
       const respuesta = await axios.get("../API/perfil");
 
-      console.log(respuesta)
-    } catch(error) {
-      console.log(error)
+      console.log(respuesta);
+    } catch (error) {
+      console.log(error);
     }
-
   };
-
-  obtenerPerfil();
+  useEffect(() => {
+    obtenerPerfil();
+  }, []);
 
   const enviarComentarioTecla = (event) => {
     if (event.key === "Enter" && !event.shiftKey) {

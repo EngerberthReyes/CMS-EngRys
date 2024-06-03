@@ -1,21 +1,27 @@
-import { cmsConexion, informacionPais as venezuela } from "@/db/database.js";
-import { NextResponse } from "next/server";
 import { verify } from "jsonwebtoken";
+import { NextResponse } from "next/server";
 
-export const GET = async (request) => {
+export const GET = (request) => {
   try {
-    const { token } = await request.cookies;
-    const user = verify(token, "secret");
+    // Obtener las cookies de la solicit
 
-    console.log(user);
+    const cookieValue = request.cookies.get("cookieInformacion").value;
 
-    return NextResponse.json({ user })
+    console.log(cookieValue);
 
+    // Verificar si la cookie 'cookieInformacion' está presente
+    if (!cookieValue) {
+      throw new Error("Cookie 'cookieInformacion' not found in cookies");
+    }
 
-    console.log(request.cookies);
+    // Verificar el token JWT
+    const sesionUsuario = verify(cookieValue, "secret");
+    console.log(sesionUsuario);
+
+    // Responder con los datos del usuario
+    return NextResponse.json({ sesionUsuario });
   } catch (error) {
-    console.log(error);
+    console.error(error);
+    return NextResponse.json({ error: error.message }, { status: 401 });
   }
 };
-
-export const POST = async (request, res) => {};
