@@ -3,9 +3,10 @@ import { jwtVerify } from "jose";
 
 export const middleware = async (request) => {
   try {
-    const cookieValor = request.cookies.get("cookieInformacion");
     if (request.nextUrl.pathname.includes("/perfil")) {
-      if (cookieValor === undefined) {
+      const cookieValor = request.cookies.get("cookieInformacion")?.value;
+
+      if (!cookieValor || typeof cookieValor !== "string") {
         return NextResponse.redirect(new URL("/iniciar_sesion", request.url));
       }
 
