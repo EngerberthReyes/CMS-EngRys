@@ -76,20 +76,23 @@ const Perfil = () => {
       consultaModoOscuro.removeEventListener("change", manejarCambioDeTema);
     };
   }, []);
+  const [perfilCerrado, setPerfilCerrado] = useState(false);
 
   const obtenerPerfil = async () => {
+    if (perfilCerrado) {
+      return;
+    }
+
     try {
       const respuesta = await axios.get("../API/perfil");
-
       console.log(respuesta);
-
       const usuarioActivo = respuesta.data.sesionUsuario;
-
       setUsuario(usuarioActivo);
     } catch (error) {
       console.log(error);
     }
   };
+
   useEffect(() => {
     obtenerPerfil();
   }, []);
@@ -97,6 +100,7 @@ const Perfil = () => {
   const cerrarPerfil = async () => {
     try {
       const respuesta = await axios.get("../API/cerrarPerfil");
+      setPerfilCerrado(true); // Indicar que el perfil ha sido cerrado
     } catch (error) {
       console.log(error);
     } finally {
