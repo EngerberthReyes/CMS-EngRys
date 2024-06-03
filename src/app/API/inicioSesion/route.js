@@ -73,28 +73,29 @@ export const POST = async (request, res) => {
     }
 
     // Assuming nombreUsuario and correo are defined somewhere above this code
-    console.log(respuestaUsuario);
-    const nombreUsuarioVerificado = resultadoFiltrado[0].nombre;
-    const correoElectronicoVerificado = resultadoFiltrado[0].correo_electronico;
+    console.log(respuestaUsuario)
+    const nombreUsuario = resultadoFiltrado[0].nombre;
+    const correoElectronico = resultadoFiltrado[0].correo_electronico;
 
-    console.log(nombreUsuario, correoElectronicoPasado);
+
+    console.log(nombreUsuario, correoElectronico)
 
     const token = jwt.sign(
       {
         exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 31,
-        nombreDeUsuario: nombreUsuarioVerificado,
-        correoElectronicoDeUsuario: correoElectronicoVerificado,
+        nombreDeUsuario: nombreUsuario,
+        correoElectronicoDeUsuario: correoElectronico,
       },
       "secret"
     );
 
-    const serialized = serialize("cookieInformacion", token, {
+    const serialized = serialize('cookieInformacion', token, {
       httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      sameSite: "strict",
+      secure: process.env.NODE_ENV === 'production',
+      sameSite: 'strict',
       maxAge: 1000 * 60 * 24 * 30,
-      path: "/",
-    });
+      path: '/'
+    })
 
     // Create a NextResponse instance with the cookie and JSON body
     const response = new NextResponse(JSON.stringify({ respuestaUsuario }), {

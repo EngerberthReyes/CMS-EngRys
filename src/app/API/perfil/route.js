@@ -9,6 +9,7 @@ export const GET = async (request) => {
 
     console.log(user);
 
+
     console.log(request.cookies);
   } catch (error) {
     console.log(error);
