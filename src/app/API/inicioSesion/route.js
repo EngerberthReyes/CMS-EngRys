@@ -3,6 +3,7 @@ import { NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
 import { serialize } from "cookie";
 import axios from "axios";
+import { NormalizeError } from "next/dist/shared/lib/utils";
 
 export const GET = async () => {
   try {
@@ -72,21 +73,28 @@ export const POST = async (request, res) => {
     }
 
     // Assuming nombreUsuario and correo are defined somewhere above this code
-    const nombreUsuario = resultadoFiltrado.nombre;
-    const correoElectronico = resultadoFiltrado.correo_electronico;
+    console.log(respuestaUsuario);
+    const nombreUsuarioVerificado = resultadoFiltrado[0].nombre;
+    const correoElectronicoVerificado = resultadoFiltrado[0].correo_electronico;
 
-    const cookie = jwt.sign(
+    console.log(nombreUsuario, correoElectronicoPasado);
+
+    const token = jwt.sign(
       {
         exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 31,
-        nombreDeUsuario: nombreUsuario,
-        correoElectronicoDeUsuario: correoElectronico,
+        nombreDeUsuario: nombreUsuarioVerificado,
+        correoElectronicoDeUsuario: correoElectronicoVerificado,
       },
       "secret"
     );
 
-    const serialized = `CookieInformacion=${cookie}; HttpOnly; Secure=${
-      process.env.NODE_ENV === "production"
-    }; SameSite=None; Max-Age=1000*60*60*25*31; Path=/`;
+    const serialized = serialize("cookieInformacion", token, {
+      httpOnly: true,
+      secure: process.env.NODE_ENV === "production",
+      sameSite: "strict",
+      maxAge: 1000 * 60 * 24 * 30,
+      path: "/",
+    });
 
     // Create a NextResponse instance with the cookie and JSON body
     const response = new NextResponse(JSON.stringify({ respuestaUsuario }), {
