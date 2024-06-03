@@ -23,7 +23,8 @@ const Perfil = () => {
   const [temaActual, setTemaActual] = useState();
   const [nombreImagen, setNombreImagen] = useState();
   const [imagen, setImagen] = useState();
-
+  const [usuario, setUsuario] = useState();
+  console.log(usuario);
   console.log(post);
 
   const agregarImagen = (event) => {
@@ -77,7 +78,9 @@ const Perfil = () => {
     try {
       const respuesta = await axios.get("../API/perfil");
 
-      console.log(respuesta);
+      const usuarioActivo = respuesta.data.sesionUsuario;
+
+      setUsuario(usuarioActivo);
     } catch (error) {
       console.log(error);
     }
@@ -118,12 +121,21 @@ const Perfil = () => {
             </Link>
           </section>
           <section className={stylesPerfil.seccionEnlace}>
-            <Link className={stylesPerfil.enlace} href="/iniciar_sesion">
-              Iniciar Sesión
-            </Link>
-            <Link className={stylesPerfil.enlace} href="/registro">
-              Registrarse
-            </Link>
+            {usuario ? (
+              <Link className={stylesPerfil.enlace} href="/perfil">
+                {usuario.nombreDeUsuario}
+                {usuario.correoElectronicoDeUsuario}
+              </Link>
+            ) : (
+              <>
+                <Link className={stylesPerfil.enlace} href="/iniciar_sesion">
+                  Iniciar Sesión
+                </Link>
+                <Link className={stylesPerfil.enlace} href="/registro">
+                  Registrarse
+                </Link>
+              </>
+            )}
           </section>
         </header>
         <main>
