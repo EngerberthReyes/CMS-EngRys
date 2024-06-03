@@ -252,7 +252,7 @@ const Registro = () => {
         clave,
         repetirClave,
       });
-      enrutadorMaster.push("../");
+      enrutadorMaster.push("../iniciar_sesion");
       console.log(repuesta);
     } catch (error) {
       console.log(error);
