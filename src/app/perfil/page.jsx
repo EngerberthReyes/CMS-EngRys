@@ -78,6 +78,8 @@ const Perfil = () => {
     try {
       const respuesta = await axios.get("../API/perfil");
 
+      console.log(respuesta);
+
       const usuarioActivo = respuesta.data.sesionUsuario;
 
       setUsuario(usuarioActivo);
@@ -87,7 +89,9 @@ const Perfil = () => {
   };
   useEffect(() => {
     obtenerPerfil();
-  }, []);
+  }, [usuario]);
+
+  const cerrarPerfil = async () => {};
 
   const enviarComentarioTecla = (event) => {
     if (event.key === "Enter" && !event.shiftKey) {
@@ -214,7 +218,7 @@ const Perfil = () => {
                   <section className={stylesPerfil.seccionPerfilIzquierdo}>
                     <h1>Tu Nombre:</h1>
                     <section>
-                      <h1>{usuario.nombreDeUsuario}</h1>
+                      {usuario && <h1>{usuario.nombreDeUsuario}</h1>}
                     </section>
                   </section>
                   <section className={stylesPerfil.seccionPerfilIzquierdo}>
@@ -230,7 +234,9 @@ const Perfil = () => {
               <section className={stylesPerfil.seccionAjustes}>
                 <h1>Informacion Personal</h1>
                 <section className={stylesPerfil.seccionFlex}>
-                  <section><h1>{usuario.correoElectronicoDeUsuario}</h1></section>
+                  <section>
+                    {usuario && <h1>{usuario.correoElectronicoDeUsuario}</h1>}
+                  </section>
                   <section>Cajas2</section>
                   <section>Cajas2</section>
                   <section>Cajas2</section>
