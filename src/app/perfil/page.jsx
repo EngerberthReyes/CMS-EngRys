@@ -7,6 +7,7 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import stylesPerfil from "../CSS/styles-perfil.module.css";
+import { useRouter } from "next/navigation";
 
 const Perfil = () => {
   const {
@@ -18,6 +19,8 @@ const Perfil = () => {
   } = useForm({
     mode: "onChange",
   });
+
+  const enrutadorMaster = useRouter();
 
   const [post, setPost] = useState([]);
   const [temaActual, setTemaActual] = useState();
@@ -95,11 +98,7 @@ const Perfil = () => {
     try {
       const respuesta = await axios.get("../API/cerrarPerfil");
 
-      console.log(respuesta);
-
-      const usuarioActivo = respuesta.data.sesionUsuario;
-
-      setUsuario(usuarioActivo);
+      enrutadorMaster.push("/");
     } catch (error) {
       console.log(error);
     }
