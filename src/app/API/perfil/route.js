@@ -11,7 +11,7 @@ export const GET = (request) => {
 
     // Verificar si la cookie 'cookieInformacion' está presente
     if (!cookieValue) {
-      throw new Error("Cookie 'cookieInformacion' not found in cookies");
+      throw new Error("No se Encontro la Cookie");
     }
 
     // Verificar el token JWT
