@@ -1,4 +1,5 @@
 import { NextResponse } from "next/server";
+import { verify } from "jsonwebtoken";
 
 export const middleware = (request) => {
   const cookieValor = request.cookies.get("cookieInformacion");
