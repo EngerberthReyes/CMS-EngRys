@@ -9,7 +9,12 @@ export const middleware = async (request) => {
         return NextResponse.redirect(new URL("/iniciar_sesion", request.url));
       }
 
-      const { payload } = await jwtVerify(cookieValor, "secret");
+      const { payload } = await jwtVerify(
+        cookieValor,
+        new TextEncoder().encode("secret")
+      );
+
+      return NextResponse.next();
     }
   } catch (error) {
     console.log(error);
