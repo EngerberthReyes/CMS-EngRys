@@ -540,7 +540,7 @@ const Registro = () => {
                 className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-2 mt-0`}
                 {...register("pais", { required: "Seleccione un país" })}
               >
-                <option value="">Seleccione un país</option>
+                <option value="">Seleccione un País</option>
                 <option value="Venezuela">Venezuela</option>
               </select>
               {errors.pais && (
