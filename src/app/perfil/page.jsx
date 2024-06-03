@@ -122,9 +122,12 @@ const Perfil = () => {
           </section>
           <section className={stylesPerfil.seccionEnlace}>
             {usuario ? (
-              <Link className={stylesPerfil.enlace} href="/perfil">
-                {usuario.nombreDeUsuario}
-                {usuario.correoElectronicoDeUsuario}
+              <Link
+                className={`${stylesPerfil.enlace} ${stylesPerfil.usuarioPerfil}`}
+                href="/perfil"
+              >
+                <section>{usuario.nombreDeUsuario}</section>
+                <section>{usuario.correoElectronicoDeUsuario}</section>
               </Link>
             ) : (
               <>
@@ -211,13 +214,13 @@ const Perfil = () => {
                   <section className={stylesPerfil.seccionPerfilIzquierdo}>
                     <h1>Tu Nombre:</h1>
                     <section>
-                      <p>{"NAME"}</p>
+                      <h1>{usuario.nombreDeUsuario}</h1>
                     </section>
                   </section>
                   <section className={stylesPerfil.seccionPerfilIzquierdo}>
                     <h1>Sobre Mi:</h1>
                     <section>
-                      <p>{"Texto Sobre Mi"}</p>
+                      <h2>{"Texto Sobre Mi"}</h2>
                     </section>
                   </section>
                 </section>
@@ -227,7 +230,7 @@ const Perfil = () => {
               <section className={stylesPerfil.seccionAjustes}>
                 <h1>Informacion Personal</h1>
                 <section className={stylesPerfil.seccionFlex}>
-                  <section>Cajas2</section>
+                  <section><h1>{usuario.correoElectronicoDeUsuario}</h1></section>
                   <section>Cajas2</section>
                   <section>Cajas2</section>
                   <section>Cajas2</section>
