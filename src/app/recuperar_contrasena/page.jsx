@@ -247,7 +247,7 @@ const recuperarClave = () => {
                   Volver Atras
                 </button>
                 <button className={`${stylesClave.boton} rounded-2`}>
-                  Recuperar Contraseña
+                  Verificar Código
                 </button>
               </section>
             </>
