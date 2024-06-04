@@ -29,6 +29,7 @@ export async function POST(req) {
         clientSecret: process.env.OAUTH_CLIENT_SECRET,
         refreshToken: process.env.OAUTH_REFRESH_TOKEN, //Hay que Irlo Actualizando
         accessToken: process.env.OAUTH_ACCESS_TOKEN, // Hay que Irlo Actualizando
+        expires: 239274892394728374982734,
       },
     });
 
