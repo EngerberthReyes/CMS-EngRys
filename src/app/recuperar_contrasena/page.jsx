@@ -54,10 +54,12 @@ const recuperarClave = () => {
     try {
       const correoElectronico = dato.correo;
       console.log(correoElectronico);
-      const respuesta = await axios.post("/API/sendemail", {
+      const respuesta = await axios.post("../API/auth", {
         codigo,
         correoElectronico,
       });
+
+      console.log(respuesta)
 
       if (respuesta.status < 200 || respuesta.status >= 300) {
         throw new Error("Error en la solicitud");
