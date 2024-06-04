@@ -178,7 +178,7 @@ const recuperarClave = () => {
               {correoNoValido && (
                 <section className={stylesClave.seccionError}>
                   <p className={stylesClave.errorInput}>
-                    El Correo No Esta Registrado
+                    El Introducido Correo Electrónico No Esta Registrado
                   </p>
                 </section>
               )}
@@ -247,7 +247,7 @@ const recuperarClave = () => {
                   Volver Atras
                 </button>
                 <button className={`${stylesClave.boton} rounded-2`}>
-                  Enviar Codigo de Verificación
+                  Recuperar Contraseña
                 </button>
               </section>
             </>
