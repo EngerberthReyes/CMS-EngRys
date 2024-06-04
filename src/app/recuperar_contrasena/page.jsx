@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
+import { Notificacion } from "@/componentes/notificaciones/notificaciones.jsx";
 import stylesClave from "../CSS/styles-recuperarContrasena.module.css";
 import { useForm } from "react-hook-form";
 import axios from "axios";
@@ -18,6 +19,8 @@ const recuperarClave = () => {
   });
 
   const [temaActual, setTemaActual] = useState();
+  const [mensajeCorreoAceAceptado, setMensajeCorreoAceptado] = useState(false);
+  const [pasoFormulario, setPasoFormulario] = useState(1);
 
   const manejarCambioDeTema = (event) => {
     const modoOscuro = event.matches;
@@ -58,14 +61,19 @@ const recuperarClave = () => {
         codigo,
         correoElectronico,
       });
+      console.log(respuesta);
 
-      console.log(respuesta)
-
+      const datos = respuesta.data;
+      console.log(datos);
+      if (!datos) {
+        return "f";
+      }
+      setPasoFormulario(pasoFormulario + 1);
+      setMensajeCorreoAceptado(true);
       if (respuesta.status < 200 || respuesta.status >= 300) {
         throw new Error("Error en la solicitud");
       }
 
-      const datos = respuesta.data;
       console.log(datos);
     } catch (error) {
       console.error("Error:", error);
@@ -88,44 +96,87 @@ const recuperarClave = () => {
           className={stylesClave.contenedor_form}
           onSubmit={handleSubmit(enviarDatos)}
         >
-          <h1 className={stylesClave.titulo_form}>Recuperar Contraseña</h1>
-          <label htmlFor="correo" className={stylesClave.label}>
-            Correo Electrónico
-          </label>
-          <input
-            id="correo"
-            className={`${stylesClave.input_texto} rounded-2`}
-            type="email"
-            {...register("correo", {
-              required: "Introduzca su Correo Electrónico",
-              pattern: {
-                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                message: "Formato de Correo Electrónico Inválido",
-              },
-            })}
-          />
-          {errors.correo && (
-            <section className={stylesClave.seccionError}>
-              <p className={stylesClave.errorInput}>{errors.correo.message}</p>
-            </section>
+          {pasoFormulario === 1 && (
+            <>
+              <h1 className={stylesClave.titulo_form}>Recuperar Contraseña</h1>
+              <label htmlFor="correo" className={stylesClave.label}>
+                Correo Electrónico
+              </label>
+              <input
+                id="correo"
+                className={`${stylesClave.input_texto} rounded-2`}
+                type="email"
+                {...register("correo", {
+                  required: "Introduzca su Correo Electrónico",
+                  pattern: {
+                    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                    message: "Formato de Correo Electrónico Inválido",
+                  },
+                })}
+              />
+              <section className={stylesClave.contenedor_passoword_perdida}>
+                <Link className={stylesClave.link_password} href="../registro">
+                  ¿Aun no tienes una cuenta?
+                </Link>
+                <Link
+                  className={stylesClave.link_password}
+                  href="../iniciar_sesion"
+                >
+                  ¿Ya tienes una cuenta?
+                </Link>
+              </section>
+              <button
+                disabled={!isValid}
+                className={`${stylesClave.boton} rounded-2`}
+              >
+                Enviar Codigo de Verificación
+              </button>
+              {errors.correo && (
+                <section className={stylesClave.seccionError}>
+                  <p className={stylesClave.errorInput}>
+                    {errors.correo.message}
+                  </p>
+                </section>
+              )}
+            </>
           )}
-          <section className={stylesClave.contenedor_passoword_perdida}>
-            <Link className={stylesClave.link_password} href="../registro">
-              ¿Aun no tienes una cuenta?
-            </Link>
-            <Link
-              className={stylesClave.link_password}
-              href="../iniciar_sesion"
-            >
-              ¿Ya tienes una cuenta?
-            </Link>
-          </section>
-          <button
-            disabled={!isValid}
-            className={`${stylesClave.boton} rounded-2`}
-          >
-            Enviar Codigo de Verificación
-          </button>
+          {mensajeCorreoAceAceptado && <Notificacion />}
+          {pasoFormulario === 2 && (
+            <>
+              <h1 className={stylesClave.titulo_form}>
+                EL Correo Ha Sido Enviado
+              </h1>
+              <label htmlFor="correo" className={stylesClave.label}>
+                Introduzca el Codigo de su Correo
+              </label>
+              <input
+                id="correo"
+                className={`${stylesClave.input_texto} rounded-2`}
+                type="text"
+                {...register("codigoEnviado", {
+                  required:
+                    "Introduzca el Codigo Enviado Ha Su Correo Electrónico",
+                  pattern: {
+                    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
+                    message: "Formato de Correo Electrónico Inválido",
+                  },
+                })}
+              />
+              <button
+                disabled={!isValid}
+                className={`${stylesClave.boton} rounded-2`}
+              >
+                Enviar Codigo de Verificación
+              </button>
+              {errors.correo && (
+                <section className={stylesClave.seccionError}>
+                  <p className={stylesClave.errorInput}>
+                    {errors.correo.message}
+                  </p>
+                </section>
+              )}
+            </>
+          )}
         </form>
       </body>
     </>
