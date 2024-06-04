@@ -28,8 +28,6 @@ const recuperarClave = () => {
   const [codigoEnviado, setCodigoEnviado] = useState();
   const [correoNoValido, setCorreoNoValido] = useState(false);
 
-  console.log(correoNoValido);
-
   if (correoNoValido) {
     setTimeout(() => {
       setCorreoNoValido(false);
