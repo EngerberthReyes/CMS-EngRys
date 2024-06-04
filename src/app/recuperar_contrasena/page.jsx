@@ -7,6 +7,7 @@ import { Notificacion } from "@/componentes/notificaciones/notificaciones.jsx";
 import stylesClave from "../CSS/styles-recuperarContrasena.module.css";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 
 const recuperarClave = () => {
   const {
@@ -18,10 +19,14 @@ const recuperarClave = () => {
     mode: "onChange",
   });
 
+  const enrutadorMaster = useRouter();
+
   const [temaActual, setTemaActual] = useState();
   const [mensajeCorreoAceAceptado, setMensajeCorreoAceptado] = useState(false);
   const [pasoFormulario, setPasoFormulario] = useState(1);
   const [codigoEnviado, setCodigoEnviado] = useState();
+  const [minutos, setMinutos] = useState(2);
+  const [segundos, setSegundos] = useState(0);
 
   const manejarCambioDeTema = (event) => {
     const modoOscuro = event.matches;
@@ -57,9 +62,37 @@ const recuperarClave = () => {
     return codigo;
   };
 
+  useEffect(() => {
+    const intervalo = setInterval(() => {
+      if (segundos > 0) {
+        setSegundos((segundos) => segundos - 1);
+      } else if (segundos === 0 && minutos > 0) {
+        setMinutos((minutos) => minutos - 1);
+        setSegundos(59);
+      } else if (minutos === 0 && segundos === 0) {
+        enrutadorMaster("/recuperar_contraseña");
+        setCodigoEnviado("");
+        clearInterval(intervalo);
+      }
+    }, 1000);
+
+    return () => clearInterval(intervalo);
+  }, [minutos, segundos, codigoEnviado]);
+
+  const formatearSegundos = (segundos) => {
+    return segundos < 10 ? `0${segundos}` : segundos.toString();
+  };
+
+  const formatearMinutos = (minutos) => {
+    return minutos < 10 ? `0${minutos}` : minutos.toString();
+  };
+
   const enviarDatos = async (dato) => {
     const codigo = generarCodigoRandom(11);
     setCodigoEnviado(codigo);
+    setMinutos(2);
+    setSegundos(0);
+
     try {
       const correoElectronico = dato.correo;
       console.log(correoElectronico);
@@ -72,7 +105,7 @@ const recuperarClave = () => {
       const datos = respuesta.data;
       console.log(datos);
       if (!datos) {
-        return "f";
+        return;
       }
       setPasoFormulario(pasoFormulario + 1);
       setMensajeCorreoAceptado(true);
@@ -152,11 +185,20 @@ const recuperarClave = () => {
               <h1 className={stylesClave.titulo_form}>
                 EL Correo Ha Sido Enviado
               </h1>
-              <label htmlFor="correo" className={stylesClave.label}>
+              <label htmlFor="codigoEnviarInput" className={stylesClave.label}>
                 Introduzca el Codigo de su Correo
+                {pasoFormulario === 2 && codigoEnviado
+                  ? `, El Codigo Expirará en ${
+                      minutos > 0
+                        ? `${formatearMinutos(minutos)}:${formatearSegundos(
+                            segundos
+                          )}`
+                        : { algo }
+                    }`
+                  : setCodigoEnviado("")}
               </label>
               <input
-                id="correo"
+                id="codigoEnviarInput"
                 className={`${stylesClave.input_texto} rounded-2`}
                 type="text"
                 {...register("codigoEnviado", {
@@ -186,7 +228,7 @@ const recuperarClave = () => {
                   type="button"
                   onClick={() => retroceder()}
                 >
-                  Vovler Atras
+                  Volver Atras
                 </button>
                 <button className={`${stylesClave.boton} rounded-2`}>
                   Enviar Codigo de Verificación
