@@ -43,6 +43,10 @@ const recuperarClave = () => {
     };
   }, []);
 
+  const retroceder = () => {
+    setPasoFormulario(pasoFormulario - 1)
+  }
+
   const generarCodigoRandom = (longitud) => {
     const caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
     let codigo = "";
@@ -163,16 +167,29 @@ const recuperarClave = () => {
                     "El código Introducido es incorrecto",
                 })}
               />
-              <button
-                disabled={!isValid}
-                className={`${stylesClave.boton} rounded-2`}
+              <section
+                style={{
+                  display: "flex",
+                  width: "85%",
+                  gap: "1rem",
+                }}
               >
-                Confirmar el Codigo de Verificación
-              </button>
-              {errors.correo && (
+                <button className={`${stylesClave.boton} rounded-2`}
+                type="button"
+                onClick={() => retroceder()}>
+                  Vovler Atras
+                </button>
+                <button
+                  disabled={!isValid}
+                  className={`${stylesClave.boton} rounded-2`}
+                >
+                  Enviar Codigo de Verificación
+                </button>
+              </section>
+              {errors.codigoEnviado && (
                 <section className={stylesClave.seccionError}>
                   <p className={stylesClave.errorInput}>
-                    {errors.correo.message}
+                    {errors.codigoEnviado.message}
                   </p>
                 </section>
               )}
