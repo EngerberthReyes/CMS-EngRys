@@ -21,6 +21,7 @@ const recuperarClave = () => {
   const [temaActual, setTemaActual] = useState();
   const [mensajeCorreoAceAceptado, setMensajeCorreoAceptado] = useState(false);
   const [pasoFormulario, setPasoFormulario] = useState(1);
+  const [codigoEnviado, setCodigoEnviado] = useState();
 
   const manejarCambioDeTema = (event) => {
     const modoOscuro = event.matches;
@@ -54,6 +55,7 @@ const recuperarClave = () => {
 
   const enviarDatos = async (dato) => {
     const codigo = generarCodigoRandom(11);
+    setCodigoEnviado(codigo);
     try {
       const correoElectronico = dato.correo;
       console.log(correoElectronico);
@@ -155,18 +157,17 @@ const recuperarClave = () => {
                 type="text"
                 {...register("codigoEnviado", {
                   required:
-                    "Introduzca el Codigo Enviado Ha Su Correo Electrónico",
-                  pattern: {
-                    value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
-                    message: "Formato de Correo Electrónico Inválido",
-                  },
+                    "Introduzca el Codigo Enviado a Su Correo Electrónico",
+                  validate: (value) =>
+                    value === codigoEnviado ||
+                    "El código Introducido es incorrecto",
                 })}
               />
               <button
                 disabled={!isValid}
                 className={`${stylesClave.boton} rounded-2`}
               >
-                Enviar Codigo de Verificación
+                Confirmar el Codigo de Verificación
               </button>
               {errors.correo && (
                 <section className={stylesClave.seccionError}>
