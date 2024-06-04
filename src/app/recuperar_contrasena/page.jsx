@@ -70,7 +70,6 @@ const recuperarClave = () => {
       }, 1000);
       return () => clearInterval(intervalId);
     }
-    // Lógica para manejar el final del temporizador
     setCodigoEnviado("");
     enrutadorMaster.push("/iniciar_sesion");
   }, [timeLeft]);
