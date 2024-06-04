@@ -24,9 +24,8 @@ const recuperarClave = () => {
   const [temaActual, setTemaActual] = useState();
   const [mensajeCorreoAceAceptado, setMensajeCorreoAceptado] = useState(false);
   const [pasoFormulario, setPasoFormulario] = useState(1);
+  const [timeLeft, setTimeLeft] = useState(120);
   const [codigoEnviado, setCodigoEnviado] = useState();
-  const [minutos, setMinutos] = useState(2);
-  const [segundos, setSegundos] = useState(0);
 
   const manejarCambioDeTema = (event) => {
     const modoOscuro = event.matches;
@@ -50,6 +49,8 @@ const recuperarClave = () => {
 
   const retroceder = () => {
     setPasoFormulario(pasoFormulario - 1);
+    setCodigoEnviado("");
+    setTimeLeft(120);
   };
 
   const generarCodigoRandom = (longitud) => {
@@ -63,36 +64,40 @@ const recuperarClave = () => {
   };
 
   useEffect(() => {
-    const intervalo = setInterval(() => {
-      if (segundos > 0) {
-        setSegundos((segundos) => segundos - 1);
-      } else if (segundos === 0 && minutos > 0) {
-        setMinutos((minutos) => minutos - 1);
-        setSegundos(59);
-      } else if (minutos === 0 && segundos === 0) {
-        enrutadorMaster("/recuperar_contraseña");
-        setCodigoEnviado("");
-        clearInterval(intervalo);
-      }
-    }, 1000);
+    if (timeLeft > 0) {
+      const intervalId = setInterval(() => {
+        setTimeLeft((prevTimeLeft) => prevTimeLeft - 1);
+      }, 1000);
+      return () => clearInterval(intervalId);
+    }
+    // Lógica para manejar el final del temporizador
+    setCodigoEnviado("");
+    enrutadorMaster.push("/iniciar_sesion");
+  }, [timeLeft]);
 
-    return () => clearInterval(intervalo);
-  }, [minutos, segundos, codigoEnviado]);
-
-  const formatearSegundos = (segundos) => {
-    return segundos < 10 ? `0${segundos}` : segundos.toString();
+  const padNumber = (number) => {
+    return number < 10 ? `0${number}` : `${number}`;
   };
 
-  const formatearMinutos = (minutos) => {
-    return minutos < 10 ? `0${minutos}` : minutos.toString();
-  };
+  const minutes = Math.floor(timeLeft / 60);
+  const seconds = timeLeft % 60;
+
+  const formattedMinutes = padNumber(minutes);
+  const formattedSeconds = padNumber(seconds);
+
+  let displayText;
+  if (minutes === 0 && seconds === 0) {
+    displayText = "Tiempo agotado";
+  } else if (minutes > 0) {
+    displayText = `${formattedMinutes}:${formattedSeconds} Minutos Restantes`;
+  } else {
+    displayText = `${formattedSeconds} Segundos Restantes`;
+  }
 
   const enviarDatos = async (dato) => {
     const codigo = generarCodigoRandom(11);
     setCodigoEnviado(codigo);
-    setMinutos(2);
-    setSegundos(0);
-
+    setTimeLeft(120);
     try {
       const correoElectronico = dato.correo;
       console.log(correoElectronico);
@@ -107,6 +112,7 @@ const recuperarClave = () => {
       if (!datos) {
         return;
       }
+
       setPasoFormulario(pasoFormulario + 1);
       setMensajeCorreoAceptado(true);
       if (respuesta.status < 200 || respuesta.status >= 300) {
@@ -188,14 +194,8 @@ const recuperarClave = () => {
               <label htmlFor="codigoEnviarInput" className={stylesClave.label}>
                 Introduzca el Codigo de su Correo
                 {pasoFormulario === 2 && codigoEnviado
-                  ? `, El Codigo Expirará en ${
-                      minutos > 0
-                        ? `${formatearMinutos(minutos)}:${formatearSegundos(
-                            segundos
-                          )}`
-                        : { algo }
-                    }`
-                  : setCodigoEnviado("")}
+                  ? `, El Codigo Expirará en ${displayText}`
+                  : null}
               </label>
               <input
                 id="codigoEnviarInput"
