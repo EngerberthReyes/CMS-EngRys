@@ -10,8 +10,8 @@ export async function POST(req) {
       );
     }
 
-    const { correoElectronico, subject, text } = await req.json();
-
+    const { correoElectronico, codigo } = await req.json();
+    console.log(codigo);
     if (!correoElectronico) {
       return NextResponse.json(
         { message: "Falta el correo electrónico" },
@@ -36,8 +36,9 @@ export async function POST(req) {
     let optionsEmail = {
       from: process.env.MAIL_USERNAME,
       to: correoElectronico,
-      subject: subject || "Este es un Mensaje Para Kleiver",
-      text: text || "AE",
+      bcc: process.env.MAIL_USERNAME,
+      subject: "Recuperar Contraseña - EpíComputers",
+      text: `Este es un Mensaje de Recuperacion para su Contraseña: ${codigo}`,
     };
 
     // Enviar el correo electrónico
