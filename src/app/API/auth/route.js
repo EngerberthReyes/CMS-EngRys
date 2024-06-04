@@ -1,6 +1,20 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
+import { cmsConexion } from "@/db/database";
 
+export const GET = async () => {
+  try {
+    const { correo, clave } = await request.json();
+    console.log(correo, clave);
+  } catch (error) {
+    NextResponse.json(
+      {
+        error: error,
+      },
+      { status: 500 }
+    );
+  }
+};
 export async function POST(req) {
   try {
     if (req.method !== "POST") {
@@ -11,6 +25,28 @@ export async function POST(req) {
     }
 
     const { correoElectronico, codigo } = await req.json();
+    const datosUsuario = `
+      SELECT id_persona, nombre, correo_electronico, clave 
+      FROM personas
+      WHERE correo_electronico = ?;
+    `;
+
+    const respuestaUsuario = await cmsConexion.query(datosUsuario, [
+      correoElectronico,
+    ]);
+
+    console.log(respuestaUsuario);
+
+    const resultadoFiltrado = respuestaUsuario.filter((itemsUsuarioBd) => {
+      return itemsUsuarioBd.correo_electronico === correoElectronico;
+    });
+
+    console.log(resultadoFiltrado);
+
+    if (respuestaUsuario.length === 0) {
+      return NextResponse.json({ resultadoFiltrado });
+    }
+
     console.log(codigo);
     if (!correoElectronico) {
       return NextResponse.json(
@@ -46,6 +82,7 @@ export async function POST(req) {
     console.log("Email enviado");
     return NextResponse.json(
       { message: "Correo enviado exitosamente" },
+      { correoVerificado: resultadoFiltrado },
       { status: 200 }
     );
   } catch (error) {

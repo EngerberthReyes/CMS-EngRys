@@ -26,6 +26,13 @@ const recuperarClave = () => {
   const [pasoFormulario, setPasoFormulario] = useState(1);
   const [timeLeft, setTimeLeft] = useState(120);
   const [codigoEnviado, setCodigoEnviado] = useState();
+  const [correoNoValido, setCorreoNoValido] = useState(false);
+
+  if (correoNoValido) {
+    setTimeout(() => {
+      setCorreoNoValido(false);
+    }, 2000);
+  }
 
   const manejarCambioDeTema = (event) => {
     const modoOscuro = event.matches;
@@ -107,9 +114,13 @@ const recuperarClave = () => {
       console.log(respuesta);
 
       const datos = respuesta.data;
+
       console.log(datos);
       if (!datos) {
         return;
+      }
+      if (!datos.correoElectronico) {
+        return setCorreoNoValido(true);
       }
 
       setPasoFormulario(pasoFormulario + 1);
@@ -152,6 +163,9 @@ const recuperarClave = () => {
                 type="email"
                 {...register("correo", {
                   required: "Introduzca su Correo Electrónico",
+                  vadidate: (value) => {
+                    value !== correoNoValido || null;
+                  },
                   pattern: {
                     value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
                     message: "Formato de Correo Electrónico Inválido",
@@ -162,6 +176,13 @@ const recuperarClave = () => {
                 <section className={stylesClave.seccionError}>
                   <p className={stylesClave.errorInput}>
                     {errors.correo.message}
+                  </p>
+                </section>
+              )}
+              {correoNoValido && (
+                <section className={stylesClave.seccionError}>
+                  <p className={stylesClave.errorInput}>
+                    El Correo No Esta En La Base de Datos
                   </p>
                 </section>
               )}

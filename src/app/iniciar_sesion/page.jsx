@@ -80,18 +80,6 @@ const Login = () => {
     } catch (error) {
       console.log(error);
     }
-
-    /*
-      try {
-       
-        const envio = await axios.get(
-          `../API/personas/${resultadoFiltroPersona[0].id_persona}`
-        );
-        console.log(envio.data.personas);
-      } catch (error) {
-        console.error(error);
-      }
-*/
     console.log(datos);
   };
 
