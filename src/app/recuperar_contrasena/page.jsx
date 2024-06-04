@@ -27,6 +27,7 @@ const recuperarClave = () => {
   const [timeLeft, setTimeLeft] = useState(120);
   const [codigoEnviado, setCodigoEnviado] = useState();
   const [correoNoValido, setCorreoNoValido] = useState(false);
+  const [claveUsuario, setClaveUsuario] = useState();
 
   if (correoNoValido) {
     setTimeout(() => {
@@ -58,6 +59,10 @@ const recuperarClave = () => {
     setPasoFormulario(pasoFormulario - 1);
     setCodigoEnviado("");
     setTimeLeft(120);
+  };
+
+  const iniciarSesion = () => {
+    enrutadorMaster.push("/iniciar_sesion");
   };
 
   const generarCodigoRandom = (longitud) => {
@@ -122,6 +127,7 @@ const recuperarClave = () => {
         return setCorreoNoValido(true);
       }
 
+      setClaveUsuario(datos.resultadoFiltrado[0].clave);
       setPasoFormulario(pasoFormulario + 1);
       setMensajeCorreoAceptado(true);
       if (respuesta.status < 200 || respuesta.status >= 300) {
@@ -247,7 +253,26 @@ const recuperarClave = () => {
                   Volver Atras
                 </button>
                 <button className={`${stylesClave.boton} rounded-2`}>
-                  Verificar Código
+                  Aceptar Código
+                </button>
+              </section>
+            </>
+          )}
+          {pasoFormulario === 3 && (
+            <>
+              <h1 className={stylesClave.titulo_form}>
+                ¡Contraseña Recuperada Exisotamente!
+              </h1>
+              <h1 className={stylesClave.titulo_form}>
+                Su contraseña es: {claveUsuario}
+              </h1>
+              <section style={{ width: "85%" }}>
+                <button
+                  className={`${stylesClave.boton} rounded-2`}
+                  type="button"
+                  onClick={() => iniciarSesion()}
+                >
+                  Volver a Inicio de Sesión
                 </button>
               </section>
             </>
