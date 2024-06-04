@@ -164,7 +164,7 @@ const recuperarClave = () => {
                     "Introduzca el Codigo Enviado a Su Correo Electrónico",
                   validate: (value) =>
                     value === codigoEnviado ||
-                    "El código Introducido es incorrecto",
+                    "El Código Introducido Es Incorrecto",
                 })}
               />
               {errors.codigoEnviado && (
