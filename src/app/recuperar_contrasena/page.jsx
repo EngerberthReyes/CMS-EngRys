@@ -44,8 +44,8 @@ const recuperarClave = () => {
   }, []);
 
   const retroceder = () => {
-    setPasoFormulario(pasoFormulario - 1)
-  }
+    setPasoFormulario(pasoFormulario - 1);
+  };
 
   const generarCodigoRandom = (longitud) => {
     const caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
@@ -120,6 +120,13 @@ const recuperarClave = () => {
                   },
                 })}
               />
+              {errors.correo && (
+                <section className={stylesClave.seccionError}>
+                  <p className={stylesClave.errorInput}>
+                    {errors.correo.message}
+                  </p>
+                </section>
+              )}
               <section className={stylesClave.contenedor_passoword_perdida}>
                 <Link className={stylesClave.link_password} href="../registro">
                   ¿Aun no tienes una cuenta?
@@ -137,13 +144,6 @@ const recuperarClave = () => {
               >
                 Enviar Codigo de Verificación
               </button>
-              {errors.correo && (
-                <section className={stylesClave.seccionError}>
-                  <p className={stylesClave.errorInput}>
-                    {errors.correo.message}
-                  </p>
-                </section>
-              )}
             </>
           )}
           {mensajeCorreoAceAceptado && <Notificacion />}
@@ -167,25 +167,6 @@ const recuperarClave = () => {
                     "El código Introducido es incorrecto",
                 })}
               />
-              <section
-                style={{
-                  display: "flex",
-                  width: "85%",
-                  gap: "1rem",
-                }}
-              >
-                <button className={`${stylesClave.boton} rounded-2`}
-                type="button"
-                onClick={() => retroceder()}>
-                  Vovler Atras
-                </button>
-                <button
-                  disabled={!isValid}
-                  className={`${stylesClave.boton} rounded-2`}
-                >
-                  Enviar Codigo de Verificación
-                </button>
-              </section>
               {errors.codigoEnviado && (
                 <section className={stylesClave.seccionError}>
                   <p className={stylesClave.errorInput}>
@@ -193,6 +174,24 @@ const recuperarClave = () => {
                   </p>
                 </section>
               )}
+              <section
+                style={{
+                  display: "flex",
+                  width: "85%",
+                  gap: "1rem",
+                }}
+              >
+                <button
+                  className={`${stylesClave.boton} rounded-2`}
+                  type="button"
+                  onClick={() => retroceder()}
+                >
+                  Vovler Atras
+                </button>
+                <button className={`${stylesClave.boton} rounded-2`}>
+                  Enviar Codigo de Verificación
+                </button>
+              </section>
             </>
           )}
         </form>
