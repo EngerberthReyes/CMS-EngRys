@@ -28,6 +28,8 @@ const recuperarClave = () => {
   const [codigoEnviado, setCodigoEnviado] = useState();
   const [correoNoValido, setCorreoNoValido] = useState(false);
 
+  console.log(correoNoValido);
+
   if (correoNoValido) {
     setTimeout(() => {
       setCorreoNoValido(false);
@@ -115,11 +117,10 @@ const recuperarClave = () => {
 
       const datos = respuesta.data;
 
-      console.log(datos);
       if (!datos) {
         return;
       }
-      if (!datos.correoElectronico) {
+      if (datos.resultadoFiltrado.length === 0) {
         return setCorreoNoValido(true);
       }
 
@@ -163,9 +164,6 @@ const recuperarClave = () => {
                 type="email"
                 {...register("correo", {
                   required: "Introduzca su Correo Electrónico",
-                  vadidate: (value) => {
-                    value !== correoNoValido || null;
-                  },
                   pattern: {
                     value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/,
                     message: "Formato de Correo Electrónico Inválido",
@@ -182,7 +180,7 @@ const recuperarClave = () => {
               {correoNoValido && (
                 <section className={stylesClave.seccionError}>
                   <p className={stylesClave.errorInput}>
-                    El Correo No Esta En La Base de Datos
+                    El Correo No Esta Registrado
                   </p>
                 </section>
               )}

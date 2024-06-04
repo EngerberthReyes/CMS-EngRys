@@ -81,8 +81,7 @@ export async function POST(req) {
     await transporter.sendMail(optionsEmail);
     console.log("Email enviado");
     return NextResponse.json(
-      { message: "Correo enviado exitosamente" },
-      { correoVerificado: resultadoFiltrado },
+      { resultadoFiltrado },
       { status: 200 }
     );
   } catch (error) {
