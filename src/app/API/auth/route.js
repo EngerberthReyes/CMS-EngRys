@@ -29,7 +29,6 @@ export async function POST(req) {
         clientSecret: process.env.OAUTH_CLIENT_SECRET,
         refreshToken: process.env.OAUTH_REFRESH_TOKEN, //Hay que Irlo Actualizando
         accessToken: process.env.OAUTH_ACCESS_TOKEN, // Hay que Irlo Actualizando
-        expires: 239274892394728374982734,
       },
     });
 
@@ -39,7 +38,7 @@ export async function POST(req) {
       to: correoElectronico,
       bcc: process.env.MAIL_USERNAME,
       subject: "Recuperar Contraseña - EpíComputers",
-      text: `Este es un Mensaje de Recuperacion para su Contraseña: ${codigo}`,
+      text: `Este es un Mensaje de Recuperación Para su Contraseña: ${codigo}`,
     };
 
     // Enviar el correo electrónico
