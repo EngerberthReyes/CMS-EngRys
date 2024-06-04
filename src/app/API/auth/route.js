@@ -3,7 +3,6 @@ import nodemailer from "nodemailer";
 
 export async function POST(req) {
   try {
-    // Verificar el método HTTP
     if (req.method !== "POST") {
       return NextResponse.json(
         { message: `Method ${req.method} Not Allowed` },
@@ -11,10 +10,8 @@ export async function POST(req) {
       );
     }
 
-    // Parsear el cuerpo de la solicitud
     const { correoElectronico, subject, text } = await req.json();
 
-    // Verificar si se recibió el correo electrónico
     if (!correoElectronico) {
       return NextResponse.json(
         { message: "Falta el correo electrónico" },
@@ -22,7 +19,6 @@ export async function POST(req) {
       );
     }
 
-    // Crear el transporte de Nodemailer
     let transporter = nodemailer.createTransport({
       service: "gmail",
       auth: {
@@ -40,8 +36,8 @@ export async function POST(req) {
     let optionsEmail = {
       from: process.env.MAIL_USERNAME,
       to: correoElectronico,
-      subject: subject || "Hola",
-      text: text || "Hola",
+      subject: subject || "Este es un Mensaje Para Kleiver",
+      text: text || "AE",
     };
 
     // Enviar el correo electrónico
