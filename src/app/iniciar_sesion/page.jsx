@@ -66,7 +66,7 @@ const Login = () => {
         clave,
       });
 
-      console.log(datosEnviados)
+      console.log(datosEnviados);
 
       if (datosEnviados.data.respuestaUsuario.length === 0) {
         setEstatusClave(true);
@@ -80,6 +80,7 @@ const Login = () => {
     } catch (error) {
       console.log(error);
     }
+
     console.log(datos);
   };
 
