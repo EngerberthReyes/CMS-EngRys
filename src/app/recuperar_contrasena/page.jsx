@@ -31,7 +31,7 @@ const recuperarClave = () => {
   if (correoNoValido) {
     setTimeout(() => {
       setCorreoNoValido(false);
-    }, 2000);
+    }, 4000);
   }
 
   const manejarCambioDeTema = (event) => {
