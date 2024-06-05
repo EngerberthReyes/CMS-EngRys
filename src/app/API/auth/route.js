@@ -95,10 +95,18 @@ export const PUT = async (req) => {
   try {
     const { email, nuevaClave } = await req.json();
 
+    const datosUsuario = `
+    SELECT id_persona
+    FROM personas
+    WHERE correo_electronico = ?;
+  `;
+
+    const respuestaUsuario = await cmsConexion.query(datosUsuario, [email]);
+
     const claveActualizar = `
       UPDATE personas
       SET clave = ?
-      WHERE correo_electronico = ?;
+      WHERE correo_electronico = ? AND id_persona = ?;
     `;
 
     const claveHash = await hash(nuevaClave, 11);
@@ -107,6 +115,7 @@ export const PUT = async (req) => {
     const restablecerClave = await cmsConexion.query(claveActualizar, [
       claveHash,
       email,
+      respuestaUsuario[0].id_persona,
     ]);
 
     return NextResponse.json({ restablecerClave }, { status: 200 });
