@@ -7,6 +7,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import "../CSS/App.css";
+import { Notificacion } from "@/componentes/notificaciones/notificaciones.jsx";
 import Details from "@/componentes/tiptap/Details";
 import { Tiptap } from "@/componentes/tiptap/TipTap";
 import stylesRegistro from "../CSS/styles-registro.module.css";
@@ -28,7 +29,9 @@ const Registro = () => {
   const [mostrarClave, setMostrarClave] = useState(false);
   const [mostrarSegundaClave, setMostrarSegundaClave] = useState(false);
   const [description, setDescription] = useState("");
-
+  const [usuarioRegistrado, setUsuarioRegistrado] = useState(false);
+  const [estatusActivo, setEstatusActivo] = useState(false);
+ 
   const enrutadorMaster = useRouter();
 
   const manejarCambioDeTema = (event) => {
@@ -234,7 +237,7 @@ const Registro = () => {
     console.log(data);
 
     try {
-      const repuesta = await axios.post("../API/personas", {
+      const respuesta = await axios.post("../API/personas", {
         nombres,
         apellido,
         cedula,
@@ -257,8 +260,15 @@ const Registro = () => {
         clave,
         repetirClave,
       });
-      enrutadorMaster.push("../iniciar_sesion");
-      console.log(repuesta);
+      if (respuesta) {
+        usuarioRegistrado(true)
+        estatusActivo(true)
+        setTimeout(() => {
+          enrutadorMaster.push("../iniciar_sesion");
+        }, 2000)
+      }
+
+      console.log(respuesta);
     } catch (error) {
       console.log(error);
     }
@@ -1004,6 +1014,7 @@ const Registro = () => {
                   Registrarse
                 </button>
               </section>
+              <Notificacion usuarioRegistrado={usuarioRegistrado} estatusActivo={estatusActivo} />
             </>
           )}
         </form>

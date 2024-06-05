@@ -24,7 +24,7 @@ const recuperarClave = () => {
   const [temaActual, setTemaActual] = useState();
   const [mensajeCorreoAceAceptado, setMensajeCorreoAceptado] = useState(false);
   const [pasoFormulario, setPasoFormulario] = useState(1);
-  const [timeLeft, setTimeLeft] = useState(120);
+  const [tiempoRestante, setTimeLeft] = useState(120);
   const [codigoEnviado, setCodigoEnviado] = useState();
   const [correoNoValido, setCorreoNoValido] = useState(false);
   const [claveUsuario, setClaveUsuario] = useState();
@@ -76,33 +76,33 @@ const recuperarClave = () => {
   };
 
   useEffect(() => {
-    if (timeLeft > 0) {
-      const intervalId = setInterval(() => {
-        setTimeLeft((prevTimeLeft) => prevTimeLeft - 1);
+    if (tiempoRestante > 0) {
+      const intervaloDeTiempo = setInterval(() => {
+        setTimeLeft((tiempoRestantePrevio) => tiempoRestantePrevio - 1);
       }, 1000);
-      return () => clearInterval(intervalId);
+      return () => clearInterval(intervaloDeTiempo);
     }
     setCodigoEnviado("");
     enrutadorMaster.push("/iniciar_sesion");
-  }, [timeLeft]);
+  }, [tiempoRestante]);
 
-  const padNumber = (number) => {
-    return number < 10 ? `0${number}` : `${number}`;
+  const padNumber = (numero) => {
+    return numero < 10 ? `0${numero}` : `${numero}`;
   };
 
-  const minutes = Math.floor(timeLeft / 60);
-  const seconds = timeLeft % 60;
+  const minutes = Math.floor(tiempoRestante / 60);
+  const seconds = tiempoRestante % 60;
 
-  const formattedMinutes = padNumber(minutes);
-  const formattedSeconds = padNumber(seconds);
+  const minutosFormateados = padNumber(minutes);
+  const segundosFormateados = padNumber(seconds);
 
-  let displayText;
+  let mostrarTexto;
   if (minutes === 0 && seconds === 0) {
-    displayText = "Tiempo agotado";
+    mostrarTexto = "Tiempo agotado";
   } else if (minutes > 0) {
-    displayText = `${formattedMinutes}:${formattedSeconds} Minutos Restantes`;
+    mostrarTexto = `${minutosFormateados}:${segundosFormateados} Minutos Restantes`;
   } else {
-    displayText = `${formattedSeconds} Segundos Restantes`;
+    mostrarTexto = `${segundosFormateados} Segundos Restantes`;
   }
 
   const enviarDatos = async (dato) => {
@@ -216,7 +216,7 @@ const recuperarClave = () => {
               <label htmlFor="codigoEnviarInput" className={stylesClave.label}>
                 Introduzca el Codigo de su Correo
                 {pasoFormulario === 2 && codigoEnviado
-                  ? `, El Codigo Expirará en ${displayText}`
+                  ? `, El Codigo Expirará en ${mostrarTexto}`
                   : null}
               </label>
               <input

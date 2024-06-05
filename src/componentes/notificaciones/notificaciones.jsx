@@ -1,9 +1,9 @@
 import stylesNotificacion from "../CSSComponentes/notificaciones.module.css";
 
-export const Notificacion = ({ weaActivaCreacion, estatusActivo }) => {
+export const Notificacion = ({ usuarioRegistrado, estatusActivo }) => {
   return (
     <>
-      {weaActivaCreacion ? (
+      {usuarioRegistrado ? (
         <>
           <section
             style={{
