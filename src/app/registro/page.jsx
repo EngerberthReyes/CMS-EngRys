@@ -272,7 +272,7 @@ const Registro = () => {
     } catch (error) {
       console.log(error);
     } finally {
-      setUsuarioRegistrado(false)
+      setUsuarioRegistrado(false);
     }
   };
 
@@ -1019,10 +1019,12 @@ const Registro = () => {
             </>
           )}
         </form>
-        <Notificacion
-          usuarioRegistrado={usuarioRegistrado}
-          estatusActivo={estatusActivo}
-        />
+        {usuarioRegistrado && (
+          <Notificacion
+            usuarioRegistrado={usuarioRegistrado}
+            estatusActivo={estatusActivo}
+          />
+        )}
       </body>
     </>
   );
