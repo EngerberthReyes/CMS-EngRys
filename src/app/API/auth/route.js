@@ -93,7 +93,6 @@ export async function POST(req) {
   }
 }
 
-{/*
 export const PUT = async (req) => {
   try {
     const { nuevaClave } = await req.json
@@ -106,11 +105,11 @@ export const PUT = async (req) => {
   const claveHash = await hash(nuevaClave)
   
   const restablecerClave = await cmsConexion.query(claveActualizar, [
-    claveHash, // Suponiendo que 'codigo' es la nueva clave
+    claveHash, 
     correoElectronico
   ]);
   } catch (error) {
 console.log(error)
   }
 
-}*/}
+}

@@ -129,7 +129,8 @@ const recuperarClave = () => {
       }
 
 
-
+      setPasoFormulario(pasoFormulario + 1);
+      setMensajeCorreoAceptado(true)
       if (respuesta.status < 200 || respuesta.status >= 300) {
         throw new Error("Error en la solicitud");
       }
