@@ -128,11 +128,7 @@ const recuperarClave = () => {
         return setCorreoNoValido(true);
       }
 
-      setPasoFormulario(pasoFormulario + 1);
-      setMensajeCorreoAceptado(true);
-      const actualizacion = await axios.put("../API/auth", {
-        nuevaClave,
-      });
+
 
       if (respuesta.status < 200 || respuesta.status >= 300) {
         throw new Error("Error en la solicitud");
@@ -143,6 +139,13 @@ const recuperarClave = () => {
       console.error("Error:", error);
     }
   };
+
+  const actualizarClaveFuncion = async () => {
+    const actualizacion = await axios.put("../API/auth", {
+      nuevaClave,
+    });
+    console.log(actualizacion)
+  }
 
   return (
     <>
@@ -289,6 +292,7 @@ const recuperarClave = () => {
               <button
                 disabled={!isValid}
                 className={`${stylesClave.boton} rounded-2`}
+                onClick={() => actualizarClaveFuncion}
               >
                 Restablecer Contraseña
               </button>
