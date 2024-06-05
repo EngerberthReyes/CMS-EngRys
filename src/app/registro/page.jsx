@@ -8,6 +8,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import "../CSS/App.css";
 import { Notificacion } from "@/componentes/notificaciones/notificaciones.jsx";
+import { hash, compare } from "bcryptjs";
 import Details from "@/componentes/tiptap/Details";
 import { Tiptap } from "@/componentes/tiptap/TipTap";
 import stylesRegistro from "../CSS/styles-registro.module.css";
@@ -57,7 +58,7 @@ const Registro = () => {
   console.log(description);
 
   const clave = watch("clave");
-  const cedula = Number(watch("cedula"));
+  const cedula = watch("cedula");
   const correo = watch("correo");
   const confirmacionClave = watch("repetirClave");
   const [cedulas, setCedulas] = useState([]);
@@ -93,6 +94,7 @@ const Registro = () => {
   }, []);
 
   useEffect(() => {
+    console.log(cedula)
     console.log("Cédulas obtenidas:", cedulas);
     if (!cedulas.includes(cedula) && cedulas.length === 0) {
       setEstatusCedula(false);
@@ -237,6 +239,8 @@ const Registro = () => {
     console.log(data);
 
     try {
+      const claveHash = await hash(clave, 11);
+console.log(claveHash)
       const respuesta = await axios.post("../API/personas", {
         nombres,
         apellido,
@@ -257,7 +261,7 @@ const Registro = () => {
         tiktok,
         sitio_web,
         correo,
-        clave,
+        claveHash,
         repetirClave,
       });
       if (respuesta) {

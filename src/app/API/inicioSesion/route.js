@@ -3,7 +3,7 @@ import { NextResponse } from "next/server";
 import jwt from "jsonwebtoken";
 import { serialize } from "cookie";
 import axios from "axios";
-import { NormalizeError } from "next/dist/shared/lib/utils";
+import { hash, compare } from "bcryptjs";
 
 export const GET = async () => {
   try {
@@ -49,20 +49,21 @@ export const POST = async (request, res) => {
     const datosUsuario = `
       SELECT id_persona, nombre, correo_electronico, clave 
       FROM personas
-      WHERE correo_electronico = ? AND clave = ?;
+      WHERE correo_electronico = ?;
     `;
 
     const respuestaUsuario = await cmsConexion.query(datosUsuario, [
       correo,
       clave,
     ]);
-
+const verificacionDeClave = await compare(clave, respuestaUsuario[0].clave)
+console.log(verificacionDeClave)
     console.log(respuestaUsuario);
 
-    const resultadoFiltrado = respuestaUsuario.filter((itemsUsuarioBd) => {
+    const resultadoFiltrado = respuestaUsuario.filter(async (itemsUsuarioBd) => {
       return (
         itemsUsuarioBd.correo_electronico === correo &&
-        itemsUsuarioBd.clave === clave
+        await compare(clave, itemsUsuarioBd.clave)
       );
     });
 
@@ -96,7 +97,7 @@ export const POST = async (request, res) => {
       path: "/",
     });
 
-    const response = new NextResponse(JSON.stringify({ respuestaUsuario }), {
+    const response = new NextResponse(JSON.stringify({ verificacionDeClave }), {
       headers: new Headers({
         "Set-Cookie": serialized,
         "Content-Type": "application/json",
@@ -108,7 +109,7 @@ export const POST = async (request, res) => {
     console.log(respuestaUsuario);
   } catch (error) {
     console.error("Error al registrar la persona:", error);
-    return NextResponse.status(500).json({
+    return NextResponse.json({
       error: "Error interno del servidor",
     });
   }

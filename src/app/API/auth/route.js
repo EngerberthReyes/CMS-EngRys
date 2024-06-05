@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { cmsConexion } from "@/db/database";
+import { hash, compare } from "bcryptjs";
 
 export const GET = async () => {
   try {

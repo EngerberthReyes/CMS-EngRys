@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import stylesLogin from "../CSS/styles-login.module.css";
 import { useForm } from "react-hook-form";
+import { hash, compare } from "bcryptjs";
 import axios from "axios";
 
 const Login = () => {
@@ -68,7 +69,7 @@ const Login = () => {
 
       console.log(datosEnviados);
 
-      if (datosEnviados.data.respuestaUsuario.length === 0) {
+      if (!datosEnviados.data.verificacionDeClave) {
         setEstatusClave(true);
         setEstatusCorreo(true);
       } else {

@@ -60,7 +60,7 @@ export const POST = async (request) => {
       tiktok,
       sitio_web,
       correo,
-      clave,
+      claveHash,
       repetirClave,
     } = await request.json();
 
@@ -155,7 +155,7 @@ export const POST = async (request) => {
       tiktok,
       sitio_web,
       correo,
-      clave,
+      claveHash,
       repetirClave
     );
 
@@ -193,7 +193,7 @@ export const POST = async (request) => {
       cedula,
       nacimiento,
       correo,
-      clave,
+      claveHash,
       facebook,
       instagram,
       x,

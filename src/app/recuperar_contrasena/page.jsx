@@ -7,6 +7,7 @@ import { Notificacion } from "@/componentes/notificaciones/notificaciones.jsx";
 import stylesClave from "../CSS/styles-recuperarContrasena.module.css";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { hash, compare } from "bcryptjs";
 import { useRouter } from "next/navigation";
 
 const recuperarClave = () => {
@@ -27,8 +28,7 @@ const recuperarClave = () => {
   const [tiempoRestante, setTiempoRestante] = useState(600);
   const [codigoEnviado, setCodigoEnviado] = useState();
   const [correoNoValido, setCorreoNoValido] = useState(false);
-  const [claveUsuario, setClaveUsuario] = useState();
-
+  const claveNueva = watch("nuevaClave");
   if (correoNoValido) {
     setTimeout(() => {
       setCorreoNoValido(false);
@@ -115,6 +115,7 @@ const recuperarClave = () => {
       const respuesta = await axios.post("../API/auth", {
         codigo,
         correoElectronico,
+        nuevaClave,
       });
       console.log(respuesta);
 
@@ -127,7 +128,6 @@ const recuperarClave = () => {
         return setCorreoNoValido(true);
       }
 
-      setClaveUsuario(datos.resultadoFiltrado[0].clave);
       setPasoFormulario(pasoFormulario + 1);
       setMensajeCorreoAceptado(true);
       if (respuesta.status < 200 || respuesta.status >= 300) {
@@ -260,21 +260,34 @@ const recuperarClave = () => {
           )}
           {pasoFormulario === 3 && (
             <>
-              <h1 className={stylesClave.titulo_form}>
-                ¡Contraseña Recuperada Exisotamente!
-              </h1>
-              <h1 className={stylesClave.titulo_form}>
-                Su contraseña es: {claveUsuario}
-              </h1>
-              <section style={{ width: "85%" }}>
-                <button
-                  className={`${stylesClave.boton} rounded-2`}
-                  type="button"
-                  onClick={() => iniciarSesion()}
-                >
-                  Volver a Inicio de Sesión
-                </button>
-              </section>
+              <h1 className={stylesClave.titulo_form}>Recuperar Contraseña</h1>
+              <label htmlFor="claveNueva" className={stylesClave.label}>
+                Restablezca Su Contraseña
+              </label>
+              <input
+                id="claveNueva"
+                className={`${stylesClave.input_texto} rounded-2`}
+                type="email"
+                {...register("nuevaClave", {
+                  required: "Introduzca su Nueva Clave",
+                  vadidate: (value) => {
+                    value === nuevaClave || "Su Contraseña No Coincide";
+                  },
+                })}
+              />
+              {errors.nuevaClave && (
+                <section className={stylesClave.seccionError}>
+                  <p className={stylesClave.errorInput}>
+                    {errors.nuevaClave.message}
+                  </p>
+                </section>
+              )}
+              <button
+                disabled={!isValid}
+                className={`${stylesClave.boton} rounded-2`}
+              >
+                Restablecer Contraseña
+              </button>
             </>
           )}
         </form>
