@@ -29,6 +29,7 @@ const recuperarClave = () => {
   const [codigoEnviado, setCodigoEnviado] = useState();
   const [correoNoValido, setCorreoNoValido] = useState(false);
   const [claveUsuario, setClaveUsuario] = useState();
+  const [email, setEmail] = useState();
   const claveNueva = watch("nuevaClave");
   if (correoNoValido) {
     setTimeout(() => {
@@ -127,7 +128,7 @@ const recuperarClave = () => {
       if (datos.resultadoFiltrado.length === 0) {
         return setCorreoNoValido(true);
       }
-
+setEmail(datos.resultadoFiltrado.correo_electronico)
 
       setPasoFormulario(pasoFormulario + 1);
       setMensajeCorreoAceptado(true)
@@ -143,6 +144,7 @@ const recuperarClave = () => {
 
   const actualizarClaveFuncion = async () => {
     const actualizacion = await axios.put("../API/auth", {
+      email,
       nuevaClave,
     });
     console.log(actualizacion)
