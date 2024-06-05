@@ -105,3 +105,19 @@ button.is_active {
   padding: 2px 3px;
   border-radius: 2px;
 }
+
+@media (prefers-color-scheme: light) {
+  .ProseMirror {
+    background: #e0e0e0;
+    color: #0f0f0f;
+  }
+  .menuBar button {
+    color: #eeeeee;
+  }
+  .menuBar {
+    background-color: #0f0f0f;
+  }
+  ul, ol, li {
+    color: #000;
+  }
+}

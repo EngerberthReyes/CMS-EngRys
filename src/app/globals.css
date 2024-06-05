@@ -28,7 +28,6 @@ ol,
 ul,
 li {
   list-style: auto !important;
-  color: #eeeeee !important;
 }
 
 ::selection {
