@@ -24,7 +24,7 @@ const recuperarClave = () => {
   const [temaActual, setTemaActual] = useState();
   const [mensajeCorreoAceAceptado, setMensajeCorreoAceptado] = useState(false);
   const [pasoFormulario, setPasoFormulario] = useState(1);
-  const [tiempoRestante, setTimeLeft] = useState(120);
+  const [tiempoRestante, setTiempoRestante] = useState(600);
   const [codigoEnviado, setCodigoEnviado] = useState();
   const [correoNoValido, setCorreoNoValido] = useState(false);
   const [claveUsuario, setClaveUsuario] = useState();
@@ -58,7 +58,7 @@ const recuperarClave = () => {
   const retroceder = () => {
     setPasoFormulario(pasoFormulario - 1);
     setCodigoEnviado("");
-    setTimeLeft(120);
+    setTiempoRestante(600);
   };
 
   const iniciarSesion = () => {
@@ -78,7 +78,7 @@ const recuperarClave = () => {
   useEffect(() => {
     if (tiempoRestante > 0) {
       const intervaloDeTiempo = setInterval(() => {
-        setTimeLeft((tiempoRestantePrevio) => tiempoRestantePrevio - 1);
+        setTiempoRestante((tiempoRestantePrevio) => tiempoRestantePrevio - 1);
       }, 1000);
       return () => clearInterval(intervaloDeTiempo);
     }
@@ -108,7 +108,7 @@ const recuperarClave = () => {
   const enviarDatos = async (dato) => {
     const codigo = generarCodigoRandom(11);
     setCodigoEnviado(codigo);
-    setTimeLeft(120);
+    setTiempoRestante(600);
     try {
       const correoElectronico = dato.correo;
       console.log(correoElectronico);
