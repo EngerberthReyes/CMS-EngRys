@@ -332,7 +332,6 @@ ALTER TABLE `permisos`
 --
 ALTER TABLE `personas`
   ADD PRIMARY KEY (`id_persona`),
-  ADD UNIQUE KEY `cedula_UNIQUE` (`cedula`),
   ADD UNIQUE KEY `correo_electronico` (`correo_electronico`),
   ADD KEY `fk_personas_generos_idx` (`id_genero`),
   ADD KEY `fk_personas_roles1_idx` (`id_rol`),
