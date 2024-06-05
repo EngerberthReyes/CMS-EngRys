@@ -661,7 +661,7 @@ const Registro = () => {
                 className={stylesRegistro.label}
                 style={{ margin: "0 0 0 8%" }}
               >
-                Dirección Completa [Canpo Opcional]
+                Dirección Completa [Campo Opcional]
               </label>
               <section className="App">
                 <Tiptap setDescription={setDescription} />
