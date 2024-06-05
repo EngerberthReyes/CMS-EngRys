@@ -241,7 +241,7 @@ const Registro = () => {
         sexo,
         nacionalidad,
         nacimiento,
-        direccionDescripcion: description.replace(/<\/?p>/g, ""),
+        direccionDescripcion: description.replace(/<.*?>/g, ""),
         pais,
         estado,
         ciudad,
