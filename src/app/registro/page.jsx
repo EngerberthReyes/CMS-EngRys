@@ -265,7 +265,7 @@ const Registro = () => {
         setEstatusActivo(true);
         setTimeout(() => {
           enrutadorMaster.push("../iniciar_sesion");
-        }, 100000);
+        }, 6000);
       }
 
       console.log(respuesta);
@@ -274,7 +274,7 @@ const Registro = () => {
     } finally {
       setTimeout(() => {
         setUsuarioRegistrado(false);
-      }, 9000);
+      }, 4000);
     }
   };
 
