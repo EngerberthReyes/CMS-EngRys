@@ -6,6 +6,9 @@ import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
 import { useRouter } from "next/navigation";
+import "../CSS/App.css";
+import Details from "@/componentes/tiptap/Details";
+import { Tiptap } from "@/componentes/tiptap/TipTap";
 import stylesRegistro from "../CSS/styles-registro.module.css";
 
 const Registro = () => {
@@ -24,6 +27,7 @@ const Registro = () => {
   const [temaActual, setTemaActual] = useState("oscuro");
   const [mostrarClave, setMostrarClave] = useState(false);
   const [mostrarSegundaClave, setMostrarSegundaClave] = useState(false);
+  const [description, setDescription] = useState("");
 
   const enrutadorMaster = useRouter();
 
@@ -665,7 +669,10 @@ const Registro = () => {
                   >
                     Dirección Completa
                   </label>
-                  <textarea
+                  <div className="App">
+                    <Tiptap setDescription={setDescription} />
+                  </div>
+                  {/*<textarea
                     id="direccion"
                     style={{ width: "100%" }}
                     className={`${stylesRegistro.input_texto} ${stylesRegistro.textarea} rounded-2 mb-2`}
@@ -679,7 +686,7 @@ const Registro = () => {
                         {errors.direccion.message}
                       </p>
                     </section>
-                  )}
+                  )} */}
                 </section>
               </section>
               <section className={stylesRegistro.contenedor_passoword_perdida}>
