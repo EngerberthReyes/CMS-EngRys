@@ -8,8 +8,8 @@ export const Notificacion = ({ usuarioRegistrado, estatusActivo }) => {
           <section
             style={{
               width: "auto",
-              background: "green",
-              color: "white",
+              background: "#008000",
+              color: "#eeeeee",
             }}
             className={`animate__animated ${stylesNotificacion.sectionEliminar} animate__fadeInUp`}
           >
@@ -24,7 +24,7 @@ export const Notificacion = ({ usuarioRegistrado, estatusActivo }) => {
                 className={`${stylesNotificacion.contenedor} animate__animated`}
               >
                 <h2 className={stylesNotificacion.tituloSection}>
-                  El Contrato se Ha Creado Exitosamente.
+                  Ha Sido Registrado Correctamente.
                 </h2>
               </section>
             </section>
@@ -35,8 +35,8 @@ export const Notificacion = ({ usuarioRegistrado, estatusActivo }) => {
           <section
             style={{
               width: "auto",
-              background: "green",
-              color: "white",
+              background: "#008000",
+              color: "#eeeeee",
             }}
             className={`animate__animated ${stylesNotificacion.sectionEliminar} animate__fadeOutDown`}
           >
@@ -51,7 +51,7 @@ export const Notificacion = ({ usuarioRegistrado, estatusActivo }) => {
                 className={`${stylesNotificacion.contenedor} animate__animated`}
               >
                 <h2 className={stylesNotificacion.tituloSection}>
-                  El Contrato se Ha Creado Exitosamente.
+                  Ha Sido Registrado Correctamente.
                 </h2>
               </section>
             </section>

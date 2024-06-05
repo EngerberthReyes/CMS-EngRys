@@ -30,8 +30,8 @@ const Registro = () => {
   const [mostrarSegundaClave, setMostrarSegundaClave] = useState(false);
   const [description, setDescription] = useState("");
   const [usuarioRegistrado, setUsuarioRegistrado] = useState(false);
-  const [estatusActivo, setEstatusActivo] = useState(false);
- 
+  const [estatusActivo, setEstatusActivo] = useState(true);
+
   const enrutadorMaster = useRouter();
 
   const manejarCambioDeTema = (event) => {
@@ -261,16 +261,18 @@ const Registro = () => {
         repetirClave,
       });
       if (respuesta) {
-        usuarioRegistrado(true)
-        estatusActivo(true)
+        setUsuarioRegistrado(true);
+        setEstatusActivo(true);
         setTimeout(() => {
           enrutadorMaster.push("../iniciar_sesion");
-        }, 2000)
+        }, 2000);
       }
 
       console.log(respuesta);
     } catch (error) {
       console.log(error);
+    } finally {
+      setUsuarioRegistrado(false)
     }
   };
 
@@ -1014,10 +1016,13 @@ const Registro = () => {
                   Registrarse
                 </button>
               </section>
-              <Notificacion usuarioRegistrado={usuarioRegistrado} estatusActivo={estatusActivo} />
             </>
           )}
         </form>
+        <Notificacion
+          usuarioRegistrado={usuarioRegistrado}
+          estatusActivo={estatusActivo}
+        />
       </body>
     </>
   );

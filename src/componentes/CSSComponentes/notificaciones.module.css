@@ -1,54 +1,54 @@
 .sectionFixed {
-    position: fixed;
-    top: 50%;
-    left: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transform: translate(-50%, -50%);
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    z-index: 400;
-  }
-  
-  .sectionEliminar {
-    position: fixed;
-    bottom: 1rem;
-    left: 1rem;
-    display: flex;
-    width: auto; /* 28 rem */
-    word-break: break-all;
-    align-items: center;
-    justify-content: flex-start;
-    background-color: gold;
-    color: black;
-    z-index: 200;
-    border-radius: 5px;
-  }
-  
-  .sectionInformacionEliminar {
-    padding: 0.5rem 1rem;
-    font-size: 28px;
-  }
-  
-  .especial {
-    padding: 1.5rem 2rem;
-    border-radius: 20px;
-    transition: background-color, transform 500ms ease;
-  }
-  
-  .imagenCentro {
-    width: 60rem;
-    border-radius: 20px;
-    word-break: break-all;
-    box-shadow: 0px 0px 16px 6px black;
-    background-color: #000000c4;
-    padding: 1.5rem 2rem;
-    font-size: 40px;
-  }
-  
-  .imagen {
-    border-radius: 20px;
-    width: 100%;
-  }
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transform: translate(-50%, -50%);
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 400;
+}
+
+.sectionEliminar {
+  position: fixed;
+  bottom: 1rem;
+  left: 1rem;
+  display: flex;
+  width: auto; /* 28 rem */
+  word-break: break-all;
+  align-items: center;
+  justify-content: flex-start;
+  background-color: #ffd700;
+  color: #000000;
+  z-index: 2000;
+  border-radius: 5px;
+}
+
+.sectionInformacionEliminar {
+  padding: 0.5rem 1rem;
+  font-size: 28px;
+}
+
+.especial {
+  padding: 1.5rem 2rem;
+  border-radius: 20px;
+  transition: background-color, transform 500ms ease;
+}
+
+.imagenCentro {
+  width: 60rem;
+  border-radius: 20px;
+  word-break: break-all;
+  box-shadow: 0px 0px 16px 6px #000000;
+  background-color: #000000c4;
+  padding: 1.5rem 2rem;
+  font-size: 40px;
+}
+
+.imagen {
+  border-radius: 20px;
+  width: 100%;
+}
