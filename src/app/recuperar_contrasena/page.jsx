@@ -150,6 +150,7 @@ const recuperarClave = () => {
         nuevaClave,
       });
       console.log(actualizacion);
+      enrutadorMaster("/iniciar_sesion");
     } catch (error) {
       console.log(error);
     }
