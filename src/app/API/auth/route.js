@@ -1,7 +1,6 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { cmsConexion } from "@/db/database";
-import { hash, compare } from "bcryptjs";
 
 export const GET = async () => {
   try {
@@ -93,3 +92,25 @@ export async function POST(req) {
     );
   }
 }
+
+{/*
+export const PUT = async (req) => {
+  try {
+    const { nuevaClave } = await req.json
+    const claveActualizar = `
+    UPDATE personas
+    SET clave = ?
+    WHERE correo_electronico = ?;
+  `;
+  
+  const claveHash = await hash(nuevaClave)
+  
+  const restablecerClave = await cmsConexion.query(claveActualizar, [
+    claveHash, // Suponiendo que 'codigo' es la nueva clave
+    correoElectronico
+  ]);
+  } catch (error) {
+console.log(error)
+  }
+
+}*/}

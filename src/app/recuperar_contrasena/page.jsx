@@ -28,6 +28,7 @@ const recuperarClave = () => {
   const [tiempoRestante, setTiempoRestante] = useState(600);
   const [codigoEnviado, setCodigoEnviado] = useState();
   const [correoNoValido, setCorreoNoValido] = useState(false);
+  const [claveUsuario, setClaveUsuario] = useState();
   const claveNueva = watch("nuevaClave");
   if (correoNoValido) {
     setTimeout(() => {
@@ -115,7 +116,6 @@ const recuperarClave = () => {
       const respuesta = await axios.post("../API/auth", {
         codigo,
         correoElectronico,
-        nuevaClave,
       });
       console.log(respuesta);
 
@@ -130,6 +130,10 @@ const recuperarClave = () => {
 
       setPasoFormulario(pasoFormulario + 1);
       setMensajeCorreoAceptado(true);
+      const actualizacion = await axios.put("../API/auth", {
+        nuevaClave,
+      });
+
       if (respuesta.status < 200 || respuesta.status >= 300) {
         throw new Error("Error en la solicitud");
       }
@@ -267,7 +271,7 @@ const recuperarClave = () => {
               <input
                 id="claveNueva"
                 className={`${stylesClave.input_texto} rounded-2`}
-                type="email"
+                type="text"
                 {...register("nuevaClave", {
                   required: "Introduzca su Nueva Clave",
                   vadidate: (value) => {
