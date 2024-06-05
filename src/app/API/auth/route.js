@@ -93,22 +93,25 @@ export async function POST(req) {
 
 export const PUT = async (req) => {
   try {
-    const { email, nuevaClave } = await req.json;
-    const claveActualizar = `
-    UPDATE personas
-    SET clave = ?
-    WHERE correo_electronico = ?;
-  `;
+    const { email, nuevaClave } = await req.json();
 
-    const claveHash = await hash(nuevaClave);
+    const claveActualizar = `
+      UPDATE personas
+      SET clave = ?
+      WHERE correo_electronico = ?;
+    `;
+
+    const claveHash = await hash(nuevaClave, 11);
+    console.log(claveHash);
 
     const restablecerClave = await cmsConexion.query(claveActualizar, [
       claveHash,
       email,
     ]);
+
     return NextResponse.json({ restablecerClave }, { status: 200 });
   } catch (error) {
-    console.error("Error enviando email", error.message);
+    console.error("Error actualizando clave", error.message);
     return NextResponse.json({ error: error.message }, { status: 500 });
   }
 };
