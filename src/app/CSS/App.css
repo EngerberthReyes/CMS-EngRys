@@ -13,7 +13,7 @@
 }
 .ProseMirror:focus {
   border: none;
-  outline: 1px solid aqua;
+  outline: 1px solid #00ffff;
 }
 
 .ProseMirror > * + * {
