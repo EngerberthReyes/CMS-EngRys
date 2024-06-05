@@ -30,7 +30,7 @@ const Registro = () => {
   const [mostrarSegundaClave, setMostrarSegundaClave] = useState(false);
   const [description, setDescription] = useState("");
   const [usuarioRegistrado, setUsuarioRegistrado] = useState(false);
-  const [estatusActivo, setEstatusActivo] = useState(true);
+  const [estatusActivo, setEstatusActivo] = useState(false);
 
   const enrutadorMaster = useRouter();
 

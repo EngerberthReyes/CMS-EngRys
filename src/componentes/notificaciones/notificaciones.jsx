@@ -1,4 +1,5 @@
 import stylesNotificacion from "../CSSComponentes/notificaciones.module.css";
+import "../../app/animate.min.css";
 
 export const Notificacion = ({ usuarioRegistrado, estatusActivo }) => {
   return (
