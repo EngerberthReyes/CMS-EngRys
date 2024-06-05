@@ -51,6 +51,8 @@ const Registro = () => {
     };
   }, []);
 
+  console.log(description);
+
   const clave = watch("clave");
   const cedula = Number(watch("cedula"));
   const correo = watch("correo");
@@ -213,7 +215,6 @@ const Registro = () => {
       sexo,
       nacimiento,
       nacionalidad,
-      direccion,
       pais,
       estado,
       ciudad,
@@ -240,7 +241,7 @@ const Registro = () => {
         sexo,
         nacionalidad,
         nacimiento,
-        direccion,
+        direccion: description.direccion.replace(/<\/?p>/g, ""),
         pais,
         estado,
         ciudad,
@@ -663,9 +664,7 @@ const Registro = () => {
                 Dirección Completa
               </label>
               <section className="App">
-                <Tiptap
-                  setDescription={setDescription}
-                />
+                <Tiptap setDescription={setDescription} />
               </section>
               <section className={stylesRegistro.contenedor_passoword_perdida}>
                 <Link
