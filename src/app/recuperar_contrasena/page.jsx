@@ -106,7 +106,7 @@ const recuperarClave = () => {
   } else {
     mostrarTexto = `${segundosFormateados} Segundos Restantes`;
   }
-
+  console.log(email);
   const enviarDatos = async (dato) => {
     const codigo = generarCodigoRandom(11);
     setCodigoEnviado(codigo);
@@ -128,10 +128,10 @@ const recuperarClave = () => {
       if (datos.resultadoFiltrado.length === 0) {
         return setCorreoNoValido(true);
       }
-setEmail(datos.resultadoFiltrado.correo_electronico)
+      setEmail(datos.resultadoFiltrado[0].correo_electronico);
 
       setPasoFormulario(pasoFormulario + 1);
-      setMensajeCorreoAceptado(true)
+      setMensajeCorreoAceptado(true);
       if (respuesta.status < 200 || respuesta.status >= 300) {
         throw new Error("Error en la solicitud");
       }
@@ -142,13 +142,18 @@ setEmail(datos.resultadoFiltrado.correo_electronico)
     }
   };
 
-  const actualizarClaveFuncion = async () => {
-    const actualizacion = await axios.put("../API/auth", {
-      email,
-      nuevaClave,
-    });
-    console.log(actualizacion)
-  }
+  const actualizarClaveFuncion = async (email, nuevaClave) => {
+    try {
+      console.log(email, nuevaClave);
+      const actualizacion = await axios.put("../API/auth", {
+        email,
+        nuevaClave,
+      });
+      console.log(actualizacion);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <>
@@ -280,9 +285,6 @@ setEmail(datos.resultadoFiltrado.correo_electronico)
                 type="text"
                 {...register("nuevaClave", {
                   required: "Introduzca su Nueva Clave",
-                  vadidate: (value) => {
-                    value === nuevaClave || "Su Contraseña No Coincide";
-                  },
                 })}
               />
               {errors.nuevaClave && (
@@ -295,7 +297,8 @@ setEmail(datos.resultadoFiltrado.correo_electronico)
               <button
                 disabled={!isValid}
                 className={`${stylesClave.boton} rounded-2`}
-                onClick={() => actualizarClaveFuncion}
+                type="button"
+                onClick={() => actualizarClaveFuncion(email, claveNueva)}
               >
                 Restablecer Contraseña
               </button>

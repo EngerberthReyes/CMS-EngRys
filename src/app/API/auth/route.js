@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import nodemailer from "nodemailer";
 import { cmsConexion } from "@/db/database";
+import { hash, compare } from "bcryptjs";
 
 export const GET = async () => {
   try {
@@ -80,10 +81,7 @@ export async function POST(req) {
     // Enviar el correo electrónico
     await transporter.sendMail(optionsEmail);
     console.log("Email enviado");
-    return NextResponse.json(
-      { resultadoFiltrado },
-      { status: 200 }
-    );
+    return NextResponse.json({ resultadoFiltrado }, { status: 200 });
   } catch (error) {
     console.error("Error enviando email", error.message);
     return NextResponse.json(
@@ -95,21 +93,22 @@ export async function POST(req) {
 
 export const PUT = async (req) => {
   try {
-    const { email, nuevaClave } = await req.json
+    const { email, nuevaClave } = await req.json;
     const claveActualizar = `
     UPDATE personas
     SET clave = ?
     WHERE correo_electronico = ?;
   `;
-  
-  const claveHash = await hash(nuevaClave)
-  
-  const restablecerClave = await cmsConexion.query(claveActualizar, [
-    claveHash, 
-    email
-  ]);
-  } catch (error) {
-console.log(error)
-  }
 
-}
+    const claveHash = await hash(nuevaClave);
+
+    const restablecerClave = await cmsConexion.query(claveActualizar, [
+      claveHash,
+      email,
+    ]);
+    return NextResponse.json({ restablecerClave }, { status: 200 });
+  } catch (error) {
+    console.error("Error enviando email", error.message);
+    return NextResponse.json({ error: error.message }, { status: 500 });
+  }
+};
