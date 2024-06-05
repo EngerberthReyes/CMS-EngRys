@@ -55,7 +55,7 @@ CREATE TABLE `codigos_postales` (
 CREATE TABLE `direcciones` (
   `id_direccion` int(11) NOT NULL,
   `id_codigo_postal` int(11) NOT NULL,
-  `direccion_completa` varchar(200) NOT NULL
+  `direccion_completa` varchar(200) NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
