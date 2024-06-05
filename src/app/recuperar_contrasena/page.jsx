@@ -150,7 +150,7 @@ const recuperarClave = () => {
         nuevaClave,
       });
       console.log(actualizacion);
-      enrutadorMaster("/iniciar_sesion");
+      enrutadorMaster.push("/iniciar_sesion");
     } catch (error) {
       console.log(error);
     }
@@ -159,7 +159,7 @@ const recuperarClave = () => {
   return (
     <>
       <head>
-        <title>Recuperar Contraseña</title>
+        <title>Restablecer Contraseña</title>
         <link rel="icon" href="./IMG/IconoNoLineal.png" />
       </head>
       <body id={stylesClave.body_modificable}>
@@ -174,7 +174,9 @@ const recuperarClave = () => {
         >
           {pasoFormulario === 1 && (
             <>
-              <h1 className={stylesClave.titulo_form}>Recuperar Contraseña</h1>
+              <h1 className={stylesClave.titulo_form}>
+                Restablecer Contraseña
+              </h1>
               <label htmlFor="correo" className={stylesClave.label}>
                 Correo Electrónico
               </label>
