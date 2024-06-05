@@ -47,7 +47,7 @@ export const POST = async (request) => {
       sexo,
       nacionalidad,
       nacimiento,
-      direccion,
+      direccionDescripcion,
       pais,
       estado,
       ciudad,
@@ -63,6 +63,12 @@ export const POST = async (request) => {
       clave,
       repetirClave,
     } = await request.json();
+
+    const antiInyeccioneSql = (valor) => {
+      return valor.replace(/[<>;():{}'"=]/g, "").replace(/[\W]+/g, " ");
+    };
+
+    const direccion = antiInyeccioneSql(direccionDescripcion);
 
     console.log("País:", pais);
 
