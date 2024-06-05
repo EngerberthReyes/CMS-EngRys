@@ -20,8 +20,8 @@ const MenuBar = ({ editor }) => {
   }
 
   return (
-    <div className="menuBar">
-      <div>
+    <section className="menuBar">
+      <section>
         <button
           onClick={() => editor.chain().focus().toggleBold().run()}
           className={editor.isActive("bold") ? "is_active" : ""}
@@ -84,16 +84,16 @@ const MenuBar = ({ editor }) => {
         >
           <FaQuoteLeft />
         </button>
-      </div>
-      <div>
+      </section>
+      <section>
         <button onClick={() => editor.chain().focus().undo().run()}>
           <FaUndo />
         </button>
         <button onClick={() => editor.chain().focus().redo().run()}>
           <FaRedo />
         </button>
-      </div>
-    </div>
+      </section>
+    </section>
   );
 };
 
@@ -109,9 +109,9 @@ export const Tiptap = ({ setDescription }) => {
   });
 
   return (
-    <div className="textEditor">
+    <section className="textEditor">
       <MenuBar editor={editor} />
       <EditorContent editor={editor} />
-    </div>
+    </section>
   );
 };

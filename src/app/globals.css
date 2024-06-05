@@ -49,9 +49,9 @@ input::selection {
   }
 }
 
-input[type=file],
-input[type=file]::-webkit-file-upload-button {
-    cursor: pointer; 
+input[type="file"],
+input[type="file"]::-webkit-file-upload-button {
+  cursor: pointer;
 }
 
 input[type="file"] {
@@ -75,7 +75,8 @@ body {
   align-items: center;
 }
 
-textarea, input {
+textarea,
+input {
   field-sizing: content;
 }
 

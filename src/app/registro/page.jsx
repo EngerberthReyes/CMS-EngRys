@@ -669,9 +669,6 @@ const Registro = () => {
                   >
                     Dirección Completa
                   </label>
-                  <div className="App">
-                    <Tiptap setDescription={setDescription} />
-                  </div>
                   {/*<textarea
                     id="direccion"
                     style={{ width: "100%" }}
@@ -688,6 +685,9 @@ const Registro = () => {
                     </section>
                   )} */}
                 </section>
+                <section className="App">
+                    <Tiptap setDescription={setDescription} />
+                  </section>
               </section>
               <section className={stylesRegistro.contenedor_passoword_perdida}>
                 <Link

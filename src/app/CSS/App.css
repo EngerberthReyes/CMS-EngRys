@@ -1,6 +1,7 @@
 .App {
   font-family: system-ui;
   max-width: 700px;
+  width: 37rem;
 }
 
 .ProseMirror {
@@ -85,7 +86,7 @@
   outline: none;
   border: none;
   background: none;
-  color: rgb(70, 70, 70);
+  color: #464646;
   cursor: pointer;
 }
 .menuBar button:last-child {
@@ -97,7 +98,7 @@
 }
 
 button.is_active {
-  background: rgb(197, 197, 197);
+  background: #c5c5c5;
   padding: 2px 3px;
   border-radius: 2px;
 }
