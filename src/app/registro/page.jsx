@@ -663,7 +663,9 @@ const Registro = () => {
                 Dirección Completa
               </label>
               <section className="App">
-                <Tiptap setDescription={setDescription} />
+                <Tiptap
+                  setDescription={setDescription}
+                />
               </section>
               <section className={stylesRegistro.contenedor_passoword_perdida}>
                 <Link
