@@ -654,40 +654,16 @@ const Registro = () => {
                     </p>
                   )}
                 </section>
-                <section
-                  style={{
-                    width: "84%",
-                    display: "flex",
-                    margin: "0",
-                    flexDirection: "column",
-                  }}
-                >
-                  <label
-                    htmlFor="direccion"
-                    className={stylesRegistro.label}
-                    style={{ margin: "2% 0" }}
-                  >
-                    Dirección Completa
-                  </label>
-                  {/*<textarea
-                    id="direccion"
-                    style={{ width: "100%" }}
-                    className={`${stylesRegistro.input_texto} ${stylesRegistro.textarea} rounded-2 mb-2`}
-                    {...register("direccion", {
-                      required: "Ingrese su dirección completa",
-                    })}
-                  ></textarea>
-                  {errors.direccion && (
-                    <section className={stylesRegistro.seccionError}>
-                      <p className={stylesRegistro.errorInput}>
-                        {errors.direccion.message}
-                      </p>
-                    </section>
-                  )} */}
-                </section>
-                <section className="App">
-                    <Tiptap setDescription={setDescription} />
-                  </section>
+              </section>
+              <label
+                htmlFor="direccion"
+                className={stylesRegistro.label}
+                style={{ margin: "0 0 0 8%" }}
+              >
+                Dirección Completa
+              </label>
+              <section className="App">
+                <Tiptap setDescription={setDescription} />
               </section>
               <section className={stylesRegistro.contenedor_passoword_perdida}>
                 <Link
