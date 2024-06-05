@@ -7,9 +7,11 @@
 .ProseMirror {
   padding: 10px;
   border-top: 1px solid #808080;
-  background: #ffffff;
+  background: #181818;
+  color: #eeeeee;
   border-radius: 0 0 5px 5px;
   min-height: 100px;
+  text-align: start;
 }
 .ProseMirror:focus {
   border: none;
@@ -78,6 +80,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  background-color: #eeeeee;
 }
 .menuBar button {
   font-size: 18px;

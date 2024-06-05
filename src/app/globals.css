@@ -24,6 +24,13 @@ input[type="number"] {
   -moz-appearance: textfield;
 }
 
+ol,
+ul,
+li {
+  list-style: auto !important;
+  color: #eeeeee !important;
+}
+
 ::selection {
   background: #0f0f0f;
   color: #eeeeee;
