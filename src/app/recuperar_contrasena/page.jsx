@@ -92,16 +92,16 @@ const recuperarClave = () => {
     return numero < 10 ? `0${numero}` : `${numero}`;
   };
 
-  const minutes = Math.floor(tiempoRestante / 60);
-  const seconds = tiempoRestante % 60;
+  const minutos = Math.floor(tiempoRestante / 60);
+  const segundos = tiempoRestante % 60;
 
-  const minutosFormateados = padNumber(minutes);
-  const segundosFormateados = padNumber(seconds);
+  const minutosFormateados = padNumber(minutos);
+  const segundosFormateados = padNumber(segundos);
 
   let mostrarTexto;
-  if (minutes === 0 && seconds === 0) {
+  if (minutos === 0 && segundos === 0) {
     mostrarTexto = "Tiempo agotado";
-  } else if (minutes > 0) {
+  } else if (minutos > 0) {
     mostrarTexto = `${minutosFormateados}:${segundosFormateados} Minutos Restantes`;
   } else {
     mostrarTexto = `${segundosFormateados} Segundos Restantes`;
