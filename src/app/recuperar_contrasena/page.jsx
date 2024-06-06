@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
-import { Notificacion } from "@/componentes/notificaciones/notificaciones.jsx";
+import { Notificacion } from "@/componentes/notificacionRestrablecer/notificaciones.jsx";
 import stylesClave from "../CSS/styles-recuperarContrasena.module.css";
 import { useForm } from "react-hook-form";
 import axios from "axios";
@@ -30,6 +30,8 @@ const recuperarClave = () => {
   const [correoNoValido, setCorreoNoValido] = useState(false);
   const [claveUsuario, setClaveUsuario] = useState();
   const [email, setEmail] = useState();
+  const [usuarioRegistrado, setUsuarioRegistrado] = useState(false);
+  const [estatusActivo, setEstatusActivo] = useState(false);
   const claveNueva = watch("nuevaClave");
   if (correoNoValido) {
     setTimeout(() => {
@@ -128,10 +130,14 @@ const recuperarClave = () => {
       if (datos.resultadoFiltrado.length === 0) {
         return setCorreoNoValido(true);
       }
+      if (respuesta) {
+          setUsuarioRegistrado(true);
+          setEstatusActivo(true);
+          setMensajeCorreoAceptado(true);
+      }
       setEmail(datos.resultadoFiltrado[0].correo_electronico);
 
       setPasoFormulario(pasoFormulario + 1);
-      setMensajeCorreoAceptado(true);
       if (respuesta.status < 200 || respuesta.status >= 300) {
         throw new Error("Error en la solicitud");
       }
@@ -139,6 +145,12 @@ const recuperarClave = () => {
       console.log(datos);
     } catch (error) {
       console.error("Error:", error);
+    } finally {
+      setTimeout(() => {
+        setUsuarioRegistrado(false);
+        setEstatusActivo(false);
+        setMensajeCorreoAceptado(false);
+      }, 4000)
     }
   };
 
@@ -225,7 +237,12 @@ const recuperarClave = () => {
               </button>
             </>
           )}
-          {mensajeCorreoAceAceptado && <Notificacion />}
+          {mensajeCorreoAceAceptado && (
+            <Notificacion
+              usuarioRegistrado={usuarioRegistrado}
+              estatusActivo={estatusActivo}
+            />
+          )}
           {pasoFormulario === 2 && (
             <>
               <h1 className={stylesClave.titulo_form}>
