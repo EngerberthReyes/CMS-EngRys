@@ -279,21 +279,50 @@ const recuperarClave = () => {
           {pasoFormulario === 3 && (
             <>
               <h1 className={stylesClave.titulo_form}>Recuperar Contraseña</h1>
-              <label htmlFor="claveNueva" className={stylesClave.label}>
-                Restablezca Su Contraseña
+              <label htmlFor="clave" className={stylesLogin.labelClave}>
+                Restablezca su Contraseña
               </label>
-              <input
-                id="claveNueva"
-                className={`${stylesClave.input_texto} rounded-2`}
-                type="text"
-                {...register("nuevaClave", {
-                  required: "Introduzca su Nueva Clave",
-                })}
-              />
-              {errors.nuevaClave && (
-                <section className={stylesClave.seccionError}>
-                  <p className={stylesClave.errorInput}>
-                    {errors.nuevaClave.message}
+              <section className={stylesLogin.contenedor_input_password}>
+                <input
+                  id="clave"
+                  className={`${stylesLogin.input_texto} rounded-2`}
+                  type={mostrarClave ? "text" : "password"}
+                  {...register("nuevaClave", {
+                    required: "Introduzca una Contraseña",
+                  })}
+                />
+                {mostrarClave ? (
+                  <Image
+                    className={stylesLogin.icono_password}
+                    onClick={() => mostrarPassword(clave)}
+                    width={20}
+                    height={20}
+                    src={
+                      temaActual === "oscuro"
+                        ? `/BlancoAbierto.svg`
+                        : `/OjoNegroAbierto.svg`
+                    }
+                    alt="Ocultar Contraseña"
+                  />
+                ) : (
+                  <Image
+                    className={stylesLogin.icono_password}
+                    onClick={() => mostrarPassword(clave)}
+                    width={20}
+                    height={20}
+                    src={
+                      temaActual === "oscuro"
+                        ? `/BlancoAbiertoOblicua.svg`
+                        : `/OjoNegroAbiertoOblicuo.svg`
+                    }
+                    alt="Mostrar Contraseña"
+                  />
+                )}
+              </section>
+              {(estatusCorreo === true || estatusClave === true) && (
+                <section className={stylesLogin.seccionError}>
+                  <p className={stylesLogin.errorInput}>
+                    La Contraseña o el Correo Electrónico Son Incorrectos
                   </p>
                 </section>
               )}

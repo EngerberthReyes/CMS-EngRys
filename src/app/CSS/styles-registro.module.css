@@ -1,5 +1,5 @@
 #body::before {
-  background: #eeeeee;
+  background: url("../../../public/LunaLava.png") center center fixed;
   filter: blur(6px);
   position: fixed;
   background-size: cover;
