@@ -32,6 +32,8 @@ const Registro = () => {
   const [description, setDescription] = useState("");
   const [usuarioRegistrado, setUsuarioRegistrado] = useState(false);
   const [estatusActivo, setEstatusActivo] = useState(false);
+  const [imagenSitioWeb, setImagenSitioWeb] = useState();
+  const [aceptarSitioWeb, setAceptarSitioWeb] = useState(null);
 
   const enrutadorMaster = useRouter();
 
@@ -60,6 +62,29 @@ const Registro = () => {
   const clave = watch("clave");
   const cedula = watch("cedula");
   const correo = watch("correo");
+  const sitioWeb = watch("sitio_web");
+  useEffect(() => {
+    const screenShot = async () => {
+      try {
+        const respuestaImagen = await axios.get(
+          `https://api.screenshotone.com/take?access_key=sstg43NQFtN-dQ&url=${sitioWeb}&full_page=false&viewport_width=1920&viewport_height=1080&device_scale_factor=1&format=jpg&image_quality=80&block_ads=true&block_cookie_banners=true&block_banners_by_heuristics=false&block_trackers=true&delay=0&timeout=60`,
+          { responseType: "blob" }
+        );
+
+        if (respuestaImagen && respuestaImagen.data) {
+          const imagenBlob = respuestaImagen.data;
+          const imagenURL = URL.createObjectURL(imagenBlob);
+          setImagenSitioWeb(imagenURL);
+          setAceptarSitioWeb(true);
+        }
+      } catch (error) {
+        console.error("Error fetching screenshot:", error);
+      }
+    };
+
+    screenShot();
+  }, [sitioWeb]);
+
   const confirmacionClave = watch("repetirClave");
   const [cedulas, setCedulas] = useState([]);
   const [mensajeCedula, setMensajeCedula] = useState("");
@@ -831,7 +856,14 @@ const Registro = () => {
                   </p>
                 </section>
               )}
-
+              {aceptarSitioWeb && (
+                <Image
+                  src={imagenSitioWeb}
+                  alt={"Imagen Sitio Web"}
+                  width={1000}
+                  height={1000}
+                />
+              )}
               <section
                 className={`${stylesRegistro.contenedor_passoword_perdida} rounded-2 mt-0`}
               >
