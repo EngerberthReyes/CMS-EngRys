@@ -64,19 +64,19 @@ const Registro = () => {
   const correo = watch("correo");
   const sitioWeb = watch("sitio_web");
   useEffect(() => {
-    const fetchScreenshot = async () => {
+    const screenShot = async () => {
       try {
-        const response = await axios.get(
+        const respuesta = await axios.get(
           `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${sitioWeb}`
         );
 
-        if (response && response.data) {
+        if (respuesta.data) {
           const screenshotBase64 =
-            response.data.lighthouseResult.audits["final-screenshot"].details
+            respuesta.data.lighthouseResult.audits["final-screenshot"].details
               .data;
-          const base64Image = screenshotBase64.split(";base64,").pop();
+          const base64Imagen = screenshotBase64.split(";base64,").pop();
           const imagenBlob = await fetch(
-            `data:image/jpeg;base64,${base64Image}`
+            `data:image/jpeg;base64,${base64Imagen}`
           ).then((res) => res.blob());
           const imagenURL = URL.createObjectURL(imagenBlob);
           setImagenSitioWeb(imagenURL);
@@ -87,7 +87,7 @@ const Registro = () => {
       }
     };
 
-    fetchScreenshot();
+    screenShot();
   }, [sitioWeb]);
 
   const confirmacionClave = watch("repetirClave");
@@ -862,12 +862,14 @@ const Registro = () => {
                 </section>
               )}
               {aceptarSitioWeb && (
-                <Image
-                  src={imagenSitioWeb}
-                  alt={"Imagen Sitio Web"}
-                  width={1000}
-                  height={1000}
-                />
+                <section style={{ width: "85%" }}>
+                  <Image
+                    src={imagenSitioWeb}
+                    alt={"Imagen Sitio Web"}
+                    width={1000}
+                    height={1000}
+                  />
+                </section>
               )}
               <section
                 className={`${stylesRegistro.contenedor_passoword_perdida} rounded-2 mt-0`}
