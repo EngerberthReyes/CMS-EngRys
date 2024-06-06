@@ -296,7 +296,7 @@ const recuperarClave = () => {
           {pasoFormulario === 3 && (
             <>
               <h1 className={stylesClave.titulo_form}>Recuperar Contraseña</h1>
-              <label htmlFor="clave" className={stylesLogin.labelClave}>
+              <label htmlFor="clave" className={stylesClave.labelClave}>
                 Restablezca su Contraseña
               </label>
               <section className={stylesClave.contenedor_input_password}>
