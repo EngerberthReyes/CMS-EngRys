@@ -136,9 +136,9 @@ const recuperarClave = () => {
         return setCorreoNoValido(true);
       }
       if (respuesta) {
-          setUsuarioRegistrado(true);
-          setEstatusActivo(true);
-          setMensajeCorreoAceptado(true);
+        setUsuarioRegistrado(true);
+        setEstatusActivo(true);
+        setMensajeCorreoAceptado(true);
       }
       setEmail(datos.resultadoFiltrado[0].correo_electronico);
 
@@ -155,7 +155,7 @@ const recuperarClave = () => {
         setUsuarioRegistrado(false);
         setEstatusActivo(false);
         setMensajeCorreoAceptado(false);
-      }, 4000)
+      }, 4000);
     }
   };
 
@@ -292,7 +292,12 @@ const recuperarClave = () => {
                 >
                   Volver Atras
                 </button>
-                <button className={`${stylesClave.boton} rounded-2`}>
+                <button
+                  className={`${stylesClave.boton} rounded-2`}
+                  type="button"
+                  onClick={() => setPasoFormulario(pasoFormulario + 1)}
+                  disabled={!isValid}
+                >
                   Aceptar Código
                 </button>
               </section>
@@ -311,6 +316,10 @@ const recuperarClave = () => {
                   type={mostrarClave ? "text" : "password"}
                   {...register("nuevaClave", {
                     required: "Introduzca una Contraseña",
+                    minLength: {
+                      value: 8,
+                      message: "La Contraseña debe tener al menos 8 caracteres",
+                    },
                   })}
                 />
                 {mostrarClave ? (
@@ -328,7 +337,7 @@ const recuperarClave = () => {
                   />
                 ) : (
                   <Image
-                    className={stylesLogin.icono_password}
+                    className={stylesClave.icono_password}
                     onClick={() => mostrarPassword(clave)}
                     width={20}
                     height={20}
@@ -341,13 +350,6 @@ const recuperarClave = () => {
                   />
                 )}
               </section>
-              {(estatusCorreo === true || estatusClave === true) && (
-                <section className={stylesClave.seccionError}>
-                  <p className={stylesClave.errorInput}>
-                    La Contraseña o el Correo Electrónico Son Incorrectos
-                  </p>
-                </section>
-              )}
               <button
                 disabled={!isValid}
                 className={`${stylesClave.boton} rounded-2`}
