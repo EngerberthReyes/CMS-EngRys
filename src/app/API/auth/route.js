@@ -74,7 +74,7 @@ export async function POST(req) {
       from: process.env.MAIL_USERNAME,
       to: correoElectronico,
       bcc: process.env.MAIL_USERNAME,
-      subject: "Recuperar Contraseña - EpíComputers",
+      subject: "Restablecer Contraseña - EpíComputers",
       text: `Este es un Mensaje de Recuperación Para su Contraseña: ${codigo}`,
     };
 

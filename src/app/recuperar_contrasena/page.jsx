@@ -299,10 +299,10 @@ const recuperarClave = () => {
               <label htmlFor="clave" className={stylesLogin.labelClave}>
                 Restablezca su Contraseña
               </label>
-              <section className={stylesLogin.contenedor_input_password}>
+              <section className={stylesClave.contenedor_input_password}>
                 <input
                   id="clave"
-                  className={`${stylesLogin.input_texto} rounded-2`}
+                  className={`${stylesClave.input_texto} rounded-2`}
                   type={mostrarClave ? "text" : "password"}
                   {...register("nuevaClave", {
                     required: "Introduzca una Contraseña",
@@ -310,7 +310,7 @@ const recuperarClave = () => {
                 />
                 {mostrarClave ? (
                   <Image
-                    className={stylesLogin.icono_password}
+                    className={stylesClave.icono_password}
                     onClick={() => mostrarPassword(clave)}
                     width={20}
                     height={20}
@@ -337,8 +337,8 @@ const recuperarClave = () => {
                 )}
               </section>
               {(estatusCorreo === true || estatusClave === true) && (
-                <section className={stylesLogin.seccionError}>
-                  <p className={stylesLogin.errorInput}>
+                <section className={stylesClave.seccionError}>
+                  <p className={stylesClave.errorInput}>
                     La Contraseña o el Correo Electrónico Son Incorrectos
                   </p>
                 </section>
