@@ -94,7 +94,7 @@ const Registro = () => {
   }, []);
 
   useEffect(() => {
-    console.log(cedula)
+    console.log(cedula);
     console.log("Cédulas obtenidas:", cedulas);
     if (!cedulas.includes(cedula) && cedulas.length === 0) {
       setEstatusCedula(false);
@@ -240,7 +240,7 @@ const Registro = () => {
 
     try {
       const claveHash = await hash(clave, 11);
-console.log(claveHash)
+      console.log(claveHash);
       const respuesta = await axios.post("../API/personas", {
         nombres,
         apellido,
@@ -269,7 +269,7 @@ console.log(claveHash)
         setEstatusActivo(true);
         setTimeout(() => {
           enrutadorMaster.push("../iniciar_sesion");
-        }, 6000);
+        }, 5000);
       }
 
       console.log(respuesta);
