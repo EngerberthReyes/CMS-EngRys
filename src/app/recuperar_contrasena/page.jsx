@@ -350,6 +350,13 @@ const recuperarClave = () => {
                   />
                 )}
               </section>
+              {errors.nuevaClave && (
+                <section className={stylesRegistro.seccionError}>
+                  <p className={stylesRegistro.errorInput}>
+                    {errors.nuevaClave.message}
+                  </p>
+                </section>
+              )}
               <button
                 disabled={!isValid}
                 className={`${stylesClave.boton} rounded-2`}
