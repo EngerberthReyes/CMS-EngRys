@@ -64,15 +64,20 @@ const Registro = () => {
   const correo = watch("correo");
   const sitioWeb = watch("sitio_web");
   useEffect(() => {
-    const screenShot = async () => {
+    const fetchScreenshot = async () => {
       try {
-        const respuestaImagen = await axios.get(
-          `https://api.screenshotone.com/take?access_key=sstg43NQFtN-dQ&url=${sitioWeb}&full_page=false&viewport_width=1920&viewport_height=1080&device_scale_factor=1&format=jpg&image_quality=80&block_ads=true&block_cookie_banners=true&block_banners_by_heuristics=false&block_trackers=true&delay=0&timeout=60`,
-          { responseType: "blob" }
+        const response = await axios.get(
+          `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${sitioWeb}`
         );
 
-        if (respuestaImagen && respuestaImagen.data) {
-          const imagenBlob = respuestaImagen.data;
+        if (response && response.data) {
+          const screenshotBase64 =
+            response.data.lighthouseResult.audits["final-screenshot"].details
+              .data;
+          const base64Image = screenshotBase64.split(";base64,").pop();
+          const imagenBlob = await fetch(
+            `data:image/jpeg;base64,${base64Image}`
+          ).then((res) => res.blob());
           const imagenURL = URL.createObjectURL(imagenBlob);
           setImagenSitioWeb(imagenURL);
           setAceptarSitioWeb(true);
@@ -82,7 +87,7 @@ const Registro = () => {
       }
     };
 
-    screenShot();
+    fetchScreenshot();
   }, [sitioWeb]);
 
   const confirmacionClave = watch("repetirClave");
