@@ -153,7 +153,8 @@ export const POST = async (request) => {
       sitio_web,
       correo,
       claveHash,
-      repetirClave
+      repetirClave,
+      imagenSitioWeb
     );
 
     const consultaGrabarPersonas = `
