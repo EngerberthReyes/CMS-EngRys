@@ -864,6 +864,7 @@ const Registro = () => {
               {aceptarSitioWeb && (
                 <section style={{ width: "85%" }}>
                   <Image
+                    style={{ aspectRatio: "16/9", borderRadius: "10px" }}
                     src={imagenSitioWeb}
                     alt={"Imagen Sitio Web"}
                     width={1000}
