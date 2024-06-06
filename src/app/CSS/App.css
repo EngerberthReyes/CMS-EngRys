@@ -1,7 +1,6 @@
 .App {
   font-family: system-ui;
-  max-width: 700px;
-  width: 37rem;
+  width: 85%;
 }
 
 .ProseMirror {
@@ -117,7 +116,9 @@ button.is_active {
   .menuBar {
     background-color: #0f0f0f;
   }
-  ul, ol, li {
+  ul,
+  ol,
+  li {
     color: #000;
   }
 }
