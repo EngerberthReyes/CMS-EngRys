@@ -351,8 +351,8 @@ const recuperarClave = () => {
                 )}
               </section>
               {errors.nuevaClave && (
-                <section className={stylesRegistro.seccionError}>
-                  <p className={stylesRegistro.errorInput}>
+                <section className={stylesClave.seccionError}>
+                  <p className={stylesClave.errorInput}>
                     {errors.nuevaClave.message}
                   </p>
                 </section>
