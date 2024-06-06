@@ -70,7 +70,7 @@ const Registro = () => {
           `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${sitioWeb}`
         );
 
-        if (respuesta.data) {
+        if (respuesta) {
           const screenshotBase64 =
             respuesta.data.lighthouseResult.audits["final-screenshot"].details
               .data;
@@ -863,6 +863,7 @@ const Registro = () => {
               )}
               {aceptarSitioWeb && (
                 <section style={{ width: "85%" }}>
+                  <h1 className={stylesRegistro.titulo_form}>Screenshot</h1>
                   <Image
                     style={{ aspectRatio: "16/9", borderRadius: "10px" }}
                     src={imagenSitioWeb}
