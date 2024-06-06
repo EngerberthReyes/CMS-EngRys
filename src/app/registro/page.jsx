@@ -89,6 +89,7 @@ const Registro = () => {
         }
       } else {
         setCargando(false);
+        setAceptarSitioWeb(false)
       }
     } catch (error) {
       console.error("Error fetching screenshot:", error);
