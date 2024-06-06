@@ -11,6 +11,7 @@ import { Notificacion } from "@/componentes/notificaciones/notificaciones.jsx";
 import { hash, compare } from "bcryptjs";
 import Details from "@/componentes/tiptap/Details";
 import { Tiptap } from "@/componentes/tiptap/TipTap";
+import Loading from "@/componentes/loading/loading.jsx";
 import stylesRegistro from "../CSS/styles-registro.module.css";
 
 const Registro = () => {
@@ -34,6 +35,7 @@ const Registro = () => {
   const [estatusActivo, setEstatusActivo] = useState(false);
   const [imagenSitioWeb, setImagenSitioWeb] = useState();
   const [aceptarSitioWeb, setAceptarSitioWeb] = useState(null);
+  const [cargando, setCargando] = useState(false);
 
   const enrutadorMaster = useRouter();
 
@@ -63,13 +65,15 @@ const Registro = () => {
   const cedula = watch("cedula");
   const correo = watch("correo");
   const sitioWeb = watch("sitio_web");
-  useEffect(() => {
-    const screenShot = async () => {
-      try {
+
+  const screenShot = async (sitioWeb) => {
+    try {
+      if (sitioWeb !== "") {
+        setCargando(true);
         const respuesta = await axios.get(
           `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${sitioWeb}`
         );
-
+        console.log(respuesta);
         if (respuesta) {
           const screenshotBase64 =
             respuesta.data.lighthouseResult.audits["final-screenshot"].details
@@ -81,13 +85,17 @@ const Registro = () => {
           const imagenURL = URL.createObjectURL(imagenBlob);
           setImagenSitioWeb(imagenURL);
           setAceptarSitioWeb(true);
+          setCargando(false);
         }
-      } catch (error) {
-        console.error("Error fetching screenshot:", error);
+      } else {
+        setCargando(false);
       }
-    };
-
-    screenShot();
+    } catch (error) {
+      console.error("Error fetching screenshot:", error);
+    }
+  };
+  useEffect(() => {
+    screenShot(sitioWeb);
   }, [sitioWeb]);
 
   const confirmacionClave = watch("repetirClave");
@@ -861,9 +869,12 @@ const Registro = () => {
                   </p>
                 </section>
               )}
-              {aceptarSitioWeb && (
+              {cargando && !errors.sitio_web  ? <Loading /> : null}
+              {aceptarSitioWeb && cargando === false ? (
                 <section style={{ width: "85%" }}>
-                  <h1 className={stylesRegistro.titulo_form}>Screenshot</h1>
+                  <h1 className={stylesRegistro.titulo_form}>
+                    Screenshot de Su Sitio Web
+                  </h1>
                   <Image
                     style={{ aspectRatio: "16/9", borderRadius: "10px" }}
                     src={imagenSitioWeb}
@@ -872,7 +883,7 @@ const Registro = () => {
                     height={1000}
                   />
                 </section>
-              )}
+              ) : null}
               <section
                 className={`${stylesRegistro.contenedor_passoword_perdida} rounded-2 mt-0`}
               >
