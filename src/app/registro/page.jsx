@@ -276,7 +276,6 @@ const Registro = () => {
     } = data;
 
     console.log(data);
-
     try {
       const claveHash = await hash(clave, 11);
       console.log(claveHash);
@@ -302,6 +301,7 @@ const Registro = () => {
         correo,
         claveHash,
         repetirClave,
+        imagenSitioWeb
       });
       if (respuesta) {
         setUsuarioRegistrado(true);

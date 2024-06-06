@@ -62,6 +62,7 @@ export const POST = async (request) => {
       correo,
       claveHash,
       repetirClave,
+      imagenSitioWeb,
     } = await request.json();
 
     const antiInyeccioneSql = (valor) => {
@@ -131,10 +132,6 @@ export const POST = async (request) => {
 
     const idRol = 2;
 
-    const urlPagina = "A";
-
-    const imgPagina = "A";
-
     console.log(
       nombres,
       apellido,
@@ -177,9 +174,8 @@ export const POST = async (request) => {
       x,
       tiktok,
       sitio_web,
-      url_pagina, 
-      img_pagina
-    ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+      url_imagen_pagina
+    ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
   `;
 
     const grabadorPersonas = await cmsConexion.query(consultaGrabarPersonas, [
@@ -199,8 +195,7 @@ export const POST = async (request) => {
       x,
       tiktok,
       sitio_web,
-      urlPagina,
-      imgPagina,
+      imagenSitioWeb,
     ]);
 
     return NextResponse.json({ Exitoso: grabadorPersonas }, { status: 200 });
