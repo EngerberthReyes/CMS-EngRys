@@ -30,6 +30,7 @@ const recuperarClave = () => {
   const [correoNoValido, setCorreoNoValido] = useState(false);
   const [claveUsuario, setClaveUsuario] = useState();
   const [email, setEmail] = useState();
+  const [mostrarClave, setMostrarClave] = useState(false);
   const [usuarioRegistrado, setUsuarioRegistrado] = useState(false);
   const [estatusActivo, setEstatusActivo] = useState(false);
   const claveNueva = watch("nuevaClave");
@@ -63,6 +64,10 @@ const recuperarClave = () => {
     setPasoFormulario(pasoFormulario - 1);
     setCodigoEnviado("");
     setTiempoRestante(600);
+  };
+
+  const mostrarPassword = (clave) => {
+    setMostrarClave(!mostrarClave);
   };
 
   const iniciarSesion = () => {
