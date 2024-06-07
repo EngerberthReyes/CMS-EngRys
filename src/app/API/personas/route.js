@@ -1,4 +1,4 @@
-import { cmsConexion, informacionPais as venezuela } from "@/db/database.js";
+import { cmsConexion, paisesMundo as consultarMundo } from "@/db/database.js";
 import { NextResponse } from "next/server";
 import axios from "axios";
 
@@ -8,26 +8,28 @@ export const GET = async () => {
     SELECT id_persona, cedula, correo_electronico, clave from personas;
     `;
 
-    const consultarPais = `
-    SELECT DISTINCT est.estado, cd.capital, cd.ciudad, muni.municipio, parr.parroquia
-    FROM ciudades as cd, estados as est, municipios as muni, parroquias as parr
-    WHERE est.id_estado = cd.id_estado
-    AND muni.id_municipio = parr.id_municipio
-    ORDER BY RAND()
-    LIMIT 23;
+    const consultarPaises = `
+SELECT c.name,
+       s.name,
+       r.name,
+       p.name
+      FROM cities c
+      JOIN states s ON c.id = s.id
+      JOIN regions r ON s.id = r.id
+      JOIN countries p ON r.id = p.id;
     `;
 
-    const [respuestaPersona, respuestaPais] = await Promise.all([
+    const [respuestaPersona, respuestaPaises] = await Promise.all([
       cmsConexion.query(datosUsuario),
-      venezuela.query(consultarPais),
+      consultarMundo.query(consultarPaises),
     ]);
 
     console.log(respuestaPersona);
-    console.log(respuestaPais);
+    console.log(respuestaPaises);
 
     return NextResponse.json({
       personas: respuestaPersona,
-      paises: respuestaPais,
+      paises: respuestaPaises,
     });
   } catch (error) {
     console.error(error);
