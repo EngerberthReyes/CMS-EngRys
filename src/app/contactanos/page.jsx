@@ -43,23 +43,16 @@ const Contactanos = () => {
           <section className={stylesContactanos.main}>
             <section className={stylesContactanos.seccionSecundaria}>
               <section className={stylesContactanos.seccionAjustes}>
-                <h1>Lateral</h1>
-                <section className={stylesContactanos.seccionFlex}>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
+                <h1>Contáctanos</h1>
+                <section>
+                  <h1>Aqui Ira algo de Como nos pueden contactar o algo</h1>
                 </section>
               </section>
             </section>
             <section className={stylesContactanos.seccionPrincipal}>
               <section className={stylesContactanos.seccionGrid}>
                 <h1>Aqui va algo</h1>
+                <h1>Todas Estas imagenes podrian ser de Pcs</h1>
                 <section className={stylesContactanos.seccionElementos}>
                   <section>
                     <Image
@@ -70,14 +63,42 @@ const Contactanos = () => {
                       alt={"Imagen"}
                     />
                   </section>
-                  <section>Cajas</section>
-                  <section>Cajas</section>
-                  <section>Cajas</section>
-                  <section>Cajas</section>
-                  <section>Cajas</section>
-                  <section>Cajas</section>
-                  <section>Cajas</section>
-                  <section>Cajas</section>
+                  <section>
+                    <Image
+                      className={stylesContactanos.elemento}
+                      src={"/IMG/epigrafe73.png"}
+                      width={200}
+                      height={200}
+                      alt={"Imagen"}
+                    />
+                  </section>
+                  <section>
+                    <Image
+                      className={stylesContactanos.elemento}
+                      src={"/IMG/epigrafe73.png"}
+                      width={200}
+                      height={200}
+                      alt={"Imagen"}
+                    />
+                  </section>
+                  <section>
+                    <Image
+                      className={stylesContactanos.elemento}
+                      src={"/IMG/epigrafe73.png"}
+                      width={200}
+                      height={200}
+                      alt={"Imagen"}
+                    />
+                  </section>
+                  <section>
+                    <Image
+                      className={stylesContactanos.elemento}
+                      src={"/IMG/epigrafe73.png"}
+                      width={200}
+                      height={200}
+                      alt={"Imagen"}
+                    />
+                  </section>
                 </section>
               </section>
             </section>
