@@ -19,3 +19,13 @@ export const informacionPais = mysql({
     database: "venezuela",
   },
 });
+
+export const paisesMundo = mysql({
+  config: {
+    host: "localhost",
+    user: "root",
+    password: "",
+    port: 3306,
+    database: "world",
+  },
+});
