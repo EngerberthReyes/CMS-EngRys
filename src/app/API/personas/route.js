@@ -9,7 +9,7 @@ export const GET = async () => {
     `;
 
     const consultarPaises = `
-SELECT c.name,
+       SELECT c.name,
        s.name,
        r.name,
        p.name
