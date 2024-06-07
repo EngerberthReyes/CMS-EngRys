@@ -75,7 +75,7 @@ const SobreNosotros = () => {
               <section className={stylesNosotros.seccionGrid}>
                 <h1>Aqui muchas mas cosas</h1>
                 <section>
-                  <h1>Aqui se podria poner una descripción de algo</h1>
+                  <h1>Aqui se podria poner una descripción de esta empresa</h1>
                   <p>Texto</p>
                 </section>
               </section>
