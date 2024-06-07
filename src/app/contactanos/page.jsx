@@ -14,7 +14,9 @@ const Contactanos = () => {
       </head>
       <body id={stylesContactanos.body}>
         <header className={stylesContactanos.header}>
-        <Link className={stylesContactanos.enlaceNormal} href={'/'}><h1 className={stylesContactanos.tituloHeader}>EpíComputers</h1></Link>
+          <Link className={stylesContactanos.enlaceNormal} href={"/"}>
+            <h1 className={stylesContactanos.tituloHeader}>EpíComputers</h1>
+          </Link>
           <section
             className={`${stylesContactanos.seccionEnlace} ${stylesContactanos.seccionEnlaceAumentada}`}
           >
@@ -37,101 +39,7 @@ const Contactanos = () => {
             </Link>
           </section>
         </header>
-        <main>
-          <section
-            className={`${stylesContactanos.main} ${stylesContactanos.seccionSecundariaAjuste}`}
-          >
-            <section
-              className={`${stylesContactanos.seccionPrincipal} ${stylesContactanos.seccionSecundariaAjuste}`}
-            >
-              <section className={stylesContactanos.seccionGrid}>
-                <h1>Aqui va algo</h1>
-                <section className={stylesContactanos.seccionElementos}>
-                  <section>
-                    <Image
-                      className={stylesContactanos.elemento}
-                      src={"/IMG/epigrafe73.png"}
-                      width={200}
-                      height={200}
-                      alt={"Imagen"}
-                    />
-                  </section>
-                  <section>
-                    <Image
-                      className={stylesContactanos.elemento}
-                      src={"/IMG/epigrafe73.png"}
-                      width={200}
-                      height={200}
-                      alt={"Imagen"}
-                    />
-                  </section>
-                  <section>
-                    <Image
-                      className={stylesContactanos.elemento}
-                      src={"/IMG/epigrafe73.png"}
-                      width={200}
-                      height={200}
-                      alt={"Imagen"}
-                    />
-                  </section>
-                  <section>
-                    <Image
-                      className={stylesContactanos.elemento}
-                      src={"/IMG/epigrafe73.png"}
-                      width={200}
-                      height={200}
-                      alt={"Imagen"}
-                    />
-                  </section>
-                  <section>
-                    <Image
-                      className={stylesContactanos.elemento}
-                      src={"/IMG/epigrafe73.png"}
-                      width={200}
-                      height={200}
-                      alt={"Imagen"}
-                    />
-                  </section>
-                  <section>
-                    <Image
-                      className={stylesContactanos.elemento}
-                      src={"/IMG/epigrafe73.png"}
-                      width={200}
-                      height={200}
-                      alt={"Imagen"}
-                    />
-                  </section>
-                  <section>
-                    <Image
-                      className={stylesContactanos.elemento}
-                      src={"/IMG/epigrafe73.png"}
-                      width={200}
-                      height={200}
-                      alt={"Imagen"}
-                    />
-                  </section>
-                  <section>
-                    <Image
-                      className={stylesContactanos.elemento}
-                      src={"/IMG/epigrafe73.png"}
-                      width={200}
-                      height={200}
-                      alt={"Imagen"}
-                    />
-                  </section>
-                  <section>
-                    <Image
-                      className={stylesContactanos.elemento}
-                      src={"/IMG/epigrafe73.png"}
-                      width={200}
-                      height={200}
-                      alt={"Imagen"}
-                    />
-                  </section>
-                </section>
-              </section>
-            </section>
-          </section>
+        <main className={stylesContactanos.mainPrincipal}>
           <section className={stylesContactanos.main}>
             <section className={stylesContactanos.seccionSecundaria}>
               <section className={stylesContactanos.seccionAjustes}>

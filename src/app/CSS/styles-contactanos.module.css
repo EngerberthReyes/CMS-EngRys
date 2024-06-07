@@ -24,6 +24,13 @@
   height: 12%;
 }
 
+.mainPrincipal {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 81vh;
+}
+
 .seccionEnlace {
   display: flex;
   align-self: center;
@@ -75,7 +82,7 @@
 
 .seccionPrincipal {
   background-color: #eeeeee;
-  width: 66%;
+  width: 50%;
   margin: 0 2% 0 0;
   border-radius: 4px;
 }
@@ -107,8 +114,8 @@
 }
 
 .seccionSecundaria {
-  width: 34%;
-  margin: 0 0 0 1%;
+  width: 50%;
+  margin: 0 0 0 2%;
   background-color: #eeeeee;
   color: #0f0f0f;
   height: 100%;
