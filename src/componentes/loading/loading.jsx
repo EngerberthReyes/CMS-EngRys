@@ -26,7 +26,7 @@ const Loading = () => {
             </section>
           </section>
         </section>
-        <p style={{ fontSize: "20px", margin: "0", color: "#ed143d" }}>
+        <p style={{ fontSize: "20px", margin: "0", color: "#008f39" }}>
           Capturando la Imagen del Sitio Web...
         </p>
       </section>
