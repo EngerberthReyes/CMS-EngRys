@@ -14,7 +14,9 @@ const SobreNosotros = () => {
       </head>
       <body id={stylesNosotros.body}>
         <header className={stylesNosotros.header}>
-        <Link className={stylesNosotros.enlaceNormal} href={'/'}><h1 className={stylesNosotros.tituloHeader}>EpíComputers</h1></Link>
+          <Link className={stylesNosotros.enlaceNormal} href={"/"}>
+            <h1 className={stylesNosotros.tituloHeader}>EpíComputers</h1>
+          </Link>
           <section
             className={`${stylesNosotros.seccionEnlace} ${stylesNosotros.seccionEnlaceAumentada}`}
           >
@@ -46,88 +48,8 @@ const SobreNosotros = () => {
             >
               <section className={stylesNosotros.seccionGrid}>
                 <h1>Aqui va algo</h1>
-                <section className={stylesNosotros.seccionElementos}>
-                  <section>
-                    <Image
-                      className={stylesNosotros.elemento}
-                      src={"/IMG/epigrafe73.png"}
-                      width={200}
-                      height={200}
-                      alt={"Imagen"}
-                    />
-                  </section>
-                  <section>
-                    <Image
-                      className={stylesNosotros.elemento}
-                      src={"/IMG/epigrafe73.png"}
-                      width={200}
-                      height={200}
-                      alt={"Imagen"}
-                    />
-                  </section>
-                  <section>
-                    <Image
-                      className={stylesNosotros.elemento}
-                      src={"/IMG/epigrafe73.png"}
-                      width={200}
-                      height={200}
-                      alt={"Imagen"}
-                    />
-                  </section>
-                  <section>
-                    <Image
-                      className={stylesNosotros.elemento}
-                      src={"/IMG/epigrafe73.png"}
-                      width={200}
-                      height={200}
-                      alt={"Imagen"}
-                    />
-                  </section>
-                  <section>
-                    <Image
-                      className={stylesNosotros.elemento}
-                      src={"/IMG/epigrafe73.png"}
-                      width={200}
-                      height={200}
-                      alt={"Imagen"}
-                    />
-                  </section>
-                  <section>
-                    <Image
-                      className={stylesNosotros.elemento}
-                      src={"/IMG/epigrafe73.png"}
-                      width={200}
-                      height={200}
-                      alt={"Imagen"}
-                    />
-                  </section>
-                  <section>
-                    <Image
-                      className={stylesNosotros.elemento}
-                      src={"/IMG/epigrafe73.png"}
-                      width={200}
-                      height={200}
-                      alt={"Imagen"}
-                    />
-                  </section>
-                  <section>
-                    <Image
-                      className={stylesNosotros.elemento}
-                      src={"/IMG/epigrafe73.png"}
-                      width={200}
-                      height={200}
-                      alt={"Imagen"}
-                    />
-                  </section>
-                  <section>
-                    <Image
-                      className={stylesNosotros.elemento}
-                      src={"/IMG/epigrafe73.png"}
-                      width={200}
-                      height={200}
-                      alt={"Imagen"}
-                    />
-                  </section>
+                <section>
+                  <h1>Aqui Podria ir otra cosa</h1>
                 </section>
               </section>
             </section>
@@ -135,7 +57,7 @@ const SobreNosotros = () => {
           <section className={stylesNosotros.main}>
             <section className={stylesNosotros.seccionSecundaria}>
               <section className={stylesNosotros.seccionAjustes}>
-                <h1>Lateral</h1>
+                <h1>Aqui podrias poner Puntos sobre nuestros servicios</h1>
                 <section className={stylesNosotros.seccionFlex}>
                   <section>Cajas2</section>
                   <section>Cajas2</section>
@@ -151,25 +73,10 @@ const SobreNosotros = () => {
             </section>
             <section className={stylesNosotros.seccionPrincipal}>
               <section className={stylesNosotros.seccionGrid}>
-                <h1>Aqui va algo</h1>
-                <section className={stylesNosotros.seccionElementos}>
-                  <section>
-                    <Image
-                      className={stylesNosotros.elemento}
-                      src={"/IMG/epigrafe73.png"}
-                      width={200}
-                      height={200}
-                      alt={"Imagen"}
-                    />
-                  </section>
-                  <section>Cajas</section>
-                  <section>Cajas</section>
-                  <section>Cajas</section>
-                  <section>Cajas</section>
-                  <section>Cajas</section>
-                  <section>Cajas</section>
-                  <section>Cajas</section>
-                  <section>Cajas</section>
+                <h1>Aqui muchas mas cosas</h1>
+                <section>
+                  <h1>Aqui se podria poner una descripción de algo</h1>
+                  <p>Texto</p>
                 </section>
               </section>
             </section>
