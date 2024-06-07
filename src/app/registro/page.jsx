@@ -36,6 +36,7 @@ const Registro = () => {
   const [imagenSitioWeb, setImagenSitioWeb] = useState();
   const [aceptarSitioWeb, setAceptarSitioWeb] = useState(null);
   const [cargando, setCargando] = useState(false);
+  const [interruptorLoading, setInterruptorLoading] = useState(false);
 
   const enrutadorMaster = useRouter();
 
@@ -65,39 +66,45 @@ const Registro = () => {
   const cedula = watch("cedula");
   const correo = watch("correo");
   const sitioWeb = watch("sitio_web");
+  console.log(sitioWeb);
 
   const screenShot = async (sitioWeb) => {
+    setInterruptorLoading(true);
+    if (!sitioWeb) {
+      setInterruptorLoading(false);
+      setAceptarSitioWeb(false);
+      return;
+    }
     try {
-      if (sitioWeb !== "") {
-        setCargando(true);
-        const respuesta = await axios.get(
-          `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${sitioWeb}`
-        );
-        console.log(respuesta);
-        if (respuesta) {
-          const screenshotBase64 =
-            respuesta.data.lighthouseResult.audits["final-screenshot"].details
-              .data;
-          const base64Imagen = screenshotBase64.split(";base64,").pop();
-          const imagenBlob = await fetch(
-            `data:image/jpeg;base64,${base64Imagen}`
-          ).then((res) => res.blob());
-          const imagenURL = URL.createObjectURL(imagenBlob);
-          setImagenSitioWeb(imagenURL);
-          setAceptarSitioWeb(true);
-          setCargando(false);
-        }
-      } else {
-        setCargando(false);
-        setAceptarSitioWeb(false);
+      const respuesta = await axios.get(
+        `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${sitioWeb}`
+      );
+
+      if (respuesta) {
+        const screenshotBase64 =
+          respuesta.data.lighthouseResult.audits["final-screenshot"].details
+            .data;
+        const base64Imagen = screenshotBase64.split(";base64,").pop();
+        const imagenBlob = await fetch(
+          `data:image/jpeg;base64,${base64Imagen}`
+        ).then((res) => res.blob());
+        const imagenURL = URL.createObjectURL(imagenBlob);
+
+        setImagenSitioWeb(imagenURL);
+        setAceptarSitioWeb(true);
       }
     } catch (error) {
       console.error("Error fetching screenshot:", error);
+    } finally {
+      setInterruptorLoading(false);
     }
   };
+
   useEffect(() => {
     screenShot(sitioWeb);
   }, [sitioWeb]);
+
+  console.log(interruptorLoading)
 
   const confirmacionClave = watch("repetirClave");
   const [cedulas, setCedulas] = useState([]);
@@ -106,7 +113,6 @@ const Registro = () => {
   const [correos, setCorreos] = useState([]);
   const [mensajeCorreo, setMensajeCorreo] = useState("");
   const [estatusCorreo, setEstatusCorreo] = useState(false);
-  const [interruptorVenezuela, setInterruptorVenezuela] = useState(false);
 
   const obtenerInformacionBaseDeDatos = async () => {
     try {
@@ -900,8 +906,9 @@ const Registro = () => {
                   </p>
                 </section>
               )}
-              {cargando && !errors.sitio_web ? <Loading /> : null}
-              {aceptarSitioWeb && cargando === false ? (
+              {interruptorLoading ? (
+                <Loading />
+              ) : (
                 <section style={{ width: "85%" }}>
                   <h1 className={stylesRegistro.titulo_form}>
                     Screenshot de Su Sitio Web
@@ -914,7 +921,7 @@ const Registro = () => {
                     height={1000}
                   />
                 </section>
-              ) : null}
+              )}
               <section
                 className={`${stylesRegistro.contenedor_passoword_perdida} rounded-2 mt-0`}
               >
