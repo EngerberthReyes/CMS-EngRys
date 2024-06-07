@@ -103,6 +103,10 @@ const Registro = () => {
   useEffect(() => {
     if (sitioWeb && !errors.sitio_web) {
       screenShot(sitioWeb);
+    } else if (sitioWeb === "" || sitioWeb === undefined) {
+      setInterruptorLoading(false);
+      setImagenSitioWeb(null);
+      return;
     }
   }, [sitioWeb, errors]);
 
