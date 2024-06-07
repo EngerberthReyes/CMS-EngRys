@@ -1,4 +1,4 @@
-import { cmsConexion, paisesMundo as consultarMundo } from "@/db/database.js";
+import { cmsConexion, paisesMundo as consultarMundo, venezuela as informacionVenezuela} from "@/db/database.js";
 import { NextResponse } from "next/server";
 import axios from "axios";
 
@@ -19,9 +19,15 @@ JOIN countries p ON s.country_id = p.id
 GROUP BY p.id;
     `;
 
-    const [respuestaPersona, respuestaPaises] = await Promise.all([
+    const consultarVenezuela =  `
+SELECT GROUP_CONCAT(DISTINCT m.municipio ORDER BY m.id_estado SEPARATOR ', ') AS municipios,
+    GROUP_CONCAT(DISTINCT p.parroquia ORDER BY p.parroquia SEPARATOR ', ') AS parroquias FROM  municipios as m JOIN parroquias as p ON m.id_municipio = p.id_municipio;
+        `;
+
+    const [respuestaPersona, respuestaPaises, respuestaVenezuela] = await Promise.all([
       cmsConexion.query(datosUsuario),
       consultarMundo.query(consultarPaises),
+      informacionVenezuela.query(consultarVenezuela)
     ]);
 
     console.log(respuestaPersona);
@@ -30,6 +36,7 @@ GROUP BY p.id;
     return NextResponse.json({
       personas: respuestaPersona,
       paises: respuestaPaises,
+      venezuela: respuestaVenezuela
     });
   } catch (error) {
     console.error(error);

@@ -9,8 +9,8 @@ export const cmsConexion = mysql({
     database: "cms",
   },
 });
-/*
-export const informacionPais = mysql({
+
+export const venezuela = mysql({
   config: {
     host: "localhost",
     user: "root",
@@ -19,7 +19,7 @@ export const informacionPais = mysql({
     database: "venezuela",
   },
 });
-*/
+
 export const paisesMundo = mysql({
   config: {
     host: "localhost",

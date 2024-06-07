@@ -224,7 +224,11 @@ const Registro = () => {
 
       const localidadesMundo = mundo.data.paises;
 
+      const venezuelaInformacion = mundo.data.venezuela;
+
       console.log(localidadesMundo);
+
+      console.log(venezuelaInformacion);
 
       const paises = localidadesMundo.map((localidades) => {
         return localidades.paises;
@@ -242,18 +246,19 @@ const Registro = () => {
 
         setEstado(localidadEncontrada.estados);
         setCiudad(localidadEncontrada.ciudades);
+
+        if (pais === "Venezuela") {
+          console.log(venezuelaInformacion);
+          const venezuelaEnArray = venezuelaInformacion.map((itemPais) => ({
+            municipios: itemPais.municipios.split(", "),
+            parroquias: itemPais.parroquias.split(", "),
+          }));
+          setMunicipio(venezuelaEnArray[0].municipios);
+          setParroquia(venezuelaEnArray[0].parroquias);
+        }
       }
 
-      const municipios = localidadesMundo.map((localidades) => {
-        return localidades.municipios;
-      });
-
-      const parroquias = localidadesMundo.map((localidades) => {
-        return localidades.parroquias;
-      });
       setPaises(paises);
-      setMunicipio(municipios);
-      setParroquia(parroquias);
     } catch (error) {
       console.error(error);
     }
