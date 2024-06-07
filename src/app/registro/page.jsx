@@ -89,7 +89,7 @@ const Registro = () => {
         }
       } else {
         setCargando(false);
-        setAceptarSitioWeb(false)
+        setAceptarSitioWeb(false);
       }
     } catch (error) {
       console.error("Error fetching screenshot:", error);
@@ -187,6 +187,8 @@ const Registro = () => {
   const [ciudad, setCiudad] = useState([]);
   const [municipio, setMunicipio] = useState([]);
   const [parroquia, setParroquia] = useState([]);
+  const [paises, setPaises] = useState([]);
+
   const [cedulaIngresadaUsuario, setCedula] = useState();
   console.log(cedulaIngresadaUsuario);
   const [codigoPostal, setCodigoPostal] = useState([
@@ -214,32 +216,42 @@ const Registro = () => {
     "8001 - Bolívar",
   ]);
 
-  const venezuela = async () => {
+  const pais = watch("pais");
+
+  const mundoEntero = async () => {
     try {
-      const venezuela = await axios.get("../API/personas");
+      const mundo = await axios.get("../API/personas");
 
-      const locacionesVenezuela = venezuela.data.paises;
+      const localidadesMundo = mundo.data.paises;
 
-      console.log(locacionesVenezuela);
+      console.log(localidadesMundo);
 
-      const estados = locacionesVenezuela.map((localidades) => {
-        return localidades.estado;
+      const paises = localidadesMundo.map((localidades) => {
+        return localidades.paises;
+      });
+      if (pais) {
+        const paisesConArray = localidadesMundo.map((pais) => ({
+          ...pais,
+          estados: pais.estados.split(", "),
+          ciudades: pais.ciudades.split(", "),
+        }));
+
+        const localidadEncontrada = paisesConArray.find(
+          (localidad) => localidad.paises === pais
+        );
+
+        setEstado(localidadEncontrada.estados);
+        setCiudad(localidadEncontrada.ciudades);
+      }
+
+      const municipios = localidadesMundo.map((localidades) => {
+        return localidades.municipios;
       });
 
-      const ciudades = locacionesVenezuela.map((localidades) => {
-        return localidades.ciudad;
+      const parroquias = localidadesMundo.map((localidades) => {
+        return localidades.parroquias;
       });
-
-      const municipios = locacionesVenezuela.map((localidades) => {
-        return localidades.municipio;
-      });
-
-      const parroquias = locacionesVenezuela.map((localidades) => {
-        return localidades.parroquia;
-      });
-
-      setEstado(estados);
-      setCiudad(ciudades);
+      setPaises(paises);
       setMunicipio(municipios);
       setParroquia(parroquias);
     } catch (error) {
@@ -248,8 +260,8 @@ const Registro = () => {
   };
 
   useEffect(() => {
-    venezuela();
-  }, []);
+    mundoEntero();
+  }, [pais]);
 
   const onSubmit = async (data) => {
     const {
@@ -301,7 +313,7 @@ const Registro = () => {
         correo,
         claveHash,
         repetirClave,
-        imagenSitioWeb
+        imagenSitioWeb,
       });
       if (respuesta) {
         setUsuarioRegistrado(true);
@@ -572,7 +584,9 @@ const Registro = () => {
                 {...register("pais", { required: "Seleccione un país" })}
               >
                 <option value="">Seleccione un País</option>
-                <option value="Venezuela">Venezuela</option>
+                {paises.map((itemPais) => {
+                  return <option value={itemPais}>{itemPais}</option>;
+                })}
               </select>
               {errors.pais && (
                 <section className={stylesRegistro.seccionError}>
@@ -870,7 +884,7 @@ const Registro = () => {
                   </p>
                 </section>
               )}
-              {cargando && !errors.sitio_web  ? <Loading /> : null}
+              {cargando && !errors.sitio_web ? <Loading /> : null}
               {aceptarSitioWeb && cargando === false ? (
                 <section style={{ width: "85%" }}>
                   <h1 className={stylesRegistro.titulo_form}>

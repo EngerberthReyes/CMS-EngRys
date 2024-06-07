@@ -9,14 +9,14 @@ export const GET = async () => {
     `;
 
     const consultarPaises = `
-       SELECT c.name,
-       s.name,
-       r.name,
-       p.name
-      FROM cities c
-      JOIN states s ON c.id = s.id
-      JOIN regions r ON s.id = r.id
-      JOIN countries p ON r.id = p.id;
+SELECT
+    p.name AS paises,
+    GROUP_CONCAT(DISTINCT s.name ORDER BY s.name SEPARATOR ', ') AS estados,
+    GROUP_CONCAT(DISTINCT c.name ORDER BY c.name SEPARATOR ', ') AS ciudades
+FROM cities c
+JOIN states s ON c.state_id = s.id
+JOIN countries p ON s.country_id = p.id
+GROUP BY p.id;
     `;
 
     const [respuestaPersona, respuestaPaises] = await Promise.all([
