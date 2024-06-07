@@ -106,6 +106,7 @@ const Registro = () => {
   const [correos, setCorreos] = useState([]);
   const [mensajeCorreo, setMensajeCorreo] = useState("");
   const [estatusCorreo, setEstatusCorreo] = useState(false);
+  const [interruptorVenezuela, setInterruptorVenezuela] = useState(false);
 
   const obtenerInformacionBaseDeDatos = async () => {
     try {
@@ -248,7 +249,7 @@ const Registro = () => {
         setCiudad(localidadEncontrada.ciudades);
 
         if (pais === "Venezuela") {
-          console.log(venezuelaInformacion);
+          setInterruptorVenezuela(true);
           const venezuelaEnArray = venezuelaInformacion.map((itemPais) => ({
             municipios: itemPais.municipios.split(", "),
             parroquias: itemPais.parroquias.split(", "),
@@ -652,85 +653,95 @@ const Registro = () => {
                     </p>
                   )}
                 </section>
-                <section>
-                  <label
-                    htmlFor="municipio"
-                    className={`${stylesRegistro.label} m-0`}
-                  >
-                    Municipio
-                  </label>
-                  <select
-                    id="municipio"
-                    className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-2`}
-                    {...register("municipio", {
-                      required: "Seleccione un municipio",
-                    })}
-                  >
-                    <option value="">Seleccione un Municipio</option>
-                    {municipio.map((itemMunicipio) => {
-                      return (
-                        <option value={itemMunicipio}>{itemMunicipio}</option>
-                      );
-                    })}
-                  </select>
-                  {errors.municipio && (
-                    <p className={stylesRegistro.errorInput}>
-                      {errors.municipio.message}
-                    </p>
-                  )}
-                </section>
-                <section>
-                  <label
-                    htmlFor="parroquia"
-                    className={`${stylesRegistro.label} m-0`}
-                  >
-                    Parroquia
-                  </label>
-                  <select
-                    id="parroquia"
-                    className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-2`}
-                    {...register("parroquia", {
-                      required: "Seleccione una parroquia",
-                    })}
-                  >
-                    <option value="">Seleccione una Parroquia</option>
-                    {parroquia.map((itemParroquia) => {
-                      return (
-                        <option value={itemParroquia}>{itemParroquia}</option>
-                      );
-                    })}
-                  </select>
-                  {errors.parroquia && (
-                    <p className={stylesRegistro.errorInput}>
-                      {errors.parroquia.message}
-                    </p>
-                  )}
-                </section>
-                <section>
-                  <label
-                    htmlFor="codigo"
-                    className={`${stylesRegistro.label} m-0`}
-                  >
-                    Código Postal
-                  </label>
-                  <select
-                    id="codigo"
-                    className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-2`}
-                    {...register("codigo", {
-                      required: "Seleccione un código postal",
-                    })}
-                  >
-                    <option value="">Seleccione un Código Postal</option>
-                    {codigoPostal.map((itemPostal) => {
-                      return <option value={itemPostal}>{itemPostal}</option>;
-                    })}
-                  </select>
-                  {errors.codigo && (
-                    <p className={stylesRegistro.errorInput}>
-                      {errors.codigo.message}
-                    </p>
-                  )}
-                </section>
+                {interruptorVenezuela && (
+                  <>
+                    <section>
+                      <label
+                        htmlFor="municipio"
+                        className={`${stylesRegistro.label} m-0`}
+                      >
+                        Municipio
+                      </label>
+                      <select
+                        id="municipio"
+                        className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-2`}
+                        {...register("municipio", {
+                          required: "Seleccione un municipio",
+                        })}
+                      >
+                        <option value="">Seleccione un Municipio</option>
+                        {municipio.map((itemMunicipio) => {
+                          return (
+                            <option value={itemMunicipio}>
+                              {itemMunicipio}
+                            </option>
+                          );
+                        })}
+                      </select>
+                      {errors.municipio && (
+                        <p className={stylesRegistro.errorInput}>
+                          {errors.municipio.message}
+                        </p>
+                      )}
+                    </section>
+                    <section>
+                      <label
+                        htmlFor="parroquia"
+                        className={`${stylesRegistro.label} m-0`}
+                      >
+                        Parroquia
+                      </label>
+                      <select
+                        id="parroquia"
+                        className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-2`}
+                        {...register("parroquia", {
+                          required: "Seleccione una parroquia",
+                        })}
+                      >
+                        <option value="">Seleccione una Parroquia</option>
+                        {parroquia.map((itemParroquia) => {
+                          return (
+                            <option value={itemParroquia}>
+                              {itemParroquia}
+                            </option>
+                          );
+                        })}
+                      </select>
+                      {errors.parroquia && (
+                        <p className={stylesRegistro.errorInput}>
+                          {errors.parroquia.message}
+                        </p>
+                      )}
+                    </section>
+                    <section>
+                      <label
+                        htmlFor="codigo"
+                        className={`${stylesRegistro.label} m-0`}
+                      >
+                        Código Postal
+                      </label>
+                      <select
+                        id="codigo"
+                        className={`${stylesRegistro.input_texto} ${stylesRegistro.seleccionNacionalidad} ${stylesRegistro.seleccionPais} rounded-2 mb-2`}
+                        {...register("codigo", {
+                          required: "Seleccione un código postal",
+                        })}
+                      >
+                        <option value="">Seleccione un Código Postal</option>
+                        {codigoPostal.map((itemPostal) => {
+                          return (
+                            <option value={itemPostal}>{itemPostal}</option>
+                          );
+                        })}
+                      </select>
+                      {errors.codigo && (
+                        <p className={stylesRegistro.errorInput}>
+                          {errors.codigo.message}
+                        </p>
+                      )}
+                    </section>
+                  </>
+                )}
               </section>
               <label
                 htmlFor="direccion"
