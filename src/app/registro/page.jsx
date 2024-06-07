@@ -33,9 +33,8 @@ const Registro = () => {
   const [description, setDescription] = useState("");
   const [usuarioRegistrado, setUsuarioRegistrado] = useState(false);
   const [estatusActivo, setEstatusActivo] = useState(false);
-  const [imagenSitioWeb, setImagenSitioWeb] = useState();
+  const [imagenSitioWeb, setImagenSitioWeb] = useState(null);
   const [aceptarSitioWeb, setAceptarSitioWeb] = useState(null);
-  const [cargando, setCargando] = useState(false);
   const [interruptorLoading, setInterruptorLoading] = useState(false);
 
   const enrutadorMaster = useRouter();
@@ -65,11 +64,12 @@ const Registro = () => {
   const clave = watch("clave");
   const cedula = watch("cedula");
   const correo = watch("correo");
+
   const sitioWeb = watch("sitio_web");
-  console.log(sitioWeb);
 
   const screenShot = async (sitioWeb) => {
     setInterruptorLoading(true);
+    setImagenSitioWeb(null);
     if (!sitioWeb) {
       setInterruptorLoading(false);
       setAceptarSitioWeb(false);
@@ -101,10 +101,12 @@ const Registro = () => {
   };
 
   useEffect(() => {
-    screenShot(sitioWeb);
-  }, [sitioWeb]);
+    if (sitioWeb && !errors.sitio_web) {
+      screenShot(sitioWeb);
+    }
+  }, [sitioWeb, errors]);
 
-  console.log(interruptorLoading)
+  console.log(interruptorLoading);
 
   const confirmacionClave = watch("repetirClave");
   const [cedulas, setCedulas] = useState([]);
@@ -906,10 +908,9 @@ const Registro = () => {
                   </p>
                 </section>
               )}
-              {interruptorLoading ? (
-                <Loading />
-              ) : (
-                <section style={{ width: "85%", display: !interruptorLoading ? "none" : "block" }}>
+              {!errors.sitio_web && interruptorLoading && <Loading />}
+              {imagenSitioWeb && !interruptorLoading && (
+                <section style={{ width: "85%" }}>
                   <h1 className={stylesRegistro.titulo_form}>
                     Screenshot de Su Sitio Web
                   </h1>
