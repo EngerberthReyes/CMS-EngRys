@@ -48,7 +48,9 @@ const Inicio = () => {
             >
               <section className={stylesInicio.seccionFlexPrincipal}>
                 <section className={stylesInicio.secctionInformacion}>
-                  <h1 className={stylesInicio.tituloSeccion}>La PC Gamer de Tus Sueños</h1>
+                  <h1 className={stylesInicio.tituloSeccion}>
+                    La PC Gamer de Tus Sueños
+                  </h1>
                 </section>
                 <section className={stylesInicio.seccionElementos}>
                   <section>
@@ -65,7 +67,7 @@ const Inicio = () => {
             </section>
           </section>
           <section className={stylesInicio.main}>
-            <section className={stylesInicio.seccionSecundaria}>
+            {/*} <section className={stylesInicio.seccionSecundaria}>
               <section className={stylesInicio.seccionAjustes}>
                 <h1>Lateral</h1>
                 <section className={stylesInicio.seccionFlex}>
@@ -80,28 +82,20 @@ const Inicio = () => {
                   <section>Cajas2</section>
                 </section>
               </section>
-            </section>
+            </section> */}
             <section className={stylesInicio.seccionPrincipal}>
-              <section className={stylesInicio.seccionGrid}>
-                <h1>Aqui va algo</h1>
-                <section className={stylesInicio.seccionElementos}>
-                  <section>
-                    <Image
-                      className={stylesInicio.elemento}
-                      src={"/IMG/epigrafe73.png"}
-                      width={200}
-                      height={200}
-                      alt={"Imagen"}
-                    />
+              <h1>Aqui va algo</h1>
+              <section className={stylesInicio.seccionFlex}>
+                <section className={stylesInicio.seccionSecundaria}>
+                  <section className={stylesInicio.seccionAjustes}>
+                    <h1>
+                      Aqui Van Más Cosas, como como funciona nuestra pagina,
+                      nuestros servicios
+                    </h1>
                   </section>
-                  <section>Cajas</section>
-                  <section>Cajas</section>
-                  <section>Cajas</section>
-                  <section>Cajas</section>
-                  <section>Cajas</section>
-                  <section>Cajas</section>
-                  <section>Cajas</section>
-                  <section>Cajas</section>
+                </section>
+                <section className={stylesInicio.seccionElementos}>
+                  <h1>Aqui Van Más Cosas</h1>
                 </section>
               </section>
             </section>

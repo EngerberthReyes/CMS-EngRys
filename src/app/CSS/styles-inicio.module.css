@@ -66,17 +66,15 @@
 
 .main {
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
-  width: 100vw;
+  width: 98vw;
   column-gap: 2%;
   margin: 1% 0;
 }
 
 .seccionPrincipal {
   background-color: #eeeeee;
-  width: 66%;
-  margin: 0 2% 0 0;
+  width: 99%;
+  margin: 0 0 0 1%;
   border-radius: 4px;
 }
 
@@ -97,10 +95,8 @@
 }
 
 .seccionElementos {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  place-items: center;
-  gap: 1rem;
+  width: 100%;
+  padding: 1rem;
 }
 
 .seccionAjustes {
@@ -109,7 +105,7 @@
 
 .seccionFlex {
   display: flex;
-  flex-direction: column;
+  flex-direction: row;
   row-gap: 1rem;
 }
 
