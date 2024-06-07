@@ -653,7 +653,7 @@ const Registro = () => {
                     </p>
                   )}
                 </section>
-                {interruptorVenezuela && (
+                {interruptorVenezuela ? (
                   <>
                     <section>
                       <label
@@ -741,7 +741,7 @@ const Registro = () => {
                       )}
                     </section>
                   </>
-                )}
+                ) : null}
               </section>
               <label
                 htmlFor="direccion"
