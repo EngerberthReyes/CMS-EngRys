@@ -59,15 +59,15 @@ const SobreNosotros = () => {
               <section className={stylesNosotros.seccionAjustes}>
                 <h1>Aqui podrias poner Puntos sobre nuestros servicios</h1>
                 <section className={stylesNosotros.seccionFlex}>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
+                  <section>Puntos</section>
+                  <section>Puntos</section>
+                  <section>Puntos</section>
+                  <section>Puntos</section>
+                  <section>Puntos</section>
+                  <section>Puntos</section>
+                  <section>Puntos</section>
+                  <section>Puntos</section>
+                  <section>Puntos</section>
                 </section>
               </section>
             </section>
