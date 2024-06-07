@@ -909,7 +909,7 @@ const Registro = () => {
               {interruptorLoading ? (
                 <Loading />
               ) : (
-                <section style={{ width: "85%", display: interruptorLoading ? "none" : "block" }}>
+                <section style={{ width: "85%", display: !interruptorLoading ? "none" : "block" }}>
                   <h1 className={stylesRegistro.titulo_form}>
                     Screenshot de Su Sitio Web
                   </h1>
