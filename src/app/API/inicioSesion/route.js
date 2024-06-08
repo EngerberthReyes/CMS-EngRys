@@ -47,9 +47,31 @@ export const POST = async (request, res) => {
     console.log(correo, clave);
 
     const datosUsuario = `
-      SELECT id_persona, nombre, correo_electronico, clave 
-      FROM personas
-      WHERE correo_electronico = ?;
+SELECT 
+    p.id_persona, 
+    p.nombre, 
+    p.cedula, 
+    p.correo_electronico, 
+    CASE 
+        WHEN gen.id_genero = 1 THEN 'Masculino'
+        ELSE 'Femenino'
+    END AS id_genero, 
+    p.clave, 
+    dirr.direccion_completa, 
+    p.fecha_nacimiento, 
+    p.facebook, 
+    p.instagram, 
+    p.tiktok, 
+    p.x, 
+    p.sitio_web
+FROM 
+    personas AS p 
+JOIN 
+    direcciones AS dirr ON p.id_direccion = dirr.id_direccion 
+JOIN 
+    generos AS gen ON p.id_genero = gen.id_genero
+WHERE 
+    p.correo_electronico = ?;
     `;
 
     const respuestaUsuario = await cmsConexion.query(datosUsuario, [

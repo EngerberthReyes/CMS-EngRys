@@ -1,33 +1,47 @@
-import { cmsConexion, informacionPais as venezuela } from "@/db/database.js";
+import {
+  cmsConexion,
+  paisesMundo as consultarMundo,
+  venezuela as informacionVenezuela,
+} from "@/db/database.js";
 import { NextResponse } from "next/server";
 import axios from "axios";
 
-export const GET = async (request, { params: { idUsuario } }) => {
+export const GET = async () => {
   try {
     const datosUsuario = `
-    SELECT cedula, correo_electronico, clave from personas where id_persona = ?;
+    SELECT id_persona, cedula, correo_electronico, clave from personas;
     `;
 
-    const consultarPais = `
-    SELECT DISTINCT est.estado, cd.capital, cd.ciudad, muni.municipio, parr.parroquia
-    FROM ciudades as cd, estados as est, municipios as muni, parroquias as parr
-    WHERE est.id_estado = cd.id_estado
-    AND muni.id_municipio = parr.id_municipio
-    ORDER BY RAND()
-    LIMIT 23;
+    const consultarPaises = `
+SELECT
+    p.name AS paises,
+    GROUP_CONCAT(DISTINCT s.name ORDER BY s.name SEPARATOR ', ') AS estados,
+    GROUP_CONCAT(DISTINCT c.name ORDER BY c.name SEPARATOR ', ') AS ciudades
+FROM cities c
+JOIN states s ON c.state_id = s.id
+JOIN countries p ON s.country_id = p.id
+GROUP BY p.id;
     `;
 
-    const [respuestaPersona, respuestaPais] = await Promise.all([
-      cmsConexion.query(datosUsuario, [Number(idUsuario)]),
-      venezuela.query(consultarPais),
-    ]);
+    const consultarVenezuela = `
+SELECT GROUP_CONCAT(DISTINCT m.municipio ORDER BY m.id_estado SEPARATOR ', ') AS municipios,
+    GROUP_CONCAT(DISTINCT p.parroquia ORDER BY p.parroquia SEPARATOR ', ') AS parroquias FROM  municipios as m JOIN parroquias as p ON m.id_municipio = p.id_municipio;
+        `;
+
+    const [respuestaPersona, respuestaPaises, respuestaVenezuela] =
+      await Promise.all([
+        cmsConexion.query(datosUsuario),
+        consultarMundo.query(consultarPaises),
+        informacionVenezuela.query(consultarVenezuela),
+      ]);
 
     console.log(respuestaPersona);
-    console.log(respuestaPais);
+    console.log(respuestaPaises);
 
     return NextResponse.json({
       personas: respuestaPersona,
-      paises: respuestaPais,
+      paises: respuestaPaises,
+      venezuela: respuestaVenezuela,
     });
   } catch (error) {
     console.error(error);
@@ -38,7 +52,7 @@ export const GET = async (request, { params: { idUsuario } }) => {
   }
 };
 
-export const POST = async (request, { params: { idUsuario } }) => {
+export const POST = async (request) => {
   try {
     const {
       nombres,
@@ -47,7 +61,7 @@ export const POST = async (request, { params: { idUsuario } }) => {
       sexo,
       nacionalidad,
       nacimiento,
-      direccion,
+      direccionDescripcion,
       pais,
       estado,
       ciudad,
@@ -60,9 +74,16 @@ export const POST = async (request, { params: { idUsuario } }) => {
       tiktok,
       sitio_web,
       correo,
-      clave,
+      claveHash,
       repetirClave,
+      imagenSitioWeb,
     } = await request.json();
+
+    const antiInyeccioneSql = (valor) => {
+      return valor.replace(/[<>;():{}'"=]/g, "").replace(/[\W]+/g, " ");
+    };
+
+    const direccion = antiInyeccioneSql(direccionDescripcion);
 
     console.log("País:", pais);
 
@@ -81,9 +102,18 @@ export const POST = async (request, { params: { idUsuario } }) => {
     const idEstado = grabadorEstado.insertId;
     console.log("ID del Estado:", idEstado);
 
-    const consultaGrabarMunicipio = `INSERT INTO municipios (id_estado, nombre_municipio) VALUES (?, ?);`;
-    const grabadorMunicipio = await cmsConexion.query(consultaGrabarMunicipio, [
+    const consultaGrabarCiudad = `INSERT INTO ciudades (id_estado, nombre_ciudad) VALUES (?, ?);`;
+    const grabadorCiudad = await cmsConexion.query(consultaGrabarCiudad, [
       idEstado,
+      ciudad,
+    ]);
+
+    const idCiudad = grabadorCiudad.insertId;
+    console.log("ID del Ciudad:", idCiudad);
+
+    const consultaGrabarMunicipio = `INSERT INTO municipios (id_ciudad, nombre_municipio) VALUES (?, ?);`;
+    const grabadorMunicipio = await cmsConexion.query(consultaGrabarMunicipio, [
+      idCiudad,
       municipio,
     ]);
 
@@ -125,10 +155,6 @@ export const POST = async (request, { params: { idUsuario } }) => {
 
     const idRol = 2;
 
-    const urlPagina = "A";
-
-    const imgPagina = "A";
-
     console.log(
       nombres,
       apellido,
@@ -149,10 +175,11 @@ export const POST = async (request, { params: { idUsuario } }) => {
       tiktok,
       sitio_web,
       correo,
-      clave,
-      repetirClave
+      claveHash,
+      repetirClave,
+      imagenSitioWeb
     );
-
+console.log(idGenero)
     const consultaGrabarPersonas = `
     INSERT INTO personas (
       id_persona, 
@@ -164,49 +191,38 @@ export const POST = async (request, { params: { idUsuario } }) => {
       apellido, 
       cedula,
       fecha_nacimiento,
-      correo_electronico, 
-      clave, 
-      facebook, 
-      instagram, 
-      x, 
+      correo_electronico,
+      clave,
+      facebook,
+      instagram,
+      x,
       tiktok,
       sitio_web,
-      url_pagina, 
-      img_pagina
-    ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+      url_imagen_pagina
+    ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
   `;
 
-    try {
-      const grabadorPersonas = await cmsConexion.query(consultaGrabarPersonas, [
-        null,
-        idGenero,
-        idRol,
-        idNacionalidad,
-        idDireccion,
-        nombres,
-        apellido,
-        cedula /* La Cedula es Unique en la base de datos, por algo no te lo registrara a todos */,
-        nacimiento,
-        correo,
-        clave,
-        facebook,
-        instagram,
-        x,
-        tiktok,
-        sitio_web,
-        urlPagina,
-        imgPagina,
-      ]);
+    const grabadorPersonas = await cmsConexion.query(consultaGrabarPersonas, [
+      null,
+      idGenero,
+      idRol,
+      idNacionalidad,
+      idDireccion,
+      nombres,
+      apellido,
+      cedula,
+      nacimiento,
+      correo,
+      claveHash,
+      facebook,
+      instagram,
+      x,
+      tiktok,
+      sitio_web,
+      imagenSitioWeb,
+    ]);
 
-      console.log("Persona registrada exitosamente:", grabadorPersonas);
-    } catch (error) {
-      console.error("Error al registrar la persona:", error);
-    }
-
-    return NextResponse.json(
-      { Exitoso: "Datos Insertados Correctamente" },
-      { status: 200 }
-    );
+    return NextResponse.json({ Exitoso: grabadorPersonas }, { status: 200 });
   } catch (error) {
     console.error("Error al grabar los datos:", error);
     return NextResponse.json(

@@ -125,7 +125,7 @@ CREATE TABLE
 INSERT INTO
   `nacionalidades` (`id_nacionalidad`, `nacionalidad`)
 VALUES
-  (1, 'Venezuela'),
+  (1, 'Venezolano'),
   (2, 'Extranjero');
 
 -- --------------------------------------------------------

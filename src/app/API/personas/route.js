@@ -1,4 +1,8 @@
-import { cmsConexion, paisesMundo as consultarMundo, venezuela as informacionVenezuela} from "@/db/database.js";
+import {
+  cmsConexion,
+  paisesMundo as consultarMundo,
+  venezuela as informacionVenezuela,
+} from "@/db/database.js";
 import { NextResponse } from "next/server";
 import axios from "axios";
 
@@ -19,16 +23,17 @@ JOIN countries p ON s.country_id = p.id
 GROUP BY p.id;
     `;
 
-    const consultarVenezuela =  `
+    const consultarVenezuela = `
 SELECT GROUP_CONCAT(DISTINCT m.municipio ORDER BY m.id_estado SEPARATOR ', ') AS municipios,
     GROUP_CONCAT(DISTINCT p.parroquia ORDER BY p.parroquia SEPARATOR ', ') AS parroquias FROM  municipios as m JOIN parroquias as p ON m.id_municipio = p.id_municipio;
         `;
 
-    const [respuestaPersona, respuestaPaises, respuestaVenezuela] = await Promise.all([
-      cmsConexion.query(datosUsuario),
-      consultarMundo.query(consultarPaises),
-      informacionVenezuela.query(consultarVenezuela)
-    ]);
+    const [respuestaPersona, respuestaPaises, respuestaVenezuela] =
+      await Promise.all([
+        cmsConexion.query(datosUsuario),
+        consultarMundo.query(consultarPaises),
+        informacionVenezuela.query(consultarVenezuela),
+      ]);
 
     console.log(respuestaPersona);
     console.log(respuestaPaises);
@@ -36,7 +41,7 @@ SELECT GROUP_CONCAT(DISTINCT m.municipio ORDER BY m.id_estado SEPARATOR ', ') AS
     return NextResponse.json({
       personas: respuestaPersona,
       paises: respuestaPaises,
-      venezuela: respuestaVenezuela
+      venezuela: respuestaVenezuela,
     });
   } catch (error) {
     console.error(error);
@@ -97,9 +102,18 @@ export const POST = async (request) => {
     const idEstado = grabadorEstado.insertId;
     console.log("ID del Estado:", idEstado);
 
-    const consultaGrabarMunicipio = `INSERT INTO municipios (id_estado, nombre_municipio) VALUES (?, ?);`;
-    const grabadorMunicipio = await cmsConexion.query(consultaGrabarMunicipio, [
+    const consultaGrabarCiudad = `INSERT INTO ciudades (id_estado, nombre_ciudad) VALUES (?, ?);`;
+    const grabadorCiudad = await cmsConexion.query(consultaGrabarCiudad, [
       idEstado,
+      ciudad,
+    ]);
+
+    const idCiudad = grabadorCiudad.insertId;
+    console.log("ID del Ciudad:", idCiudad);
+
+    const consultaGrabarMunicipio = `INSERT INTO municipios (id_ciudad, nombre_municipio) VALUES (?, ?);`;
+    const grabadorMunicipio = await cmsConexion.query(consultaGrabarMunicipio, [
+      idCiudad,
       municipio,
     ]);
 
@@ -165,7 +179,7 @@ export const POST = async (request) => {
       repetirClave,
       imagenSitioWeb
     );
-
+console.log(idGenero)
     const consultaGrabarPersonas = `
     INSERT INTO personas (
       id_persona, 
