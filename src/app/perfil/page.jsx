@@ -126,7 +126,6 @@ const Perfil = () => {
     2,
     "0"
   )}-${fechaPartida[0]}`;
-  console.log(fechaDeNacimiento);
 
   return (
     <>
