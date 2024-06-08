@@ -116,13 +116,29 @@
 .seccionFlexInterna {
   display: flex;
   flex-wrap: wrap;
+  column-gap: 1rem;
   padding: 2% 0;
 }
 
+.tituloSeccionFlex {
+  margin: 0;
+}
+
 .seccionElemento {
-  margin: 2% 0;
+  margin: 0 0 1% 0;
   flex-grow: 1;
-  grid-column: 1 / 1;
+  border: 2px solid red;
+  padding: 1rem;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  column-gap: 1rem;
+  word-break: keep-all;
+}
+
+.seccionElemento:last-of-type {
+  margin: 0;
+  flex-grow: 1;
 }
 
 .seccionElementos {
