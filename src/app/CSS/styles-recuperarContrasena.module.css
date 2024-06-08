@@ -180,7 +180,7 @@
     color: #eeeeee;
     border-color: #eeeeee;
     background-color: #0f0f0f;
-  
+
     &:hover {
       background-color: #eeeeee;
       color: #0f0f0f;
@@ -219,25 +219,32 @@
 
 @media (width < 890px), (height < 200px) {
   .contenedor_general {
-    width: 100% !important;
     background: url("../../../public/epigrafe73.png") center center;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
   }
 
+  #body_modificable {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
   .contenedor_form {
     position: absolute;
+    min-width: 20rem;
     z-index: 1000;
   }
 }
 
-@media (width < 800px), (height < 200px) {
+@media (width < 800px), (height < 667px) {
   .contenedor_passoword_perdida {
     flex-wrap: wrap;
     align-items: center;
     color: #28a745;
     gap: 0.5rem;
+    justify-content: center;
     color: #000000;
     text-decoration: none;
   }
