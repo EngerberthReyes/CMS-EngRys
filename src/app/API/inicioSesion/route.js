@@ -64,7 +64,14 @@ SELECT
     p.instagram, 
     p.tiktok, 
     p.x, 
-    p.sitio_web
+    p.sitio_web,
+    dirr.direccion_completa,
+    cod.numero_codigo_postal,
+    parr.nombre_parroquia,
+    muni.nombre_municipio,
+    ciu.nombre_ciudad,
+    est.nombre_estado,
+    pais.nombre_pais
 FROM 
     personas AS p 
 JOIN
