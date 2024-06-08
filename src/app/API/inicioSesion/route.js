@@ -52,6 +52,7 @@ SELECT
     p.nombre, 
     p.cedula, 
     p.correo_electronico, 
+    p.clave,
     CASE 
         WHEN gen.id_genero = 1 THEN 'Masculino'
         ELSE 'Femenino'
@@ -71,14 +72,23 @@ JOIN
 JOIN 
     generos AS gen ON p.id_genero = gen.id_genero
 WHERE 
-    p.correo_electronico = ?;
+    p.correo_electronico = ?
+    ;
     `;
 
     const respuestaUsuario = await cmsConexion.query(datosUsuario, [
       correo,
       clave,
     ]);
-    const verificacionDeClave = await compare(clave, respuestaUsuario[0].clave);
+    const claveEncriptada = respuestaUsuario[0].clave;
+
+    
+    const verificacionDeClave = await compare(clave, claveEncriptada);
+    if (verificacionDeClave) {
+      console.log("Acceso concedido");
+    } else {
+      console.log("Contraseña incorrecta");
+    }
     console.log(verificacionDeClave);
     console.log(respuestaUsuario);
 
