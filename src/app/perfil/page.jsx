@@ -240,7 +240,7 @@ const Perfil = () => {
                     )}
                   </section>
                   <section className={stylesPerfil.seccionPerfilIzquierdo}>
-                    <h1>Tu Nombre:</h1>
+                    <h1>Tu Usuario:</h1>
                     <section className={stylesPerfil.seccionElementos}>
                       {usuario && <h1>{usuario.nombreDeUsuario}</h1>}
                     </section>
@@ -262,7 +262,7 @@ const Perfil = () => {
                     {usuario && (
                       <>
                         <section className={stylesPerfil.seccionElemento}>
-                          <h2 className={stylesPerfil.tituloSeccionFlex}>Nombre de Usuario Completo:</h2>
+                          <h2 className={stylesPerfil.tituloSeccionFlex}>Nombre Completo:</h2>
                           <h2 className={stylesPerfil.tituloSeccionFlex}>{usuario.nombreCompletoUsuario}</h2>
                         </section>
                         <section className={stylesPerfil.seccionElemento}>
