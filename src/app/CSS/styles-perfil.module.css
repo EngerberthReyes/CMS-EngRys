@@ -113,18 +113,21 @@
   border-radius: 4px;
 }
 
-.seccionGrid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  gap: 1rem;
-  padding: 2%;
+.seccionFlexInterna {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 2% 0;
+}
+
+.seccionElemento {
+  margin: 2% 0;
+  flex-grow: 1;
+  grid-column: 1 / 1;
 }
 
 .seccionElementos {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
-  place-items: center;
-  margin: 4% 0 1% 0;
+  margin: 2% 0 1% 0;
   gap: 1rem;
 }
 

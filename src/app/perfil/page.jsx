@@ -241,13 +241,13 @@ const Perfil = () => {
                   </section>
                   <section className={stylesPerfil.seccionPerfilIzquierdo}>
                     <h1>Tu Nombre:</h1>
-                    <section>
+                    <section className={stylesPerfil.seccionElementos}>
                       {usuario && <h1>{usuario.nombreDeUsuario}</h1>}
                     </section>
                   </section>
                   <section className={stylesPerfil.seccionPerfilIzquierdo}>
                     <h1>Sobre Mi:</h1>
-                    <section>
+                    <section className={stylesPerfil.seccionElementos}>
                       <h2>{"Texto Sobre Mi"}</h2>
                     </section>
                   </section>
@@ -258,18 +258,18 @@ const Perfil = () => {
               <section className={stylesPerfil.seccionAjustes}>
                 <h1>Informacion Personal</h1>
                 <section className={stylesPerfil.seccionFlex}>
-                  <section className={stylesPerfil.seccionGrid}>
+                  <section className={stylesPerfil.seccionFlexInterna}>
                     {usuario && (
                       <>
-                        <section>
+                        <section className={stylesPerfil.seccionElemento}>
                           <h2>Nombre de Usuario Completo:</h2>
                           <h2>{usuario.nombreCompletoUsuario}</h2>
                         </section>
-                        <section>
+                        <section className={stylesPerfil.seccionElemento}>
                           <h2>Correo Electrónico:</h2>
                           <h2>{usuario.correoElectronicoDeUsuario}</h2>
                         </section>
-                        <section>
+                        <section className={stylesPerfil.seccionElemento}>
                           <h2>Fecha de Nacimiento</h2>
                           <h2>
                             {usuario.fechaNacimiento.substring(
@@ -278,20 +278,20 @@ const Perfil = () => {
                             )}
                           </h2>
                         </section>
-                        <section>
+                        <section className={stylesPerfil.seccionElemento}>
                           <h2>Contraseña:</h2>
                           <input
                             type="password"
                             value={usuario.claveDesencriptada}
                           />
                         </section>
-                        <section>
+                        <section className={stylesPerfil.seccionElemento}>
                           <h2>Sexo:</h2>
                           <h2>{usuario.genero}</h2>
                         </section>
                         {usuario.nombrePais ? (
                           <>
-                            <section>
+                            <section className={stylesPerfil.seccionElemento}>
                               <h2>Pais:</h2>
                               <h2>{usuario.nombrePais}</h2>
                             </section>
@@ -299,7 +299,7 @@ const Perfil = () => {
                         ) : null}
                         {usuario.nombreEstado ? (
                           <>
-                            <section>
+                            <section className={stylesPerfil.seccionElemento}>
                               <h2>Estado:</h2>
                               <h2>{usuario.nombreEstado}</h2>
                             </section>
@@ -307,7 +307,7 @@ const Perfil = () => {
                         ) : null}
                         {usuario.nombreCiudad ? (
                           <>
-                            <section>
+                            <section className={stylesPerfil.seccionElemento}>
                               <h2>Ciudad:</h2>
                               <h2>{usuario.nombreCiudad}</h2>
                             </section>
@@ -315,7 +315,7 @@ const Perfil = () => {
                         ) : null}
                         {usuario.nombreMunicipio ? (
                           <>
-                            <section>
+                            <section className={stylesPerfil.seccionElemento}>
                               <h2>Municipio:</h2>
                               <h2>{usuario.nombreMunicipio}</h2>
                             </section>
@@ -323,7 +323,7 @@ const Perfil = () => {
                         ) : null}
                         {usuario.nombreParroquia ? (
                           <>
-                            <section>
+                            <section className={stylesPerfil.seccionElemento}>
                               <h2>Parroquia:</h2>
                               <h2>{usuario.nombreParroquia}</h2>
                             </section>
@@ -331,7 +331,7 @@ const Perfil = () => {
                         ) : null}
                         {usuario.numeroCodigoPostal ? (
                           <>
-                            <section>
+                            <section className={stylesPerfil.seccionElemento}>
                               <h2>Codigo Postal:</h2>
                               <h2>{usuario.numeroCodigoPostal}</h2>
                             </section>
@@ -339,7 +339,7 @@ const Perfil = () => {
                         ) : null}
                         {usuario.direccionCompleta ? (
                           <>
-                            <section>
+                            <section className={stylesPerfil.seccionElemento}>
                               <h2>Dirección Completa:</h2>
                               <h2>{usuario.direccionCompleta}</h2>
                             </section>
@@ -347,7 +347,7 @@ const Perfil = () => {
                         ) : null}
                         {usuario.sitioWeb ? (
                           <>
-                            <section>
+                            <section className={stylesPerfil.seccionElemento}>
                               <h2>Su Sitio Web</h2>
                               <Link href={usuario.sitioWeb} target="_blank">
                                 Su Sitio Web
@@ -357,7 +357,7 @@ const Perfil = () => {
                         ) : null}
                         {usuario.facebook ? (
                           <>
-                            <section>
+                            <section className={stylesPerfil.seccionElemento}>
                               <h2>Perfil de Facebook</h2>
                               <Link href={usuario.facebook} target="_blank">
                                 Perfil de Su Facebook
@@ -367,7 +367,7 @@ const Perfil = () => {
                         ) : null}
                         {usuario.instagram ? (
                           <>
-                            <section>
+                            <section className={stylesPerfil.seccionElemento}>
                               <h2>Perfil de Instragram</h2>
                               <Link href={usuario.instragram} target="_blank">
                                 Perfil de Su Instragram
@@ -377,7 +377,7 @@ const Perfil = () => {
                         ) : null}
                         {usuario.x ? (
                           <>
-                            <section>
+                            <section className={stylesPerfil.seccionElemento}>
                               <h2>Perfil de X</h2>
                               <Link href={usuario.x} target="_blank">
                                 Perfil de Su X
@@ -387,7 +387,7 @@ const Perfil = () => {
                         ) : null}
                         {usuario.tiktok ? (
                           <>
-                            <section>
+                            <section className={stylesPerfil.seccionElemento}>
                               <h2>Perfil de Tiktok</h2>
                               <Link href={usuario.tiktok} target="_blank">
                                 Perfil de Su Tiktok
