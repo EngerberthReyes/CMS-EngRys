@@ -136,6 +136,7 @@
   border: 1px solid #eeeeee;
   border-radius: 6px;
   padding: 1rem;
+  column-gap: 1rem;
   justify-content: center;
   align-items: center;
   display: flex;
