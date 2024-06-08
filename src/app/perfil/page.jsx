@@ -321,12 +321,6 @@ const Perfil = () => {
                             <h2>{usuario.direccionCompleta}</h2>
                           </>
                         ) : null}
-                        {usuario.direccionCompleta ? (
-                          <>
-                            <h2>Dirección Completa:</h2>
-                            <h2>{usuario.direccionCompleta}</h2>
-                          </>
-                        ) : null}
                         {usuario.sitioWeb ? (
                           <>
                             <h2>Su Sitio Web</h2>
