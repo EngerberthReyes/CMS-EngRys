@@ -154,13 +154,19 @@ WHERE
 
     const claveUsuario = resultadoFiltrado[0].clave;
 
+    const modificacionNombre = nombre + " " + apellido;
+
+    const nombreApellido = modificacionNombre.split(" ");
+
+    const nombreDeUsuario = `${nombreApellido[0]} ${nombreApellido[2]}`;
+
     console.log(nombreUsuario, correoElectronico);
 
     const token = jwt.sign(
       {
         exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 31,
         idPersona: id_persona,
-        nombreDeUsuario: nombre,
+        nombreDeUsuario: nombreDeUsuario,
         nombreCompletoUsuario: nombre + " " + apellido,
         correoElectronicoDeUsuario: correo_electronico,
         clave: claveUsuario,
