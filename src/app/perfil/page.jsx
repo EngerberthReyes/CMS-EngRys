@@ -276,6 +276,14 @@ const Perfil = () => {
                         <h2>{usuario.genero}</h2>
                         <h2>Dirección Completa:</h2>
                         <h2>{usuario.direccionCompleta}</h2>
+                        {usuario.sitioWeb ? (
+                          <>
+                            <h2>Su Sitio Web</h2>
+                            <Link href={usuario.sitioWeb} target="_blank">
+                              Su Sitio Web
+                            </Link>
+                          </>
+                        ) : null}
                         {usuario.facebook ? (
                           <>
                             <h2>Perfil de Facebook</h2>
