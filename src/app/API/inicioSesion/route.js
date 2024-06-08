@@ -50,6 +50,7 @@ export const POST = async (request, res) => {
 SELECT 
     p.id_persona, 
     p.nombre, 
+    p.apellido,
     p.cedula, 
     p.correo_electronico, 
     p.clave,
@@ -159,9 +160,12 @@ WHERE
     const token = jwt.sign(
       {
         exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 31,
+        idPersona: id_persona,
         nombreDeUsuario: nombre,
+        nombreCompletoUsuario: nombre + apellidos,
         correoElectronicoDeUsuario: correo_electronico,
         clave: claveUsuario,
+        claveDesencriptada: clave,
         genero: id_genero,
         direccionCompleta: direccion_completa,
         fechaNacimiento: fecha_nacimiento.toISOString(),

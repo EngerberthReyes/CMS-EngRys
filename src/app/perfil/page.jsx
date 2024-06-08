@@ -8,6 +8,7 @@ import { useForm } from "react-hook-form";
 import axios from "axios";
 import stylesPerfil from "../CSS/styles-perfil.module.css";
 import { useRouter } from "next/navigation";
+import { compare } from "bcryptjs";
 
 const Perfil = () => {
   const {
@@ -257,17 +258,33 @@ const Perfil = () => {
               <section className={stylesPerfil.seccionAjustes}>
                 <h1>Informacion Personal</h1>
                 <section className={stylesPerfil.seccionFlex}>
+                  
                   <section>
-                    {usuario && <h1>{usuario.correoElectronicoDeUsuario}</h1>}
+                    {usuario && (
+                      <>
+                        <h2>Nombre de Usuario Completo:</h2>
+                        <h2>{usuario.nombreCompletoUsuario}</h2>
+                        <h2>Correo Electrónico:</h2>
+                        <h2>{usuario.correoElectronicoDeUsuario}</h2>
+                        <h2>Contraseña:</h2>
+                        <h2>{usuario.claveDesencriptada}</h2>
+                        <h2>Sexo:</h2>
+                        <h2>{usuario.genero}</h2>
+                        <h2>Dirrecio Completa:</h2>
+                        <h2>{usuario.direccionCompleta}</h2>
+                        <h2>asd</h2>
+                        <h2>{usuario.fechaNacimiento}</h2>
+                        <h2>asd</h2>
+                        <h2>{usuario.facebook}</h2>
+                        <h2>asd</h2>
+                        <h2>{usuario.instagram}</h2>
+                        <h2>asd</h2>
+                        <h2>{usuario.x}</h2>
+                        <h2>asd</h2>
+                        <h2>{usuario.tiktok}</h2>
+                      </>
+                    )}
                   </section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
                 </section>
               </section>
             </section>
