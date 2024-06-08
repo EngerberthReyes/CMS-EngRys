@@ -133,6 +133,7 @@ WHERE
     const {
       id_persona,
       nombre,
+      apellido,
       cedula,
       correo_electronico,
       id_genero,
@@ -153,8 +154,6 @@ WHERE
 
     const claveUsuario = resultadoFiltrado[0].clave;
 
-    console.log(nombre);
-
     console.log(nombreUsuario, correoElectronico);
 
     const token = jwt.sign(
@@ -162,7 +161,7 @@ WHERE
         exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 31,
         idPersona: id_persona,
         nombreDeUsuario: nombre,
-        nombreCompletoUsuario: nombre + apellidos,
+        nombreCompletoUsuario: nombre + " " + apellido,
         correoElectronicoDeUsuario: correo_electronico,
         clave: claveUsuario,
         claveDesencriptada: clave,
