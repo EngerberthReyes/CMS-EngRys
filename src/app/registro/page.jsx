@@ -681,7 +681,7 @@ const Registro = () => {
                         <option value="">Seleccione un Municipio</option>
                         {municipio.map((itemMunicipio) => {
                           return (
-                            <option value={itemMunicipio.municipio}>
+                            <option value={itemMunicipio}>
                               {itemMunicipio}
                             </option>
                           );
