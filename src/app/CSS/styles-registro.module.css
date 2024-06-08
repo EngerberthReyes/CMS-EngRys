@@ -353,7 +353,21 @@
   }
 }
 
-@media (width < 890px), (height < 667px) {
+.contenedorInputRadios {
+  width: 85%;
+  display: flex;
+  align-items: center;
+}
+
+.contenedorInputRadiosInterno {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 2rem;
+}
+
+@media (width < 1402px), (height < 667px) {
   .contenedor_general {
     background: url("../../../public/epigrafe73.png") center center;
     background-position: center;
@@ -376,6 +390,26 @@
 }
 
 @media (width < 800px), (height < 667px) {
+  .contenedor_form {
+    position: absolute;
+    min-width: 80%;
+    top: 10%;
+    z-index: 1000;
+  }
+
+  .labelRadio {
+    width: 9rem;
+  }
+
+  .contenedorInputRadios {
+    justify-content: center;
+  }
+
+  .contenedorInputRadiosInterno {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
   .contenedor_passoword_perdida {
     flex-wrap: wrap;
     align-items: center;

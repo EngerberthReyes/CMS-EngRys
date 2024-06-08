@@ -467,13 +467,7 @@ const Registro = () => {
                   <p className={stylesRegistro.errorInput}>{mensajeCedula}</p>
                 </section>
               )}
-              <section
-                style={{
-                  width: "85%",
-                  display: "flex",
-                  alignItems: "center",
-                }}
-              >
+              <section className={stylesRegistro.contenedorInputRadios}>
                 <section
                   style={{
                     display: "flex",
@@ -490,13 +484,7 @@ const Registro = () => {
                   </label>
 
                   <section
-                    style={{
-                      width: "100%",
-                      display: "flex",
-                      justifyContent: "flex-start",
-                      alignItems: "center",
-                      gap: "2rem",
-                    }}
+                    className={stylesRegistro.contenedorInputRadiosInterno}
                   >
                     <label
                       htmlFor="masculino"
