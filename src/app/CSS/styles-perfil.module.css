@@ -130,6 +130,12 @@
   font-size: 27px;
 }
 
+.inputClave {
+  background: transparent;
+  pointer-events: none;
+  font-size: 22px;
+}
+
 .seccionElemento {
   margin: 0 0 1% 0;
   flex-grow: 1;

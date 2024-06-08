@@ -281,6 +281,7 @@ const Perfil = () => {
                         <section className={stylesPerfil.seccionElemento}>
                           <h2 className={stylesPerfil.tituloSeccionFlex}>Contraseña:</h2>
                           <input
+                            className={stylesPerfil.inputClave}
                             type="password"
                             value={usuario.claveDesencriptada}
                           />
