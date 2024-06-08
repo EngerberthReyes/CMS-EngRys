@@ -202,6 +202,8 @@ const Registro = () => {
   const [parroquia, setParroquia] = useState([]);
   const [paises, setPaises] = useState([]);
 
+  console.log(municipio);
+
   const [cedulaIngresadaUsuario, setCedula] = useState();
   console.log(cedulaIngresadaUsuario);
   const [codigoPostal, setCodigoPostal] = useState([
@@ -261,13 +263,20 @@ const Registro = () => {
         setCiudad(localidadEncontrada.ciudades);
 
         if (pais === "Venezuela") {
-          setInterruptorVenezuela(true);
-          const venezuelaEnArray = venezuelaInformacion.map((itemPais) => ({
-            municipios: itemPais.municipios.split(", "),
-            parroquias: itemPais.parroquias.split(", "),
-          }));
+          const venezuelaEnArray = venezuelaInformacion.map((itemPais) => {
+            const municipiosYParroquias = {
+              municipios: itemPais.municipios.split(", "),
+              parroquias: itemPais.parroquias.split(", "),
+            };
+            console.log(municipiosYParroquias);
+            return municipiosYParroquias;
+          });
+          console.log(venezuelaEnArray);
+
           setMunicipio(venezuelaEnArray[0].municipios);
           setParroquia(venezuelaEnArray[0].parroquias);
+          setInterruptorVenezuela(true);
+          console.log(venezuelaEnArray);
         }
       }
 
@@ -672,7 +681,7 @@ const Registro = () => {
                         <option value="">Seleccione un Municipio</option>
                         {municipio.map((itemMunicipio) => {
                           return (
-                            <option value={itemMunicipio}>
+                            <option value={itemMunicipio.municipio}>
                               {itemMunicipio}
                             </option>
                           );
