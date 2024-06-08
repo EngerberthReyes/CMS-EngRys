@@ -279,8 +279,54 @@ const Perfil = () => {
                         />
                         <h2>Sexo:</h2>
                         <h2>{usuario.genero}</h2>
-                        <h2>Dirección Completa:</h2>
-                        <h2>{usuario.direccionCompleta}</h2>
+                        {usuario.nombrePais ? (
+                          <>
+                            <h2>Pais:</h2>
+                            <h2>{usuario.nombrePais}</h2>
+                          </>
+                        ) : null}
+                        {usuario.nombreEstado ? (
+                          <>
+                            <h2>Estado:</h2>
+                            <h2>{usuario.nombreEstado}</h2>
+                          </>
+                        ) : null}
+                        {usuario.nombreCiudad ? (
+                          <>
+                            <h2>Ciudad:</h2>
+                            <h2>{usuario.nombreCiudad}</h2>
+                          </>
+                        ) : null}
+                        {usuario.nombreMunicipio ? (
+                          <>
+                            <h2>Municipio:</h2>
+                            <h2>{usuario.nombreMunicipio}</h2>
+                          </>
+                        ) : null}
+                        {usuario.nombreParroquia ? (
+                          <>
+                            <h2>Parroquia:</h2>
+                            <h2>{usuario.nombreParroquia}</h2>
+                          </>
+                        ) : null}
+                        {usuario.numeroCodigoPostal ? (
+                          <>
+                            <h2>Codigo Postal:</h2>
+                            <h2>{usuario.numeroCodigoPostal}</h2>
+                          </>
+                        ) : null}
+                        {usuario.direccionCompleta ? (
+                          <>
+                            <h2>Dirección Completa:</h2>
+                            <h2>{usuario.direccionCompleta}</h2>
+                          </>
+                        ) : null}
+                        {usuario.direccionCompleta ? (
+                          <>
+                            <h2>Dirección Completa:</h2>
+                            <h2>{usuario.direccionCompleta}</h2>
+                          </>
+                        ) : null}
                         {usuario.sitioWeb ? (
                           <>
                             <h2>Su Sitio Web</h2>
