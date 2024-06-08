@@ -256,7 +256,7 @@ const Perfil = () => {
             </section>
             <section className={stylesPerfil.seccionTerciaria}>
               <section className={stylesPerfil.seccionAjustes}>
-                <h1>Informacion Personal</h1>
+                <h1 className={stylesPerfil.tituloSeccionFlexEnterno}>Informacion Personal</h1>
                 <section className={stylesPerfil.seccionFlex}>
                   <section className={stylesPerfil.seccionFlexInterna}>
                     {usuario && (
