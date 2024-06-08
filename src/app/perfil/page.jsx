@@ -116,17 +116,6 @@ const Perfil = () => {
     }
   };
 
-  const fechaObtenida = usuario.fechaNacimiento.substring(
-    0,
-    usuario.fechaNacimiento.indexOf("T")
-  );
-  const fechaPartida = fechaObtenida.split("-");
-
-  const fechaDeNacimiento = `${fechaPartida[2]}-${fechaPartida[1].padStart(
-    2,
-    "0"
-  )}-${fechaPartida[0]}`;
-
   return (
     <>
       <head>
@@ -276,8 +265,8 @@ const Perfil = () => {
                         <h2>{usuario.nombreCompletoUsuario}</h2>
                         <h2>Correo Electrónico:</h2>
                         <h2>{usuario.correoElectronicoDeUsuario}</h2>
-                        <h2>Fecha de Nacimiento:</h2>
-                        <h2>{fechaDeNacimiento}</h2>
+                        <h2>Fecha de Nacimiento</h2>
+                        <h2>{usuario.fechaNacimiento.substring(0, usuario.fechaNacimiento.indexOf('T'))}</h2>
                         <h2>Contraseña:</h2>
                         <input
                           type="password"
