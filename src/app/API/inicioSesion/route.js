@@ -56,16 +56,18 @@ export const POST = async (request, res) => {
       correo,
       clave,
     ]);
-const verificacionDeClave = await compare(clave, respuestaUsuario[0].clave)
-console.log(verificacionDeClave)
+    const verificacionDeClave = await compare(clave, respuestaUsuario[0].clave);
+    console.log(verificacionDeClave);
     console.log(respuestaUsuario);
 
-    const resultadoFiltrado = respuestaUsuario.filter(async (itemsUsuarioBd) => {
-      return (
-        itemsUsuarioBd.correo_electronico === correo &&
-        await compare(clave, itemsUsuarioBd.clave)
-      );
-    });
+    const resultadoFiltrado = respuestaUsuario.filter(
+      async (itemsUsuarioBd) => {
+        return (
+          itemsUsuarioBd.correo_electronico === correo &&
+          (await compare(clave, itemsUsuarioBd.clave))
+        );
+      }
+    );
 
     console.log(resultadoFiltrado);
 
@@ -73,7 +75,6 @@ console.log(verificacionDeClave)
       return NextResponse.json({ respuestaUsuario });
     }
 
-    // Assuming nombreUsuario and correo are defined somewhere above this code
     console.log(respuestaUsuario);
     const nombreUsuario = resultadoFiltrado[0].nombre;
     const correoElectronico = resultadoFiltrado[0].correo_electronico;
