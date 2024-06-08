@@ -212,7 +212,7 @@ CREATE TABLE IF NOT EXISTS `CMS`.`personas` (
   `apellido` VARCHAR(100) NOT NULL,
   `cedula` INT NOT NULL,
   `fecha_nacimiento` DATE NOT NULL,
-  `correo_electronico` VARCHAR(50) NOT NULL,
+  `correo_electronico` VARCHAR(150) NOT NULL,
   `clave` VARCHAR(150) NOT NULL,
   `facebook` VARCHAR(100) NULL,
   `instagram` VARCHAR(100) NULL,
