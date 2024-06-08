@@ -28,6 +28,7 @@ const Perfil = () => {
   const [nombreImagen, setNombreImagen] = useState();
   const [imagen, setImagen] = useState();
   const [usuario, setUsuario] = useState();
+  const [mostrarClave, setMostrarClave] = useState();
   console.log(usuario);
   console.log(post);
 
@@ -107,6 +108,10 @@ const Perfil = () => {
     } finally {
       enrutadorMaster.push("/");
     }
+  };
+
+  const mostrarPassword = () => {
+    setMostrarClave(!mostrarClave);
   };
 
   const enviarComentarioTecla = (event) => {
@@ -248,7 +253,9 @@ const Perfil = () => {
                   <section className={stylesPerfil.seccionPerfilIzquierdo}>
                     <h1>Sobre Mi:</h1>
                     <section className={stylesPerfil.seccionElementos}>
-                      <h2 className={stylesPerfil.tituloSeccionFlex}>{"Texto Sobre Mi"}</h2>
+                      <h2 className={stylesPerfil.tituloSeccionFlex}>
+                        {"Texto Sobre Mi"}
+                      </h2>
                     </section>
                   </section>
                 </section>
@@ -256,21 +263,33 @@ const Perfil = () => {
             </section>
             <section className={stylesPerfil.seccionTerciaria}>
               <section className={stylesPerfil.seccionAjustes}>
-                <h1 className={stylesPerfil.tituloSeccionFlexEnterno}>Informacion Personal</h1>
+                <h1 className={stylesPerfil.tituloSeccionFlexEnterno}>
+                  Información Personal
+                </h1>
                 <section className={stylesPerfil.seccionFlex}>
                   <section className={stylesPerfil.seccionFlexInterna}>
                     {usuario && (
                       <>
                         <section className={stylesPerfil.seccionElemento}>
-                          <h2 className={stylesPerfil.tituloSeccionFlex}>Nombre Completo:</h2>
-                          <h2 className={stylesPerfil.tituloSeccionFlex}>{usuario.nombreCompletoUsuario}</h2>
+                          <h2 className={stylesPerfil.tituloSeccionFlex}>
+                            Nombre Completo:
+                          </h2>
+                          <h2 className={stylesPerfil.tituloSeccionFlex}>
+                            {usuario.nombreCompletoUsuario}
+                          </h2>
                         </section>
                         <section className={stylesPerfil.seccionElemento}>
-                          <h2 className={stylesPerfil.tituloSeccionFlex}>Correo Electrónico:</h2>
-                          <h2 className={stylesPerfil.tituloSeccionFlex}>{usuario.correoElectronicoDeUsuario}</h2>
+                          <h2 className={stylesPerfil.tituloSeccionFlex}>
+                            Correo Electrónico:
+                          </h2>
+                          <h2 className={stylesPerfil.tituloSeccionFlex}>
+                            {usuario.correoElectronicoDeUsuario}
+                          </h2>
                         </section>
                         <section className={stylesPerfil.seccionElemento}>
-                          <h2 className={stylesPerfil.tituloSeccionFlex}>Fecha de Nacimiento:</h2>
+                          <h2 className={stylesPerfil.tituloSeccionFlex}>
+                            Fecha de Nacimiento:
+                          </h2>
                           <h2 className={stylesPerfil.tituloSeccionFlex}>
                             {usuario.fechaNacimiento.substring(
                               0,
@@ -279,77 +298,140 @@ const Perfil = () => {
                           </h2>
                         </section>
                         <section className={stylesPerfil.seccionElemento}>
-                          <h2 className={stylesPerfil.tituloSeccionFlex}>Contraseña:</h2>
+                          <h2 className={stylesPerfil.tituloSeccionFlex}>
+                            Contraseña:
+                          </h2>
                           <input
                             className={stylesPerfil.inputClave}
-                            type="password"
+                            type={mostrarClave ? "text" : "password"}
                             value={usuario.claveDesencriptada}
                           />
+                          {mostrarClave ? (
+                            <Image
+                              className={stylesPerfil.icono_password}
+                              onClick={() => mostrarPassword(usuario.claveDesencriptada)}
+                              width={20}
+                              height={20}
+                              src={
+                                temaActual === "oscuro"
+                                  ? `/BlancoAbierto.svg`
+                                  : `/OjoNegroAbierto.svg`
+                              }
+                              alt="Ocultar Contraseña"
+                            />
+                          ) : (
+                            <Image
+                              className={stylesPerfil.icono_password}
+                              onClick={() => mostrarPassword(usuario.claveDesencriptada)}
+                              width={20}
+                              height={20}
+                              src={
+                                temaActual === "oscuro"
+                                  ? `/BlancoAbiertoOblicua.svg`
+                                  : `/OjoNegroAbiertoOblicuo.svg`
+                              }
+                              alt="Mostrar Contraseña"
+                            />
+                          )}
                         </section>
                         <section className={stylesPerfil.seccionElemento}>
-                          <h2 className={stylesPerfil.tituloSeccionFlex}>Sexo:</h2>
-                          <h2 className={stylesPerfil.tituloSeccionFlex}>{usuario.genero}</h2>
+                          <h2 className={stylesPerfil.tituloSeccionFlex}>
+                            Sexo:
+                          </h2>
+                          <h2 className={stylesPerfil.tituloSeccionFlex}>
+                            {usuario.genero}
+                          </h2>
                         </section>
                         {usuario.nombrePais ? (
                           <>
                             <section className={stylesPerfil.seccionElemento}>
-                              <h2 className={stylesPerfil.tituloSeccionFlex}>Pais:</h2>
-                              <h2 className={stylesPerfil.tituloSeccionFlex}>{usuario.nombrePais}</h2>
+                              <h2 className={stylesPerfil.tituloSeccionFlex}>
+                                Pais:
+                              </h2>
+                              <h2 className={stylesPerfil.tituloSeccionFlex}>
+                                {usuario.nombrePais}
+                              </h2>
                             </section>
                           </>
                         ) : null}
                         {usuario.nombreEstado ? (
                           <>
                             <section className={stylesPerfil.seccionElemento}>
-                              <h2 className={stylesPerfil.tituloSeccionFlex}>Estado:</h2>
-                              <h2 className={stylesPerfil.tituloSeccionFlex}>{usuario.nombreEstado}</h2>
+                              <h2 className={stylesPerfil.tituloSeccionFlex}>
+                                Estado:
+                              </h2>
+                              <h2 className={stylesPerfil.tituloSeccionFlex}>
+                                {usuario.nombreEstado}
+                              </h2>
                             </section>
                           </>
                         ) : null}
                         {usuario.nombreCiudad ? (
                           <>
                             <section className={stylesPerfil.seccionElemento}>
-                              <h2 className={stylesPerfil.tituloSeccionFlex}>Ciudad:</h2>
-                              <h2 className={stylesPerfil.tituloSeccionFlex}>{usuario.nombreCiudad}</h2>
+                              <h2 className={stylesPerfil.tituloSeccionFlex}>
+                                Ciudad:
+                              </h2>
+                              <h2 className={stylesPerfil.tituloSeccionFlex}>
+                                {usuario.nombreCiudad}
+                              </h2>
                             </section>
                           </>
                         ) : null}
                         {usuario.nombreMunicipio ? (
                           <>
                             <section className={stylesPerfil.seccionElemento}>
-                              <h2 className={stylesPerfil.tituloSeccionFlex}>Municipio:</h2>
-                              <h2 className={stylesPerfil.tituloSeccionFlex}>{usuario.nombreMunicipio}</h2>
+                              <h2 className={stylesPerfil.tituloSeccionFlex}>
+                                Municipio:
+                              </h2>
+                              <h2 className={stylesPerfil.tituloSeccionFlex}>
+                                {usuario.nombreMunicipio}
+                              </h2>
                             </section>
                           </>
                         ) : null}
                         {usuario.nombreParroquia ? (
                           <>
                             <section className={stylesPerfil.seccionElemento}>
-                              <h2 className={stylesPerfil.tituloSeccionFlex}>Parroquia:</h2>
-                              <h2 className={stylesPerfil.tituloSeccionFlex}>{usuario.nombreParroquia}</h2>
+                              <h2 className={stylesPerfil.tituloSeccionFlex}>
+                                Parroquia:
+                              </h2>
+                              <h2 className={stylesPerfil.tituloSeccionFlex}>
+                                {usuario.nombreParroquia}
+                              </h2>
                             </section>
                           </>
                         ) : null}
                         {usuario.numeroCodigoPostal ? (
                           <>
                             <section className={stylesPerfil.seccionElemento}>
-                              <h2 className={stylesPerfil.tituloSeccionFlex}>Codigo Postal:</h2>
-                              <h2 className={stylesPerfil.tituloSeccionFlex}>{usuario.numeroCodigoPostal}</h2>
+                              <h2 className={stylesPerfil.tituloSeccionFlex}>
+                                Codigo Postal:
+                              </h2>
+                              <h2 className={stylesPerfil.tituloSeccionFlex}>
+                                {usuario.numeroCodigoPostal}
+                              </h2>
                             </section>
                           </>
                         ) : null}
                         {usuario.direccionCompleta ? (
                           <>
                             <section className={stylesPerfil.seccionElemento}>
-                              <h2 className={stylesPerfil.tituloSeccionFlex}>Dirección Completa:</h2>
-                              <h2 className={stylesPerfil.tituloSeccionFlex}>{usuario.direccionCompleta}</h2>
+                              <h2 className={stylesPerfil.tituloSeccionFlex}>
+                                Dirección Completa:
+                              </h2>
+                              <h2 className={stylesPerfil.tituloSeccionFlex}>
+                                {usuario.direccionCompleta}
+                              </h2>
                             </section>
                           </>
                         ) : null}
                         {usuario.sitioWeb ? (
                           <>
                             <section className={stylesPerfil.seccionElemento}>
-                              <h2 className={stylesPerfil.tituloSeccionFlex}>Su Sitio Web</h2>
+                              <h2 className={stylesPerfil.tituloSeccionFlex}>
+                                Su Sitio Web
+                              </h2>
                               <Link href={usuario.sitioWeb} target="_blank">
                                 Su Sitio Web
                               </Link>
@@ -359,7 +441,9 @@ const Perfil = () => {
                         {usuario.facebook ? (
                           <>
                             <section className={stylesPerfil.seccionElemento}>
-                              <h2 className={stylesPerfil.tituloSeccionFlex}>Perfil de Facebook</h2>
+                              <h2 className={stylesPerfil.tituloSeccionFlex}>
+                                Perfil de Facebook
+                              </h2>
                               <Link href={usuario.facebook} target="_blank">
                                 Perfil de Su Facebook
                               </Link>
@@ -369,7 +453,9 @@ const Perfil = () => {
                         {usuario.instagram ? (
                           <>
                             <section className={stylesPerfil.seccionElemento}>
-                              <h2 className={stylesPerfil.tituloSeccionFlex}>Perfil de Instragram</h2>
+                              <h2 className={stylesPerfil.tituloSeccionFlex}>
+                                Perfil de Instragram
+                              </h2>
                               <Link href={usuario.instragram} target="_blank">
                                 Perfil de Su Instragram
                               </Link>
@@ -379,7 +465,9 @@ const Perfil = () => {
                         {usuario.x ? (
                           <>
                             <section className={stylesPerfil.seccionElemento}>
-                              <h2 className={stylesPerfil.tituloSeccionFlex}>Perfil de X</h2>
+                              <h2 className={stylesPerfil.tituloSeccionFlex}>
+                                Perfil de X
+                              </h2>
                               <Link href={usuario.x} target="_blank">
                                 Perfil de Su X
                               </Link>
@@ -389,7 +477,9 @@ const Perfil = () => {
                         {usuario.tiktok ? (
                           <>
                             <section className={stylesPerfil.seccionElemento}>
-                              <h2 className={stylesPerfil.tituloSeccionFlex}>Perfil de Tiktok</h2>
+                              <h2 className={stylesPerfil.tituloSeccionFlex}>
+                                Perfil de Tiktok
+                              </h2>
                               <Link href={usuario.tiktok} target="_blank">
                                 Perfil de Su Tiktok
                               </Link>
