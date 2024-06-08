@@ -23,7 +23,7 @@
     "bootstrap": "^5.3.3",
     "cookie": "^0.6.0",
     "dotenv": "^16.4.5",
-    "googleapis": "^139.0.0",
+    "googleapis": "^140.0.0",
     "html-react-parser": "^5.1.10",
     "jose": "^5.4.0",
     "jsonwebtoken": "^9.0.2",
@@ -36,7 +36,7 @@
     "resend": "^3.2.0",
     "serverless-mysql": "^1.5.5",
     "swr": "^2.2.5",
-    "web-vitals": "^4.0.1"
+    "web-vitals": "^4.1.0"
   },
   "devDependencies": {
     "eslint": "^9",
