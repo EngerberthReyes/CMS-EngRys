@@ -129,13 +129,53 @@ WHERE
     const nombreUsuario = resultadoFiltrado[0].nombre;
     const correoElectronico = resultadoFiltrado[0].correo_electronico;
 
+    const {
+      id_persona,
+      nombre,
+      cedula,
+      correo_electronico,
+      id_genero,
+      direccion_completa,
+      fecha_nacimiento,
+      facebook,
+      instagram,
+      tiktok,
+      x,
+      sitio_web,
+      numero_codigo_postal,
+      nombre_parroquia,
+      nombre_municipio,
+      nombre_ciudad,
+      nombre_estado,
+      nombre_pais,
+    } = resultadoFiltrado[0];
+
+    const claveUsuario = resultadoFiltrado[0].clave;
+
+    console.log(nombre);
+
     console.log(nombreUsuario, correoElectronico);
 
     const token = jwt.sign(
       {
         exp: Math.floor(Date.now() / 1000) + 60 * 60 * 24 * 31,
-        nombreDeUsuario: nombreUsuario,
-        correoElectronicoDeUsuario: correoElectronico,
+        nombreDeUsuario: nombre,
+        correoElectronicoDeUsuario: correo_electronico,
+        clave: claveUsuario,
+        genero: id_genero,
+        direccionCompleta: direccion_completa,
+        fechaNacimiento: fecha_nacimiento.toISOString(),
+        facebook,
+        instagram,
+        tiktok,
+        x,
+        sitioWeb: sitio_web,
+        numeroCodigoPostal: numero_codigo_postal,
+        nombreParroquia: nombre_parroquia,
+        nombreMunicipio: nombre_municipio,
+        nombreCiudad: nombre_ciudad,
+        nombreEstado: nombre_estado,
+        nombrePais: nombre_pais,
       },
       "secret"
     );
