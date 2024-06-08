@@ -276,7 +276,7 @@ const Perfil = () => {
                         <h2>{usuario.nombreCompletoUsuario}</h2>
                         <h2>Correo Electrónico:</h2>
                         <h2>{usuario.correoElectronicoDeUsuario}</h2>
-                        <h2>Fecha de Nacimiento</h2>
+                        <h2>Fecha de Nacimiento:</h2>
                         <h1>{fechaDeNacimiento}</h1>
                         <h2>Contraseña:</h2>
                         <input
