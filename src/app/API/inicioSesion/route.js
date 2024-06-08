@@ -67,11 +67,23 @@ SELECT
     p.sitio_web
 FROM 
     personas AS p 
-JOIN 
+JOIN
+    generos AS gen ON p.id_genero = gen.id_genero
+JOIN
     direcciones AS dirr ON p.id_direccion = dirr.id_direccion 
 JOIN 
-    generos AS gen ON p.id_genero = gen.id_genero
-WHERE 
+    codigos_postales AS cod ON cod.id_codigo_postal = dirr.id_codigo_postal
+JOIN
+    parroquias AS parr ON parr.id_parroquia = cod.id_parroquia
+JOIN
+    municipios AS muni ON muni.id_municipio = parr.id_municipio
+JOIN
+    ciudades AS ciu ON ciu.id_ciudad = muni.id_ciudad
+JOIN
+    estados AS est ON est.id_estado = ciu.id_estado
+JOIN
+    paises AS pais ON est.id_pais = pais.id_pais
+WHERE
     p.correo_electronico = ?
     ;
     `;
@@ -82,7 +94,6 @@ WHERE
     ]);
     const claveEncriptada = respuestaUsuario[0].clave;
 
-    
     const verificacionDeClave = await compare(clave, claveEncriptada);
     if (verificacionDeClave) {
       console.log("Acceso concedido");
