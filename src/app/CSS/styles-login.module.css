@@ -219,11 +219,16 @@
 
 @media (width < 890px), (height < 200px) {
   .contenedor_general {
-    width: 100% !important;
     background: url("../../../public/epigrafe73.png") center center;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+  }
+
+  #body_modificable {
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .contenedor_form {
@@ -238,6 +243,7 @@
     align-items: center;
     color: #28a745;
     gap: 0.5rem;
+    justify-content: center;
     color: #000000;
     text-decoration: none;
   }
