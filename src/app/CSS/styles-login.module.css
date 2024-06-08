@@ -180,7 +180,7 @@
     color: #eeeeee;
     border-color: #eeeeee;
     background-color: #0f0f0f;
-  
+
     &:hover {
       background-color: #eeeeee;
       color: #0f0f0f;
@@ -233,11 +233,12 @@
 
   .contenedor_form {
     position: absolute;
+    min-width: 20rem;
     z-index: 1000;
   }
 }
 
-@media (width < 800px), (height < 200px) {
+@media (width < 800px), (height < 667px) {
   .contenedor_passoword_perdida {
     flex-wrap: wrap;
     align-items: center;
