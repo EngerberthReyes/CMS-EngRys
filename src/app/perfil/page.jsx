@@ -258,7 +258,6 @@ const Perfil = () => {
               <section className={stylesPerfil.seccionAjustes}>
                 <h1>Informacion Personal</h1>
                 <section className={stylesPerfil.seccionFlex}>
-                  
                   <section>
                     {usuario && (
                       <>
@@ -266,22 +265,49 @@ const Perfil = () => {
                         <h2>{usuario.nombreCompletoUsuario}</h2>
                         <h2>Correo Electrónico:</h2>
                         <h2>{usuario.correoElectronicoDeUsuario}</h2>
+                        <h2>Fecha de Nacimiento</h2>
+                        <h2>{usuario.fechaNacimiento}</h2>
                         <h2>Contraseña:</h2>
-                        <h2>{usuario.claveDesencriptada}</h2>
+                        <input
+                          type="password"
+                          value={usuario.claveDesencriptada}
+                        />
                         <h2>Sexo:</h2>
                         <h2>{usuario.genero}</h2>
-                        <h2>Dirrecio Completa:</h2>
+                        <h2>Dirección Completa:</h2>
                         <h2>{usuario.direccionCompleta}</h2>
-                        <h2>asd</h2>
-                        <h2>{usuario.fechaNacimiento}</h2>
-                        <h2>asd</h2>
-                        <h2>{usuario.facebook}</h2>
-                        <h2>asd</h2>
-                        <h2>{usuario.instagram}</h2>
-                        <h2>asd</h2>
-                        <h2>{usuario.x}</h2>
-                        <h2>asd</h2>
-                        <h2>{usuario.tiktok}</h2>
+                        {usuario.facebook ? (
+                          <>
+                            <h2>Perfil de Facebook</h2>
+                            <Link href={usuario.facebook} target="_blank">
+                              Perfil de Su Facebook
+                            </Link>
+                          </>
+                        ) : null}
+                        {usuario.instagram ? (
+                          <>
+                            <h2>Perfil de Instragram</h2>
+                            <Link href={usuario.instragram} target="_blank">
+                              Perfil de Su Instragram
+                            </Link>
+                          </>
+                        ) : null}
+                        {usuario.x ? (
+                          <>
+                            <h2>Perfil de X</h2>
+                            <Link href={usuario.x} target="_blank">
+                              Perfil de Su X
+                            </Link>
+                          </>
+                        ) : null}
+                        {usuario.tiktok ? (
+                          <>
+                            <h2>Perfil de Tiktok</h2>
+                            <Link href={usuario.tiktok} target="_blank">
+                              Perfil de Su Tiktok
+                            </Link>
+                          </>
+                        ) : null}
                       </>
                     )}
                   </section>
