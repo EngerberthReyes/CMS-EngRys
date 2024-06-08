@@ -136,6 +136,10 @@
   font-size: 22px;
 }
 
+.icono_password {
+  cursor: pointer;
+}
+
 .seccionElemento {
   margin: 0 0 1% 0;
   flex-grow: 1;
