@@ -6,6 +6,7 @@ import Post from "@/componentes/post/post.jsx";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import stylesNoticias from "../CSS/styles-noticias.module.css";
 
 const Noticias = () => {
@@ -18,7 +19,7 @@ const Noticias = () => {
   } = useForm({
     mode: "onChange",
   });
-
+const enrutadorMaster = useRouter();
   const [post, setPost] = useState([]);
   const [nombreImagen, setNombreImagen] = useState([]);
   const [imagen, setImagen] = useState([]);

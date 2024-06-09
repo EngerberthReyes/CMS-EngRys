@@ -181,7 +181,7 @@ const Perfil = () => {
                     width={35}
                     height={20}
                     src={
-                      usuario.fotoPerfil
+                      usuario?.fotoPerfil
                         ? usuario.fotoPerfil
                         : "/IMG/epigrafe73.png"
                     }
@@ -234,7 +234,7 @@ const Perfil = () => {
                             width={200}
                             height={200}
                             src={
-                              usuario.fotoPerfil
+                              usuario?.fotoPerfil
                                 ? usuario.fotoPerfil
                                 : "/IMG/epigrafe73.png"
                             }
@@ -274,7 +274,7 @@ const Perfil = () => {
                             width={200}
                             height={200}
                             src={
-                              usuario.fotoPerfil
+                              usuario?.fotoPerfil
                                 ? usuario.fotoPerfil
                                 : "/IMG/epigrafe73.png"
                             }

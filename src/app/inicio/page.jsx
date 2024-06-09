@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import stylesInicio from "./CSS/styles-inicio.module.css";
 
 const Inicio = () => {
@@ -12,7 +13,7 @@ const Inicio = () => {
   const [imagen, setImagen] = useState();
   const [nombreImagen, setNombreImagen] = useState();
   const [perfilCerrado, setPerfilCerrado] = useState(false);
-
+const enrutadorMaster = useRouter();
   const agregarImagen = async (event) => {
     const formData = new FormData();
     const archivo = event.target.files[0];

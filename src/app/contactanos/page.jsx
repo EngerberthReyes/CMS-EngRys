@@ -4,6 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import stylesContactanos from "../CSS/styles-contactanos.module.css";
 
 const Contactanos = () => {
@@ -12,7 +13,7 @@ const Contactanos = () => {
   const [imagen, setImagen] = useState();
   const [nombreImagen, setNombreImagen] = useState();
   const [perfilCerrado, setPerfilCerrado] = useState(false);
-
+  const enrutadorMaster = useRouter();
   const obtenerPerfil = async () => {
     if (perfilCerrado) {
       return;

@@ -4,11 +4,12 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import stylesNosotros from "../CSS/styles-sobreNosotros.module.css";
 
 const SobreNosotros = () => {
   console.log("Nuevo Mensaje");
-
+const enrutadorMaster = useRouter();
   const [usuario, setUsuario] = useState();
   const [imagen, setImagen] = useState();
   const [nombreImagen, setNombreImagen] = useState();
