@@ -152,6 +152,11 @@
   align-items: center;
   display: flex;
   word-break: keep-all;
+  transition: box-shadow 400ms ease;
+
+  &:hover {
+    box-shadow: 0 0 12px 0 #eeeeee;
+  }
 }
 
 .seccionElemento:last-of-type {
