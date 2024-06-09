@@ -367,6 +367,24 @@ const Perfil = () => {
                                 <h2 className={stylesPerfil.tituloSeccionFlex}>
                                   {usuario[iterador]}
                                 </h2>
+                                <label>
+                                <section className={stylesPerfil.seccionBlanco} style={{ position: "relative", height: "1rem", top: "0", left: "0" }}>
+                            <Image
+                              className={stylesPerfil.icono_edit}
+                              onClick={() => cambiarImagen}
+                              width={20}
+                              height={20}
+                              src={`/editar-theme-black.svg`}
+                              alt="Cambiar Foto de Perfil"
+                            />
+                            <input
+                              id="cambiarImagen"
+                              onChange={agregarImagen}
+                              accept=".gif, .png, ,.apng, .jpg, .jpeg"
+                              type="file"
+                            />
+                          </section>
+                        </label>
                               </section>
                             );
                           }

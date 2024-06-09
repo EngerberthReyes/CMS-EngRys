@@ -191,7 +191,7 @@ WHERE
         nacional: nacionalidad,
         genero: id_genero,
         direccionCompleta: direccion_completa,
-        fechaNacimiento: fecha_nacimiento.toISOString(),
+        fechaNacimiento: fecha_nacimiento.toISOString().split('T')[0],
         facebook: facebook,
         instagram: instagram,
         tiktok: tiktok,
