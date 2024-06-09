@@ -181,17 +181,6 @@ const Perfil = () => {
                 <h1 className={stylesPerfil.titulo}>Perfil</h1>
                 <section className={stylesPerfil.seccionFlex}>
                   <section className={stylesPerfil.seccionImagen}>
-                    <Image
-                      className={stylesPerfil.imagenes}
-                      width={200}
-                      height={200}
-                      src={imagen ? imagen : "/IMG/epigrafe73.png"}
-                      alt={
-                        nombreImagen
-                          ? nombreImagen
-                          : "Imagen de Perfil Por Defecto"
-                      }
-                    />
                     {temaActual === "oscuro" ? (
                       <>
                         <label
@@ -199,6 +188,17 @@ const Perfil = () => {
                           htmlFor="cambiarImagen"
                           title="Cambiar Foto de Perfil"
                         >
+                          <Image
+                            className={stylesPerfil.imagenes}
+                            width={200}
+                            height={200}
+                            src={imagen ? imagen : "/IMG/epigrafe73.png"}
+                            alt={
+                              nombreImagen
+                                ? nombreImagen
+                                : "Imagen de Perfil Por Defecto"
+                            }
+                          />
                           <section className={stylesPerfil.seccionOscura}>
                             <Image
                               className={stylesPerfil.icono_edit}
@@ -224,6 +224,17 @@ const Perfil = () => {
                           htmlFor="cambiarImagen"
                           title="Cambiar Foto de Perfil"
                         >
+                          <Image
+                            className={stylesPerfil.imagenes}
+                            width={200}
+                            height={200}
+                            src={imagen ? imagen : "/IMG/epigrafe73.png"}
+                            alt={
+                              nombreImagen
+                                ? nombreImagen
+                                : "Imagen de Perfil Por Defecto"
+                            }
+                          />
                           <section className={stylesPerfil.seccionBlanco}>
                             <Image
                               className={stylesPerfil.icono_edit}
@@ -309,7 +320,9 @@ const Perfil = () => {
                           {mostrarClave ? (
                             <Image
                               className={stylesPerfil.icono_password}
-                              onClick={() => mostrarPassword(usuario.claveDesencriptada)}
+                              onClick={() =>
+                                mostrarPassword(usuario.claveDesencriptada)
+                              }
                               width={20}
                               height={20}
                               src={
@@ -322,7 +335,9 @@ const Perfil = () => {
                           ) : (
                             <Image
                               className={stylesPerfil.icono_password}
-                              onClick={() => mostrarPassword(usuario.claveDesencriptada)}
+                              onClick={() =>
+                                mostrarPassword(usuario.claveDesencriptada)
+                              }
                               width={20}
                               height={20}
                               src={

@@ -91,9 +91,9 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 7%;
-  top: 82%;
-  left: 60%;
+  width: 3rem;
+  top: 10rem;
+  left: 10rem;
   height: 23%;
   border-radius: 2rem;
   background: #eeeeee;
@@ -245,6 +245,7 @@
 
 .label {
   cursor: pointer;
+  position: relative;
 }
 
 .enlace {
