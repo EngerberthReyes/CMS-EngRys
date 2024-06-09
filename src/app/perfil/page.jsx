@@ -150,6 +150,7 @@ const Perfil = () => {
               <>
                 <Link
                   className={`${stylesPerfil.enlace} ${stylesPerfil.usuarioPerfil}`}
+                  style={{ border: "none" }}
                   href="/perfil"
                 >
                   <Image
