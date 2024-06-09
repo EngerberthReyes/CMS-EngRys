@@ -120,7 +120,7 @@ const Perfil = () => {
       console.error("Error al obtener el perfil:", error);
     }
   };
-  
+
   useEffect(() => {
     const intervalo = setInterval(obtenerPerfil, 500);
     return () => clearInterval(intervalo);
@@ -334,242 +334,43 @@ const Perfil = () => {
                   <section className={stylesPerfil.seccionFlexInterna}>
                     {usuario && (
                       <>
-                        <section className={stylesPerfil.seccionElemento}>
-                          <h2 className={stylesPerfil.tituloSeccionFlex}>
-                            Nombre Completo:
-                          </h2>
-                          <h2 className={stylesPerfil.tituloSeccionFlex}>
-                            {usuario.nombreCompletoUsuario}
-                          </h2>
-                        </section>
-                        <section className={stylesPerfil.seccionElemento}>
-                          <h2 className={stylesPerfil.tituloSeccionFlex}>
-                            Cédula:
-                          </h2>
-                          <h2 className={stylesPerfil.tituloSeccionFlex}>
-                            {usuario.cedula}
-                          </h2>
-                        </section>
-                        <section className={stylesPerfil.seccionElemento}>
-                          <h2 className={stylesPerfil.tituloSeccionFlex}>
-                            Correo Electrónico:
-                          </h2>
-                          <h2 className={stylesPerfil.tituloSeccionFlex}>
-                            {usuario.correoElectronicoDeUsuario}
-                          </h2>
-                        </section>
-                        <section className={stylesPerfil.seccionElemento}>
-                          <h2 className={stylesPerfil.tituloSeccionFlex}>
-                            Fecha de Nacimiento:
-                          </h2>
-                          <h2 className={stylesPerfil.tituloSeccionFlex}>
-                            {usuario.fechaNacimiento.substring(
-                              0,
-                              usuario.fechaNacimiento.indexOf("T")
-                            )}
-                          </h2>
-                        </section>
-                        <section className={stylesPerfil.seccionElemento}>
-                          <h2 className={stylesPerfil.tituloSeccionFlex}>
-                            Contraseña:
-                          </h2>
-                          <input
-                            className={stylesPerfil.inputClave}
-                            type={mostrarClave ? "text" : "password"}
-                            value={usuario.claveDesencriptada}
-                          />
-                          {mostrarClave ? (
-                            <Image
-                              className={stylesPerfil.icono_password}
-                              onClick={() =>
-                                mostrarPassword(usuario.claveDesencriptada)
-                              }
-                              width={20}
-                              height={20}
-                              src={
-                                temaActual === "oscuro"
-                                  ? `/BlancoAbierto.svg`
-                                  : `/OjoNegroAbierto.svg`
-                              }
-                              alt="Ocultar Contraseña"
-                            />
-                          ) : (
-                            <Image
-                              className={stylesPerfil.icono_password}
-                              onClick={() =>
-                                mostrarPassword(usuario.claveDesencriptada)
-                              }
-                              width={20}
-                              height={20}
-                              src={
-                                temaActual === "oscuro"
-                                  ? `/BlancoAbiertoOblicua.svg`
-                                  : `/OjoNegroAbiertoOblicuo.svg`
-                              }
-                              alt="Mostrar Contraseña"
-                            />
-                          )}
-                        </section>
-                        <section className={stylesPerfil.seccionElemento}>
-                          <h2 className={stylesPerfil.tituloSeccionFlex}>
-                            Nacionalidad:
-                          </h2>
-                          <h2 className={stylesPerfil.tituloSeccionFlex}>
-                            {usuario.nacional}
-                          </h2>
-                        </section>
-                        <section className={stylesPerfil.seccionElemento}>
-                          <h2 className={stylesPerfil.tituloSeccionFlex}>
-                            Sexo:
-                          </h2>
-                          <h2 className={stylesPerfil.tituloSeccionFlex}>
-                            {usuario.genero}
-                          </h2>
-                        </section>
-                        {usuario.nombrePais ? (
-                          <>
-                            <section className={stylesPerfil.seccionElemento}>
-                              <h2 className={stylesPerfil.tituloSeccionFlex}>
-                                Pais:
-                              </h2>
-                              <h2 className={stylesPerfil.tituloSeccionFlex}>
-                                {usuario.nombrePais}
-                              </h2>
-                            </section>
-                          </>
-                        ) : null}
-                        {usuario.nombreEstado ? (
-                          <>
-                            <section className={stylesPerfil.seccionElemento}>
-                              <h2 className={stylesPerfil.tituloSeccionFlex}>
-                                Estado:
-                              </h2>
-                              <h2 className={stylesPerfil.tituloSeccionFlex}>
-                                {usuario.nombreEstado}
-                              </h2>
-                            </section>
-                          </>
-                        ) : null}
-                        {usuario.nombreCiudad ? (
-                          <>
-                            <section className={stylesPerfil.seccionElemento}>
-                              <h2 className={stylesPerfil.tituloSeccionFlex}>
-                                Ciudad:
-                              </h2>
-                              <h2 className={stylesPerfil.tituloSeccionFlex}>
-                                {usuario.nombreCiudad}
-                              </h2>
-                            </section>
-                          </>
-                        ) : null}
-                        {usuario.nombreMunicipio ? (
-                          <>
-                            <section className={stylesPerfil.seccionElemento}>
-                              <h2 className={stylesPerfil.tituloSeccionFlex}>
-                                Municipio:
-                              </h2>
-                              <h2 className={stylesPerfil.tituloSeccionFlex}>
-                                {usuario.nombreMunicipio}
-                              </h2>
-                            </section>
-                          </>
-                        ) : null}
-                        {usuario.nombreParroquia ? (
-                          <>
-                            <section className={stylesPerfil.seccionElemento}>
-                              <h2 className={stylesPerfil.tituloSeccionFlex}>
-                                Parroquia:
-                              </h2>
-                              <h2 className={stylesPerfil.tituloSeccionFlex}>
-                                {usuario.nombreParroquia}
-                              </h2>
-                            </section>
-                          </>
-                        ) : null}
-                        {usuario.numeroCodigoPostal ? (
-                          <>
-                            <section className={stylesPerfil.seccionElemento}>
-                              <h2 className={stylesPerfil.tituloSeccionFlex}>
-                                Codigo Postal:
-                              </h2>
-                              <h2 className={stylesPerfil.tituloSeccionFlex}>
-                                {usuario.numeroCodigoPostal}
-                              </h2>
-                            </section>
-                          </>
-                        ) : null}
-                        {usuario.direccionCompleta ? (
-                          <>
-                            <section className={stylesPerfil.seccionElemento}>
-                              <h2 className={stylesPerfil.tituloSeccionFlex}>
-                                Dirección Completa:
-                              </h2>
-                              <h2 className={stylesPerfil.tituloSeccionFlex}>
-                                {usuario.direccionCompleta}
-                              </h2>
-                            </section>
-                          </>
-                        ) : null}
-                        {usuario.sitioWeb ? (
-                          <>
-                            <section className={stylesPerfil.seccionElemento}>
-                              <h2 className={stylesPerfil.tituloSeccionFlex}>
-                                Su Sitio Web
-                              </h2>
-                              <Link href={usuario.sitioWeb} target="_blank">
-                                Su Sitio Web
-                              </Link>
-                            </section>
-                          </>
-                        ) : null}
-                        {usuario.facebook ? (
-                          <>
-                            <section className={stylesPerfil.seccionElemento}>
-                              <h2 className={stylesPerfil.tituloSeccionFlex}>
-                                Perfil de Facebook
-                              </h2>
-                              <Link href={usuario.facebook} target="_blank">
-                                Perfil de Su Facebook
-                              </Link>
-                            </section>
-                          </>
-                        ) : null}
-                        {usuario.instagram ? (
-                          <>
-                            <section className={stylesPerfil.seccionElemento}>
-                              <h2 className={stylesPerfil.tituloSeccionFlex}>
-                                Perfil de Instragram
-                              </h2>
-                              <Link href={usuario.instragram} target="_blank">
-                                Perfil de Su Instragram
-                              </Link>
-                            </section>
-                          </>
-                        ) : null}
-                        {usuario.x ? (
-                          <>
-                            <section className={stylesPerfil.seccionElemento}>
-                              <h2 className={stylesPerfil.tituloSeccionFlex}>
-                                Perfil de X
-                              </h2>
-                              <Link href={usuario.x} target="_blank">
-                                Perfil de Su X
-                              </Link>
-                            </section>
-                          </>
-                        ) : null}
-                        {usuario.tiktok ? (
-                          <>
-                            <section className={stylesPerfil.seccionElemento}>
-                              <h2 className={stylesPerfil.tituloSeccionFlex}>
-                                Perfil de Tiktok
-                              </h2>
-                              <Link href={usuario.tiktok} target="_blank">
-                                Perfil de Su Tiktok
-                              </Link>
-                            </section>
-                          </>
-                        ) : null}
+                        {Object.entries({
+                          nombreCompletoUsuario: "Nombre Completo",
+                          cedula: "Cédula",
+                          correoElectronicoDeUsuario: "Correo Electrónico",
+                          fechaNacimiento: "Fecha de Nacimiento",
+                          claveDesencriptada: "Contraseña",
+                          nacional: "Nacionalidad",
+                          genero: "Sexo",
+                          nombrePais: "País",
+                          nombreEstado: "Estado",
+                          nombreCiudad: "Ciudad",
+                          nombreMunicipio: "Municipio",
+                          nombreParroquia: "Parroquia",
+                          numeroCodigoPostal: "Codigo Postal",
+                          direccionCompleta: "Dirección Completa",
+                          sitioWeb: "Su Sitio Web",
+                          facebook: "Perfil de Facebook",
+                          instragram: "Perfil de Instagram",
+                          x: "Perfil de X",
+                          tiktok: "Perfil de TikTok",
+                        }).map(([key, label]) => {
+                          if (usuario[key]) {
+                            return (
+                              <section
+                                key={key}
+                                className={stylesPerfil.seccionElemento}
+                              >
+                                <h2 className={stylesPerfil.tituloSeccionFlex}>
+                                  {label}
+                                </h2>
+                                <h2 className={stylesPerfil.tituloSeccionFlex}>
+                                  {usuario[key]}
+                                </h2>
+                              </section>
+                            );
+                          }
+                        })}
                       </>
                     )}
                   </section>
