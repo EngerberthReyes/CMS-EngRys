@@ -45,6 +45,7 @@ const agregarImagen = async (event) => {
     if (archivo) {
       setNombreImagen(nombreArchivo);
       formData.set("archivo", archivo);
+      formData.set("correoElectronico", usuario.correoElectronicoDeUsuario);
 
       const respuesta = await axios.put("../API/perfil", formData, {
         headers: {
