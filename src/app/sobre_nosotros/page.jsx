@@ -10,6 +10,8 @@ const SobreNosotros = () => {
   console.log("Nuevo Mensaje");
 
   const [usuario, setUsuario] = useState();
+  const [imagen, setImagen] = useState();
+  const [nombreImagen, setNombreImagen] = useState();
   const [perfilCerrado, setPerfilCerrado] = useState(false);
 
   const obtenerPerfil = async () => {
@@ -68,20 +70,28 @@ const SobreNosotros = () => {
           <section className={stylesNosotros.seccionEnlace}>
             {usuario ? (
               <>
-                <Link
-                  className={`${stylesNosotros.enlace} ${stylesNosotros.usuarioPerfil}`}
-                  href="/perfil"
-                >
+              <Link
+                className={`${stylesNosotros.enlace} ${stylesNosotros.usuarioPerfil}`}
+                style={{ border: "none" }}
+                href="/perfil"
+              >
+                <Image
+                  className={stylesNosotros.imagenes}
+                  width={35}
+                  height={20}
+                  src={imagen ? imagen : "/IMG/epigrafe73.png"}
+                  alt={
+                    nombreImagen
+                      ? nombreImagen
+                      : "Imagen de Perfil Por Defecto"
+                  }
+                />
+                <section>
                   <section>{usuario.nombreDeUsuario}</section>
                   <section>{usuario.correoElectronicoDeUsuario}</section>
-                </Link>
-                <button
-                  className={`${stylesNosotros.enlace} ${stylesNosotros.usuarioPerfil}`}
-                  onClick={() => cerrarPerfil()}
-                >
-                  <section>Cerrar Sesión</section>
-                </button>
-              </>
+                </section>
+              </Link>
+            </>
             ) : (
               <>
                 <Link className={stylesNosotros.enlace} href="/iniciar_sesion">

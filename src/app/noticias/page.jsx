@@ -164,17 +164,25 @@ const Noticias = () => {
               <>
                 <Link
                   className={`${stylesNoticias.enlace} ${stylesNoticias.usuarioPerfil}`}
+                  style={{ border: "none" }}
                   href="/perfil"
                 >
-                  <section>{usuario.nombreDeUsuario}</section>
-                  <section>{usuario.correoElectronicoDeUsuario}</section>
+                  <Image
+                    className={stylesNoticias.imagenes}
+                    width={35}
+                    height={20}
+                    src={imagen ? imagen : "/IMG/epigrafe73.png"}
+                    alt={
+                      nombreImagen
+                        ? nombreImagen
+                        : "Imagen de Perfil Por Defecto"
+                    }
+                  />
+                  <section>
+                    <section>{usuario.nombreDeUsuario}</section>
+                    <section>{usuario.correoElectronicoDeUsuario}</section>
+                  </section>
                 </Link>
-                <button
-                  className={`${stylesNoticias.enlace} ${stylesNoticias.usuarioPerfil}`}
-                  onClick={() => cerrarPerfil()}
-                >
-                  <section>Cerrar Sesión</section>
-                </button>
               </>
             ) : (
               <>

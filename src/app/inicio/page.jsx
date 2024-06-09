@@ -9,6 +9,8 @@ import stylesInicio from "./CSS/styles-inicio.module.css";
 const Inicio = () => {
   console.log("Nuevo Mensaje");
   const [usuario, setUsuario] = useState();
+  const [imagen, setImagen] = useState();
+  const [nombreImagen, setNombreImagen] = useState();
   const [perfilCerrado, setPerfilCerrado] = useState(false);
 
   const obtenerPerfil = async () => {
@@ -67,20 +69,28 @@ const Inicio = () => {
           <section className={stylesInicio.seccionEnlace}>
           {usuario ? (
               <>
-                <Link
-                  className={`${stylesInicio.enlace} ${stylesInicio.usuarioPerfil}`}
-                  href="/perfil"
-                >
+              <Link
+                className={`${stylesInicio.enlace} ${stylesInicio.usuarioPerfil}`}
+                style={{ border: "none" }}
+                href="/perfil"
+              >
+                <Image
+                  className={stylesInicio.imagenes}
+                  width={35}
+                  height={20}
+                  src={imagen ? imagen : "/IMG/epigrafe73.png"}
+                  alt={
+                    nombreImagen
+                      ? nombreImagen
+                      : "Imagen de Perfil Por Defecto"
+                  }
+                />
+                <section>
                   <section>{usuario.nombreDeUsuario}</section>
                   <section>{usuario.correoElectronicoDeUsuario}</section>
-                </Link>
-                <button
-                  className={`${stylesInicio.enlace} ${stylesInicio.usuarioPerfil}`}
-                  onClick={() => cerrarPerfil()}
-                >
-                  <section>Cerrar Sesión</section>
-                </button>
-              </>
+                </section>
+              </Link>
+            </>
             ) : (
               <>
                 <Link className={stylesInicio.enlace} href="/iniciar_sesion">

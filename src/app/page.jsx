@@ -10,6 +10,8 @@ const Inicio = () => {
   console.log("Nuevo Mensaje");
   const [usuario, setUsuario] = useState();
   const [perfilCerrado, setPerfilCerrado] = useState(false);
+  const [imagen, setImagen] = useState();
+  const [nombreImagen, setNombreImagen] = useState();
 
   const obtenerPerfil = async () => {
     if (perfilCerrado) {
@@ -69,17 +71,25 @@ const Inicio = () => {
               <>
                 <Link
                   className={`${stylesInicio.enlace} ${stylesInicio.usuarioPerfil}`}
+                  style={{ border: "none" }}
                   href="/perfil"
                 >
-                  <section>{usuario.nombreDeUsuario}</section>
-                  <section>{usuario.correoElectronicoDeUsuario}</section>
+                  <Image
+                    className={stylesInicio.imagenes}
+                    width={35}
+                    height={20}
+                    src={imagen ? imagen : "/IMG/epigrafe73.png"}
+                    alt={
+                      nombreImagen
+                        ? nombreImagen
+                        : "Imagen de Perfil Por Defecto"
+                    }
+                  />
+                  <section>
+                    <section>{usuario.nombreDeUsuario}</section>
+                    <section>{usuario.correoElectronicoDeUsuario}</section>
+                  </section>
                 </Link>
-                <button
-                  className={`${stylesInicio.enlace} ${stylesInicio.usuarioPerfil}`}
-                  onClick={() => cerrarPerfil()}
-                >
-                  <section>Cerrar Sesión</section>
-                </button>
               </>
             ) : (
               <>
