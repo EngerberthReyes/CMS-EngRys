@@ -73,7 +73,6 @@ html,
 body {
   color: rgb(var(--foreground-rgb));
   font-family: ProximaNovaRegular, "ProximaNovaRegular" !important;
-  height: 100%;
   width: 100%;
   word-break: break-word;
   display: flex;
