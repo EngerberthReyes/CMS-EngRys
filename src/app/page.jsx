@@ -41,7 +41,7 @@ const Inicio = () => {
     } catch (error) {
       console.log(error);
     } finally {
-      enrutadorMaster.push("/");
+      window.location.reload();
     }
   };
   return (
