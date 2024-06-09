@@ -122,10 +122,13 @@ const Perfil = () => {
   };
   
   useEffect(() => {
-    const intervalo = setInterval(obtenerPerfil, 500);
-    return () => clearInterval(intervalo);
+  obtenerPerfil();
   }, []);
   
+  useEffect(() => {
+   obtenerPerfil();
+  }, [usuario]);
+
   
 
   const cerrarPerfil = async () => {
