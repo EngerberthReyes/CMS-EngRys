@@ -46,7 +46,7 @@ const agregarImagen = async (event) => {
       setNombreImagen(nombreArchivo);
       formData.set("archivo", archivo);
 
-      const respuesta = await axios.post("../API/perfil", formData, {
+      const respuesta = await axios.put("../API/perfil", formData, {
         headers: {
           "Content-Type": "multipart/form-data",
         },

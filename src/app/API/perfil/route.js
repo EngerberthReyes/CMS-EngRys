@@ -28,7 +28,7 @@ export const GET = (request) => {
   }
 };
 
-export const POST = async (req, res) => {
+export const PUT = async (req, res) => {
   try {
     const imagen = await req.formData();
     const imagenArchivo = imagen.get("archivo");
