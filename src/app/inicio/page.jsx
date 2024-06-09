@@ -68,14 +68,14 @@ const Inicio = () => {
           {usuario ? (
               <>
                 <Link
-                  className={`${stylesNosotros.enlace} ${stylesNosotros.usuarioPerfil}`}
+                  className={`${stylesInicio.enlace} ${stylesInicio.usuarioPerfil}`}
                   href="/perfil"
                 >
                   <section>{usuario.nombreDeUsuario}</section>
                   <section>{usuario.correoElectronicoDeUsuario}</section>
                 </Link>
                 <button
-                  className={`${stylesNosotros.enlace} ${stylesNosotros.usuarioPerfil}`}
+                  className={`${stylesInicio.enlace} ${stylesInicio.usuarioPerfil}`}
                   onClick={() => cerrarPerfil()}
                 >
                   <section>Cerrar Sesión</section>
@@ -83,10 +83,10 @@ const Inicio = () => {
               </>
             ) : (
               <>
-                <Link className={stylesNosotros.enlace} href="/iniciar_sesion">
+                <Link className={stylesInicio.enlace} href="/iniciar_sesion">
                   Iniciar Sesión
                 </Link>
-                <Link className={stylesNosotros.enlace} href="/registro">
+                <Link className={stylesInicio.enlace} href="/registro">
                   Registrarse
                 </Link>
               </>

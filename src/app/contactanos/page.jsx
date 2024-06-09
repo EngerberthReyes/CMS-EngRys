@@ -68,14 +68,14 @@ const Contactanos = () => {
           {usuario ? (
               <>
                 <Link
-                  className={`${stylesNosotros.enlace} ${stylesNosotros.usuarioPerfil}`}
+                  className={`${stylesContactanos.enlace} ${stylesContactanos.usuarioPerfil}`}
                   href="/perfil"
                 >
                   <section>{usuario.nombreDeUsuario}</section>
                   <section>{usuario.correoElectronicoDeUsuario}</section>
                 </Link>
                 <button
-                  className={`${stylesNosotros.enlace} ${stylesNosotros.usuarioPerfil}`}
+                  className={`${stylesContactanos.enlace} ${stylesContactanos.usuarioPerfil}`}
                   onClick={() => cerrarPerfil()}
                 >
                   <section>Cerrar Sesión</section>
@@ -83,10 +83,10 @@ const Contactanos = () => {
               </>
             ) : (
               <>
-                <Link className={stylesNosotros.enlace} href="/iniciar_sesion">
+                <Link className={stylesContactanos.enlace} href="/iniciar_sesion">
                   Iniciar Sesión
                 </Link>
-                <Link className={stylesNosotros.enlace} href="/registro">
+                <Link className={stylesContactanos.enlace} href="/registro">
                   Registrarse
                 </Link>
               </>
