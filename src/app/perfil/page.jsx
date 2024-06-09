@@ -370,14 +370,23 @@ const Perfil = () => {
                                 <h2 className={stylesPerfil.tituloSeccionFlex}>
                                   {usuario[iterador]}
                                 </h2>
-                                <label>
+                                <label
+                                  style={{
+                                    position: "relative",
+                                    height: "0",
+                                    top: "0",
+                                    left: "0",
+                                    cursor: "pointer",
+                                  }}
+                                >
                                   <section
                                     className={stylesPerfil.seccionBlanco}
                                     style={{
                                       position: "relative",
-                                      height: "1rem",
+                                      height: "0",
                                       top: "0",
                                       left: "0",
+                                      cursor: "pointer",
                                     }}
                                   >
                                     <Image
