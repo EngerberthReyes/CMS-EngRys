@@ -43,8 +43,8 @@ export const GET = async () => {
 
 export const POST = async (request, res) => {
   try {
-    const { correo, clave } = await request.json();
-    console.log(correo, clave);
+    const { correo, clave, fotodePerfil } = await request.json();
+    console.log(correo, clave, fotodePerfil);
 
     const datosUsuario = `
 SELECT 
@@ -160,7 +160,9 @@ WHERE
     } = resultadoFiltrado[0];
 
     console.log(fotoPerfil)
-
+    if (fotoPerfil === null) {
+      return
+    }
     const claveUsuario = resultadoFiltrado[0].clave;
 
     const modificacionNombre = nombre + " " + apellido;

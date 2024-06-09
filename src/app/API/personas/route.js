@@ -190,6 +190,7 @@ console.log(idGenero)
       nombre, 
       apellido, 
       cedula,
+      fotoPerfil,
       fecha_nacimiento,
       correo_electronico,
       clave,
@@ -199,7 +200,7 @@ console.log(idGenero)
       tiktok,
       sitio_web,
       url_imagen_pagina
-    ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
+    ) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?);
   `;
 
     const grabadorPersonas = await cmsConexion.query(consultaGrabarPersonas, [
@@ -211,6 +212,7 @@ console.log(idGenero)
       nombres,
       apellido,
       cedula,
+      "/FotosDePerfil/Barranca Abajo.jpg",
       nacimiento,
       correo,
       claveHash,

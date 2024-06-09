@@ -53,11 +53,21 @@ const Perfil = () => {
           },
         });
 
-        const fotodePerfil = respuesta.data.fotoPerfil;
+        const correoElectronico = respuesta.data.correoElectronico;
+        console.log(correoElectronico);
+        const respuestaDos = await axios.post("../API/cookiesActualizar", {correoElectronico});
+        const respuestaDeModificacion = await axios.post(
+          "../API/perfil",
+          { fotodePerfil }
+        );
 
-        if (fotodePerfil) {
-          setImagen(fotodePerfil);
-          console.log(fotodePerfil);
+        console.log(respuestaDos)
+
+        const usuarioActivo = respuestaDeModificacion.data;
+        console.log(usuarioActivo);
+        if (usuarioActivo) {
+          setUsuario()
+          setImagen(usuarioActivo.fotoPerfil);
         } else {
           console.log("No se recibió una URL de la imagen o imagen valida");
         }
@@ -109,10 +119,12 @@ const Perfil = () => {
     }
 
     try {
-      const respuesta = await axios.get("../API/perfil");
+      const respuesta = await axios.get("../API/cookiesActualizar");
       console.log(respuesta);
-      const usuarioActivo = respuesta.data.sesionUsuario;
+      const usuarioActivo = respuesta.data;
+      console.log(usuarioActivo);
       setUsuario(usuarioActivo);
+      setImagen(usuarioActivo.fotoPerfil)
     } catch (error) {
       console.log(error);
     }
@@ -181,8 +193,8 @@ const Perfil = () => {
                     width={35}
                     height={20}
                     src={
-                      usuario?.fotoPerfil
-                        ? usuario.fotoPerfil
+                      imagen
+                      ? imagen
                         : "/IMG/epigrafe73.png"
                     }
                     alt={
@@ -234,8 +246,8 @@ const Perfil = () => {
                             width={200}
                             height={200}
                             src={
-                              usuario?.fotoPerfil
-                                ? usuario.fotoPerfil
+                              imagen
+                                ? imagen
                                 : "/IMG/epigrafe73.png"
                             }
                             alt={

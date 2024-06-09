@@ -4,10 +4,8 @@ import { promises as fs } from "fs";
 import path from "path";
 import { cmsConexion } from "@/db/database";
 
-export const GET = (request) => {
+export const GET = async (request) => {
   try {
-    // Obtener las cookies de la solicit
-
     const cookieValue = request.cookies.get("cookieInformacion").value;
 
     console.log(cookieValue);
@@ -65,7 +63,7 @@ export const PUT = async (req, res) => {
       [fotoPerfil, datosUsuario[0].id_persona]
     );
 
-    return NextResponse.json({ fotoPerfil });
+    return NextResponse.json({ fotoPerfil, correoElectronico });
   } catch (error) {
     console.error("Error saving file:", error);
     return NextResponse.json({ mensaje: "error" });
