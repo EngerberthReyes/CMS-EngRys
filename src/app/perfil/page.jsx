@@ -354,18 +354,18 @@ const Perfil = () => {
                           instragram: "Perfil de Instagram",
                           x: "Perfil de X",
                           tiktok: "Perfil de TikTok",
-                        }).map(([key, label]) => {
-                          if (usuario[key]) {
+                        }).map(([iterador, titulo]) => {
+                          if (usuario[iterador]) {
                             return (
                               <section
-                                key={key}
+                                key={iterador}
                                 className={stylesPerfil.seccionElemento}
                               >
                                 <h2 className={stylesPerfil.tituloSeccionFlex}>
-                                  {label}
+                                  {titulo}
                                 </h2>
                                 <h2 className={stylesPerfil.tituloSeccionFlex}>
-                                  {usuario[key]}
+                                  {usuario[iterador]}
                                 </h2>
                               </section>
                             );
