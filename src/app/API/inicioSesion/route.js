@@ -54,6 +54,7 @@ SELECT
     p.cedula, 
     p.correo_electronico, 
     p.clave,
+    p.fotoPerfil,
     CASE 
         WHEN p.id_nacionalidad = 1 THEN 'Venezolano'
         ELSE 'Extranjero'
@@ -140,6 +141,7 @@ WHERE
       apellido,
       cedula,
       correo_electronico,
+      fotoPerfil,
       nacionalidad,
       id_genero,
       direccion_completa,
@@ -174,6 +176,8 @@ WHERE
         nombreDeUsuario: nombreDeUsuario,
         nombreCompletoUsuario: nombre + " " + apellido,
         correoElectronicoDeUsuario: correo_electronico,
+        cedula: cedula,
+        fotoPerfil: fotoPerfil,
         clave: claveUsuario,
         claveDesencriptada: clave,
         nacional: nacionalidad,

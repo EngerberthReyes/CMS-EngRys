@@ -181,7 +181,7 @@ const agregarImagen = async (event) => {
                     className={stylesPerfil.imagenes}
                     width={35}
                     height={20}
-                    src={imagen ? imagen : "/IMG/epigrafe73.png"}
+                    src={usuario.fotoPerfil ? usuario.fotoPerfil : "/IMG/epigrafe73.png"}
                     alt={
                       nombreImagen
                         ? nombreImagen
@@ -230,7 +230,7 @@ const agregarImagen = async (event) => {
                             className={stylesPerfil.imagenes}
                             width={200}
                             height={200}
-                            src={imagen ? imagen : "/IMG/epigrafe73.png"}
+                            src={usuario.fotoPerfil ? usuario.fotoPerfil : "/IMG/epigrafe73.png"}
                             alt={
                               nombreImagen
                                 ? nombreImagen
@@ -266,7 +266,7 @@ const agregarImagen = async (event) => {
                             className={stylesPerfil.imagenes}
                             width={200}
                             height={200}
-                            src={imagen ? imagen : "/IMG/epigrafe73.png"}
+                            src={usuario.fotoPerfil ? usuario.fotoPerfil : "/IMG/epigrafe73.png"}
                             alt={
                               nombreImagen
                                 ? nombreImagen
