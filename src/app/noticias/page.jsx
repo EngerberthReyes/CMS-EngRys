@@ -211,7 +211,7 @@ const agregarImagenPerfil = async (event) => {
                     className={stylesNoticias.imagenes}
                     width={35}
                     height={20}
-                    src={imagenPerfil ? imagenPerfil : "/IMG/epigrafe73.png"}
+                    src={usuario?.fotoPerfil ?  usuario.fotoPerfil : "/IMG/epigrafe73.png"}
                     alt={
                       nombreImagen
                         ? nombreImagen

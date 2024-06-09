@@ -79,7 +79,7 @@ const Contactanos = () => {
                     className={stylesContactanos.imagenes}
                     width={35}
                     height={20}
-                    src={imagen ? imagen : "/IMG/epigrafe73.png"}
+                    src={usuario?.fotoPerfil ?  usuario.fotoPerfil : "/IMG/epigrafe73.png"}
                     alt={
                       nombreImagen
                         ? nombreImagen
