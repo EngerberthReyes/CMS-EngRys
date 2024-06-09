@@ -55,6 +55,10 @@ SELECT
     p.correo_electronico, 
     p.clave,
     CASE 
+        WHEN p.id_nacionalidad = 1 THEN 'Venezolano'
+        ELSE 'Extranjero'
+    END AS nacionalidad, 
+    CASE 
         WHEN gen.id_genero = 1 THEN 'Masculino'
         ELSE 'Femenino'
     END AS id_genero, 
@@ -136,6 +140,7 @@ WHERE
       apellido,
       cedula,
       correo_electronico,
+      nacionalidad,
       id_genero,
       direccion_completa,
       fecha_nacimiento,
@@ -171,6 +176,7 @@ WHERE
         correoElectronicoDeUsuario: correo_electronico,
         clave: claveUsuario,
         claveDesencriptada: clave,
+        nacional: nacionalidad,
         genero: id_genero,
         direccionCompleta: direccion_completa,
         fechaNacimiento: fecha_nacimiento.toISOString(),

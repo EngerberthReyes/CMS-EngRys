@@ -351,6 +351,14 @@ const Perfil = () => {
                         </section>
                         <section className={stylesPerfil.seccionElemento}>
                           <h2 className={stylesPerfil.tituloSeccionFlex}>
+                            Nacionalidad:
+                          </h2>
+                          <h2 className={stylesPerfil.tituloSeccionFlex}>
+                            {usuario.nacional}
+                          </h2>
+                        </section>
+                        <section className={stylesPerfil.seccionElemento}>
+                          <h2 className={stylesPerfil.tituloSeccionFlex}>
                             Sexo:
                           </h2>
                           <h2 className={stylesPerfil.tituloSeccionFlex}>
