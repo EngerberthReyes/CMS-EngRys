@@ -22,6 +22,7 @@ const Noticias = () => {
   const [post, setPost] = useState([]);
   const [nombreImagen, setNombreImagen] = useState([]);
   const [imagen, setImagen] = useState([]);
+  const [imagenPerfil, setImagenPerfil] = useState(null);
   const [interructor, setInterructor] = useState(true);
   const [imagenesPorExceso, setImagenesPorExceso] = useState();
   const [temaActual, setTemaActual] = useState();
@@ -50,6 +51,44 @@ const Noticias = () => {
       consultaModoOscuro.removeEventListener("change", manejarCambioDeTema);
     };
   }, []);
+
+  
+const agregarImagenPerfil = async (event) => {
+  const formData = new FormData();
+  const archivo = event.target.files[0];
+  console.log(archivo)
+  const nombreArchivo = archivo.name;
+  console.log(nombreArchivo);
+
+  try {
+    if (archivo) {
+      setNombreImagen(nombreArchivo);
+      formData.set("archivo", archivo);
+
+      const respuesta = await axios.post("../API/perfil", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      const fotodePerfil = respuesta.data.fotoPerfil;
+      
+      if (fotodePerfil) {
+        setImagenPerfil(fotodePerfil);
+        console.log(fotodePerfil)
+      } else {
+        console.log("No se recibió una URL de la imagen o imagen valida");
+      }
+
+      event.target.value = "";
+    } else {
+      console.log("No se seleccionó ningún archivo");
+    }
+  } catch (error) {
+    console.log(error.response ? error.response.data : error);
+  }
+};
+
 
   const agregarArchivo = (event) => {
     const archivos = event.target.files;
@@ -171,7 +210,7 @@ const Noticias = () => {
                     className={stylesNoticias.imagenes}
                     width={35}
                     height={20}
-                    src={imagen ? imagen : "/IMG/epigrafe73.png"}
+                    src={imagenPerfil ? imagenPerfil : "/IMG/epigrafe73.png"}
                     alt={
                       nombreImagen
                         ? nombreImagen

@@ -13,6 +13,42 @@ const Inicio = () => {
   const [nombreImagen, setNombreImagen] = useState();
   const [perfilCerrado, setPerfilCerrado] = useState(false);
 
+  const agregarImagen = async (event) => {
+    const formData = new FormData();
+    const archivo = event.target.files[0];
+    console.log(archivo)
+    const nombreArchivo = archivo.name;
+    console.log(nombreArchivo);
+  
+    try {
+      if (archivo) {
+        setNombreImagen(nombreArchivo);
+        formData.set("archivo", archivo);
+  
+        const respuesta = await axios.post("../API/perfil", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+  
+        const fotodePerfil = respuesta.data.fotoPerfil;
+        
+        if (fotodePerfil) {
+          setImagen(fotodePerfil);
+          console.log(fotodePerfil)
+        } else {
+          console.log("No se recibió una URL de la imagen o imagen valida");
+        }
+  
+        event.target.value = "";
+      } else {
+        console.log("No se seleccionó ningún archivo");
+      }
+    } catch (error) {
+      console.log(error.response ? error.response.data : error);
+    }
+  };
+
   const obtenerPerfil = async () => {
     if (perfilCerrado) {
       return;
