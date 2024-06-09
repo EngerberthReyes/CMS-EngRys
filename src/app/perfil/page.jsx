@@ -152,8 +152,21 @@ const Perfil = () => {
                   className={`${stylesPerfil.enlace} ${stylesPerfil.usuarioPerfil}`}
                   href="/perfil"
                 >
-                  <section>{usuario.nombreDeUsuario}</section>
-                  <section>{usuario.correoElectronicoDeUsuario}</section>
+                  <Image
+                    className={stylesPerfil.imagenes}
+                    width={35}
+                    height={20}
+                    src={imagen ? imagen : "/IMG/epigrafe73.png"}
+                    alt={
+                      nombreImagen
+                        ? nombreImagen
+                        : "Imagen de Perfil Por Defecto"
+                    }
+                  />
+                  <section>
+                    <section>{usuario.nombreDeUsuario}</section>
+                    <section>{usuario.correoElectronicoDeUsuario}</section>
+                  </section>
                 </Link>
                 <button
                   className={`${stylesPerfil.enlace} ${stylesPerfil.usuarioPerfil}`}
