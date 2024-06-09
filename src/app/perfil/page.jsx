@@ -33,9 +33,6 @@ const Perfil = () => {
   console.log(post);
 
 console.log(imagen)
-const [previewUrl, setPreviewUrl] = useState(null);
-
-console.log(previewUrl)
 
 const agregarImagen = async (event) => {
   const formData = new FormData();
@@ -47,10 +44,6 @@ const agregarImagen = async (event) => {
   try {
     if (archivo) {
       setNombreImagen(nombreArchivo);
-
-      // Crear una URL de previsualización local
-      const preview = URL.createObjectURL(archivo);
-      setPreviewUrl(preview);
       formData.set("archivo", archivo);
 
       const respuesta = await axios.post("../API/perfil", formData, {
@@ -59,17 +52,17 @@ const agregarImagen = async (event) => {
         },
       });
 
-      const fotodePerfil = respuesta.data; // Supongo que esta es la URL relativa de la imagen
-console.log(fotodePerfil.relativeFilePath)
+      const fotodePerfil = respuesta.data.fotoPerfil;
+
+      console.log(fotodePerfil.fotoPerfil)
+      
       if (fotodePerfil) {
-        // Establecer la URL de la imagen recibida desde el servidor
-        setImagen(fotodePerfil.relativeFilePath);
-        console.log(fotodePerfil.relativeFilePath)
+        setImagen(fotodePerfil);
+        console.log(fotodePerfil)
       } else {
-        console.log("No se recibió una URL de la imagen");
+        console.log("No se recibió una URL de la imagen o imagen valida");
       }
 
-      // Limpiar el input de archivo
       event.target.value = "";
     } else {
       console.log("No se seleccionó ningún archivo");
@@ -238,7 +231,7 @@ console.log(fotodePerfil.relativeFilePath)
                             className={stylesPerfil.imagenes}
                             width={200}
                             height={200}
-                            src={previewUrl ? previewUrl : "/IMG/epigrafe73.png"}
+                            src={imagen ? imagen : "/IMG/epigrafe73.png"}
                             alt={
                               nombreImagen
                                 ? nombreImagen
@@ -274,7 +267,7 @@ console.log(fotodePerfil.relativeFilePath)
                             className={stylesPerfil.imagenes}
                             width={200}
                             height={200}
-                            src={previewUrl ? previewUrl : "/IMG/epigrafe73.png"}
+                            src={imagen ? imagen : "/IMG/epigrafe73.png"}
                             alt={
                               nombreImagen
                                 ? nombreImagen
