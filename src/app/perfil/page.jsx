@@ -32,46 +32,43 @@ const Perfil = () => {
   console.log(usuario);
   console.log(post);
 
-console.log(imagen)
+  console.log(imagen);
 
-const agregarImagen = async (event) => {
-  const formData = new FormData();
-  const archivo = event.target.files[0];
-  console.log(archivo)
-  const nombreArchivo = archivo.name;
-  console.log(nombreArchivo);
+  const agregarImagen = async (event) => {
+    const formData = new FormData();
+    const archivo = event.target.files[0];
+    console.log(archivo);
+    const nombreArchivo = archivo.name;
+    console.log(nombreArchivo);
 
-  try {
-    if (archivo) {
-      setNombreImagen(nombreArchivo);
-      formData.set("archivo", archivo);
+    try {
+      if (archivo) {
+        setNombreImagen(nombreArchivo);
+        formData.set("archivo", archivo);
 
-      const respuesta = await axios.post("../API/perfil", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+        const respuesta = await axios.post("../API/perfil", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
 
-      const fotodePerfil = respuesta.data.fotoPerfil;
+        const fotodePerfil = respuesta.data.fotoPerfil;
 
-      console.log(fotodePerfil.fotoPerfil)
-      
-      if (fotodePerfil) {
-        setImagen(fotodePerfil);
-        console.log(fotodePerfil)
+        if (fotodePerfil) {
+          setImagen(fotodePerfil);
+          console.log(fotodePerfil);
+        } else {
+          console.log("No se recibió una URL de la imagen o imagen valida");
+        }
+
+        event.target.value = "";
       } else {
-        console.log("No se recibió una URL de la imagen o imagen valida");
+        console.log("No se seleccionó ningún archivo");
       }
-
-      event.target.value = "";
-    } else {
-      console.log("No se seleccionó ningún archivo");
+    } catch (error) {
+      console.log(error.response ? error.response.data : error); // Log the error message
     }
-  } catch (error) {
-    console.log(error.response ? error.response.data : error); // Log the error message
-  }
-};
-
+  };
 
   const enviarPost = async (nuevoPost) => {
     console.log(post);

@@ -44,9 +44,9 @@ export const POST = async (req, res) => {
     );
 
     await fs.writeFile(filePath, buffer);
-    
+
     const fotoPerfil = path.posix.join("/FotosDePerfil", fileName);
-    
+
     return NextResponse.json({ fotoPerfil });
   } catch (error) {
     console.error("Error saving file:", error);
