@@ -159,6 +159,8 @@ WHERE
       nombre_pais,
     } = resultadoFiltrado[0];
 
+    console.log(fotoPerfil)
+
     const claveUsuario = resultadoFiltrado[0].clave;
 
     const modificacionNombre = nombre + " " + apellido;
