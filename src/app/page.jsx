@@ -90,6 +90,12 @@ const Inicio = () => {
                     <section>{usuario.correoElectronicoDeUsuario}</section>
                   </section>
                 </Link>
+                <button
+                  className={`${stylesInicio.enlace} ${stylesInicio.usuarioPerfil}`}
+                  onClick={() => cerrarPerfil()}
+                >
+                  <section>Cerrar Sesión</section>
+                </button>
               </>
             ) : (
               <>

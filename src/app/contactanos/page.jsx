@@ -90,6 +90,12 @@ const Contactanos = () => {
                     <section>{usuario.correoElectronicoDeUsuario}</section>
                   </section>
                 </Link>
+                <button
+                  className={`${stylesContactanos.enlace} ${stylesContactanos.usuarioPerfil}`}
+                  onClick={() => cerrarPerfil()}
+                >
+                  <section>Cerrar Sesión</section>
+                </button>
               </>
             ) : (
               <>

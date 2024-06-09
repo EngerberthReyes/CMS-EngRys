@@ -67,30 +67,36 @@ const Inicio = () => {
             </Link>
           </section>
           <section className={stylesInicio.seccionEnlace}>
-          {usuario ? (
+            {usuario ? (
               <>
-              <Link
-                className={`${stylesInicio.enlace} ${stylesInicio.usuarioPerfil}`}
-                style={{ border: "none" }}
-                href="/perfil"
-              >
-                <Image
-                  className={stylesInicio.imagenes}
-                  width={35}
-                  height={20}
-                  src={imagen ? imagen : "/IMG/epigrafe73.png"}
-                  alt={
-                    nombreImagen
-                      ? nombreImagen
-                      : "Imagen de Perfil Por Defecto"
-                  }
-                />
-                <section>
-                  <section>{usuario.nombreDeUsuario}</section>
-                  <section>{usuario.correoElectronicoDeUsuario}</section>
-                </section>
-              </Link>
-            </>
+                <Link
+                  className={`${stylesInicio.enlace} ${stylesInicio.usuarioPerfil}`}
+                  style={{ border: "none" }}
+                  href="/perfil"
+                >
+                  <Image
+                    className={stylesInicio.imagenes}
+                    width={35}
+                    height={20}
+                    src={imagen ? imagen : "/IMG/epigrafe73.png"}
+                    alt={
+                      nombreImagen
+                        ? nombreImagen
+                        : "Imagen de Perfil Por Defecto"
+                    }
+                  />
+                  <section>
+                    <section>{usuario.nombreDeUsuario}</section>
+                    <section>{usuario.correoElectronicoDeUsuario}</section>
+                  </section>
+                </Link>
+                <button
+                  className={`${stylesInicio.enlace} ${stylesInicio.usuarioPerfil}`}
+                  onClick={() => cerrarPerfil()}
+                >
+                  <section>Cerrar Sesión</section>
+                </button>
+              </>
             ) : (
               <>
                 <Link className={stylesInicio.enlace} href="/iniciar_sesion">

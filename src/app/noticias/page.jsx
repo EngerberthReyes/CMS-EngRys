@@ -183,6 +183,12 @@ const Noticias = () => {
                     <section>{usuario.correoElectronicoDeUsuario}</section>
                   </section>
                 </Link>
+                <button
+                  className={`${stylesNoticias.enlace} ${stylesNoticias.usuarioPerfil}`}
+                  onClick={() => cerrarPerfil()}
+                >
+                  <section>Cerrar Sesión</section>
+                </button>
               </>
             ) : (
               <>
