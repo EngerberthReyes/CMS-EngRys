@@ -12,6 +12,7 @@
 
 #body_modificable {
   justify-content: flex-end;
+  height: 100vh;
 }
 
 .contenedor_general {

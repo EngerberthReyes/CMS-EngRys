@@ -13,6 +13,7 @@
 #body {
   justify-content: flex-end;
   align-items: flex-start;
+  height: 100vh;
 }
 
 .contenedor_general {
