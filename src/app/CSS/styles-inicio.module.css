@@ -204,6 +204,13 @@
   }
 }
 
+.usuarioPerfil {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1.5rem;
+}
+
 @media (width <= 1000px) {
   .seccionFlexPrincipal {
     display: flex;

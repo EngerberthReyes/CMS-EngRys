@@ -143,6 +143,13 @@
   color: #eeeeee;
 }
 
+.usuarioPerfil {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 1.5rem;
+}
+
 @media (prefers-color-scheme: dark) {
   .header {
     background-color: #0f0f0f9e;

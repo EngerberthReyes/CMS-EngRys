@@ -2,10 +2,44 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import { useState, useEffect } from "react";
+import axios from "axios";
 import stylesContactanos from "../CSS/styles-contactanos.module.css";
 
 const Contactanos = () => {
   console.log("Nuevo Mensaje");
+  const [usuario, setUsuario] = useState();
+  const [perfilCerrado, setPerfilCerrado] = useState(false);
+
+  const obtenerPerfil = async () => {
+    if (perfilCerrado) {
+      return;
+    }
+
+    try {
+      const respuesta = await axios.get("../API/perfil");
+      console.log(respuesta);
+      const usuarioActivo = respuesta.data.sesionUsuario;
+      setUsuario(usuarioActivo);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    obtenerPerfil();
+  }, []);
+
+  const cerrarPerfil = async () => {
+    try {
+      const respuesta = await axios.get("../API/cerrarPerfil");
+      setPerfilCerrado(true);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      enrutadorMaster.push("/");
+    }
+  };
   return (
     <>
       <head>
@@ -31,12 +65,32 @@ const Contactanos = () => {
             </Link>
           </section>
           <section className={stylesContactanos.seccionEnlace}>
-            <Link className={stylesContactanos.enlace} href="/iniciar_sesion">
-              Iniciar Sesión
-            </Link>
-            <Link className={stylesContactanos.enlace} href="/registro">
-              Registrarse
-            </Link>
+          {usuario ? (
+              <>
+                <Link
+                  className={`${stylesNosotros.enlace} ${stylesNosotros.usuarioPerfil}`}
+                  href="/perfil"
+                >
+                  <section>{usuario.nombreDeUsuario}</section>
+                  <section>{usuario.correoElectronicoDeUsuario}</section>
+                </Link>
+                <button
+                  className={`${stylesNosotros.enlace} ${stylesNosotros.usuarioPerfil}`}
+                  onClick={() => cerrarPerfil()}
+                >
+                  <section>Cerrar Sesión</section>
+                </button>
+              </>
+            ) : (
+              <>
+                <Link className={stylesNosotros.enlace} href="/iniciar_sesion">
+                  Iniciar Sesión
+                </Link>
+                <Link className={stylesNosotros.enlace} href="/registro">
+                  Registrarse
+                </Link>
+              </>
+            )}
           </section>
         </header>
         <main className={stylesContactanos.mainPrincipal}>
