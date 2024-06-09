@@ -391,17 +391,11 @@ const Perfil = () => {
                                   >
                                     <Image
                                       className={stylesPerfil.icono_edit}
-                                      onClick={() => cambiarImagen}
+                                      onClick={() => cambiarImagen()}
                                       width={20}
                                       height={20}
                                       src={`/editar-theme-black.svg`}
                                       alt="Cambiar Foto de Perfil"
-                                    />
-                                    <input
-                                      id="cambiarImagen"
-                                      onChange={agregarImagen}
-                                      accept=".gif, .png, ,.apng, .jpg, .jpeg"
-                                      type="file"
                                     />
                                   </section>
                                 </label>
