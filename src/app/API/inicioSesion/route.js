@@ -159,9 +159,9 @@ WHERE
       nombre_pais,
     } = resultadoFiltrado[0];
 
-    console.log(fotoPerfil)
+    console.log(fotoPerfil);
     if (fotoPerfil === null) {
-      return
+      return;
     }
     const claveUsuario = resultadoFiltrado[0].clave;
 
@@ -169,7 +169,11 @@ WHERE
 
     const nombreApellido = modificacionNombre.split(" ");
 
-    const nombreDeUsuario = `${nombreApellido[0]} ${nombreApellido[2]}`;
+    const nombreDeUsuario = `${
+      nombreApellido[0] ? nombreApellido[0] : nombreApellido[2]
+    } ${nombreApellido[2] ? nombreApellido[3] : nombreApellido[1]}`;
+
+    console.log(nombreApellido[0], nombreApellido[1], nombreApellido[2], nombreApellido[3])
 
     console.log(nombreUsuario, correoElectronico);
 
