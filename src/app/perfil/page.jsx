@@ -32,8 +32,6 @@ const Perfil = () => {
   console.log(usuario);
   console.log(post);
 
-  console.log(imagen);
-
   const agregarImagen = async (event) => {
     const formData = new FormData();
     const archivo = event.target.files[0];
@@ -55,19 +53,19 @@ const Perfil = () => {
 
         const correoElectronico = respuesta.data.correoElectronico;
         console.log(correoElectronico);
-        const respuestaDos = await axios.post("../API/cookiesActualizar", {correoElectronico});
-        const respuestaDeModificacion = await axios.post(
-          "../API/perfil",
-          { fotodePerfil }
-        );
+        const respuestaDos = await axios.post("../API/cookiesActualizar", {
+          correoElectronico,
+        });
+        const respuestaDeModificacion = await axios.post("../API/perfil", {
+          fotodePerfil,
+        });
 
-        console.log(respuestaDos)
+        console.log(respuestaDos);
 
         const usuarioActivo = respuestaDeModificacion.data;
         console.log(usuarioActivo);
         if (usuarioActivo) {
-          setUsuario()
-          setImagen(usuarioActivo.fotoPerfil);
+          setUsuario();
         } else {
           console.log("No se recibió una URL de la imagen o imagen valida");
         }
@@ -112,27 +110,23 @@ const Perfil = () => {
     };
   }, []);
   const [perfilCerrado, setPerfilCerrado] = useState(false);
-
   const obtenerPerfil = async () => {
-    if (perfilCerrado) {
-      return;
-    }
-
     try {
       const respuesta = await axios.get("../API/cookiesActualizar");
-      console.log(respuesta);
       const usuarioActivo = respuesta.data;
-      console.log(usuarioActivo);
       setUsuario(usuarioActivo);
-      setImagen(usuarioActivo.fotoPerfil)
+      setImagen(usuarioActivo.fotoPerfil);
     } catch (error) {
-      console.log(error);
+      console.error("Error al obtener el perfil:", error);
     }
   };
-
+  
   useEffect(() => {
-    obtenerPerfil();
+    const intervalo = setInterval(obtenerPerfil, 1000);
+    return () => clearInterval(intervalo);
   }, []);
+  
+  
 
   const cerrarPerfil = async () => {
     try {
@@ -193,8 +187,8 @@ const Perfil = () => {
                     width={35}
                     height={20}
                     src={
-                      imagen
-                      ? imagen
+                      usuario?.fotoPerfil
+                        ? usuario?.fotoPerfil
                         : "/IMG/epigrafe73.png"
                     }
                     alt={
@@ -246,8 +240,8 @@ const Perfil = () => {
                             width={200}
                             height={200}
                             src={
-                              imagen
-                                ? imagen
+                              usuario?.fotoPerfil
+                                ? usuario.fotoPerfil
                                 : "/IMG/epigrafe73.png"
                             }
                             alt={
