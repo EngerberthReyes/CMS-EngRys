@@ -70,6 +70,39 @@ const Noticias = () => {
 
   console.log(post);
 
+  const [usuario, setUsuario] = useState();
+  const [perfilCerrado, setPerfilCerrado] = useState(false);
+
+  const obtenerPerfil = async () => {
+    if (perfilCerrado) {
+      return;
+    }
+
+    try {
+      const respuesta = await axios.get("../API/perfil");
+      console.log(respuesta);
+      const usuarioActivo = respuesta.data.sesionUsuario;
+      setUsuario(usuarioActivo);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    obtenerPerfil();
+  }, []);
+
+  const cerrarPerfil = async () => {
+    try {
+      const respuesta = await axios.get("../API/cerrarPerfil");
+      setPerfilCerrado(true);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      enrutadorMaster.push("/");
+    }
+  };
+
   const enviarPost = async (nuevoPost) => {
     const postEnviado = {
       mensaje: nuevoPost.mensaje,
@@ -127,12 +160,32 @@ const Noticias = () => {
             </Link>
           </section>
           <section className={stylesNoticias.seccionEnlace}>
-            <Link className={stylesNoticias.enlace} href="/iniciar_sesion">
-              Iniciar Sesión
-            </Link>
-            <Link className={stylesNoticias.enlace} href="/registro">
-              Registrarse
-            </Link>
+            {usuario ? (
+              <>
+                <Link
+                  className={`${stylesNoticias.enlace} ${stylesNoticias.usuarioPerfil}`}
+                  href="/perfil"
+                >
+                  <section>{usuario.nombreDeUsuario}</section>
+                  <section>{usuario.correoElectronicoDeUsuario}</section>
+                </Link>
+                <button
+                  className={`${stylesNoticias.enlace} ${stylesNoticias.usuarioPerfil}`}
+                  onClick={() => cerrarPerfil()}
+                >
+                  <section>Cerrar Sesión</section>
+                </button>
+              </>
+            ) : (
+              <>
+                <Link className={stylesNoticias.enlace} href="/iniciar_sesion">
+                  Iniciar Sesión
+                </Link>
+                <Link className={stylesNoticias.enlace} href="/registro">
+                  Registrarse
+                </Link>
+              </>
+            )}
           </section>
         </header>
         <main>
