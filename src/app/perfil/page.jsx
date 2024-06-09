@@ -26,27 +26,59 @@ const Perfil = () => {
   const [post, setPost] = useState([]);
   const [temaActual, setTemaActual] = useState();
   const [nombreImagen, setNombreImagen] = useState();
-  const [imagen, setImagen] = useState();
+  const [imagen, setImagen] = useState(null);
   const [usuario, setUsuario] = useState();
   const [mostrarClave, setMostrarClave] = useState();
   console.log(usuario);
   console.log(post);
 
-  const agregarImagen = (event) => {
-    const archivo = event.target.files[0];
+console.log(imagen)
+const [previewUrl, setPreviewUrl] = useState(null);
 
-    const nombreArchivo = archivo.name;
+console.log(previewUrl)
 
-    console.log(nombreArchivo);
+const agregarImagen = async (event) => {
+  const formData = new FormData();
+  const archivo = event.target.files[0];
+  console.log(archivo)
+  const nombreArchivo = archivo.name;
+  console.log(nombreArchivo);
 
+  try {
     if (archivo) {
       setNombreImagen(nombreArchivo);
-      setImagen(URL.createObjectURL(archivo));
+
+      // Crear una URL de previsualización local
+      const preview = URL.createObjectURL(archivo);
+      setPreviewUrl(preview);
+      formData.set("archivo", archivo);
+
+      const respuesta = await axios.post("../API/perfil", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+        },
+      });
+
+      const fotodePerfil = respuesta.data; // Supongo que esta es la URL relativa de la imagen
+console.log(fotodePerfil.relativeFilePath)
+      if (fotodePerfil) {
+        // Establecer la URL de la imagen recibida desde el servidor
+        setImagen(fotodePerfil.relativeFilePath);
+        console.log(fotodePerfil.relativeFilePath)
+      } else {
+        console.log("No se recibió una URL de la imagen");
+      }
+
+      // Limpiar el input de archivo
       event.target.value = "";
     } else {
-      console.log("Se Selecciono Ningun Archivo");
+      console.log("No se seleccionó ningún archivo");
     }
-  };
+  } catch (error) {
+    console.log(error.response ? error.response.data : error); // Log the error message
+  }
+};
+
 
   const enviarPost = async (nuevoPost) => {
     console.log(post);
@@ -206,7 +238,7 @@ const Perfil = () => {
                             className={stylesPerfil.imagenes}
                             width={200}
                             height={200}
-                            src={imagen ? imagen : "/IMG/epigrafe73.png"}
+                            src={previewUrl ? previewUrl : "/IMG/epigrafe73.png"}
                             alt={
                               nombreImagen
                                 ? nombreImagen
@@ -242,7 +274,7 @@ const Perfil = () => {
                             className={stylesPerfil.imagenes}
                             width={200}
                             height={200}
-                            src={imagen ? imagen : "/IMG/epigrafe73.png"}
+                            src={previewUrl ? previewUrl : "/IMG/epigrafe73.png"}
                             alt={
                               nombreImagen
                                 ? nombreImagen

@@ -1,5 +1,7 @@
 import { verify } from "jsonwebtoken";
 import { NextResponse } from "next/server";
+import { promises as fs } from 'fs';
+import path from "path";
 
 export const GET = (request) => {
   try {
@@ -23,5 +25,31 @@ export const GET = (request) => {
   } catch (error) {
     console.error(error);
     return NextResponse.json({ error: error.message }, { status: 401 });
+  }
+};
+
+export const POST = async (req, res) => {
+  try {
+    const imagen = await req.formData();
+    const imagenArchivo = imagen.get("archivo");
+    console.log(imagenArchivo)
+    const bytes = await imagenArchivo.arrayBuffer();
+    const buffer = Buffer.from(bytes);
+
+    // Construir la ruta del archivo
+    const fileName = imagenArchivo.name;
+    const filePath = path.posix.join(process.cwd(), "public", fileName);
+
+    await fs.writeFile(filePath, buffer);
+
+    console.log("File saved successfully:", filePath);
+
+    // Devolver la ruta relativa de la imagen
+    const relativeFilePath = path.posix.join("/", fileName);
+    console.log(relativeFilePath)
+    return NextResponse.json({ relativeFilePath });
+  } catch (error) {
+    console.error("Error saving file:", error);
+    return NextResponse.json({ mensaje: "error" });
   }
 };
