@@ -27,6 +27,7 @@ const Perfil = () => {
   const [temaActual, setTemaActual] = useState();
   const [nombreImagen, setNombreImagen] = useState();
   const [imagen, setImagen] = useState(null);
+  const [interruptorCambio, setInterruptorCambio] = useState(false);
   const [usuario, setUsuario] = useState();
   const [mostrarClave, setMostrarClave] = useState();
   console.log(usuario);
@@ -125,6 +126,9 @@ const Perfil = () => {
   };
 
   const cambiarElemento = async () => {
+    if (capturarElemento) {
+    }
+
     try {
       const respuesta = await axios.put("../API/cookiesActualizarUsuario");
       const usuarioActivo = respuesta.data;
@@ -161,8 +165,6 @@ const Perfil = () => {
       handleSubmit(enviarPost)();
     }
   };
-
-  const interruptorCambio = true;
 
   return (
     <>
@@ -386,10 +388,11 @@ const Perfil = () => {
                                     className={stylesPerfil.tituloSeccionFlex}
                                   />
                                 ) : (
-                                  <input
-                                    value={usuario[iterador]}
+                                  <h2
                                     className={stylesPerfil.tituloSeccionFlex}
-                                  />
+                                  >
+                                    {usuario[iterador]}
+                                  </h2>
                                 )}
                                 <label
                                   style={{
