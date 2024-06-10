@@ -124,6 +124,17 @@ const Perfil = () => {
     }
   };
 
+  const cambiarElemento = async () => {
+    try {
+      const respuesta = await axios.put("../API/cookiesActualizarUsuario");
+      const usuarioActivo = respuesta.data;
+      setUsuario(usuarioActivo);
+      setImagen(usuarioActivo.fotoPerfil);
+    } catch (error) {
+      console.error("Error al obtener el perfil:", error);
+    }
+  };
+
   useEffect(() => {
     const intervalo = setInterval(obtenerPerfil, 500);
     return () => clearInterval(intervalo);
@@ -150,6 +161,8 @@ const Perfil = () => {
       handleSubmit(enviarPost)();
     }
   };
+
+  const interruptorCambio = false;
 
   return (
     <>
@@ -294,7 +307,7 @@ const Perfil = () => {
                           <section className={stylesPerfil.seccionBlanco}>
                             <Image
                               className={stylesPerfil.icono_edit}
-                              onClick={() => cambiarImagen}
+                              onClick={() => cambiarElemento()}
                               width={20}
                               height={20}
                               src={`/editar-theme-black.svg`}
@@ -367,9 +380,17 @@ const Perfil = () => {
                                 <h2 className={stylesPerfil.tituloSeccionFlex}>
                                   {titulo}
                                 </h2>
-                                <h2 className={stylesPerfil.tituloSeccionFlex}>
-                                  {usuario[iterador]}
-                                </h2>
+                                {interruptorCambio ? (
+                                  <input
+                                    defaultValue={usuario[iterador]}
+                                    className={stylesPerfil.tituloSeccionFlex}
+                                  />
+                                ) : (
+                                  <input
+                                    value={usuario[iterador]}
+                                    className={stylesPerfil.tituloSeccionFlex}
+                                  />
+                                )}
                                 <label
                                   style={{
                                     position: "relative",
@@ -391,7 +412,7 @@ const Perfil = () => {
                                   >
                                     <Image
                                       className={stylesPerfil.icono_edit}
-                                      onClick={() => cambiarImagen()}
+                                      onClick={() => cambiarElemento()}
                                       width={20}
                                       height={20}
                                       src={`/editar-theme-black.svg`}
