@@ -68,6 +68,8 @@ export const PUT = async (request) => {
     );
 
     const idPersona = actualizacionPerfil[0].id_persona;
+    {
+      /*
 
     const consultaActualizarPais = `UPDATE paises SET nombre_pais =? WHERE id_pais =?;`;
     const resultadoActualizacionPais = await cmsConexion.query(
@@ -142,18 +144,21 @@ export const PUT = async (request) => {
       "Dirección actualizada:",
       resultadoActualizacionDireccion.affectedRows
     );
-
-    const consultaActualizarPersona = `UPDATE personas AS p SET p.nombre = ? WHERE correo_electronico = ?;`;
+  */
+    }
+    const consultaActualizarPersona = `UPDATE personas AS p SET p.nombre = ? WHERE id_persona = ?;`;
     const resultadoActualizacionPersona = await cmsConexion.query(
-      consultaActualizarDireccion,
-      [nombreCompletoUsuario, a.correoElectronicoDeUsuario]
+      consultaActualizarPersona,
+      [nombreCompletoUsuario, idPersona]
     );
+
+    console.log(resultadoActualizacionPersona);
 
     console.log(idPersona);
 
     const decodedToken = verify(cookieValue, "secret");
 
-    decodedToken.nombreCompletoUsuario = actualizacionPerfil[0].nombre;
+    decodedToken.nombreCompletoUsuario = nombreCompletoUsuario;
 
     const nuevoToken = sign(decodedToken, "secret");
 
