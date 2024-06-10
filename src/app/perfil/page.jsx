@@ -126,16 +126,16 @@ const Perfil = () => {
   };
 
   const cambiarElemento = async () => {
-    if (capturarElemento) {
-    }
-
-    try {
-      const respuesta = await axios.put("../API/cookiesActualizarUsuario");
-      const usuarioActivo = respuesta.data;
-      setUsuario(usuarioActivo);
-      setImagen(usuarioActivo.fotoPerfil);
-    } catch (error) {
-      console.error("Error al obtener el perfil:", error);
+    setInterruptorCambio(true);
+    if (interruptorCambio) {
+      try {
+        const respuesta = await axios.put("../API/cookiesActualizarUsuario");
+        const usuarioActivo = respuesta.data;
+        setUsuario(usuarioActivo);
+        setImagen(usuarioActivo.fotoPerfil);
+      } catch (error) {
+        console.error("Error al obtener el perfil:", error);
+      }
     }
   };
 
