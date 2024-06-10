@@ -27,7 +27,7 @@ const Perfil = () => {
   const [temaActual, setTemaActual] = useState();
   const [nombreImagen, setNombreImagen] = useState();
   const [imagen, setImagen] = useState(null);
-  const [interruptorCambio, setInterruptorCambio] = useState(false);
+  const [interruptorCambio, setInterruptorCambio] = useState(true);
   const [usuario, setUsuario] = useState();
   const [mostrarClave, setMostrarClave] = useState();
   console.log(usuario);
@@ -140,8 +140,7 @@ const Perfil = () => {
   };
 
   useEffect(() => {
-    const intervalo = setInterval(obtenerPerfil, 500);
-    return () => clearInterval(intervalo);
+    obtenerPerfil();
   }, []);
 
   const cerrarPerfil = async () => {
@@ -372,7 +371,7 @@ const Perfil = () => {
                           instragram: "Perfil de Instagram",
                           x: "Perfil de X",
                           tiktok: "Perfil de TikTok",
-                        }).map(([iterador, titulo]) => {
+                        }).map(([iterador, titulo], index) => {
                           if (usuario[iterador]) {
                             return (
                               <section
@@ -380,20 +379,28 @@ const Perfil = () => {
                                 className={stylesPerfil.seccionElemento}
                               >
                                 <h2 className={stylesPerfil.tituloSeccionFlex}>
-                                  {titulo}
+                                  {titulo}:
                                 </h2>
-                                {interruptorCambio ? (
-                                  <input
-                                    defaultValue={usuario[iterador]}
-                                    className={stylesPerfil.tituloSeccionFlex}
-                                  />
-                                ) : (
-                                  <h2
-                                    className={stylesPerfil.tituloSeccionFlex}
-                                  >
-                                    {usuario[iterador]}
-                                  </h2>
-                                )}
+                                <>
+                                  {iterador === "claveDesencriptada" && (
+                                    <>
+                                      <input
+                                        defaultValue={
+                                          usuario.claveDesencriptada
+                                        }
+                                        className={stylesPerfil.inputClave}
+                                        type="password"
+                                      />
+                                    </>
+                                  )}
+                                  {iterador !== "claveDesencriptada" && (
+                                    <h2
+                                      className={stylesPerfil.tituloSeccionFlex}
+                                    >
+                                      {usuario[iterador]}
+                                    </h2>
+                                  )}
+                                </>
                                 <label
                                   style={{
                                     position: "relative",
