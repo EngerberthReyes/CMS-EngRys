@@ -27,6 +27,7 @@ const Perfil = () => {
   const [temaActual, setTemaActual] = useState();
   const [nombreImagen, setNombreImagen] = useState();
   const [imagen, setImagen] = useState(null);
+  const [elementoActivo, setElementoActivo] = useState(null);
   const [interruptorCambio, setInterruptorCambio] = useState(false);
   const [usuario, setUsuario] = useState();
   const [mostrarClave, setMostrarClave] = useState();
@@ -125,8 +126,11 @@ const Perfil = () => {
     }
   };
 
-  const cambiarElemento = async () => {
+  const cambiarElemento = async (index) => {
+    setElementoActivo(index);
+    console.log(elementoActivo);
     setInterruptorCambio(true);
+    console.log(index);
     if (interruptorCambio) {
       try {
         const respuesta = await axios.put("../API/cookiesActualizarUsuario");
@@ -384,7 +388,8 @@ const Perfil = () => {
                                 <>
                                   {iterador === "claveDesencriptada" && (
                                     <>
-                                      {interruptorCambio ? (
+                                      {interruptorCambio &&
+                                      elementoActivo === index ? (
                                         <input
                                           defaultValue={
                                             usuario.claveDesencriptada
@@ -397,6 +402,7 @@ const Perfil = () => {
                                           value={usuario.claveDesencriptada}
                                           className={stylesPerfil.inputClave}
                                           type="password"
+                                          readOnly
                                         />
                                       )}
                                     </>
@@ -404,10 +410,11 @@ const Perfil = () => {
                                   {iterador ===
                                     "correoElectronicoDeUsuario" && (
                                     <>
-                                      {interruptorCambio ? (
+                                      {interruptorCambio &&
+                                      elementoActivo === index ? (
                                         <input
                                           defaultValue={
-                                            usuario.correoElectronico
+                                            usuario.correoElectronicoDeUsuario
                                           }
                                           className={stylesPerfil.inputClave}
                                           type="email"
@@ -415,36 +422,45 @@ const Perfil = () => {
                                       ) : (
                                         <input
                                           defaultValue={
-                                            usuario.correoElectronico
+                                            usuario.correoElectronicoDeUsuario
                                           }
                                           className={stylesPerfil.inputClave}
                                           type="email"
+                                          readOnly
                                         />
                                       )}
                                     </>
                                   )}
                                   {iterador === "fechaNacimiento" && (
                                     <>
-                                      {interruptorCambio ? (
-                                        <input
-                                          defaultValue={usuario.fechaNacimiento}
-                                          className={stylesPerfil.inputClave}
-                                          type="data"
-                                        />
+                                      {interruptorCambio &&
+                                      elementoActivo === index ? (
+                                        <>
+                                          <input
+                                            defaultValue={
+                                              usuario.fechaNacimiento
+                                            }
+                                            className={stylesPerfil.inputClave}
+                                            type="date"
+                                          />
+                                          <h1>{index}</h1>
+                                        </>
                                       ) : (
                                         <input
                                           defaultValue={usuario.fechaNacimiento}
                                           className={stylesPerfil.inputClave}
-                                          type="data"
+                                          type="date"
+                                          readOnly
                                         />
                                       )}
                                     </>
                                   )}
                                   {iterador !== "claveDesencriptada" &&
-                                    iterador !== "correoElectronico" &&
+                                    iterador !== "correoElectronicoDeUsuario" &&
                                     iterador !== "fechaNacimiento" && (
                                       <>
-                                        {interruptorCambio ? (
+                                        {interruptorCambio &&
+                                        elementoActivo === index ? (
                                           <input
                                             defaultValue={usuario[iterador]}
                                             className={stylesPerfil.inputClave}
@@ -455,6 +471,7 @@ const Perfil = () => {
                                             defaultValue={usuario[iterador]}
                                             className={stylesPerfil.inputClave}
                                             type="text"
+                                            readOnly
                                           />
                                         )}
                                       </>
@@ -481,7 +498,7 @@ const Perfil = () => {
                                   >
                                     <Image
                                       className={stylesPerfil.icono_edit}
-                                      onClick={() => cambiarElemento()}
+                                      onClick={() => cambiarElemento(index)}
                                       width={20}
                                       height={20}
                                       src={`/editar-theme-black.svg`}
