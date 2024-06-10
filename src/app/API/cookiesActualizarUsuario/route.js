@@ -5,14 +5,35 @@ import { cmsConexion } from "@/db/database";
 
 export const PUT = async (request) => {
   try {
-    const valorACambiar = await request.json();
+    const {
+      nombreCompletoUsuario,
+      cedula,
+      correoElectronicoDeUsuario,
+      fechaNacimiento,
+      claveDesencriptada,
+      nacional,
+      genero,
+      nombrePais,
+      nombreEstado,
+      nombreCiudad,
+      nombreMunicipio,
+      nombreParroquia,
+      numeroCodigoPostal,
+      direccionCompleta,
+      sitioWeb,
+      facebook,
+      instragram,
+      x,
+      tiktok
+   } = await request.json();
 
-    console.log(valorACambiar);
+
 
     const cookieValue = request.cookies.get("cookieInformacion").value;
     console.log(cookieValue);
 
     const a = verify(cookieValue, "secret");
+    console.log(a)
 
     if (!cookieValue) {
       throw new Error(
