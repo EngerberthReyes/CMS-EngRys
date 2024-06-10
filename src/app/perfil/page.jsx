@@ -143,6 +143,24 @@ const Perfil = () => {
     }
   };
 
+  const enviarDatos = async (datos, index) => {
+    console.log(datos);
+    setElementoActivo(index);
+    console.log(elementoActivo);
+    setInterruptorCambio(true);
+    console.log(index);
+    if (interruptorCambio) {
+      try {
+        const respuesta = await axios.put("../API/cookiesActualizarUsuario");
+        const usuarioActivo = respuesta.data;
+        setUsuario(usuarioActivo);
+        setImagen(usuarioActivo.fotoPerfil);
+      } catch (error) {
+        console.error("Error al obtener el perfil:", error);
+      }
+    }
+  };
+
   useEffect(() => {
     obtenerPerfil();
   }, []);
@@ -352,7 +370,10 @@ const Perfil = () => {
                   Información Personal
                 </h1>
                 <section className={stylesPerfil.seccionFlex}>
-                  <section className={stylesPerfil.seccionFlexInterna}>
+                  <form
+                    onSubmit={handleSubmit(enviarDatos)}
+                    className={stylesPerfil.seccionFlexInterna}
+                  >
                     {usuario && (
                       <>
                         {Object.entries({
@@ -394,6 +415,7 @@ const Perfil = () => {
                                           defaultValue={
                                             usuario.claveDesencriptada
                                           }
+                                          {...register(iterador)}
                                           className={stylesPerfil.inputClave}
                                           type="password"
                                         />
@@ -416,6 +438,7 @@ const Perfil = () => {
                                           defaultValue={
                                             usuario.correoElectronicoDeUsuario
                                           }
+                                          {...register(iterador)}
                                           className={stylesPerfil.inputClave}
                                           type="email"
                                         />
@@ -440,6 +463,7 @@ const Perfil = () => {
                                             defaultValue={
                                               usuario.fechaNacimiento
                                             }
+                                            {...register(iterador)}
                                             className={stylesPerfil.inputClave}
                                             type="date"
                                           />
@@ -511,7 +535,8 @@ const Perfil = () => {
                         })}
                       </>
                     )}
-                  </section>
+                    <button type="submit">Guardar Cambios</button>
+                  </form>
                 </section>
               </section>
             </section>
