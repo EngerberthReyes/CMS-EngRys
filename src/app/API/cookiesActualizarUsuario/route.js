@@ -24,16 +24,36 @@ export const PUT = async (request) => {
       facebook,
       instragram,
       x,
+      tiktok,
+    } = await request.json();
+
+    console.log(
+      nombreCompletoUsuario,
+      cedula,
+      correoElectronicoDeUsuario,
+      fechaNacimiento,
+      claveDesencriptada,
+      nacional,
+      genero,
+      nombrePais,
+      nombreEstado,
+      nombreCiudad,
+      nombreMunicipio,
+      nombreParroquia,
+      numeroCodigoPostal,
+      direccionCompleta,
+      sitioWeb,
+      facebook,
+      instragram,
+      x,
       tiktok
-   } = await request.json();
-
-
+    );
 
     const cookieValue = request.cookies.get("cookieInformacion").value;
     console.log(cookieValue);
 
     const a = verify(cookieValue, "secret");
-    console.log(a)
+    console.log(a);
 
     if (!cookieValue) {
       throw new Error(
@@ -46,6 +66,11 @@ export const PUT = async (request) => {
       consultaActualizacionPerfil,
       [a.correoElectronicoDeUsuario]
     );
+
+    const idPersona = actualizacionPerfil[0].id_persona;
+
+    console.log(idPersona);
+
     const decodedToken = verify(cookieValue, "secret");
 
     decodedToken.fotoPerfil = actualizacionPerfil[0].fotoPerfil;
