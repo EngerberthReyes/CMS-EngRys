@@ -162,7 +162,7 @@ const Perfil = () => {
     }
   };
 
-  const interruptorCambio = false;
+  const interruptorCambio = true;
 
   return (
     <>
