@@ -443,7 +443,6 @@ const Perfil = () => {
                                             className={stylesPerfil.inputClave}
                                             type="date"
                                           />
-                                          <h1>{index}</h1>
                                         </>
                                       ) : (
                                         <input
