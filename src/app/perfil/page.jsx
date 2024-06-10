@@ -27,7 +27,7 @@ const Perfil = () => {
   const [temaActual, setTemaActual] = useState();
   const [nombreImagen, setNombreImagen] = useState();
   const [imagen, setImagen] = useState(null);
-  const [interruptorCambio, setInterruptorCambio] = useState(true);
+  const [interruptorCambio, setInterruptorCambio] = useState(false);
   const [usuario, setUsuario] = useState();
   const [mostrarClave, setMostrarClave] = useState();
   console.log(usuario);
@@ -384,13 +384,19 @@ const Perfil = () => {
                                 <>
                                   {iterador === "claveDesencriptada" && (
                                     <>
-                                      <input
-                                        defaultValue={
-                                          usuario.claveDesencriptada
-                                        }
-                                        className={stylesPerfil.inputClave}
-                                        type="password"
-                                      />
+                                      {interruptorCambio ? (
+                                        <input
+                                          defaultValue={usuario.claveDesencriptada}
+                                          className={stylesPerfil.inputClave}
+                                          type="password"
+                                        />
+                                      ) : (
+                                        <input
+                                          value={usuario.claveDesencriptada}
+                                          className={stylesPerfil.inputClave}
+                                          type="password"
+                                        />
+                                      )}
                                     </>
                                   )}
                                   {iterador ===
