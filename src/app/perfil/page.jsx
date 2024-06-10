@@ -393,13 +393,30 @@ const Perfil = () => {
                                       />
                                     </>
                                   )}
-                                  {iterador !== "claveDesencriptada" && (
-                                    <h2
-                                      className={stylesPerfil.tituloSeccionFlex}
-                                    >
-                                      {usuario[iterador]}
-                                    </h2>
+                                  {iterador ===
+                                    "correoElectronicoDeUsuario" && (
+                                    <input
+                                      defaultValue={usuario.correoElectronico}
+                                      className={stylesPerfil.inputClave}
+                                      type="email"
+                                    />
                                   )}
+                                  {iterador === "fechaNacimiento" && (
+                                    <input
+                                      defaultValue={usuario.fechaNacimiento}
+                                      className={stylesPerfil.inputClave}
+                                      type="date"
+                                    />
+                                  )}
+                                  {iterador !== "claveDesencriptada" &&
+                                    iterador !== "correoElectronico" &&
+                                    iterador !== "fechaNacimiento" && (
+                                      <input
+                                        defaultValue={usuario[iterador]}
+                                        className={stylesPerfil.inputClave}
+                                        type="text"
+                                      />
+                                    )}
                                 </>
                                 <label
                                   style={{
