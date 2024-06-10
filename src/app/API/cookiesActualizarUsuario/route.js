@@ -61,7 +61,7 @@ export const PUT = async (request) => {
       );
     }
 
-    const consultaActualizacionPerfil = `SELECT id_persona, fotoPerfil FROM personas AS p WHERE correo_electronico = ?;`;
+    const consultaActualizacionPerfil = `SELECT id_persona FROM personas AS p WHERE correo_electronico = ?;`;
     const actualizacionPerfil = await cmsConexion.query(
       consultaActualizacionPerfil,
       [a.correoElectronicoDeUsuario]
@@ -69,11 +69,91 @@ export const PUT = async (request) => {
 
     const idPersona = actualizacionPerfil[0].id_persona;
 
+    const consultaActualizarPais = `UPDATE paises SET nombre_pais =? WHERE id_pais =?;`;
+    const resultadoActualizacionPais = await cmsConexion.query(
+      consultaActualizarPais,
+      [nuevoNombrePais, idPais]
+    );
+
+    console.log("País actualizado:", resultadoActualizacionPais.affectedRows);
+
+    const consultaActualizarEstado = `UPDATE estados SET nombre_estado =? WHERE id_estado =?;`;
+    const resultadoActualizacionEstado = await cmsConexion.query(
+      consultaActualizarEstado,
+      [nuevoNombreEstado, idEstado]
+    );
+
+    console.log(
+      "Estado actualizado:",
+      resultadoActualizacionEstado.affectedRows
+    );
+
+    const consultaActualizarCiudad = `UPDATE ciudades SET nombre_ciudad =? WHERE id_ciudad =?;`;
+    const resultadoActualizacionCiudad = await cmsConexion.query(
+      consultaActualizarCiudad,
+      [nuevoNombreCiudad, idCiudad]
+    );
+
+    console.log(
+      "Ciudad actualizada:",
+      resultadoActualizacionCiudad.affectedRows
+    );
+
+    const consultaActualizarMunicipio = `UPDATE municipios SET nombre_municipio =? WHERE id_municipio =?;`;
+    const resultadoActualizacionMunicipio = await cmsConexion.query(
+      consultaActualizarMunicipio,
+      [nuevoNombreMunicipio, idMunicipio]
+    );
+
+    console.log(
+      "Municipio actualizado:",
+      resultadoActualizacionMunicipio.affectedRows
+    );
+
+    const consultaActualizarParroquia = `UPDATE parroquias SET nombre_parroquia =? WHERE id_parroquia =?;`;
+    const resultadoActualizacionParroquia = await cmsConexion.query(
+      consultaActualizarParroquia,
+      [nuevoNombreParroquia, idParroquia]
+    );
+
+    console.log(
+      "Parroquia actualizada:",
+      resultadoActualizacionParroquia.affectedRows
+    );
+
+    const consultaActualizarCodigoPostal = `UPDATE codigos_postales SET numero_codigo_postal =? WHERE id_codigo_postal =?;`;
+    const resultadoActualizacionCodigoPostal = await cmsConexion.query(
+      consultaActualizarCodigoPostal,
+      [nuevoCodigoPostal, idCodigoPostal]
+    );
+
+    console.log(
+      "Código Postal actualizado:",
+      resultadoActualizacionCodigoPostal.affectedRows
+    );
+
+    const consultaActualizarDireccion = `UPDATE direcciones SET direccion_completa =? WHERE id_codigo_postal =?;`;
+    const resultadoActualizacionDireccion = await cmsConexion.query(
+      consultaActualizarDireccion,
+      [nuevaDireccion, idCodigoPostal]
+    );
+
+    console.log(
+      "Dirección actualizada:",
+      resultadoActualizacionDireccion.affectedRows
+    );
+
+    const consultaActualizarPersona = `UPDATE personas AS p SET p.nombre = ? WHERE correo_electronico = ?;`;
+    const resultadoActualizacionPersona = await cmsConexion.query(
+      consultaActualizarDireccion,
+      [nombreCompletoUsuario, a.correoElectronicoDeUsuario]
+    );
+
     console.log(idPersona);
 
     const decodedToken = verify(cookieValue, "secret");
 
-    decodedToken.fotoPerfil = actualizacionPerfil[0].fotoPerfil;
+    decodedToken.nombreCompletoUsuario = actualizacionPerfil[0].nombre;
 
     const nuevoToken = sign(decodedToken, "secret");
 
