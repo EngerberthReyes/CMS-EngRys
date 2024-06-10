@@ -414,21 +414,106 @@ const Perfil = () => {
                                     <>
                                       {interruptorCambio &&
                                       elementoActivo === index ? (
-                                        <input
-                                          defaultValue={
-                                            usuario.claveDesencriptada
-                                          }
-                                          {...register(iterador)}
-                                          className={stylesPerfil.inputClave}
-                                          type="password"
-                                        />
+                                        <>
+                                          <input
+                                            defaultValue={
+                                              usuario.claveDesencriptada
+                                            }
+                                            {...register(iterador, {
+                                              required:
+                                                "Introduzca una Contraseña",
+                                            })}
+                                            className={stylesPerfil.inputClave}
+                                            type={
+                                              mostrarClave ? "text" : "password"
+                                            }
+                                          />
+                                          {mostrarClave ? (
+                                            <Image
+                                              className={
+                                                stylesPerfil.icono_password
+                                              }
+                                              onClick={() =>
+                                                mostrarPassword(clave)
+                                              }
+                                              width={20}
+                                              height={20}
+                                              src={
+                                                temaActual === "oscuro"
+                                                  ? `/BlancoAbierto.svg`
+                                                  : `/OjoNegroAbierto.svg`
+                                              }
+                                              alt="Ocultar Contraseña"
+                                            />
+                                          ) : (
+                                            <Image
+                                              className={
+                                                stylesPerfil.icono_password
+                                              }
+                                              onClick={() =>
+                                                mostrarPassword(clave)
+                                              }
+                                              width={20}
+                                              height={20}
+                                              src={
+                                                temaActual === "oscuro"
+                                                  ? `/BlancoAbiertoOblicua.svg`
+                                                  : `/OjoNegroAbiertoOblicuo.svg`
+                                              }
+                                              alt="Mostrar Contraseña"
+                                            />
+                                          )}
+                                        </>
                                       ) : (
-                                        <input
-                                          value={usuario.claveDesencriptada}
-                                          className={stylesPerfil.inputClave}
-                                          type="password"
-                                          readOnly
-                                        />
+                                        <>
+                                          <input
+                                            value={usuario.claveDesencriptada}
+                                            {...register(iterador, {
+                                              required:
+                                                "Introduzca una Contraseña",
+                                            })}
+                                            readOnly
+                                            className={stylesPerfil.inputClave}
+                                            type={
+                                              mostrarClave ? "text" : "password"
+                                            }
+                                          />
+                                          {mostrarClave ? (
+                                            <Image
+                                              className={
+                                                stylesPerfil.icono_password
+                                              }
+                                              onClick={() =>
+                                                mostrarPassword(clave)
+                                              }
+                                              width={20}
+                                              height={20}
+                                              src={
+                                                temaActual === "oscuro"
+                                                  ? `/BlancoAbierto.svg`
+                                                  : `/OjoNegroAbierto.svg`
+                                              }
+                                              alt="Ocultar Contraseña"
+                                            />
+                                          ) : (
+                                            <Image
+                                              className={
+                                                stylesPerfil.icono_password
+                                              }
+                                              onClick={() =>
+                                                mostrarPassword(clave)
+                                              }
+                                              width={20}
+                                              height={20}
+                                              src={
+                                                temaActual === "oscuro"
+                                                  ? `/BlancoAbiertoOblicua.svg`
+                                                  : `/OjoNegroAbiertoOblicuo.svg`
+                                              }
+                                              alt="Mostrar Contraseña"
+                                            />
+                                          )}
+                                        </>
                                       )}
                                     </>
                                   )}
