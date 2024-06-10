@@ -151,7 +151,10 @@ const Perfil = () => {
     console.log(index);
     if (interruptorCambio) {
       try {
-        const respuesta = await axios.put("../API/cookiesActualizarUsuario");
+        const respuesta = await axios.put(
+          "../API/cookiesActualizarUsuario",
+          datos
+        );
         const usuarioActivo = respuesta.data;
         setUsuario(usuarioActivo);
         setImagen(usuarioActivo.fotoPerfil);

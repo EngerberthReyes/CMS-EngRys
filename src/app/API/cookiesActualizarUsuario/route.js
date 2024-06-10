@@ -5,8 +5,9 @@ import { cmsConexion } from "@/db/database";
 
 export const PUT = async (request) => {
   try {
-
     const valorACambiar = await request.json();
+
+    console.log(valorACambiar);
 
     const cookieValue = request.cookies.get("cookieInformacion").value;
     console.log(cookieValue);
