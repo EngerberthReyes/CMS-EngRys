@@ -46,7 +46,6 @@ export const PUT = async (request) => {
       consultaActualizacionPerfil,
       [a.correoElectronicoDeUsuario]
     );
-
     const decodedToken = verify(cookieValue, "secret");
 
     decodedToken.fotoPerfil = actualizacionPerfil[0].fotoPerfil;
