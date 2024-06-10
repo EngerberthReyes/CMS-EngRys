@@ -434,7 +434,9 @@ const Perfil = () => {
                                                 stylesPerfil.icono_password
                                               }
                                               onClick={() =>
-                                                mostrarPassword(clave)
+                                                mostrarPassword(
+                                                  usuario.claveDesencriptada
+                                                )
                                               }
                                               width={20}
                                               height={20}
@@ -451,7 +453,9 @@ const Perfil = () => {
                                                 stylesPerfil.icono_password
                                               }
                                               onClick={() =>
-                                                mostrarPassword(clave)
+                                                mostrarPassword(
+                                                  usuario.claveDesencriptada
+                                                )
                                               }
                                               width={20}
                                               height={20}
@@ -484,7 +488,9 @@ const Perfil = () => {
                                                 stylesPerfil.icono_password
                                               }
                                               onClick={() =>
-                                                mostrarPassword(clave)
+                                                mostrarPassword(
+                                                  usuario.claveDesencriptada
+                                                )
                                               }
                                               width={20}
                                               height={20}
@@ -501,7 +507,9 @@ const Perfil = () => {
                                                 stylesPerfil.icono_password
                                               }
                                               onClick={() =>
-                                                mostrarPassword(clave)
+                                                mostrarPassword(
+                                                  usuario.claveDesencriptada
+                                                )
                                               }
                                               width={20}
                                               height={20}
