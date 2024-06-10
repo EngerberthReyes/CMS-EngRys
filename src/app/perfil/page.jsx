@@ -485,6 +485,7 @@ const Perfil = () => {
                                         {interruptorCambio &&
                                         elementoActivo === index ? (
                                           <input
+                                            {...register(iterador)}
                                             defaultValue={usuario[iterador]}
                                             className={stylesPerfil.inputClave}
                                             type="text"
