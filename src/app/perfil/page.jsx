@@ -386,7 +386,9 @@ const Perfil = () => {
                                     <>
                                       {interruptorCambio ? (
                                         <input
-                                          defaultValue={usuario.claveDesencriptada}
+                                          defaultValue={
+                                            usuario.claveDesencriptada
+                                          }
                                           className={stylesPerfil.inputClave}
                                           type="password"
                                         />
@@ -401,27 +403,61 @@ const Perfil = () => {
                                   )}
                                   {iterador ===
                                     "correoElectronicoDeUsuario" && (
-                                    <input
-                                      defaultValue={usuario.correoElectronico}
-                                      className={stylesPerfil.inputClave}
-                                      type="email"
-                                    />
+                                    <>
+                                      {interruptorCambio ? (
+                                        <input
+                                          defaultValue={
+                                            usuario.correoElectronico
+                                          }
+                                          className={stylesPerfil.inputClave}
+                                          type="email"
+                                        />
+                                      ) : (
+                                        <input
+                                          defaultValue={
+                                            usuario.correoElectronico
+                                          }
+                                          className={stylesPerfil.inputClave}
+                                          type="email"
+                                        />
+                                      )}
+                                    </>
                                   )}
                                   {iterador === "fechaNacimiento" && (
-                                    <input
-                                      defaultValue={usuario.fechaNacimiento}
-                                      className={stylesPerfil.inputClave}
-                                      type="date"
-                                    />
+                                    <>
+                                      {interruptorCambio ? (
+                                        <input
+                                          defaultValue={usuario.fechaNacimiento}
+                                          className={stylesPerfil.inputClave}
+                                          type="data"
+                                        />
+                                      ) : (
+                                        <input
+                                          defaultValue={usuario.fechaNacimiento}
+                                          className={stylesPerfil.inputClave}
+                                          type="data"
+                                        />
+                                      )}
+                                    </>
                                   )}
                                   {iterador !== "claveDesencriptada" &&
                                     iterador !== "correoElectronico" &&
                                     iterador !== "fechaNacimiento" && (
-                                      <input
-                                        defaultValue={usuario[iterador]}
-                                        className={stylesPerfil.inputClave}
-                                        type="text"
-                                      />
+                                      <>
+                                        {interruptorCambio ? (
+                                          <input
+                                            defaultValue={usuario[iterador]}
+                                            className={stylesPerfil.inputClave}
+                                            type="text"
+                                          />
+                                        ) : (
+                                          <input
+                                            defaultValue={usuario[iterador]}
+                                            className={stylesPerfil.inputClave}
+                                            type="text"
+                                          />
+                                        )}
+                                      </>
                                     )}
                                 </>
                                 <label
