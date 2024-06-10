@@ -400,7 +400,7 @@ const Perfil = () => {
                           direccionCompleta: "Dirección Completa",
                           sitioWeb: "Su Sitio Web",
                           facebook: "Perfil de Facebook",
-                          instragram: "Perfil de Instagram",
+                          instagram: "Perfil de Instagram",
                           x: "Perfil de X",
                           tiktok: "Perfil de TikTok",
                         }).map(([iterador, titulo], index) => {
