@@ -20,6 +20,20 @@ const Post = ({ post }) => {
               <h1>Las Opciones Van Aqui Arriba</h1>
               <section>
                 <h1 className={stylesPost.mensaje}>{elementoPost.mensaje}</h1>
+                {elementoPost.enlaces && (
+                  <>
+                    {elementoPost.enlaces.map((enlace, index) => (
+                      <Link
+                        key={index}
+                        className={stylesPost.mensaje}
+                        href={enlace}
+                        target="_blank"
+                      >
+                        {enlace}
+                      </Link>
+                    ))}
+                  </>
+                )}
               </section>
               {(elementoPost.imagen.length > 0 ||
                 elementoPost.imagenUrl.length > 0) && (
@@ -63,6 +77,22 @@ const Post = ({ post }) => {
                         </section>
                       </>
                     ))}
+                    {elementoPost.youtubeUrl.length > 0 && (
+                      <section>
+                        <section className={stylesPost.lineaPunteada}></section>
+                        {elementoPost.youtubeUrl.map((video, index) => (
+                          <iframe
+                            key={index}
+                            style={{ width: "100%" }}
+                            src={video.replace("watch?v=", "embed/")}
+                            title={`youtube-video-${index}`}
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                            className={stylesPost.imagen}
+                          ></iframe>
+                        ))}
+                      </section>
+                    )}
                   </>
                 )}
               </section>

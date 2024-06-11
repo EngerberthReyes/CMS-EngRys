@@ -143,15 +143,40 @@ const Noticias = () => {
 
   const enviarPost = async (nuevoPost) => {
     const regexUrl = /(https?:\/\/[^\s]+)/g;
-    const imagenUrl = nuevoPost.mensaje.match(regexUrl);
-    const texto = nuevoPost.mensaje.replace(regexUrl, "").trim();
+    const urlExtensions = /\.(jpeg|jpg|gif|png|bmp|webp)(\?.*)?$/i;
+    const youtubeRegex =
+      /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/;
 
-    console.log(texto, imagenUrl);
+    const mensaje = nuevoPost.mensaje;
+    const urls = mensaje.match(regexUrl) || [];
+    const imagenUrl = [];
+    const enlaces = [];
+    const youtubeUrl = [];
+
+    urls.forEach((url) => {
+      if (urlExtensions.test(url)) {
+        imagenUrl.push(url);
+      } else if (youtubeRegex.test(url)) {
+        youtubeUrl.push(url);
+      } else {
+        enlaces.push(url);
+      }
+    });
+
+    const texto = mensaje.replace(regexUrl, "").trim();
+
+    console.log("Texto:", texto);
+    console.log("Imágenes:", imagenUrl);
+    console.log("Enlaces:", enlaces);
+    console.log("Youtube", youtubeUrl);
+
     const postEnviado = {
-      mensaje: nuevoPost.mensaje,
+      mensaje: texto,
       nombreImagen: nombreImagen,
       imagen: imagen,
-      imagenUrl: imagenUrl
+      imagenUrl: imagenUrl,
+      enlaces: enlaces,
+      youtubeUrl: youtubeUrl,
     };
     if (postEnviado) {
       setPost([...post, postEnviado]);
