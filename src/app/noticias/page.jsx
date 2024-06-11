@@ -19,7 +19,7 @@ const Noticias = () => {
   } = useForm({
     mode: "onChange",
   });
-const enrutadorMaster = useRouter();
+  const enrutadorMaster = useRouter();
   const [post, setPost] = useState([]);
   const [nombreImagen, setNombreImagen] = useState([]);
   const [imagen, setImagen] = useState([]);
@@ -53,43 +53,41 @@ const enrutadorMaster = useRouter();
     };
   }, []);
 
-  
-const agregarImagenPerfil = async (event) => {
-  const formData = new FormData();
-  const archivo = event.target.files[0];
-  console.log(archivo)
-  const nombreArchivo = archivo.name;
-  console.log(nombreArchivo);
+  const agregarImagenPerfil = async (event) => {
+    const formData = new FormData();
+    const archivo = event.target.files[0];
+    console.log(archivo);
+    const nombreArchivo = archivo.name;
+    console.log(nombreArchivo);
 
-  try {
-    if (archivo) {
-      setNombreImagen(nombreArchivo);
-      formData.set("archivo", archivo);
+    try {
+      if (archivo) {
+        setNombreImagen(nombreArchivo);
+        formData.set("archivo", archivo);
 
-      const respuesta = await axios.post("../API/perfil", formData, {
-        headers: {
-          "Content-Type": "multipart/form-data",
-        },
-      });
+        const respuesta = await axios.post("../API/perfil", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
 
-      const fotodePerfil = respuesta.data.fotoPerfil;
-      
-      if (fotodePerfil) {
-        setImagenPerfil(fotodePerfil);
-        console.log(fotodePerfil)
+        const fotodePerfil = respuesta.data.fotoPerfil;
+
+        if (fotodePerfil) {
+          setImagenPerfil(fotodePerfil);
+          console.log(fotodePerfil);
+        } else {
+          console.log("No se recibió una URL de la imagen o imagen valida");
+        }
+
+        event.target.value = "";
       } else {
-        console.log("No se recibió una URL de la imagen o imagen valida");
+        console.log("No se seleccionó ningún archivo");
       }
-
-      event.target.value = "";
-    } else {
-      console.log("No se seleccionó ningún archivo");
+    } catch (error) {
+      console.log(error.response ? error.response.data : error);
     }
-  } catch (error) {
-    console.log(error.response ? error.response.data : error);
-  }
-};
-
+  };
 
   const agregarArchivo = (event) => {
     const archivos = event.target.files;
@@ -144,10 +142,16 @@ const agregarImagenPerfil = async (event) => {
   };
 
   const enviarPost = async (nuevoPost) => {
+    const regexUrl = /(https?:\/\/[^\s]+)/g;
+    const imagenUrl = nuevoPost.mensaje.match(regexUrl);
+    const texto = nuevoPost.mensaje.replace(regexUrl, "").trim();
+
+    console.log(texto, imagenUrl);
     const postEnviado = {
       mensaje: nuevoPost.mensaje,
       nombreImagen: nombreImagen,
       imagen: imagen,
+      imagenUrl: imagenUrl
     };
     if (postEnviado) {
       setPost([...post, postEnviado]);
@@ -211,7 +215,11 @@ const agregarImagenPerfil = async (event) => {
                     className={stylesNoticias.imagenes}
                     width={35}
                     height={20}
-                    src={usuario?.fotoPerfil ?  usuario.fotoPerfil : "/IMG/epigrafe73.png"}
+                    src={
+                      usuario?.fotoPerfil
+                        ? usuario.fotoPerfil
+                        : "/IMG/epigrafe73.png"
+                    }
                     alt={
                       nombreImagen
                         ? nombreImagen
