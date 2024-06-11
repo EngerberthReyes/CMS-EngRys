@@ -30,10 +30,10 @@ const Post = ({ post }) => {
                   <>
                     {elementoPost.imagenUrl.map((url, index) => (
                       <img
+                        className={stylesPost.imagen}
                         key={index}
                         src={url}
-                        alt="Imagen subida"
-                        style={{ marginTop: "10px", maxWidth: "100%" }}
+                        alt="Imagen de Internet (URL)"
                       />
                     ))}
                   </>
