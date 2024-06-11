@@ -79,8 +79,8 @@ const Post = ({ post }) => {
                     ))}
                     {elementoPost.youtubeUrl.length > 0 && (
                       <section>
-                        {(elementoPost.imagen.length < 0 ||
-                          elementoPost.imagenUrl.length < 0) && (
+                        {(elementoPost.imagen.length === 0 ||
+                          elementoPost.imagenUrl.length === 0) && (
                           <section
                             className={stylesPost.lineaPunteada}
                           ></section>
