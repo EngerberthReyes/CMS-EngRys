@@ -79,7 +79,12 @@ const Post = ({ post }) => {
                     ))}
                     {elementoPost.youtubeUrl.length > 0 && (
                       <section>
-                        <section className={stylesPost.lineaPunteada}></section>
+                        {(elementoPost.imagen.length < 0 ||
+                          elementoPost.imagenUrl.length < 0) && (
+                          <section
+                            className={stylesPost.lineaPunteada}
+                          ></section>
+                        )}
                         {elementoPost.youtubeUrl.map((video, index) => (
                           <iframe
                             key={index}
