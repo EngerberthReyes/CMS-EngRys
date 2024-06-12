@@ -146,6 +146,8 @@ export const PUT = async (request) => {
     );
   */
     }
+
+    const decodedToken = verify(cookieValue, "secret");
     /* Nombre de Usuario */
     const nombreApellido = nombreCompletoUsuario.split(" ");
     console.log(nombreApellido);
@@ -167,12 +169,23 @@ export const PUT = async (request) => {
 
     console.log(idPersona);
 
-    const decodedToken = verify(cookieValue, "secret");
-
     decodedToken.nombreCompletoUsuario =
       nombreDeUsuarioSegundo + " " + apellidoDeUsuario;
     decodedToken.nombreDeUsuario = nombreDeUsuarioPrimero;
     /* Fin nombre de Usuario */
+console.log(cedula)
+    const consultaActualizarCedula = `UPDATE personas AS p SET p.cedula = ? WHERE id_persona = ?;`;
+    const resultadoActualizacionCedula = await cmsConexion.query(
+      consultaActualizarCedula,
+      [cedula, idPersona]
+    );
+
+    console.log(resultadoActualizacionCedula);
+
+    console.log(idPersona);
+
+    decodedToken.cedula = cedula;
+
     const nuevoToken = sign(decodedToken, "secret");
 
     console.log(nuevoToken);
