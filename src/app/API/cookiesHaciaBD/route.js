@@ -141,6 +141,19 @@ WHERE p.id_persona = ?;`;
         } catch (error) {
           console.log(error);
         }
+      } else if (campo === "id_genero") {
+        const nuevaDireccionCompleta = `UPDATE personas p
+JOIN generos g ON p.id_genero = g.id_genero
+SET p.id_genero = ?
+WHERE p.id_persona = ?;`;
+        try {
+          await cmsConexion.query(nuevaDireccionCompleta, [
+            `${valor === 1 ? "Masculino" : "Femenino"}`,
+            idPersona,
+          ]);
+        } catch (error) {
+          console.log(error);
+        }
       }
     }
     return NextResponse.json(elementosActualizados);
