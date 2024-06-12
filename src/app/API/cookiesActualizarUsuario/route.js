@@ -27,33 +27,33 @@ export const PUT = async (request) => {
       tiktok,
     } = await request.json();
 
-    console.log(
-      nombreCompletoUsuario,
+    const elementosActualizar = {
+      nombre: nombreCompletoUsuario,
       cedula,
-      correoElectronicoDeUsuario,
-      fechaNacimiento,
-      claveDesencriptada,
-      nacional,
-      genero,
-      nombrePais,
-      nombreEstado,
-      nombreCiudad,
-      nombreMunicipio,
-      nombreParroquia,
-      numeroCodigoPostal,
-      direccionCompleta,
-      sitioWeb,
+      correo_electronico: correoElectronicoDeUsuario,
+      fecha_nacimiento: fechaNacimiento,
+      clave: claveDesencriptada,
+      direccion_completa: direccionCompleta,
+      nacionalidad: nacional,
+      id_genero: genero,
       facebook,
       instragram,
       x,
-      tiktok
-    );
+      tiktok,
+      sitio_web: sitioWeb,
+      numero_codigo_postal: numeroCodigoPostal,
+      nombre_parroquia: nombreParroquia,
+      nombre_municipio: nombreMunicipio,
+      nombre_ciudad: nombreCiudad,
+      nombre_estado: nombreEstado,
+      nombre_pais: nombrePais,
+    };
 
     const cookieValue = request.cookies.get("cookieInformacion").value;
     console.log(cookieValue);
 
-    const a = verify(cookieValue, "secret");
-    console.log(a);
+    const verificacionCookie = verify(cookieValue, "secret");
+    console.log(verificacionCookie);
 
     if (!cookieValue) {
       throw new Error(
@@ -64,149 +64,99 @@ export const PUT = async (request) => {
     const consultaActualizacionPerfil = `SELECT id_persona FROM personas AS p WHERE correo_electronico = ?;`;
     const actualizacionPerfil = await cmsConexion.query(
       consultaActualizacionPerfil,
-      [a.correoElectronicoDeUsuario]
+      [verificacionCookie.correoElectronicoDeUsuario]
     );
 
     const idPersona = actualizacionPerfil[0].id_persona;
-    {
-      /*
+    const actualizarYObtenerCookie = async (
+      cookieValue,
+      elementosActualizar,
+      idPersona,
+      cmsConexion
+    ) => {
+      // Verificar el token y obtener los datos del usuario
+      let decodedToken = verify(cookieValue, "secret");
+      console.log(decodedToken);
+      console.log(elementosActualizar);
 
-    const consultaActualizarPais = `UPDATE paises SET nombre_pais =? WHERE id_pais =?;`;
-    const resultadoActualizacionPais = await cmsConexion.query(
-      consultaActualizarPais,
-      [nuevoNombrePais, idPais]
-    );
+      // Filtrar los elementos a actualizar que tengan un valor
+      const elementosActualizados = Object.keys(elementosActualizar)
+        .filter((campo) => elementosActualizar[campo])
+        .reduce((obj, campo) => {
+          // Actualizar decodedToken
+          if (campo === "nombre") {
+            decodedToken.nombreCompletoUsuario = elementosActualizar[campo];
+          } else if (campo === "fecha_nacimiento") {
+            decodedToken.fechaNacimiento = elementosActualizar[campo];
+          } else if (campo === "numero_codigo_postal") {
+            decodedToken.numeroCodigoPostal = elementosActualizar[campo];
+          } else if (campo === "nombre_parroquia") {
+            decodedToken.nombreParroquia = elementosActualizar[campo];
+          } else if (campo === "nombre_municipio") {
+            decodedToken.nombreMunicipio = elementosActualizar[campo];
+          } else if (campo === "nombre_ciudad") {
+            decodedToken.nombreCiudad = elementosActualizar[campo];
+          } else if (campo === "nombre_estado") {
+            decodedToken.nombreEstado = elementosActualizar[campo];
+          } else if (campo === "nombre_pais") {
+            decodedToken.nombrePais = elementosActualizar[campo];
+          } else if (campo === "direccion_completa") {
+            decodedToken.direccionCompleta = elementosActualizar[campo];
+          } else if (campo === "nacionalidad") {
+            decodedToken.nacional = elementosActualizar[campo];
+          } else if (campo === "id_genero") {
+            decodedToken.genero = elementosActualizar[campo];
+          } else if (campo === "correo_electronico") {
+            decodedToken.correoElectronicoDeUsuario =
+              elementosActualizar[campo];
+          } else if (campo === "clave") {
+            decodedToken.claveDesencriptada = elementosActualizar[campo];
+          }
 
-    console.log("País actualizado:", resultadoActualizacionPais.affectedRows);
+          decodedToken[campo] = elementosActualizar[campo];
+          obj[campo] = elementosActualizar[campo];
+          return obj;
+        }, {});
 
-    const consultaActualizarEstado = `UPDATE estados SET nombre_estado =? WHERE id_estado =?;`;
-    const resultadoActualizacionEstado = await cmsConexion.query(
-      consultaActualizarEstado,
-      [nuevoNombreEstado, idEstado]
-    );
+      console.log(elementosActualizados);
 
-    console.log(
-      "Estado actualizado:",
-      resultadoActualizacionEstado.affectedRows
-    );
+      // Actualizar los datos del usuario en la base de datos
 
-    const consultaActualizarCiudad = `UPDATE ciudades SET nombre_ciudad =? WHERE id_ciudad =?;`;
-    const resultadoActualizacionCiudad = await cmsConexion.query(
-      consultaActualizarCiudad,
-      [nuevoNombreCiudad, idCiudad]
-    );
+      // Imprimir los datos actualizados del usuario
+      console.log(decodedToken);
 
-    console.log(
-      "Ciudad actualizada:",
-      resultadoActualizacionCiudad.affectedRows
-    );
+      // Generar nuevo token con los valores actualizados
+      const nuevoToken = sign(decodedToken, "secret");
+      console.log(nuevoToken);
 
-    const consultaActualizarMunicipio = `UPDATE municipios SET nombre_municipio =? WHERE id_municipio =?;`;
-    const resultadoActualizacionMunicipio = await cmsConexion.query(
-      consultaActualizarMunicipio,
-      [nuevoNombreMunicipio, idMunicipio]
-    );
+      // Configurar la nueva cookie
+      const nuevaCookie = serialize("cookieInformacion", nuevoToken, {
+        httpOnly: true,
+        secure: process.env.NODE_ENV === "production",
+        maxAge: 60 * 60 * 24 * 30 * 100,
+        path: "/",
+      });
 
-    console.log(
-      "Municipio actualizado:",
-      resultadoActualizacionMunicipio.affectedRows
-    );
+      // Devolver el nuevo token y la nueva cookie
+      return { nuevoToken, nuevaCookie, elementosActualizados };
+    };
 
-    const consultaActualizarParroquia = `UPDATE parroquias SET nombre_parroquia =? WHERE id_parroquia =?;`;
-    const resultadoActualizacionParroquia = await cmsConexion.query(
-      consultaActualizarParroquia,
-      [nuevoNombreParroquia, idParroquia]
-    );
-
-    console.log(
-      "Parroquia actualizada:",
-      resultadoActualizacionParroquia.affectedRows
-    );
-
-    const consultaActualizarCodigoPostal = `UPDATE codigos_postales SET numero_codigo_postal =? WHERE id_codigo_postal =?;`;
-    const resultadoActualizacionCodigoPostal = await cmsConexion.query(
-      consultaActualizarCodigoPostal,
-      [nuevoCodigoPostal, idCodigoPostal]
-    );
-
-    console.log(
-      "Código Postal actualizado:",
-      resultadoActualizacionCodigoPostal.affectedRows
-    );
-
-    const consultaActualizarDireccion = `UPDATE direcciones SET direccion_completa =? WHERE id_codigo_postal =?;`;
-    const resultadoActualizacionDireccion = await cmsConexion.query(
-      consultaActualizarDireccion,
-      [nuevaDireccion, idCodigoPostal]
-    );
-
-    console.log(
-      "Dirección actualizada:",
-      resultadoActualizacionDireccion.affectedRows
-    );
-  */
-    }
-
-    const decodedToken = verify(cookieValue, "secret");
-    /* Nombre de Usuario */
-    const nombreApellido = nombreCompletoUsuario.split(" ");
-    console.log(nombreApellido);
-    const nombreDeUsuarioPrimero = `${
-      nombreApellido[0] + " " + nombreApellido[2]
-    }`;
-    const nombreDeUsuarioSegundo = `${
-      nombreApellido[0] + " " + nombreApellido[1]
-    }`;
-    const apellidoDeUsuario = `${nombreApellido[2] + " " + nombreApellido[3]}`;
-
-    const consultaActualizarPersona = `UPDATE personas AS p SET p.nombre = ?, p.apellido = ? WHERE id_persona = ?;`;
-    const resultadoActualizacionPersona = await cmsConexion.query(
-      consultaActualizarPersona,
-      [nombreDeUsuarioSegundo, apellidoDeUsuario, idPersona]
-    );
-
-    console.log(resultadoActualizacionPersona);
-
-    console.log(idPersona);
-
-    decodedToken.nombreCompletoUsuario =
-      nombreDeUsuarioSegundo + " " + apellidoDeUsuario;
-    decodedToken.nombreDeUsuario = nombreDeUsuarioPrimero;
-    /* Fin nombre de Usuario */
-console.log(cedula)
-    const consultaActualizarCedula = `UPDATE personas AS p SET p.cedula = ? WHERE id_persona = ?;`;
-    const resultadoActualizacionCedula = await cmsConexion.query(
-      consultaActualizarCedula,
-      [cedula, idPersona]
-    );
-
-    console.log(resultadoActualizacionCedula);
-
-    console.log(idPersona);
-
-    decodedToken.cedula = cedula;
-
-    const nuevoToken = sign(decodedToken, "secret");
-
+    const { nuevoToken, nuevaCookie, elementosActualizados } =
+      await actualizarYObtenerCookie(
+        cookieValue,
+        elementosActualizar,
+        idPersona,
+        cmsConexion
+      );
     console.log(nuevoToken);
-    const e = verify(nuevoToken, "secret");
-    console.log(e);
-
-    const nuevaCookie = serialize("cookieInformacion", nuevoToken, {
-      httpOnly: true,
-      secure: process.env.NODE_ENV === "production",
-      maxAge: 60 * 60 * 24 * 30 * 100,
-      path: "/",
-    });
+    console.log(nuevaCookie);
 
     // Configurar la nueva cookie en la respuesta
-    const response = new NextResponse(JSON.stringify(e), {
+    const response = new NextResponse(JSON.stringify(elementosActualizados), {
       headers: {
         "Set-Cookie": nuevaCookie,
       },
     });
-
-    // Devolver la respuesta
     return response;
   } catch (error) {
     // Manejar errores

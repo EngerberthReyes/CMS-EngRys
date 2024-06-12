@@ -155,7 +155,13 @@ const Perfil = () => {
           "../API/cookiesActualizarUsuario",
           datos
         );
+        console.log(respuesta)
         const usuarioActivo = respuesta.data;
+        const respuestaBaseDeDatos = await axios.put(
+          "../API/cookiesHaciaBD",
+          usuarioActivo
+        )
+        console.log(respuestaBaseDeDatos)
         setUsuario(usuarioActivo);
         setImagen(usuarioActivo.fotoPerfil);
       } catch (error) {
