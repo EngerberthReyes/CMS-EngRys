@@ -192,7 +192,7 @@ const Perfil = () => {
   };
 
   useEffect(() => {
-    const intervalo = setInterval(obtenerPerfil, 500);
+    const intervalo = setInterval(obtenerPerfil, 800);
 
     return () => {
       clearInterval(intervalo);
@@ -640,12 +640,13 @@ const Perfil = () => {
                                           />
                                         </>
                                       ) : (
-                                        <input
-                                          defaultValue={usuario.x}
+                                        <Link
+                                          href={usuario.x}
                                           className={stylesPerfil.inputClave}
-                                          type="text"
-                                          readOnly
-                                        />
+                                          target="_blank"
+                                        >
+                                          Su Perfil de X
+                                        </Link>
                                       )}
                                     </>
                                   )}
@@ -662,12 +663,13 @@ const Perfil = () => {
                                           />
                                         </>
                                       ) : (
-                                        <input
-                                          defaultValue={usuario.instagram}
+                                        <Link
+                                          href={usuario.instagram}
                                           className={stylesPerfil.inputClave}
-                                          type="text"
-                                          readOnly
-                                        />
+                                          target="_blank"
+                                        >
+                                          Su Perfil de Instagram
+                                        </Link>
                                       )}
                                     </>
                                   )}
@@ -684,12 +686,13 @@ const Perfil = () => {
                                           />
                                         </>
                                       ) : (
-                                        <input
-                                          defaultValue={usuario.facebook}
+                                        <Link
+                                          href={usuario.facebook}
                                           className={stylesPerfil.inputClave}
-                                          type="text"
-                                          readOnly
-                                        />
+                                          target="_blank"
+                                        >
+                                          Su Perfil de Facebook
+                                        </Link>
                                       )}
                                     </>
                                   )}
@@ -706,12 +709,13 @@ const Perfil = () => {
                                           />
                                         </>
                                       ) : (
-                                        <input
-                                          defaultValue={usuario.sitioWeb}
+                                        <Link
+                                          href={usuario.sitioWeb}
                                           className={stylesPerfil.inputClave}
-                                          type="text"
-                                          readOnly
-                                        />
+                                          target="_blank"
+                                        >
+                                          Su Sitio Web
+                                        </Link>
                                       )}
                                     </>
                                   )}
@@ -728,12 +732,13 @@ const Perfil = () => {
                                           />
                                         </>
                                       ) : (
-                                        <input
-                                          defaultValue={usuario.tiktok}
+                                        <Link
+                                          href={usuario.tiktok}
                                           className={stylesPerfil.inputClave}
-                                          type="text"
-                                          readOnly
-                                        />
+                                          target="_blank"
+                                        >
+                                          Su Perfil de Tiktok
+                                        </Link>
                                       )}
                                     </>
                                   )}
