@@ -146,10 +146,20 @@ export const PUT = async (request) => {
     );
   */
     }
-    const consultaActualizarPersona = `UPDATE personas AS p SET p.nombre = ? WHERE id_persona = ?;`;
+    const nombreApellido = nombreCompletoUsuario.split(" ");
+    console.log(nombreApellido);
+    const nombreDeUsuarioPrimero = `${
+      nombreApellido[0] + " " + nombreApellido[2]
+    }`;
+    const nombreDeUsuarioSegundo = `${
+      nombreApellido[0] + " " + nombreApellido[1]
+    }`;
+    const apellidoDeUsuario = `${nombreApellido[2] + " " + nombreApellido[3]}`;
+
+    const consultaActualizarPersona = `UPDATE personas AS p SET p.nombre = ?, p.apellido = ? WHERE id_persona = ?;`;
     const resultadoActualizacionPersona = await cmsConexion.query(
       consultaActualizarPersona,
-      [nombreCompletoUsuario, idPersona]
+      [nombreDeUsuarioSegundo, apellidoDeUsuario, idPersona]
     );
 
     console.log(resultadoActualizacionPersona);
@@ -158,7 +168,9 @@ export const PUT = async (request) => {
 
     const decodedToken = verify(cookieValue, "secret");
 
-    decodedToken.nombreCompletoUsuario = nombreCompletoUsuario;
+    decodedToken.nombreCompletoUsuario =
+      nombreDeUsuarioSegundo + " " + apellidoDeUsuario;
+    decodedToken.nombreDeUsuario = nombreDeUsuarioPrimero;
 
     const nuevoToken = sign(decodedToken, "secret");
 
