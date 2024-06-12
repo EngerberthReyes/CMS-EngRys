@@ -133,9 +133,14 @@ WHERE p.id_persona = ?;`;
         }
       } else if (campo === "direccion_completa") {
         const nuevaDireccionCompleta = `UPDATE direcciones dirr
-            JOIN personas p ON p.id_direccion = dirr.id_direccion
-            SET dirr.direccion_completa = 'Nueva Direccion Completa'
-            WHERE p.id_persona = 1;`;
+JOIN personas p ON p.id_direccion = dirr.id_direccion
+SET est.nombre_estado = ?
+WHERE p.id_persona = ?;`;
+        try {
+          await cmsConexion.query(nuevaDireccionCompleta, [valor, idPersona]);
+        } catch (error) {
+          console.log(error);
+        }
       }
     }
     return NextResponse.json(elementosActualizados);
