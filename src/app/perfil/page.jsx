@@ -612,6 +612,30 @@ const Perfil = () => {
                                       )}
                                     </>
                                   )}
+                                  {iterador === "direccionCompleta" && (
+                                    <>
+                                      {interruptorCambio &&
+                                      elementoActivo === index ? (
+                                        <>
+                                          <textarea
+                                            defaultValue={
+                                              usuario.direccionCompleta
+                                            }
+                                            {...register(iterador)}
+                                            className={stylesPerfil.inputClave}
+                                          ></textarea>
+                                        </>
+                                      ) : (
+                                        <textarea
+                                          defaultValue={
+                                            usuario.direccionCompleta
+                                          }
+                                          className={stylesPerfil.inputClave}
+                                          readOnly
+                                        ></textarea>
+                                      )}
+                                    </>
+                                  )}
                                   {iterador === "nacional" && (
                                     <>
                                       {interruptorCambio &&
@@ -647,7 +671,8 @@ const Perfil = () => {
                                     iterador !== "correoElectronicoDeUsuario" &&
                                     iterador !== "fechaNacimiento" &&
                                     iterador !== "cedula" &&
-                                    iterador !== "nacional" && (
+                                    iterador !== "nacional" &&
+                                    iterador !== "direccionCompleta" && (
                                       <>
                                         {interruptorCambio &&
                                         elementoActivo === index ? (

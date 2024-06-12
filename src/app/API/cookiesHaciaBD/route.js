@@ -153,7 +153,7 @@ WHERE p.id_persona = ?;`;
       } else if (campo === "direccion_completa") {
         const nuevaDireccionCompleta = `UPDATE direcciones dirr
 JOIN personas p ON p.id_direccion = dirr.id_direccion
-SET est.nombre_estado = ?
+SET dirr.direccion_completa = ?
 WHERE p.id_persona = ?;`;
         try {
           await cmsConexion.query(nuevaDireccionCompleta, [valor, idPersona]);
