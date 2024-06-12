@@ -6,6 +6,7 @@ import { cmsConexion } from "@/db/database";
 export const PUT = async (request) => {
   try {
     const {
+      nombreDeUsuario,
       nombreCompletoUsuario,
       cedula,
       correoElectronicoDeUsuario,

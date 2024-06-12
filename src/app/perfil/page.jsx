@@ -32,6 +32,20 @@ const Perfil = () => {
   const [usuario, setUsuario] = useState();
   const [mostrarClave, setMostrarClave] = useState();
   const [paises, setPaises] = useState();
+  const [nombreDeUsuario, setNombreDeUsuario] = useState();
+
+  useEffect(() => {
+    if (!usuario) return;
+
+    const nombreCompleto = usuario.nombreCompletoUsuario;
+    const nombreApellido = nombreCompleto ? nombreCompleto.split(" ") : [];
+
+    const nombreDeUsuario = `${nombreApellido[0] ? nombreApellido[0] : ""} ${
+      nombreApellido[2] ? nombreApellido[2] : ""
+    }`;
+    setNombreDeUsuario(nombreDeUsuario);
+  }, [usuario]);
+  console.log(nombreDeUsuario);
   console.log(usuario);
   console.log(post);
 
@@ -168,6 +182,7 @@ const Perfil = () => {
           usuarioActivo
         );
         console.log(respuestaBaseDeDatos);
+        console.log(usuarioActivo);
         setUsuario(usuarioActivo);
         setImagen(usuarioActivo.fotoPerfil);
       } catch (error) {
@@ -177,7 +192,7 @@ const Perfil = () => {
   };
 
   useEffect(() => {
-    const intervalo = setInterval(obtenerPerfil, 1973);
+    const intervalo = setInterval(obtenerPerfil, 500);
 
     return () => {
       clearInterval(intervalo);
@@ -369,7 +384,7 @@ const Perfil = () => {
                   <section className={stylesPerfil.seccionPerfilIzquierdo}>
                     <h1>Tu Usuario:</h1>
                     <section className={stylesPerfil.seccionElementos}>
-                      {usuario && <h1>{usuario.nombreDeUsuario}</h1>}
+                      {usuario && <h1>{nombreDeUsuario}</h1>}
                     </section>
                   </section>
                   <section className={stylesPerfil.seccionPerfilIzquierdo}>
