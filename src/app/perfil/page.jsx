@@ -31,8 +31,11 @@ const Perfil = () => {
   const [interruptorCambio, setInterruptorCambio] = useState(false);
   const [usuario, setUsuario] = useState();
   const [mostrarClave, setMostrarClave] = useState();
+  const [paises, setPaises] = useState();
   console.log(usuario);
   console.log(post);
+
+  console.log(paises)
 
   const agregarImagen = async (event) => {
     const formData = new FormData();
@@ -118,8 +121,11 @@ const Perfil = () => {
   const obtenerPerfil = async () => {
     try {
       const respuesta = await axios.get("../API/cookiesActualizar");
+      const paises = await axios.get("../API/personas");
+      const obteniendoPaises = paises.data
       const usuarioActivo = respuesta.data;
       setUsuario(usuarioActivo);
+      setPaises(obteniendoPaises);
       setImagen(usuarioActivo.fotoPerfil);
     } catch (error) {
       console.error("Error al obtener el perfil:", error);
