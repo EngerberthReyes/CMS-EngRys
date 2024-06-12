@@ -32,6 +32,7 @@ export const PUT = async (request) => {
         campo === "fecha_nacimiento" ||
         campo === "correo_electronico" ||
         campo === "clave" ||
+        campo === "cedula" ||
         campo === "facebook" ||
         campo === "instagram" ||
         campo === "x" ||

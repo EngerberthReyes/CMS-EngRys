@@ -35,7 +35,7 @@ const Perfil = () => {
   console.log(usuario);
   console.log(post);
 
-  console.log(paises)
+  console.log(paises);
 
   const agregarImagen = async (event) => {
     const formData = new FormData();
@@ -122,7 +122,7 @@ const Perfil = () => {
     try {
       const respuesta = await axios.get("../API/cookiesActualizar");
       const paises = await axios.get("../API/personas");
-      const obteniendoPaises = paises.data
+      const obteniendoPaises = paises.data;
       const usuarioActivo = respuesta.data;
       setUsuario(usuarioActivo);
       setPaises(obteniendoPaises);
@@ -161,13 +161,13 @@ const Perfil = () => {
           "../API/cookiesActualizarUsuario",
           datos
         );
-        console.log(respuesta)
+        console.log(respuesta);
         const usuarioActivo = respuesta.data;
         const respuestaBaseDeDatos = await axios.put(
           "../API/cookiesHaciaBD",
           usuarioActivo
-        )
-        console.log(respuestaBaseDeDatos)
+        );
+        console.log(respuestaBaseDeDatos);
         setUsuario(usuarioActivo);
         setImagen(usuarioActivo.fotoPerfil);
       } catch (error) {
@@ -590,9 +590,34 @@ const Perfil = () => {
                                       )}
                                     </>
                                   )}
+                                  {iterador === "cedula" && (
+                                    <>
+                                      {interruptorCambio &&
+                                      elementoActivo === index ? (
+                                        <>
+                                          <input
+                                            defaultValue={
+                                              usuario.cedula
+                                            }
+                                            {...register(iterador)}
+                                            className={stylesPerfil.inputClave}
+                                            type="number"
+                                          />
+                                        </>
+                                      ) : (
+                                        <input
+                                          defaultValue={usuario.cedula}
+                                          className={stylesPerfil.inputClave}
+                                          type="number"
+                                          readOnly
+                                        />
+                                      )}
+                                    </>
+                                  )}
                                   {iterador !== "claveDesencriptada" &&
                                     iterador !== "correoElectronicoDeUsuario" &&
-                                    iterador !== "fechaNacimiento" && (
+                                    iterador !== "fechaNacimiento" &&
+                                    iterador !== "cedula" && (
                                       <>
                                         {interruptorCambio &&
                                         elementoActivo === index ? (
