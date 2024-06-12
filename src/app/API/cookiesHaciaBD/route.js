@@ -2,6 +2,7 @@ import { serialize } from "cookie";
 import { sign, verify } from "jsonwebtoken";
 import { NextResponse } from "next/server";
 import { cmsConexion } from "@/db/database";
+import { hash, compare } from "bcryptjs";
 
 export const PUT = async (request) => {
   try {
@@ -27,17 +28,23 @@ export const PUT = async (request) => {
     const idPersona = actualizacionPerfil[0].id_persona;
     for (const [campo, valor] of Object.entries(elementosActualizados)) {
       if (
-        campo === "nombre" &&
-        campo === "fecha_nacimiento" &&
-        campo === "nacionalidad" &&
-        campo === "id_genero" &&
-        campo === "correo_electronico" &&
+        campo === "nombre" ||
+        campo === "fecha_nacimiento" ||
+        campo === "correo_electronico" ||
         campo === "clave"
       ) {
-        const consultaActualizar = `UPDATE personas AS p SET p.${campo} = ? WHERE id_persona = ?;`;
-
         try {
-          await cmsConexion.query(consultaActualizar, [valor, idPersona]);
+          if (campo !== "clave") {
+            const consultaActualizar = `UPDATE personas AS p SET p.${campo} = ? WHERE id_persona = ?;`;
+            await cmsConexion.query(consultaActualizar, [valor, idPersona]);
+          } else {
+            const consultaActualizar = `UPDATE personas AS p SET p.clave = ? WHERE id_persona = ?;`;
+            const claveCifrada = await hash(valor, 11);
+            await cmsConexion.query(consultaActualizar, [
+              claveCifrada,
+              idPersona,
+            ]);
+          }
         } catch (error) {
           console.log(error);
         }
