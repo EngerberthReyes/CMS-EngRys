@@ -146,6 +146,7 @@ export const PUT = async (request) => {
     );
   */
     }
+    /* Nombre de Usuario */
     const nombreApellido = nombreCompletoUsuario.split(" ");
     console.log(nombreApellido);
     const nombreDeUsuarioPrimero = `${
@@ -171,7 +172,7 @@ export const PUT = async (request) => {
     decodedToken.nombreCompletoUsuario =
       nombreDeUsuarioSegundo + " " + apellidoDeUsuario;
     decodedToken.nombreDeUsuario = nombreDeUsuarioPrimero;
-
+    /* Fin nombre de Usuario */
     const nuevoToken = sign(decodedToken, "secret");
 
     console.log(nuevoToken);
