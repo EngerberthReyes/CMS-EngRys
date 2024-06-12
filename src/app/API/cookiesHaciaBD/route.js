@@ -41,6 +41,20 @@ export const PUT = async (request) => {
         } catch (error) {
           console.log(error);
         }
+      } else if (campo === "nacionalidad") {
+        const nuevaNacionalidad = `UPDATE personas p
+JOIN nacionalidades nacional ON nacional.id_nacionalidad = p.id_nacionalidad
+SET p.id_nacionalidad = ?
+WHERE p.id_persona = ?;`;
+
+        try {
+          await cmsConexion.query(nuevaNacionalidad, [
+            `${valor === "Venezolano" ? 1 : 2}`,
+            idPersona,
+          ]);
+        } catch (error) {
+          console.log(error);
+        }
       } else if (campo === "nombre_pais") {
         const nuevoNombrePais = `UPDATE paises pais
             JOIN estados est ON est.id_pais = pais.id_pais
