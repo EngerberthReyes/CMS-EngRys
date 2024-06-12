@@ -596,9 +596,7 @@ const Perfil = () => {
                                       elementoActivo === index ? (
                                         <>
                                           <input
-                                            defaultValue={
-                                              usuario.cedula
-                                            }
+                                            defaultValue={usuario.cedula}
                                             {...register(iterador)}
                                             className={stylesPerfil.inputClave}
                                             type="number"
@@ -614,10 +612,42 @@ const Perfil = () => {
                                       )}
                                     </>
                                   )}
+                                  {iterador === "nacional" && (
+                                    <>
+                                      {interruptorCambio &&
+                                      elementoActivo === index ? (
+                                        <>
+                                          <select
+                                            className={`${stylesPerfil.input_texto} ${stylesPerfil.seleccionNacionalidad} rounded-2`}
+                                            id="nacionalidad"
+                                            {...register(iterador, {
+                                              required:
+                                                "Seleccione Una Nacionalidad",
+                                            })}
+                                          >
+                                            <option value="Venezolano">
+                                              Venezolana
+                                            </option>
+                                            <option value="Extranjero">
+                                              Extranjero
+                                            </option>
+                                          </select>
+                                        </>
+                                      ) : (
+                                        <input
+                                          defaultValue={usuario.nacional}
+                                          className={stylesPerfil.inputClave}
+                                          type="text"
+                                          readOnly
+                                        />
+                                      )}
+                                    </>
+                                  )}
                                   {iterador !== "claveDesencriptada" &&
                                     iterador !== "correoElectronicoDeUsuario" &&
                                     iterador !== "fechaNacimiento" &&
-                                    iterador !== "cedula" && (
+                                    iterador !== "cedula" &&
+                                    iterador !== "nacional" && (
                                       <>
                                         {interruptorCambio &&
                                         elementoActivo === index ? (
