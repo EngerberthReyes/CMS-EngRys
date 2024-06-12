@@ -9,7 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
-    "@testing-library/jest-dom": "^6.4.5",
+    "@testing-library/jest-dom": "^6.4.6",
     "@testing-library/react": "^16.0.0",
     "@testing-library/user-event": "^14.5.2",
     "@tiptap/extension-underline": "^2.4.0",
@@ -27,20 +27,20 @@
     "html-react-parser": "^5.1.10",
     "jose": "^5.4.0",
     "jsonwebtoken": "^9.0.2",
-    "next": "14.2.3",
+    "next": "14.2.4",
     "nodemailer": "^6.9.13",
     "react": "^18",
     "react-dom": "^18",
     "react-hook-form": "^7.51.5",
     "react-icons": "^5.2.1",
-    "resend": "^3.2.0",
+    "resend": "^3.3.0",
     "serverless-mysql": "^1.5.5",
     "swr": "^2.2.5",
-    "web-vitals": "^4.1.0"
+    "web-vitals": "^4.1.1"
   },
   "devDependencies": {
     "eslint": "^9",
-    "eslint-config-next": "14.2.3",
+    "eslint-config-next": "14.2.4",
     "html-loader": "^5.0.0",
     "html-webpack-plugin": "^5.6.0",
     "postcss": "^8",
