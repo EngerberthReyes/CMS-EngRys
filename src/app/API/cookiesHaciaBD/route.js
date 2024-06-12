@@ -41,15 +41,6 @@ export const PUT = async (request) => {
         } catch (error) {
           console.log(error);
         }
-        /*
-                campo === "numero_codigo_postal" &&
-        campo === "nombre_parroquia" &&
-        campo === "nombre_municipio" &&
-        campo === "nombre_ciudad" &&
-        campo === "nombre_estado" &&
-        campo === "nombre_pais" &&
-        campo === "direccion_completa" &&
-        */
       } else if (campo === "nombre_pais") {
         const nuevoNombrePais = `UPDATE paises pais
             JOIN estados est ON est.id_pais = pais.id_pais
