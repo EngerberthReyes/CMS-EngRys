@@ -612,6 +612,116 @@ const Perfil = () => {
                                       )}
                                     </>
                                   )}
+                                  {iterador === "x" && (
+                                    <>
+                                      {interruptorCambio &&
+                                      elementoActivo === index ? (
+                                        <>
+                                          <input
+                                            defaultValue={usuario.x}
+                                            {...register(iterador)}
+                                            className={stylesPerfil.inputClave}
+                                            type="text"
+                                          />
+                                        </>
+                                      ) : (
+                                        <input
+                                          defaultValue={usuario.x}
+                                          className={stylesPerfil.inputClave}
+                                          type="text"
+                                          readOnly
+                                        />
+                                      )}
+                                    </>
+                                  )}
+                                  {iterador === "instagram" && (
+                                    <>
+                                      {interruptorCambio &&
+                                      elementoActivo === index ? (
+                                        <>
+                                          <input
+                                            defaultValue={usuario.instagram}
+                                            {...register(iterador)}
+                                            className={stylesPerfil.inputClave}
+                                            type="text"
+                                          />
+                                        </>
+                                      ) : (
+                                        <input
+                                          defaultValue={usuario.instagram}
+                                          className={stylesPerfil.inputClave}
+                                          type="text"
+                                          readOnly
+                                        />
+                                      )}
+                                    </>
+                                  )}
+                                  {iterador === "facebook" && (
+                                    <>
+                                      {interruptorCambio &&
+                                      elementoActivo === index ? (
+                                        <>
+                                          <input
+                                            defaultValue={usuario.facebook}
+                                            {...register(iterador)}
+                                            className={stylesPerfil.inputClave}
+                                            type="text"
+                                          />
+                                        </>
+                                      ) : (
+                                        <input
+                                          defaultValue={usuario.facebook}
+                                          className={stylesPerfil.inputClave}
+                                          type="text"
+                                          readOnly
+                                        />
+                                      )}
+                                    </>
+                                  )}
+                                  {iterador === "sitioWeb" && (
+                                    <>
+                                      {interruptorCambio &&
+                                      elementoActivo === index ? (
+                                        <>
+                                          <input
+                                            defaultValue={usuario.sitioWeb}
+                                            {...register(iterador)}
+                                            className={stylesPerfil.inputClave}
+                                            type="text"
+                                          />
+                                        </>
+                                      ) : (
+                                        <input
+                                          defaultValue={usuario.sitioWeb}
+                                          className={stylesPerfil.inputClave}
+                                          type="text"
+                                          readOnly
+                                        />
+                                      )}
+                                    </>
+                                  )}
+                                  {iterador === "tiktok" && (
+                                    <>
+                                      {interruptorCambio &&
+                                      elementoActivo === index ? (
+                                        <>
+                                          <input
+                                            defaultValue={usuario.tiktok}
+                                            {...register(iterador)}
+                                            className={stylesPerfil.inputClave}
+                                            type="text"
+                                          />
+                                        </>
+                                      ) : (
+                                        <input
+                                          defaultValue={usuario.tiktok}
+                                          className={stylesPerfil.inputClave}
+                                          type="text"
+                                          readOnly
+                                        />
+                                      )}
+                                    </>
+                                  )}
                                   {iterador === "direccionCompleta" && (
                                     <>
                                       {interruptorCambio &&
@@ -672,7 +782,12 @@ const Perfil = () => {
                                     iterador !== "fechaNacimiento" &&
                                     iterador !== "cedula" &&
                                     iterador !== "nacional" &&
-                                    iterador !== "direccionCompleta" && (
+                                    iterador !== "direccionCompleta" &&
+                                    iterador !== "x" &&
+                                    iterador !== "instagram" &&
+                                    iterador !== "facebook" &&
+                                    iterador !== "tiktok" &&
+                                    iterador !== "sitioWeb" && (
                                       <>
                                         {interruptorCambio &&
                                         elementoActivo === index ? (
