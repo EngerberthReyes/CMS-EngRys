@@ -40,17 +40,15 @@ export const GET = async (request) => {
       path: "/",
     });
 
-    // Configurar la nueva cookie en la respuesta
     const response = new NextResponse(JSON.stringify(e), {
       headers: {
         "Set-Cookie": nuevaCookie,
       },
     });
 
-    // Devolver la respuesta
     return response;
   } catch (error) {
-    // Manejar errores
+
     console.error("Error al modificar la cookie con JWT:", error);
     return new NextResponse("Error interno del servidor", { status: 500 });
   }
