@@ -31,7 +31,12 @@ export const PUT = async (request) => {
         campo === "nombre" ||
         campo === "fecha_nacimiento" ||
         campo === "correo_electronico" ||
-        campo === "clave"
+        campo === "clave" ||
+        campo === "facebook" ||
+        campo === "instagram" ||
+        campo === "x" ||
+        campo === "tiktok" ||
+        campo === "sitio_web"
       ) {
         try {
           if (campo !== "clave") {
