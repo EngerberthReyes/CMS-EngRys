@@ -70,11 +70,12 @@ WHERE p.id_persona = ?;`;
       } else if (campo === "nombre_pais") {
         const nuevoNombrePais = `UPDATE paises pais
             JOIN estados est ON est.id_pais = pais.id_pais
-            JOIN municipios muni ON muni.id_estado = est.id_estado
-            JOIN parroquias parr ON parr.id_municipio = muni.id_municipio
-            JOIN codigos_postales cod ON cod.id_parroquia = parr.id_parroquia
-            JOIN direcciones dirr ON dirr.id_codigo_postal = cod.id_codigo_postal
-            JOIN personas p ON p.id_direccion = dirr.id_direccion
+            JOIN ciudades ciu ON ciu.id_estado = est.id_estado
+JOIN municipios muni ON muni.id_ciudad = ciu.id_ciudad
+JOIN parroquias parr ON parr.id_municipio = muni.id_municipio
+JOIN codigos_postales cod ON cod.id_parroquia = parr.id_parroquia
+JOIN direcciones dirr ON dirr.id_codigo_postal = cod.id_codigo_postal
+JOIN personas p ON p.id_direccion = dirr.id_direccion
             SET pais.nombre_pais = ?
             WHERE p.id_persona = ?;`;
         try {
