@@ -22,7 +22,7 @@ export const PUT = async (request) => {
       direccionCompleta,
       sitioWeb,
       facebook,
-      instragram,
+      instagram,
       x,
       tiktok,
     } = await request.json();
@@ -37,7 +37,7 @@ export const PUT = async (request) => {
       nacionalidad: nacional,
       id_genero: genero,
       facebook,
-      instragram,
+      instagram,
       x,
       tiktok,
       sitio_web: sitioWeb,
