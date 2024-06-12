@@ -55,7 +55,8 @@ export const PUT = async (request) => {
             JOIN estados est ON est.id_pais = pais.id_pais
             JOIN municipios muni ON muni.id_estado = est.id_estado
             JOIN parroquias parr ON parr.id_municipio = muni.id_municipio
-            JOIN direcciones dirr ON dirr.id_parroquia = parr.id_parroquia
+            JOIN codigos_postales cod ON cod.id_parroquia = parr.id_parroquia
+            JOIN direcciones dirr ON dirr.id_codigo_postal = cod.id_codigo_postal
             JOIN personas p ON p.id_direccion = dirr.id_direccion
             SET pais.nombre_pais = ?
             WHERE p.id_persona = ?;`;
@@ -65,33 +66,36 @@ export const PUT = async (request) => {
           console.log(error);
         }
       } else if (campo === "numero_codigo_postal") {
-        const nuevoCodigoPostal = `UPDATE codigos_postales cod
-            JOIN direcciones dirr ON dirr.id_codigo_postal = cod.id_codigo_postal
-            JOIN personas p ON p.id_direccion = dirr.id_direccion
-            SET cod.numero_codigo_postal = 'Nuevo Codigo Postal'
-            WHERE p.id_persona = ;`;
+        const nuevoNombreParroquia = `UPDATE codigos_postales cod
+JOIN direcciones dirr ON dirr.id_codigo_postal = cod.id_codigo_postal
+JOIN personas p ON p.id_direccion = dirr.id_direccion
+SET cod.numero_codigo_postal = ?
+WHERE p.id_persona = ?;`;
         try {
-          await cmsConexion.query(nuevoNombrePais, [valor, idPersona]);
+          await cmsConexion.query(nuevoNombreParroquia, [valor, idPersona]);
         } catch (error) {
+          console.log(error);
           console.log(error);
         }
       } else if (campo === "nombre_parroquia") {
         const nuevoNombreParroquia = `UPDATE parroquias parr
-JOIN municipios muni ON muni.id_municipio = parr.id_municipio
-JOIN ciudades ciu ON ciu.id_ciudad = muni.id_ciudad
-JOIN estados est ON est.id_estado = ciu.id_estado
 JOIN codigos_postales cod ON cod.id_parroquia = parr.id_parroquia
 JOIN direcciones dirr ON dirr.id_codigo_postal = cod.id_codigo_postal
 JOIN personas p ON p.id_direccion = dirr.id_direccion
 SET parr.nombre_parroquia = ?
 WHERE p.id_persona = ?;`;
+        try {
+          await cmsConexion.query(nuevoNombreParroquia, [valor, idPersona]);
+        } catch (error) {
+          console.log(error);
+        }
       } else if (campo === "nombre_municipio") {
         const nuevoNombreMunicipio = `UPDATE municipios muni
 JOIN parroquias parr ON parr.id_municipio = muni.id_municipio
 JOIN codigos_postales cod ON cod.id_parroquia = parr.id_parroquia
 JOIN direcciones dirr ON dirr.id_codigo_postal = cod.id_codigo_postal
 JOIN personas p ON p.id_direccion = dirr.id_direccion
-SET ciu.nombre_ciudad = ?
+SET ciu.nombre_municipio = ?
 WHERE p.id_persona = ?;`;
         try {
           await cmsConexion.query(nuevoNombreMunicipio, [valor, idPersona]);
