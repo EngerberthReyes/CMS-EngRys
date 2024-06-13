@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import Details from "@/componentes/tiptap/Details";
 import { Tiptap } from "@/componentes/tiptap/TipTap";
 import { compare } from "bcryptjs";
+import parse from "html-react-parser";
 
 const Perfil = () => {
   const {
@@ -30,7 +31,7 @@ const Perfil = () => {
   const [temaActual, setTemaActual] = useState();
   const [nombreImagen, setNombreImagen] = useState();
   const [imagen, setImagen] = useState(null);
-  const [description, setDescription] = useState("");
+  const [description, setDescription] = useState();
   const [direccionActualizada, setDireccionActualizada] = useState();
   const [elementoActivo, setElementoActivo] = useState(null);
   const [interruptorCambio, setInterruptorCambio] = useState(false);
@@ -53,7 +54,7 @@ const Perfil = () => {
   console.log(nombreDeUsuario);
   console.log(usuario);
   console.log(post);
-
+  console.log(direccionActualizada);
   console.log(paises);
 
   const agregarImagen = async (event) => {
@@ -143,6 +144,8 @@ const Perfil = () => {
       const paises = await axios.get("../API/personas");
       const obteniendoPaises = paises.data;
       const usuarioActivo = respuesta.data;
+      console.log(usuarioActivo);
+
       setUsuario(usuarioActivo);
       setPaises(obteniendoPaises);
       setImagen(usuarioActivo.fotoPerfil);
@@ -170,15 +173,17 @@ const Perfil = () => {
 
   const enviarDatos = async (datos, index) => {
     console.log(datos);
-    const direccionCompleta = description.replace(/<.*?>/g, "");
+    const direccionCompleta = description;
     const elementosAEnviar = {
       datos,
       direccionCompleta,
     };
     console.log(direccionCompleta);
+
     setElementoActivo(index);
     console.log(elementoActivo);
     setInterruptorCambio(true);
+    setDireccionActualizada(direccionCompleta);
     console.log(index);
     if (interruptorCambio) {
       try {
@@ -765,7 +770,19 @@ const Perfil = () => {
                                           </section>
                                         </>
                                       ) : (
-                                        <Details description={usuario.direccionCompleta} />
+                                        <>
+                                          {direccionActualizada ? (
+                                            <Details
+                                              description={direccionActualizada}
+                                            />
+                                          ) : (
+                                            <Details
+                                              description={
+                                                usuario.direccion_completa
+                                              }
+                                            />
+                                          )}
+                                        </>
                                       )}
                                     </>
                                   )}

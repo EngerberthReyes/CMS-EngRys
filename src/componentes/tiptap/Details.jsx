@@ -3,7 +3,7 @@ import parse from "html-react-parser";
 const Details = ({ description }) => {
   return (
     <>
-      <div className="ProseMirror">{parse(description)}</div>
+      <section className="ProseMirror">{parse(description)}</section>
     </>
   );
 };

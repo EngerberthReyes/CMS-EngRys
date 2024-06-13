@@ -5,11 +5,8 @@
 
 .ProseMirror {
   padding: 10px;
-  border-top: 1px solid #808080;
-  background: #181818;
+  font-size: 28px;
   color: #eeeeee;
-  border-radius: 0 0 5px 5px;
-  min-height: 100px;
   text-align: start;
 }
 .ProseMirror:focus {

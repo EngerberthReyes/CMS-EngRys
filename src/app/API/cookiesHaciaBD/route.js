@@ -7,7 +7,7 @@ import { hash, compare } from "bcryptjs";
 export const PUT = async (request) => {
   try {
     const elementosActualizados = await request.json();
-    console.log(elementosActualizados)
+    console.log(elementosActualizados);
     const cookieValue = request.cookies.get("cookieInformacion").value;
     console.log(cookieValue);
 
@@ -157,7 +157,10 @@ JOIN personas p ON p.id_direccion = dirr.id_direccion
 SET dirr.direccion_completa = ?
 WHERE p.id_persona = ?;`;
         try {
-          await cmsConexion.query(nuevaDireccionCompleta, [valor, idPersona]);
+          await cmsConexion.query(nuevaDireccionCompleta, [
+            valor.replace(/<.*?>/g, ""),
+            idPersona,
+          ]);
         } catch (error) {
           console.log(error);
         }
