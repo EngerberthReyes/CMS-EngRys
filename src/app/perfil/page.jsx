@@ -204,8 +204,6 @@ const Perfil = () => {
       setUsuario(usuarioActivo);
       setImagen(usuarioActivo.fotoPerfil);
       setInterruptorCambio(false);
-      elementoActivo(728193);
-      enrutadorMaster.push("/perfil");
     } catch (error) {
       console.error("Error al obtener el perfil:", error);
     }
