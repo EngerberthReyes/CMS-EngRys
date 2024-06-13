@@ -7,6 +7,7 @@ import { hash, compare } from "bcryptjs";
 export const PUT = async (request) => {
   try {
     const elementosActualizados = await request.json();
+    console.log(elementosActualizados)
     const cookieValue = request.cookies.get("cookieInformacion").value;
     console.log(cookieValue);
 

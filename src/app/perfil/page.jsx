@@ -6,8 +6,11 @@ import Post from "@/componentes/post/post.jsx";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import "../CSS/App.css";
 import stylesPerfil from "../CSS/styles-perfil.module.css";
 import { useRouter } from "next/navigation";
+import Details from "@/componentes/tiptap/Details";
+import { Tiptap } from "@/componentes/tiptap/TipTap";
 import { compare } from "bcryptjs";
 
 const Perfil = () => {
@@ -27,6 +30,8 @@ const Perfil = () => {
   const [temaActual, setTemaActual] = useState();
   const [nombreImagen, setNombreImagen] = useState();
   const [imagen, setImagen] = useState(null);
+  const [description, setDescription] = useState("");
+  const [direccionActualizada, setDireccionActualizada] = useState();
   const [elementoActivo, setElementoActivo] = useState(null);
   const [interruptorCambio, setInterruptorCambio] = useState(false);
   const [usuario, setUsuario] = useState();
@@ -165,6 +170,12 @@ const Perfil = () => {
 
   const enviarDatos = async (datos, index) => {
     console.log(datos);
+    const direccionCompleta = description.replace(/<.*?>/g, "");
+    const elementosAEnviar = {
+      datos,
+      direccionCompleta,
+    };
+    console.log(direccionCompleta);
     setElementoActivo(index);
     console.log(elementoActivo);
     setInterruptorCambio(true);
@@ -173,7 +184,7 @@ const Perfil = () => {
       try {
         const respuesta = await axios.put(
           "../API/cookiesActualizarUsuario",
-          datos
+          elementosAEnviar
         );
         console.log(respuesta);
         const usuarioActivo = respuesta.data;
@@ -747,22 +758,14 @@ const Perfil = () => {
                                       {interruptorCambio &&
                                       elementoActivo === index ? (
                                         <>
-                                          <textarea
-                                            defaultValue={
-                                              usuario.direccionCompleta
-                                            }
-                                            {...register(iterador)}
-                                            className={stylesPerfil.inputClave}
-                                          ></textarea>
+                                          <section className="App">
+                                            <Tiptap
+                                              setDescription={setDescription}
+                                            />
+                                          </section>
                                         </>
                                       ) : (
-                                        <textarea
-                                          defaultValue={
-                                            usuario.direccionCompleta
-                                          }
-                                          className={stylesPerfil.inputClave}
-                                          readOnly
-                                        ></textarea>
+                                        <Details description={usuario.direccionCompleta} />
                                       )}
                                     </>
                                   )}
