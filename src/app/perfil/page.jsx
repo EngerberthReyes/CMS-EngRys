@@ -440,7 +440,13 @@ const Perfil = () => {
                                 }
                               />
                             ) : (
-                              <Details description={"Descripción Personal"} />
+                              <Details
+                                description={
+                                  usuario.descripcion_personal
+                                    ? usuario.descripcion_personal
+                                    : "Descripción Personal"
+                                }
+                              />
                             )}
                           </>
                         )}
