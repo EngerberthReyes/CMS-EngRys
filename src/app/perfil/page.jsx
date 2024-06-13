@@ -172,8 +172,9 @@ const Perfil = () => {
     }
   };
 
-  const [descripcionPerfilModificacion, setDescripcionPerfilModificacion] = useState("");
-
+  const [descripcionPerfilModificacion, setDescripcionPerfilModificacion] =
+    useState("");
+  const [editorDescripcionPerfil, setEditorDescripcionPerfil] = useState(false);
   const enviarDatos = async (datos, index) => {
     console.log(datos);
     const direccionCompleta = description;
@@ -181,8 +182,9 @@ const Perfil = () => {
     const elementosAEnviar = {
       datos,
       direccionCompleta,
-      descripcionPerfil
+      descripcionPerfil,
     };
+    setEditorDescripcionPerfil(false);
     console.log(direccionCompleta);
 
     setElementoActivo(index);
@@ -241,10 +243,9 @@ const Perfil = () => {
       handleSubmit(enviarPost)();
     }
   };
-const [editorDescripcionPerfil, setEditorDescripcionPerfil] = useState(true);
 
   const cambiarDescripcionPersonal = () => {
-    setEditorDescripcionPerfil(false);
+    setEditorDescripcionPerfil(true);
   };
 
   return (
@@ -417,22 +418,28 @@ const [editorDescripcionPerfil, setEditorDescripcionPerfil] = useState(true);
                     <h1>Sobre Mi:</h1>
                     <section className={stylesPerfil.seccionElementos}>
                       <h2 className={stylesPerfil.tituloSeccionFlex}>
-                        {!editorDescripcionPerfil ? (
+                        {editorDescripcionPerfil ? (
                           <>
                             <section className="App">
-                              <Tiptap setDescription={setDescripcionPerfilModificacion} />
+                              <Tiptap
+                                setDescription={
+                                  setDescripcionPerfilModificacion
+                                }
+                              />
                             </section>
                           </>
                         ) : (
                           <>
-                            {descripcionPerfilModificacion ? (
-                              <Details description={descripcionPerfilModificacion} />
+                            {usuario?.descripcion_personal ? (
+                              <Details
+                                description={usuario.descripcion_personal}
+                              />
                             ) : (
-                              <Details description={""} />
+                              <Details description={"Descripción Personal"} />
                             )}
                           </>
                         )}
-                        {editorDescripcionPerfil && (
+                        {!editorDescripcionPerfil && (
                           <label
                             style={{
                               position: "relative",
@@ -833,7 +840,9 @@ const [editorDescripcionPerfil, setEditorDescripcionPerfil] = useState(true);
                                           ) : (
                                             <Details
                                               description={
-                                                usuario.direccion_completa ? usuario.direccion_completa : usuario.direccionCompleta 
+                                                usuario.direccion_completa
+                                                  ? usuario.direccion_completa
+                                                  : usuario.direccionCompleta
                                               }
                                             />
                                           )}

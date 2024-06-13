@@ -38,12 +38,13 @@ export const PUT = async (request) => {
         campo === "instagram" ||
         campo === "x" ||
         campo === "tiktok" ||
-        campo === "sitio_web"
+        campo === "sitio_web" ||
+        campo === "descripcion_personal"
       ) {
         try {
           if (campo !== "clave") {
             const consultaActualizar = `UPDATE personas AS p SET p.${campo} = ? WHERE id_persona = ?;`;
-            await cmsConexion.query(consultaActualizar, [valor, idPersona]);
+            await cmsConexion.query(consultaActualizar, [campo === "descripcion_personal" ? valor.replace(/<.*?>/g, "") : valor, idPersona]);
           } else {
             const consultaActualizar = `UPDATE personas AS p SET p.clave = ? WHERE id_persona = ?;`;
             const claveCifrada = await hash(valor, 11);

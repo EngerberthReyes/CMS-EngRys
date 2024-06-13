@@ -44,7 +44,7 @@ export const PUT = async (request) => {
       x,
       tiktok,
       sitio_web: sitioWeb,
-      descripcion_perfil: descripcionPerfil,
+      descripcion_personal: descripcionPerfil,
       numero_codigo_postal: numeroCodigoPostal,
       nombre_parroquia: nombreParroquia,
       nombre_municipio: nombreMunicipio,
@@ -115,8 +115,8 @@ export const PUT = async (request) => {
               elementosActualizar[campo];
           } else if (campo === "clave") {
             decodedToken.claveDesencriptada = elementosActualizar[campo];
-          } else if (campo === "descripcionPerfil") {
-            decodedToken.claveDesencriptada = elementosActualizar[campo];
+          } else if (campo === "descripcion_personal") {
+            decodedToken.descripcionPerfil = elementosActualizar[campo];
           }
 
           decodedToken[campo] = elementosActualizar[campo];
