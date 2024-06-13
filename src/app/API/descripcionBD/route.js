@@ -44,7 +44,10 @@ export const PUT = async (request) => {
       const consultaActualizacionPerfil = `UPDATE personas AS p SET p.descripcion_personal = ? WHERE correo_electronico = ?;`;
       const actualizacionPerfil = await cmsConexion.query(
         consultaActualizacionPerfil,
-        [descripcionPerfil, verificacionCookie.correoElectronicoDeUsuario]
+        [
+          descripcionPerfil.replace(/<.*?>/g, ""),
+          verificacionCookie.correoElectronicoDeUsuario,
+        ]
       );
 
       // Filtrar los elementos a actualizar que tengan un valor
