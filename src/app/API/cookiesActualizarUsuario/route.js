@@ -27,6 +27,7 @@ export const PUT = async (request) => {
         tiktok,
       },
       direccionCompleta,
+      descripcionPerfil,
     } = await request.json();
 
     const elementosActualizar = {
@@ -43,6 +44,7 @@ export const PUT = async (request) => {
       x,
       tiktok,
       sitio_web: sitioWeb,
+      descripcion_perfil: descripcionPerfil,
       numero_codigo_postal: numeroCodigoPostal,
       nombre_parroquia: nombreParroquia,
       nombre_municipio: nombreMunicipio,
@@ -112,6 +114,8 @@ export const PUT = async (request) => {
             decodedToken.correoElectronicoDeUsuario =
               elementosActualizar[campo];
           } else if (campo === "clave") {
+            decodedToken.claveDesencriptada = elementosActualizar[campo];
+          } else if (campo === "descripcionPerfil") {
             decodedToken.claveDesencriptada = elementosActualizar[campo];
           }
 

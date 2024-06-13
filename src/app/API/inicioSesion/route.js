@@ -203,6 +203,7 @@ WHERE
         nombreCiudad: nombre_ciudad,
         nombreEstado: nombre_estado,
         nombrePais: nombre_pais,
+        descripcionPerfil: null,
       },
       "secret"
     );

@@ -39,6 +39,7 @@ const Perfil = () => {
   const [mostrarClave, setMostrarClave] = useState();
   const [paises, setPaises] = useState();
   const [nombreDeUsuario, setNombreDeUsuario] = useState();
+  const [descripcionPerfil, setDescripcionPerfil] = useState();
 
   useEffect(() => {
     if (!usuario) return;
@@ -171,12 +172,16 @@ const Perfil = () => {
     }
   };
 
+  const [descripcionPerfilModificacion, setDescripcionPerfilModificacion] = useState("");
+
   const enviarDatos = async (datos, index) => {
     console.log(datos);
     const direccionCompleta = description;
+    const descripcionPerfil = descripcionPerfilModificacion;
     const elementosAEnviar = {
       datos,
       direccionCompleta,
+      descripcionPerfil
     };
     console.log(direccionCompleta);
 
@@ -235,6 +240,11 @@ const Perfil = () => {
       event.preventDefault();
       handleSubmit(enviarPost)();
     }
+  };
+const [editorDescripcionPerfil, setEditorDescripcionPerfil] = useState(true);
+
+  const cambiarDescripcionPersonal = () => {
+    setEditorDescripcionPerfil(false);
   };
 
   return (
@@ -407,7 +417,52 @@ const Perfil = () => {
                     <h1>Sobre Mi:</h1>
                     <section className={stylesPerfil.seccionElementos}>
                       <h2 className={stylesPerfil.tituloSeccionFlex}>
-                        {"Texto Sobre Mi"}
+                        {!editorDescripcionPerfil ? (
+                          <>
+                            <section className="App">
+                              <Tiptap setDescription={setDescripcionPerfilModificacion} />
+                            </section>
+                          </>
+                        ) : (
+                          <>
+                            {descripcionPerfilModificacion ? (
+                              <Details description={descripcionPerfilModificacion} />
+                            ) : (
+                              <Details description={""} />
+                            )}
+                          </>
+                        )}
+                        {editorDescripcionPerfil && (
+                          <label
+                            style={{
+                              position: "relative",
+                              height: "0",
+                              top: "0",
+                              left: "0",
+                              cursor: "pointer",
+                            }}
+                          >
+                            <section
+                              className={stylesPerfil.seccionBlanco}
+                              style={{
+                                position: "relative",
+                                height: "0",
+                                top: "0",
+                                left: "0",
+                                cursor: "pointer",
+                              }}
+                            >
+                              <Image
+                                className={stylesPerfil.icono_edit}
+                                onClick={() => cambiarDescripcionPersonal()}
+                                width={20}
+                                height={20}
+                                src={`/editar-theme-black.svg`}
+                                alt="Cambiar Foto de Perfil"
+                              />
+                            </section>
+                          </label>
+                        )}
                       </h2>
                     </section>
                   </section>
@@ -778,7 +833,7 @@ const Perfil = () => {
                                           ) : (
                                             <Details
                                               description={
-                                                usuario.direccion_completa
+                                                usuario.direccion_completa ? usuario.direccion_completa : usuario.direccionCompleta 
                                               }
                                             />
                                           )}
