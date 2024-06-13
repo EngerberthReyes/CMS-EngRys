@@ -5,52 +5,10 @@ import { cmsConexion } from "@/db/database";
 
 export const PUT = async (request) => {
   try {
-    const {
-      datos: {
-        nombreCompletoUsuario,
-        cedula,
-        correoElectronicoDeUsuario,
-        fechaNacimiento,
-        claveDesencriptada,
-        nacional,
-        genero,
-        nombrePais,
-        nombreEstado,
-        nombreCiudad,
-        nombreMunicipio,
-        nombreParroquia,
-        numeroCodigoPostal,
-        sitioWeb,
-        facebook,
-        instagram,
-        x,
-        tiktok,
-      },
-      direccionCompleta,
-      descripcionPerfil,
-    } = await request.json();
-    
+    const { descripcionPerfil } = await request.json();
+    console.log(descripcionPerfil);
     const elementosActualizar = {
-      nombre: nombreCompletoUsuario,
-      cedula,
-      correo_electronico: correoElectronicoDeUsuario,
-      fecha_nacimiento: fechaNacimiento,
-      clave: claveDesencriptada,
-      direccion_completa: direccionCompleta,
-      nacionalidad: nacional,
-      id_genero: genero,
-      facebook,
-      instagram,
-      x,
-      tiktok,
-      sitio_web: sitioWeb,
       descripcion_personal: descripcionPerfil,
-      numero_codigo_postal: numeroCodigoPostal,
-      nombre_parroquia: nombreParroquia,
-      nombre_municipio: nombreMunicipio,
-      nombre_ciudad: nombreCiudad,
-      nombre_estado: nombreEstado,
-      nombre_pais: nombrePais,
     };
 
     const cookieValue = request.cookies.get("cookieInformacion").value;
@@ -83,39 +41,18 @@ export const PUT = async (request) => {
       console.log(decodedToken);
       console.log(elementosActualizar);
 
+      const consultaActualizacionPerfil = `UPDATE personas AS p SET p.descripcion_personal = ? WHERE correo_electronico = ?;`;
+      const actualizacionPerfil = await cmsConexion.query(
+        consultaActualizacionPerfil,
+        [descripcionPerfil, verificacionCookie.correoElectronicoDeUsuario]
+      );
+
       // Filtrar los elementos a actualizar que tengan un valor
       const elementosActualizados = Object.keys(elementosActualizar)
         .filter((campo) => elementosActualizar[campo])
         .reduce((obj, campo) => {
           // Actualizar decodedToken
-          if (campo === "nombre") {
-            decodedToken.nombreCompletoUsuario = elementosActualizar[campo];
-          } else if (campo === "fecha_nacimiento") {
-            decodedToken.fechaNacimiento = elementosActualizar[campo];
-          } else if (campo === "numero_codigo_postal") {
-            decodedToken.numeroCodigoPostal = elementosActualizar[campo];
-          } else if (campo === "nombre_parroquia") {
-            decodedToken.nombreParroquia = elementosActualizar[campo];
-          } else if (campo === "nombre_municipio") {
-            decodedToken.nombreMunicipio = elementosActualizar[campo];
-          } else if (campo === "nombre_ciudad") {
-            decodedToken.nombreCiudad = elementosActualizar[campo];
-          } else if (campo === "nombre_estado") {
-            decodedToken.nombreEstado = elementosActualizar[campo];
-          } else if (campo === "nombre_pais") {
-            decodedToken.nombrePais = elementosActualizar[campo];
-          } else if (campo === "direccion_completa") {
-            decodedToken.direccionCompleta = elementosActualizar[campo];
-          } else if (campo === "nacionalidad") {
-            decodedToken.nacional = elementosActualizar[campo];
-          } else if (campo === "id_genero") {
-            decodedToken.genero = elementosActualizar[campo];
-          } else if (campo === "correo_electronico") {
-            decodedToken.correoElectronicoDeUsuario =
-              elementosActualizar[campo];
-          } else if (campo === "clave") {
-            decodedToken.claveDesencriptada = elementosActualizar[campo];
-          } else if (campo === "descripcion_personal") {
+          if (campo === "descripcion_personal") {
             decodedToken.descripcionPerfil = elementosActualizar[campo];
           }
 

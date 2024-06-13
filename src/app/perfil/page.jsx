@@ -176,24 +176,30 @@ const Perfil = () => {
     useState("");
   const [editorDescripcionPerfil, setEditorDescripcionPerfil] = useState(false);
   const enviarDatos = async (datos, index) => {
-    console.log(datos);
-    const direccionCompleta = description;
-    const descripcionPerfil = descripcionPerfilModificacion;
-    const elementosAEnviar = {
-      datos,
-      direccionCompleta,
-      descripcionPerfil,
-    };
-    setEditorDescripcionPerfil(false);
-    console.log(direccionCompleta);
+    try {
+      console.log(datos);
+      const direccionCompleta = description;
+      if (descripcionPerfilModificacion) {
+        const descripcionPerfil = descripcionPerfilModificacion;
+        const respuesta = await axios.put("../API/descripcionBD", {
+          descripcionPerfil,
+        });
+      }
 
-    setElementoActivo(index);
-    console.log(elementoActivo);
-    setInterruptorCambio(true);
-    setDireccionActualizada(direccionCompleta);
-    console.log(index);
-    if (interruptorCambio) {
-      try {
+      console.log(descripcionPerfil);
+      const elementosAEnviar = {
+        datos,
+        direccionCompleta,
+      };
+      setEditorDescripcionPerfil(false);
+      console.log(direccionCompleta);
+
+      setElementoActivo(index);
+      console.log(elementoActivo);
+      setInterruptorCambio(true);
+      setDireccionActualizada(direccionCompleta);
+      console.log(index);
+      if (interruptorCambio) {
         const respuesta = await axios.put(
           "../API/cookiesActualizarUsuario",
           elementosAEnviar
@@ -208,9 +214,9 @@ const Perfil = () => {
         console.log(usuarioActivo);
         setUsuario(usuarioActivo);
         setImagen(usuarioActivo.fotoPerfil);
-      } catch (error) {
-        console.error("Error al obtener el perfil:", error);
       }
+    } catch (error) {
+      console.error("Error al obtener el perfil:", error);
     }
   };
 
@@ -427,6 +433,9 @@ const Perfil = () => {
                                 }
                               />
                             </section>
+                            <button onClick={() => enviarDatos()}>
+                              aasdasdasd
+                            </button>
                           </>
                         ) : (
                           <>
