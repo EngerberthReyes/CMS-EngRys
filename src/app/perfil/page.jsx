@@ -203,6 +203,8 @@ const Perfil = () => {
       console.log(usuarioActivo);
       setUsuario(usuarioActivo);
       setImagen(usuarioActivo.fotoPerfil);
+      setInterruptorCambio(false);
+      elementoActivo(false);
     } catch (error) {
       console.error("Error al obtener el perfil:", error);
     }
@@ -659,6 +661,23 @@ const Perfil = () => {
                                       )}
                                     </>
                                   )}
+                                  {iterador === "numeroCodigoPostal" && (
+                                    <>
+                                      {interruptorCambio &&
+                                      elementoActivo === index ? (
+                                        <input
+                                          defaultValue={
+                                            usuario.numeroCodigoPostal
+                                          }
+                                          {...register(iterador)}
+                                          className={stylesPerfil.inputClave}
+                                          type="number"
+                                        />
+                                      ) : (
+                                        <h1>{usuario.numeroCodigoPostal}</h1>
+                                      )}
+                                    </>
+                                  )}
                                   {iterador === "fechaNacimiento" && (
                                     <>
                                       {interruptorCambio &&
@@ -895,6 +914,7 @@ const Perfil = () => {
                                     iterador !== "instagram" &&
                                     iterador !== "facebook" &&
                                     iterador !== "tiktok" &&
+                                    iterador !== "numeroCodigoPostal" &&
                                     iterador !== "sitioWeb" && (
                                       <>
                                         {interruptorCambio &&

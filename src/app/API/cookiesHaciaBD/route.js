@@ -116,7 +116,7 @@ JOIN parroquias parr ON parr.id_municipio = muni.id_municipio
 JOIN codigos_postales cod ON cod.id_parroquia = parr.id_parroquia
 JOIN direcciones dirr ON dirr.id_codigo_postal = cod.id_codigo_postal
 JOIN personas p ON p.id_direccion = dirr.id_direccion
-SET ciu.nombre_municipio = ?
+SET muni.nombre_municipio = ?
 WHERE p.id_persona = ?;`;
         try {
           await cmsConexion.query(nuevoNombreMunicipio, [valor, idPersona]);

@@ -125,6 +125,12 @@ export const PUT = async (request) => {
             decodedToken.instagram = elementosActualizar[campo];
           } else if (campo === "tiktok") {
             decodedToken.tiktok = elementosActualizar[campo];
+          } else if (campo === "numero_codigo_postal") {
+            decodedToken.numeroCodigoPostal = elementosActualizar[campo];
+          } else if (campo === "nombre_parroquia") {
+            decodedToken.nombreParroquia = elementosActualizar[campo];
+          } else if (campo === "nombre_municipio") {
+            decodedToken.nombreMunicipio = elementosActualizar[campo];
           }
 
           decodedToken[campo] = elementosActualizar[campo];
