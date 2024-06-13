@@ -945,7 +945,7 @@ const Perfil = () => {
                                           />
                                         ) : (
                                           <input
-                                            defaultValue={usuario[iterador]}
+                                            value={usuario[iterador]}
                                             className={stylesPerfil.inputClave}
                                             type="text"
                                             readOnly
