@@ -174,8 +174,9 @@ const Perfil = () => {
         const respuestaDescripcion = await axios.put("../API/descripcionBD", {
           descripcionPerfil,
         });
+        setDescripcionPerfilModificacion(respuestaDescripcion.data);
       }
-
+   
       const elementosAEnviar = {
         datos,
         direccionCompleta,
@@ -431,11 +432,11 @@ const Perfil = () => {
                           </>
                         ) : (
                           <>
-                            {usuario?.descripcion_personal ? (
+                            {descripcionPerfilModificacion ? (
                               <Details
                                 description={
-                                  usuario.descripcion_personal
-                                    ? usuario.descripcion_personal
+                                  descripcionPerfilModificacion
+                                    ? descripcionPerfilModificacion
                                     : "Descripción Personal"
                                 }
                               />

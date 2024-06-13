@@ -98,11 +98,7 @@ export const PUT = async (request) => {
     console.log(nuevaCookie);
 
     // Configurar la nueva cookie en la respuesta
-    const response = new NextResponse(JSON.stringify(elementosActualizados), {
-      headers: {
-        "Set-Cookie": nuevaCookie,
-      },
-    });
+    const response = new NextResponse(JSON.stringify(descripcionPerfil));
     return response;
   } catch (error) {
     // Manejar errores
