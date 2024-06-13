@@ -887,9 +887,9 @@ const Perfil = () => {
                                         <>
                                           <Details
                                             description={
-                                              usuario?.direccion_completa || direccionActualizada
+                                              direccionActualizada
                                                 ? direccionActualizada
-                                                : usuario.direccionCompleta
+                                                : usuario?.direccionCompleta
                                             }
                                           />
                                         </>
