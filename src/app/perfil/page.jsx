@@ -180,9 +180,11 @@ const Perfil = () => {
         const respuestaDescripcion = await axios.put("../API/descripcionBD", {
           descripcionPerfilModificacion,
         });
-        setEditorDescripcionPerfil(false)
+        setEditorDescripcionPerfil(false);
         console.log(respuestaDescripcion);
-        setDescripcionPerfilModificacion({ descripcion_personal: respuestaDescripcion.data});
+        setDescripcionPerfilModificacion({
+          descripcion_personal: respuestaDescripcion.data,
+        });
         console.log(respuestaDescripcion.data);
       }
     } catch (error) {
