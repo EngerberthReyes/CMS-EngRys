@@ -674,9 +674,13 @@ const Perfil = () => {
                                         />
                                       ) : (
                                         <input
-                                          value={usuario.numeroCodigoPostal}
+                                          value={
+                                            usuario.numeroCodigoPostal
+                                              ? usuario.numeroCodigoPostal
+                                              : usuario.numero_codigo_postal
+                                          }
                                           className={stylesPerfil.inputClave}
-                                          type="number"
+                                          type="text"
                                         />
                                       )}
                                     </>
