@@ -433,8 +433,11 @@ const Perfil = () => {
                                 }
                               />
                             </section>
-                            <button onClick={() => enviarDatos()}>
-                              aasdasdasd
+                            <button
+                              className={stylesPerfil.seccionElemento}
+                              onClick={() => enviarDatos()}
+                            >
+                              Guardar Cambios
                             </button>
                           </>
                         ) : (
