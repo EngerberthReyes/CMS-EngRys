@@ -131,6 +131,8 @@ export const PUT = async (request) => {
             decodedToken.nombreParroquia = elementosActualizar[campo];
           } else if (campo === "nombre_municipio") {
             decodedToken.nombreMunicipio = elementosActualizar[campo];
+          } else if (campo === "id_genero") {
+            decodedToken.genero = elementosActualizar[campo];
           }
 
           decodedToken[campo] = elementosActualizar[campo];
