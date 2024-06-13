@@ -204,8 +204,8 @@ const Perfil = () => {
       setUsuario(usuarioActivo);
       setImagen(usuarioActivo.fotoPerfil);
       setInterruptorCambio(false);
-      elementoActivo(false);
-      window.location.reload();
+      elementoActivo(728193);
+      enrutadorMaster.push("/perfil");
     } catch (error) {
       console.error("Error al obtener el perfil:", error);
     }
@@ -676,9 +676,7 @@ const Perfil = () => {
                                         />
                                       ) : (
                                         <input
-                                          defaultValue={
-                                            usuario.numeroCodigoPostal
-                                          }
+                                          value={usuario.numeroCodigoPostal}
                                           className={stylesPerfil.inputClave}
                                           type="number"
                                         />
