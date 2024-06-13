@@ -67,7 +67,7 @@ const enrutadorMaster = useRouter();
 
   useEffect(() => {
     obtenerPerfil();
-  }, []);
+  }, [usuario]);
 
   const cerrarPerfil = async () => {
     try {
@@ -79,6 +79,7 @@ const enrutadorMaster = useRouter();
       enrutadorMaster.push("/");
     }
   };
+
   return (
     <>
       <head>

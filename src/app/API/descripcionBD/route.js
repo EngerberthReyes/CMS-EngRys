@@ -3,13 +3,10 @@ import { sign, verify } from "jsonwebtoken";
 import { NextResponse } from "next/server";
 import { cmsConexion } from "@/db/database";
 
-export const PUT = async (request) => {
+
+
+export const GET = async (request) => {
   try {
-    const { descripcionPerfil } = await request.json();
-    console.log(descripcionPerfil);
-    const elementosActualizar = {
-      descripcion_personal: descripcionPerfil,
-    };
 
     const cookieValue = request.cookies.get("cookieInformacion").value;
     console.log(cookieValue);
@@ -23,82 +20,17 @@ export const PUT = async (request) => {
       );
     }
 
-    const consultaActualizacionPerfil = `SELECT id_persona FROM personas AS p WHERE correo_electronico = ?;`;
-    const actualizacionPerfil = await cmsConexion.query(
-      consultaActualizacionPerfil,
-      [verificacionCookie.correoElectronicoDeUsuario]
-    );
-
-    const idPersona = actualizacionPerfil[0].id_persona;
-    const actualizarYObtenerCookie = async (
-      cookieValue,
-      elementosActualizar,
-      idPersona,
-      cmsConexion
-    ) => {
-      // Verificar el token y obtener los datos del usuario
-      let decodedToken = verify(cookieValue, "secret");
-      console.log(decodedToken);
-      console.log(elementosActualizar);
-
-      const consultaActualizacionPerfil = `UPDATE personas AS p SET p.descripcion_personal = ? WHERE correo_electronico = ?;`;
+      const consultaActualizacionPerfil = `SELECT p.descripcion_personal FROM personas as p WHERE id_persona = ?;`;
       const actualizacionPerfil = await cmsConexion.query(
         consultaActualizacionPerfil,
         [
-          descripcionPerfil.replace(/<.*?>/g, ""),
-          verificacionCookie.correoElectronicoDeUsuario,
+          verificacionCookie.idPersona,
         ]
       );
 
-      // Filtrar los elementos a actualizar que tengan un valor
-      const elementosActualizados = Object.keys(elementosActualizar)
-        .filter((campo) => elementosActualizar[campo])
-        .reduce((obj, campo) => {
-          // Actualizar decodedToken
-          if (campo === "descripcion_personal") {
-            decodedToken.descripcionPerfil = elementosActualizar[campo];
-          }
+      console.log(actualizacionPerfil)
 
-          decodedToken[campo] = elementosActualizar[campo];
-          obj[campo] = elementosActualizar[campo];
-          return obj;
-        }, {});
-
-      console.log(elementosActualizados);
-
-      // Actualizar los datos del usuario en la base de datos
-
-      // Imprimir los datos actualizados del usuario
-      console.log(decodedToken);
-
-      // Generar nuevo token con los valores actualizados
-      const nuevoToken = sign(decodedToken, "secret");
-      console.log(nuevoToken);
-
-      // Configurar la nueva cookie
-      const nuevaCookie = serialize("cookieInformacion", nuevoToken, {
-        httpOnly: true,
-        secure: process.env.NODE_ENV === "production",
-        maxAge: 60 * 60 * 24 * 30 * 100,
-        path: "/",
-      });
-
-      // Devolver el nuevo token y la nueva cookie
-      return { nuevoToken, nuevaCookie, elementosActualizados };
-    };
-
-    const { nuevoToken, nuevaCookie, elementosActualizados } =
-      await actualizarYObtenerCookie(
-        cookieValue,
-        elementosActualizar,
-        idPersona,
-        cmsConexion
-      );
-    console.log(nuevoToken);
-    console.log(nuevaCookie);
-
-    // Configurar la nueva cookie en la respuesta
-    const response = new NextResponse(JSON.stringify(descripcionPerfil));
+    const response = new NextResponse(JSON.stringify(actualizacionPerfil[0]));
     return response;
   } catch (error) {
     // Manejar errores

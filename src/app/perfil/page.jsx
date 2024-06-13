@@ -165,18 +165,33 @@ const Perfil = () => {
   const [descripcionPerfilModificacion, setDescripcionPerfilModificacion] =
     useState("");
   const [editorDescripcionPerfil, setEditorDescripcionPerfil] = useState(false);
+  const obtenerDescripcionPersonal = async () => {
+    try {
+      const obtenerDescripcion = await axios.get("../API/descripcionBD");
+      setDescripcionPerfilModificacion(obtenerDescripcion.data);
+      console.log(obtenerDescripcion);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    if (!descripcionPerfilModificacion) {
+      obtenerDescripcionPersonal();
+    }
+  }, []);
+
   const enviarDatos = async (datos, index) => {
     try {
       console.log(datos);
       const direccionCompleta = description;
       const descripcionPerfil = descripcionPerfilModificacion;
-      if (descripcionPerfilModificacion) {
-        const respuestaDescripcion = await axios.put("../API/descripcionBD", {
-          descripcionPerfil,
-        });
-        setDescripcionPerfilModificacion(respuestaDescripcion.data);
-      }
-   
+      const respuestaDescripcion = await axios.put("../API/descripcionBD", {
+        descripcionPerfil,
+      });
+
+      setDescripcionPerfilModificacion(respuestaDescripcion.data);
+
       const elementosAEnviar = {
         datos,
         direccionCompleta,
@@ -211,7 +226,7 @@ const Perfil = () => {
   };
 
   useEffect(() => {
-  obtenerPerfil();
+    obtenerPerfil();
   }, [usuario]);
 
   const cerrarPerfil = async () => {
@@ -428,23 +443,13 @@ const Perfil = () => {
                           </>
                         ) : (
                           <>
-                            {descripcionPerfilModificacion ? (
-                              <Details
-                                description={
-                                  descripcionPerfilModificacion
-                                    ? descripcionPerfilModificacion
-                                    : "Descripción Personal"
-                                }
-                              />
-                            ) : (
-                              <Details
-                                description={
-                                  usuario?.descripcion_personal
-                                    ? usuario.descripcion_personal
-                                    : "Descripción Personal"
-                                }
-                              />
-                            )}
+                            <Details
+                              description={
+                                descripcionPerfilModificacion
+                                  ? descripcionPerfilModificacion.descripcion_personal
+                                  : "Descripción Personal"
+                              }
+                            />
                           </>
                         )}
                         {!editorDescripcionPerfil && (
