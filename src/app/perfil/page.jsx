@@ -160,16 +160,6 @@ const Perfil = () => {
     console.log(elementoActivo);
     setInterruptorCambio(true);
     console.log(index);
-    if (interruptorCambio) {
-      try {
-        const respuesta = await axios.put("../API/cookiesActualizarUsuario");
-        const usuarioActivo = respuesta.data;
-        setUsuario(usuarioActivo);
-        setImagen(usuarioActivo.fotoPerfil);
-      } catch (error) {
-        console.error("Error al obtener el perfil:", error);
-      }
-    }
   };
 
   const [descripcionPerfilModificacion, setDescripcionPerfilModificacion] =
@@ -729,7 +719,7 @@ const Perfil = () => {
                                         </>
                                       ) : (
                                         <Link
-                                          href={usuario.x}
+                                          href={usuario?.x}
                                           className={stylesPerfil.inputClave}
                                           target="_blank"
                                         >
@@ -752,7 +742,7 @@ const Perfil = () => {
                                         </>
                                       ) : (
                                         <Link
-                                          href={usuario.instagram}
+                                          href={usuario?.instagram}
                                           className={stylesPerfil.inputClave}
                                           target="_blank"
                                         >
@@ -775,7 +765,7 @@ const Perfil = () => {
                                         </>
                                       ) : (
                                         <Link
-                                          href={usuario.facebook}
+                                          href={usuario?.facebook}
                                           className={stylesPerfil.inputClave}
                                           target="_blank"
                                         >
@@ -790,7 +780,7 @@ const Perfil = () => {
                                       elementoActivo === index ? (
                                         <>
                                           <input
-                                            defaultValue={usuario.sitioWeb}
+                                            defaultValue={usuario.sitio_web}
                                             {...register(iterador)}
                                             className={stylesPerfil.inputClave}
                                             type="text"
@@ -798,7 +788,11 @@ const Perfil = () => {
                                         </>
                                       ) : (
                                         <Link
-                                          href={usuario.sitioWeb}
+                                          href={
+                                            usuario?.sitio_web
+                                              ? usuario?.sitio_web
+                                              : usuario.sitioWeb
+                                          }
                                           className={stylesPerfil.inputClave}
                                           target="_blank"
                                         >
@@ -821,7 +815,7 @@ const Perfil = () => {
                                         </>
                                       ) : (
                                         <Link
-                                          href={usuario.tiktok}
+                                          href={usuario?.tiktok}
                                           className={stylesPerfil.inputClave}
                                           target="_blank"
                                         >

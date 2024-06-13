@@ -29,7 +29,7 @@ export const PUT = async (request) => {
       direccionCompleta,
       descripcionPerfil,
     } = await request.json();
-    
+
     const elementosActualizar = {
       nombre: nombreCompletoUsuario,
       cedula,
@@ -39,10 +39,10 @@ export const PUT = async (request) => {
       direccion_completa: direccionCompleta,
       nacionalidad: nacional,
       id_genero: genero,
-      facebook,
-      instagram,
-      x,
-      tiktok,
+      facebook: facebook,
+      instagram: instagram,
+      x: x,
+      tiktok: tiktok,
       sitio_web: sitioWeb,
       descripcion_personal: descripcionPerfil,
       numero_codigo_postal: numeroCodigoPostal,
@@ -117,6 +117,14 @@ export const PUT = async (request) => {
             decodedToken.claveDesencriptada = elementosActualizar[campo];
           } else if (campo === "descripcion_personal") {
             decodedToken.descripcionPerfil = elementosActualizar[campo];
+          } else if (campo === "facebook") {
+            decodedToken.facebook = elementosActualizar[campo];
+          } else if (campo === "x") {
+            decodedToken.x = elementosActualizar[campo];
+          } else if (campo === "instagram") {
+            decodedToken.instagram = elementosActualizar[campo];
+          } else if (campo === "tiktok") {
+            decodedToken.tiktok = elementosActualizar[campo];
           }
 
           decodedToken[campo] = elementosActualizar[campo];
