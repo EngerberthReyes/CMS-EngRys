@@ -179,14 +179,13 @@ const Perfil = () => {
     try {
       console.log(datos);
       const direccionCompleta = description;
+      const descripcionPerfil = descripcionPerfilModificacion;
       if (descripcionPerfilModificacion) {
-        const descripcionPerfil = descripcionPerfilModificacion;
-        const respuesta = await axios.put("../API/descripcionBD", {
+        const respuestaDescripcion = await axios.put("../API/descripcionBD", {
           descripcionPerfil,
         });
       }
 
-      console.log(descripcionPerfil);
       const elementosAEnviar = {
         datos,
         direccionCompleta,
@@ -199,22 +198,21 @@ const Perfil = () => {
       setInterruptorCambio(true);
       setDireccionActualizada(direccionCompleta);
       console.log(index);
-      if (interruptorCambio) {
-        const respuesta = await axios.put(
-          "../API/cookiesActualizarUsuario",
-          elementosAEnviar
-        );
-        console.log(respuesta);
-        const usuarioActivo = respuesta.data;
-        const respuestaBaseDeDatos = await axios.put(
-          "../API/cookiesHaciaBD",
-          usuarioActivo
-        );
-        console.log(respuestaBaseDeDatos);
-        console.log(usuarioActivo);
-        setUsuario(usuarioActivo);
-        setImagen(usuarioActivo.fotoPerfil);
-      }
+
+      const respuesta = await axios.put(
+        "../API/cookiesActualizarUsuario",
+        elementosAEnviar
+      );
+      console.log(respuesta);
+      const usuarioActivo = respuesta.data;
+      const respuestaBaseDeDatos = await axios.put(
+        "../API/cookiesHaciaBD",
+        usuarioActivo
+      );
+      console.log(respuestaBaseDeDatos);
+      console.log(usuarioActivo);
+      setUsuario(usuarioActivo);
+      setImagen(usuarioActivo.fotoPerfil);
     } catch (error) {
       console.error("Error al obtener el perfil:", error);
     }
