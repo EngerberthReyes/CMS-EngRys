@@ -3,6 +3,10 @@
   width: 85%;
 }
 
+p {
+  margin: 0 !important;
+}
+
 .ProseMirror {
   padding: 10px;
   font-size: 28px;
