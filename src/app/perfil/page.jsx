@@ -269,7 +269,7 @@ const Perfil = () => {
                     }
                   />
                   <section>
-                    <section>{usuario.nombreDeUsuario}</section>
+                    <section>{nombreDeUsuario}</section>
                     <section>{usuario.correoElectronicoDeUsuario}</section>
                   </section>
                 </Link>
@@ -861,9 +861,14 @@ const Perfil = () => {
                             );
                           }
                         })}
+                        <button
+                          className={stylesPerfil.seccionElemento}
+                          type="submit"
+                        >
+                          Guardar Cambios
+                        </button>
                       </>
                     )}
-                    <button type="submit">Guardar Cambios</button>
                   </form>
                 </section>
               </section>
