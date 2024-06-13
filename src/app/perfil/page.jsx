@@ -164,33 +164,40 @@ const Perfil = () => {
 
   const [descripcionPerfilModificacion, setDescripcionPerfilModificacion] =
     useState("");
+  const [descripcionPerfilPersonal, setDescripcionPerfilPersonal] =
+    useState("");
   const [editorDescripcionPerfil, setEditorDescripcionPerfil] = useState(false);
   const obtenerDescripcionPersonal = async () => {
     try {
-      const obtenerDescripcion = await axios.get("../API/descripcionBD");
-      setDescripcionPerfilModificacion(obtenerDescripcion.data);
-      console.log(obtenerDescripcion);
+      if (descripcionPerfilPersonal === "") {
+        console.log(setEditorDescripcionPerfil);
+        const obtenerDescripcion = await axios.get("../API/descripcionBD");
+        setDescripcionPerfilModificacion(obtenerDescripcion.data);
+        console.log(obtenerDescripcion);
+      }
+      console.log(descripcionPerfilModificacion);
+      if (descripcionPerfilModificacion) {
+        const respuestaDescripcion = await axios.put("../API/descripcionBD", {
+          descripcionPerfilModificacion,
+        });
+        setEditorDescripcionPerfil(false)
+        console.log(respuestaDescripcion);
+        setDescripcionPerfilModificacion({ descripcion_personal: respuestaDescripcion.data});
+        console.log(respuestaDescripcion.data);
+      }
     } catch (error) {
       console.log(error);
     }
   };
 
   useEffect(() => {
-    if (!descripcionPerfilModificacion) {
-      obtenerDescripcionPersonal();
-    }
+    obtenerDescripcionPersonal();
   }, []);
 
   const enviarDatos = async (datos, index) => {
     try {
       console.log(datos);
       const direccionCompleta = description;
-      const descripcionPerfil = descripcionPerfilModificacion;
-      const respuestaDescripcion = await axios.put("../API/descripcionBD", {
-        descripcionPerfil,
-      });
-
-      setDescripcionPerfilModificacion(respuestaDescripcion.data);
 
       const elementosAEnviar = {
         datos,
@@ -227,6 +234,7 @@ const Perfil = () => {
 
   useEffect(() => {
     obtenerPerfil();
+    console.log("xd");
   }, [usuario]);
 
   const cerrarPerfil = async () => {
@@ -436,7 +444,7 @@ const Perfil = () => {
                             </section>
                             <button
                               className={stylesPerfil.seccionElemento}
-                              onClick={() => enviarDatos()}
+                              onClick={() => obtenerDescripcionPersonal()}
                             >
                               Guardar Cambios
                             </button>
@@ -875,19 +883,13 @@ const Perfil = () => {
                                         </>
                                       ) : (
                                         <>
-                                          {direccionActualizada ? (
-                                            <Details
-                                              description={direccionActualizada}
-                                            />
-                                          ) : (
-                                            <Details
-                                              description={
-                                                usuario.direccion_completa
-                                                  ? usuario.direccion_completa
-                                                  : usuario.direccionCompleta
-                                              }
-                                            />
-                                          )}
+                                          <Details
+                                            description={
+                                              usuario?.direccion_completa
+                                                ? usuario.direccion_completa
+                                                : usuario.direccionCompleta
+                                            }
+                                          />
                                         </>
                                       )}
                                     </>
