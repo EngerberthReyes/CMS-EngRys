@@ -312,7 +312,7 @@ const Perfil = () => {
                         : "Imagen de Perfil Por Defecto"
                     }
                   />
-                  <section>
+                  <section style={{ wordBreak: "keep-all" }}>
                     <section>{nombreDeUsuario}</section>
                     <section>{usuario.correoElectronicoDeUsuario}</section>
                   </section>

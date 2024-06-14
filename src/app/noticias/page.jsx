@@ -251,7 +251,7 @@ const Noticias = () => {
                         : "Imagen de Perfil Por Defecto"
                     }
                   />
-                  <section>
+                  <section style={{ wordBreak: "keep-all" }}>
                     <section>{usuario.nombreDeUsuario}</section>
                     <section>{usuario.correoElectronicoDeUsuario}</section>
                   </section>

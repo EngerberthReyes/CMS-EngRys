@@ -79,14 +79,18 @@ const Contactanos = () => {
                     className={stylesContactanos.imagenes}
                     width={35}
                     height={20}
-                    src={usuario?.fotoPerfil ?  usuario.fotoPerfil : "/IMG/epigrafe73.png"}
+                    src={
+                      usuario?.fotoPerfil
+                        ? usuario.fotoPerfil
+                        : "/IMG/epigrafe73.png"
+                    }
                     alt={
                       nombreImagen
                         ? nombreImagen
                         : "Imagen de Perfil Por Defecto"
                     }
                   />
-                  <section>
+                  <section style={{ wordBreak: "keep-all" }}>
                     <section>{usuario.nombreDeUsuario}</section>
                     <section>{usuario.correoElectronicoDeUsuario}</section>
                   </section>

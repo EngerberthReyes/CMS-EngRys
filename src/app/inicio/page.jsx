@@ -13,34 +13,34 @@ const Inicio = () => {
   const [imagen, setImagen] = useState();
   const [nombreImagen, setNombreImagen] = useState();
   const [perfilCerrado, setPerfilCerrado] = useState(false);
-const enrutadorMaster = useRouter();
+  const enrutadorMaster = useRouter();
   const agregarImagen = async (event) => {
     const formData = new FormData();
     const archivo = event.target.files[0];
-    console.log(archivo)
+    console.log(archivo);
     const nombreArchivo = archivo.name;
     console.log(nombreArchivo);
-  
+
     try {
       if (archivo) {
         setNombreImagen(nombreArchivo);
         formData.set("archivo", archivo);
-  
+
         const respuesta = await axios.post("../API/perfil", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
         });
-  
+
         const fotodePerfil = respuesta.data.fotoPerfil;
-        
+
         if (fotodePerfil) {
           setImagen(fotodePerfil);
-          console.log(fotodePerfil)
+          console.log(fotodePerfil);
         } else {
           console.log("No se recibió una URL de la imagen o imagen valida");
         }
-  
+
         event.target.value = "";
       } else {
         console.log("No se seleccionó ningún archivo");
@@ -116,14 +116,18 @@ const enrutadorMaster = useRouter();
                     className={stylesInicio.imagenes}
                     width={35}
                     height={20}
-                    src={usuario?.fotoPerfil ?  usuario.fotoPerfil : "/IMG/epigrafe73.png"}
+                    src={
+                      usuario?.fotoPerfil
+                        ? usuario.fotoPerfil
+                        : "/IMG/epigrafe73.png"
+                    }
                     alt={
                       nombreImagen
                         ? nombreImagen
                         : "Imagen de Perfil Por Defecto"
                     }
                   />
-                  <section>
+                  <section style={{ wordBreak: "keep-all" }}>
                     <section>{usuario.nombreDeUsuario}</section>
                     <section>{usuario.correoElectronicoDeUsuario}</section>
                   </section>
