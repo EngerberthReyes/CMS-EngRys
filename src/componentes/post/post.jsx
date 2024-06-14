@@ -17,23 +17,19 @@ const Post = ({ post, usuario }) => {
             className={stylesPost.seccionPrincipal}
           >
             <section className={stylesPost.seccionGrid}>
-              <section
-                style={{
-                  border: "none",
-                  wordBreak: "revert",
-                  width: "70%",
-                  height: "5rem",
-                  display: "flex",
-                  justifyContent: "center",
-                  alignItems: "center",
-                }}
-              >
-                <h1>Las Opciones Van Aqui Arriba</h1>
+              <section style={{ display: "flex", width: "95%" }}>
                 {usuario && (
                   <>
                     <Link
                       className={`${stylesPost.enlace} ${stylesPost.usuarioPerfil}`}
-                      style={{ border: "none" }}
+                      style={{
+                        border: "none",
+                        wordBreak: "keep-all",
+                        height: "5rem",
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                      }}
                       href="/perfil"
                     >
                       <Image
