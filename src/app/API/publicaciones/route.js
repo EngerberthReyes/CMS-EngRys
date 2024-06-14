@@ -2,6 +2,8 @@ import { serialize } from "cookie";
 import { sign, verify } from "jsonwebtoken";
 import { NextResponse } from "next/server";
 import { cmsConexion } from "@/db/database";
+import { promises as fs } from "fs";
+import path from "path";
 import { hash, compare } from "bcryptjs";
 
 export const POST = async (request) => {
@@ -18,6 +20,21 @@ export const POST = async (request) => {
     const youtubeUrlValor =
       youtubeUrl && youtubeUrl.length > 0 ? youtubeUrl : null;
     console.log(videoValor);
+
+    const bytes = await imagenValor.arrayBuffer();
+    const buffer = Buffer.from(bytes);
+
+    const fileName = imagenArchivo.name;
+    const filePath = path.posix.join(
+      process.cwd(),
+      "public/FotosEnPublicaciones",
+      fileName
+    );
+
+    await fs.writeFile(filePath, buffer);
+
+    const fotoPublicacion = path.posix.join("/FotosEnPublicaciones", fileName);
+
     const fechaActual = () => {
       const ahora = new Date();
       const year = ahora.getFullYear();
@@ -66,7 +83,7 @@ export const POST = async (request) => {
       mensaje.replace(/<.*?>/g, ""),
       fecha,
       enlaceValor,
-      imagenValor,
+      fotoPublicacion,
       videoValor,
       youtubeUrlValor,
     ]);

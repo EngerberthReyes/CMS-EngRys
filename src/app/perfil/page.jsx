@@ -94,7 +94,7 @@ const Perfil = () => {
         const usuarioActivo = respuestaDeModificacion.data;
         console.log(usuarioActivo);
         if (usuarioActivo) {
-          setUsuario();
+          setImagen(usuario);
         } else {
           console.log("No se recibió una URL de la imagen o imagen valida");
         }
@@ -302,8 +302,8 @@ const Perfil = () => {
                     width={35}
                     height={20}
                     src={
-                      usuario?.fotoPerfil
-                        ? usuario?.fotoPerfil
+                      usuario?.fotoPerfil || imagen
+                        ? usuario?.fotoPerfil || imagen
                         : "/IMG/epigrafe73.png"
                     }
                     alt={
