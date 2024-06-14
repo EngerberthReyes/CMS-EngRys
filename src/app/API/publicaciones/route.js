@@ -9,13 +9,15 @@ export const POST = async (request) => {
     const { mensaje, nombreImagen, enlaces, imagen, youtubeUrl } =
       await request.json();
 
+    console.log(mensaje, nombreImagen, enlaces, imagen, youtubeUrl);
+
     const enlaceValor = enlaces && enlaces.length > 0 ? enlaces : null;
     const imagenValor = imagen && imagen.length > 0 ? imagen : null;
     const videoValor =
-      imagen.name.includes(".mp4") && imagen.length > 0 ? imagen : null;
+      nombreImagen.name.includes(".mp4") && imagen.length > 0 ? imagen : null;
     const youtubeUrlValor =
       youtubeUrl && youtubeUrl.length > 0 ? youtubeUrl : null;
-
+    console.log(videoValor);
     const fechaActual = () => {
       const ahora = new Date();
       const year = ahora.getFullYear();
@@ -26,8 +28,6 @@ export const POST = async (request) => {
     };
 
     const fecha = fechaActual();
-
-    console.log(fecha);
 
     console.log(mensaje.replace(/<.*?>/g, ""));
     const cookieValue = request.cookies.get("cookieInformacion").value;
