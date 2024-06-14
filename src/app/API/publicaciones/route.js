@@ -27,13 +27,21 @@ export const POST = async (request) => {
 
     const idPersona = recoleccionId[0].id_persona;
 
-    const consultaInterfaz = `INSERT INTO options (id_interfaz, id_persona, titulo, contenido)  VALUES (?, ?, ?, ?)`;
-    const actualizacionPerfil = await cmsConexion.query(consultaInterfaz, [
-      1,
-      idPersona,
-      "Publicacion",
-      "Comentario",
-    ]);
+    if (titulo || informacion) {
+      const consultaInterfaz = `INSERT INTO options (nombre_interfaz)  VALUES (?)`;
+      const actualizacionInterfaces = await cmsConexion.query(
+        consultaInterfaz,
+        ["Titulo"]
+      );
+
+      const consultaOpciones = `INSERT INTO options (id_interfaz, id_persona, titulo, contenido)  VALUES (?, ?, ?, ?)`;
+      const actualizacionOpciones = await cmsConexion.query(consultaOpciones, [
+        1,
+        idPersona,
+        "Titulo",
+        "Informacion",
+      ]);
+    }
 
     console.log(idPersona);
 
