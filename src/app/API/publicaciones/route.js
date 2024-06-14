@@ -28,10 +28,11 @@ export const POST = async (request) => {
 
     const idPersona = recoleccionId[0].id_persona;
 
-    const consultaInterfaz = `INSERT INTO publicaciones(id_persona, descripcion_publicacion, fecha, enlace, imagen, video, urlVideo) VALUES (?, ?, ?, ?, ?, ?, ?)`;
-    const actualizacionInterfaces = await cmsConexion.query(consultaInterfaz, [
+    const consultaPublicacion = `INSERT INTO publicaciones (id_publicacion, id_persona, descripcion_publicacion, fecha, enlace, imagen, video, urlVideo) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
+    const publicacion = await cmsConexion.query(consultaPublicacion, [
+      null,
       idPersona,
-      mensaje,
+      mensaje.replace(/<.*?>/g, ""),
       now(),
       enlaces,
       imagenUrl,
@@ -39,7 +40,8 @@ export const POST = async (request) => {
       youtubeUrl,
     ]);
 
-    console.log(consultaInterfaz);
+    console.log(publicacion);
+    console.log(idPersona);
 
     if (titulo || informacion) {
       const consultaInterfaz = `INSERT INTO options (nombre_interfaz)  VALUES (?)`;
@@ -56,8 +58,6 @@ export const POST = async (request) => {
         "Informacion",
       ]);
     }
-
-    console.log(idPersona);
 
     return NextResponse.json(postEnviado);
   } catch (error) {
