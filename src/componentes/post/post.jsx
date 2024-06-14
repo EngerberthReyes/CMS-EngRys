@@ -2,8 +2,8 @@
 
 import Image from "next/image";
 import Link from "next/link";
+import Details from "@/componentes/tiptap/Details";
 import stylesPost from "../CSSComponentes/post.module.css";
-import { useState, useEffect } from "react";
 
 const Post = ({ post, nombreDeUsuario, usuario }) => {
   console.log(post);
@@ -52,7 +52,9 @@ const Post = ({ post, nombreDeUsuario, usuario }) => {
                 )}
               </section>
               <section>
-                <h1 className={stylesPost.mensaje}>{elementoPost.mensaje}</h1>
+                <>
+                  <Details description={elementoPost.mensaje} />
+                </>
                 {elementoPost.enlaces && (
                   <>
                     {elementoPost.enlaces.map((enlace, index) => (

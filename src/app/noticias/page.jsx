@@ -6,6 +6,8 @@ import Post from "@/componentes/post/post.jsx";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
+import "../CSS/App.css";
+import { Tiptap } from "@/componentes/tiptap/TipTap";
 import { useRouter } from "next/navigation";
 import stylesNoticias from "../CSS/styles-noticias.module.css";
 
@@ -27,7 +29,7 @@ const Noticias = () => {
   const [interructor, setInterructor] = useState(true);
   const [imagenesPorExceso, setImagenesPorExceso] = useState();
   const [temaActual, setTemaActual] = useState();
-  const mensaje = watch("mensaje");
+  const [mensaje, setMensaje] = useState();
 
   console.log(mensaje);
 
@@ -141,14 +143,17 @@ const Noticias = () => {
     }
   };
 
-  const enviarPost = async (nuevoPost) => {
+  const enviarPost = async (mensaje) => {
     const regexUrl = /(https?:\/\/[^\s]+)/g;
     const urlExtensions = /\.(jpeg|jpg|gif|png|bmp|webp)(\?.*)?$/i;
     const youtubeRegex =
       /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/;
-
-    const mensaje = nuevoPost.mensaje;
-    const urls = mensaje.match(regexUrl) || [];
+    console.log(mensaje);
+    const mensajePost = mensaje;
+    const mensajePostNormal =
+      typeof mensaje === "string" ? mensaje.replace(/<.*?>/g, "") : "";
+    console.log(mensajePostNormal);
+    const urls = mensajePostNormal.match(regexUrl) || [];
     const imagenUrl = [];
     const enlaces = [];
     const youtubeUrl = [];
@@ -163,7 +168,12 @@ const Noticias = () => {
       }
     });
 
-    const texto = mensaje.replace(regexUrl, "").trim();
+    const texto =
+      typeof mensaje === "string" ? mensaje.replace(regexUrl, "").trim() : "";
+
+      if (!texto) {
+        return
+      }
 
     console.log("Texto:", texto);
     console.log("Imágenes:", imagenUrl);
@@ -316,14 +326,11 @@ const Noticias = () => {
                       encType="multipart/form-data"
                       onSubmit={handleSubmit(enviarPost)}
                     >
-                      <textarea
-                        className={stylesNoticias.textArea}
-                        onKeyDown={enviarComentarioTecla}
-                        {...register("mensaje", {
-                          required: false,
-                        })}
-                      ></textarea>
+                      <section className="App">
+                        <Tiptap setDescription={setMensaje} />
+                      </section>
                       <button
+                        onClick={() => enviarPost(mensaje)}
                         disabled={
                           (!mensaje ||
                             mensaje.replace(/[\n\r]/g, "").trim().length <=
@@ -424,7 +431,13 @@ const Noticias = () => {
                   </section>
                 </section>
               </section>
-              {post && <Post post={post} nombreDeUsuario={nombreDeUsuario} usuario={usuario} />}
+              {post && (
+                <Post
+                  post={post}
+                  nombreDeUsuario={nombreDeUsuario}
+                  usuario={usuario}
+                />
+              )}
             </section>
             <section className={stylesNoticias.seccionTerciaria}>
               <section className={stylesNoticias.seccionAjustes}>
