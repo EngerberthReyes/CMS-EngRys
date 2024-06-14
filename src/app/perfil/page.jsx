@@ -723,7 +723,7 @@ const Perfil = () => {
                                         </>
                                       ) : (
                                         <input
-                                          defaultValue={usuario.fechaNacimiento}
+                                          value={usuario?.fechaNacimiento}
                                           className={stylesPerfil.inputClave}
                                           type="date"
                                           readOnly
