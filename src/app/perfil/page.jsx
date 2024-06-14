@@ -237,7 +237,7 @@ const Perfil = () => {
   useEffect(() => {
     obtenerPerfil();
     console.log("xd");
-  }, [usuario]);
+  }, [interruptorCambio]);
 
   const cerrarPerfil = async () => {
     try {
