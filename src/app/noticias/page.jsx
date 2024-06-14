@@ -182,28 +182,27 @@ const Noticias = () => {
     console.log("Enlaces:", enlaces);
     console.log("Youtube", youtubeUrl);
 
-    const postEnviado = {
-      mensaje: texto,
-      nombreImagen: nombreImagen,
-      imagen: imagen,
-      imagenUrl: imagenUrl,
-      enlaces: enlaces,
-      youtubeUrl: youtubeUrl,
-    };
-    if (postEnviado) {
-      setPost([...post, postEnviado]);
-      setNombreImagen([]);
-      setImagen([]);
-      setMensaje("");
-      setInterructor(true);
-    }
-
     try {
-      const respuesta = await axios.post("/API", { algo });
+      const postEnviado = {
+        mensaje: texto,
+        nombreImagen: nombreImagen,
+        imagen: imagen,
+        imagenUrl: imagenUrl,
+        enlaces: enlaces,
+        youtubeUrl: youtubeUrl,
+      };
+      if (postEnviado) {
+        setPost([...post, postEnviado]);
+        setNombreImagen([]);
+        setImagen([]);
+        setMensaje("");
+        setInterructor(true);
+        const respuesta = await axios.post("../API/publicaciones", postEnviado);
+        console.log(respuesta);
+      }
     } catch (error) {
       console.error(error);
     }
-    reset();
   };
 
   const enviarComentarioTecla = (event) => {

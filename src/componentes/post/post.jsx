@@ -4,6 +4,8 @@ import Image from "next/image";
 import Link from "next/link";
 import Details from "@/componentes/tiptap/Details";
 import stylesPost from "../CSSComponentes/post.module.css";
+import axios from "axios";
+import { useEffect } from "react";
 
 const Post = ({ post, nombreDeUsuario, usuario }) => {
   console.log(post);
