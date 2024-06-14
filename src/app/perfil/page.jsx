@@ -672,7 +672,7 @@ const Perfil = () => {
                                         />
                                       ) : (
                                         <input
-                                          defaultValue={
+                                          value={
                                             usuario.correoElectronicoDeUsuario
                                           }
                                           className={stylesPerfil.inputClave}

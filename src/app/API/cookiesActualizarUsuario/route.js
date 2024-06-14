@@ -65,10 +65,10 @@ export const PUT = async (request) => {
       );
     }
 
-    const consultaActualizacionPerfil = `SELECT id_persona FROM personas AS p WHERE correo_electronico = ?;`;
+    const consultaActualizacionPerfil = `SELECT id_persona FROM personas AS p WHERE id_persona = ?;`;
     const actualizacionPerfil = await cmsConexion.query(
       consultaActualizacionPerfil,
-      [verificacionCookie.correoElectronicoDeUsuario]
+      [verificacionCookie.idPersona]
     );
 
     const idPersona = actualizacionPerfil[0].id_persona;
