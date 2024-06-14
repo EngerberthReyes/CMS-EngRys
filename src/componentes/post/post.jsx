@@ -25,7 +25,8 @@ const Post = ({ post, usuario }) => {
                       style={{
                         border: "none",
                         wordBreak: "keep-all",
-                        height: "5rem",
+                        height: "4rem",
+                        margin: "0 0 1rem 0",
                         display: "flex",
                         justifyContent: "center",
                         alignItems: "center",
