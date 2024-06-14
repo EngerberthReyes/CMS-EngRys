@@ -993,6 +993,12 @@ const Perfil = () => {
                           }
                         })}
                         <button
+                          style={{
+                            position: "absolute",
+                            left: "2rem",
+                            bottom: "1rem",
+                            background: "#0f0f0fbf",
+                          }}
                           className={stylesPerfil.seccionElemento}
                           type="submit"
                         >
