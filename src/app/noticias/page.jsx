@@ -148,6 +148,9 @@ const Noticias = () => {
     const urlExtensions = /\.(jpeg|jpg|gif|png|bmp|webp)(\?.*)?$/i;
     const youtubeRegex =
       /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/;
+      if (typeof mensaje === "object") {
+        return
+      }
     console.log(mensaje);
     const mensajePost = mensaje;
     const mensajePostNormal =
@@ -167,11 +170,10 @@ const Noticias = () => {
         enlaces.push(url);
       }
     });
+console.log(mensaje)
+    const texto = mensaje;
 
-    const texto =
-      typeof mensaje === "string" ? mensaje.replace(regexUrl, "").trim() : "";
-
-      if (!texto) {
+      if (!texto || typeof mensaje === "object") {
         return
       }
 
@@ -192,6 +194,7 @@ const Noticias = () => {
       setPost([...post, postEnviado]);
       setNombreImagen([]);
       setImagen([]);
+      setMensaje("");
       setInterructor(true);
     }
 
