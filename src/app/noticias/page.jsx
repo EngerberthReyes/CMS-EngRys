@@ -411,7 +411,7 @@ const Noticias = () => {
                   </section>
                 </section>
               </section>
-              {post && <Post post={post} />}
+              {post && <Post post={post} usuario={usuario}  />}
             </section>
             <section className={stylesNoticias.seccionTerciaria}>
               <section className={stylesNoticias.seccionAjustes}>

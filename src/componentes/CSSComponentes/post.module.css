@@ -198,6 +198,20 @@
   margin: 0;
 }
 
+.usuarioPerfil {
+  display: flex;
+  flex-direction: row;
+  column-gap: 1rem;
+  padding: 1rem;
+}
+
+.imagenes {
+  aspect-ratio: 1 / 1;
+  border-radius: 25px;
+  width: auto;
+  height: 3rem;
+}
+
 @media (prefers-color-scheme: dark) {
   .header {
     background-color: #0f0f0f9e;

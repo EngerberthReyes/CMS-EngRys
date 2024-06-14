@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import stylesPost from "../CSSComponentes/post.module.css";
 
-const Post = ({ post }) => {
+const Post = ({ post, usuario }) => {
   console.log(post);
   return (
     <>
@@ -17,7 +17,43 @@ const Post = ({ post }) => {
             className={stylesPost.seccionPrincipal}
           >
             <section className={stylesPost.seccionGrid}>
-              <h1>Las Opciones Van Aqui Arriba</h1>
+              <section
+                style={{
+                  border: "none",
+                  wordBreak: "revert",
+                  width: "70%",
+                  height: "5rem",
+                  display: "flex",
+                  justifyContent: "center",
+                  alignItems: "center",
+                }}
+              >
+                <h1>Las Opciones Van Aqui Arriba</h1>
+                {usuario && (
+                  <>
+                    <Link
+                      className={`${stylesPost.enlace} ${stylesPost.usuarioPerfil}`}
+                      style={{ border: "none" }}
+                      href="/perfil"
+                    >
+                      <Image
+                        className={stylesPost.imagenes}
+                        width={35}
+                        height={20}
+                        src={
+                          usuario?.fotoPerfil
+                            ? usuario.fotoPerfil
+                            : "/IMG/epigrafe73.png"
+                        }
+                      />
+                      <section style={{ wordBreak: "keep-all" }}>
+                        <section>{usuario.nombreDeUsuario}</section>
+                        <section>{usuario.correoElectronicoDeUsuario}</section>
+                      </section>
+                    </Link>
+                  </>
+                )}
+              </section>
               <section>
                 <h1 className={stylesPost.mensaje}>{elementoPost.mensaje}</h1>
                 {elementoPost.enlaces && (
