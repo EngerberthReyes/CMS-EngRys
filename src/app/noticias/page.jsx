@@ -171,7 +171,14 @@ const Noticias = () => {
       }
     });
     console.log(mensaje);
-    const texto = mensaje;
+
+    const combinedRegex = new RegExp(
+      `${regexUrl.source}|${urlExtensions.source}|${youtubeRegex.source}`,
+      "gi"
+    );
+
+    // Reemplazar todas las coincidencias encontradas con una cadena vacía
+    const texto = mensaje.replace(combinedRegex, "");
 
     if (!texto || typeof mensaje === "object") {
       return;
