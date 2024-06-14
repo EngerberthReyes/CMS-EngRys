@@ -14,16 +14,18 @@ export const POST = async (request) => {
     const youtubeUrlValue =
       youtubeUrl && youtubeUrl.length > 0 ? youtubeUrl : null;
 
-    function fechaActual() {
+    const fechaActual = () => {
       const ahora = new Date();
-      const year = now.getFullYear();
+      const year = ahora.getFullYear();
       const mes = String(ahora.getMonth() + 1).padStart(2, "0");
       const dia = String(ahora.getDate()).padStart(2, "0");
 
       return `${year}-${mes}-${dia}`;
-    }
+    };
 
     const fecha = fechaActual();
+
+    console.log(fecha)
 
     console.log(mensaje.replace(/<.*?>/g, ""));
     const cookieValue = request.cookies.get("cookieInformacion").value;
