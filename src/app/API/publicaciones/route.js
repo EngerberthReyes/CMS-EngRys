@@ -6,7 +6,7 @@ import { hash, compare } from "bcryptjs";
 
 export const POST = async (request) => {
   try {
-    const { mensaje, nombreImagen, imagenUrl, enlaces, youtubeUrl } =
+    const { mensaje, nombreImagen, imagenUrl, imagen, enlaces, youtubeUrl } =
       await request.json();
     console.log(mensaje.replace(/<.*?>/g, ""));
     const cookieValue = request.cookies.get("cookieInformacion").value;
@@ -27,17 +27,27 @@ export const POST = async (request) => {
     ]);
 
     const idPersona = recoleccionId[0].id_persona;
-console.log(idPersona)
-    const consultaPublicacion = `INSERT INTO publicaciones (id_publicacion, id_persona, descripcion_publicacion, fecha, enlace, imagen, video, urlVideo) VALUES (?, ?, ?, ?, ?, ?, ?, ?)`;
+    console.log(idPersona);
+    const consultaPublicacion = `INSERT INTO publicaciones (
+  id_publicacion, 
+  id_persona, 
+  descripcion_publicacion, 
+  fecha, 
+  enlace, 
+  imagen, 
+  video, 
+  urlVideo
+) VALUES (?, ?, ?, ?, ?, ?, ?, ?);`;
+
     const publicacion = await cmsConexion.query(consultaPublicacion, [
       null,
       idPersona,
       mensaje.replace(/<.*?>/g, ""),
       now(),
-      enlaces,
-      imagenUrl,
-      video,
-      youtubeUrl,
+      enlaces ? enlaces : null,
+      imagen ? imagen : null,
+      imagen ? imagen : null,
+      youtubeUrl ? youtubeUrl : null,
     ]);
 
     console.log(publicacion);
