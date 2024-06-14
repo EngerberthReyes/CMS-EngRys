@@ -55,7 +55,9 @@ const Post = ({ post, nombreDeUsuario, usuario }) => {
               </section>
               <section>
                 <>
-                  <Details description={elementoPost.mensaje} />
+                  {elementoPost.mensaje && (
+                    <Details description={elementoPost.mensaje} />
+                  )}
                 </>
                 {elementoPost.enlaces && (
                   <>

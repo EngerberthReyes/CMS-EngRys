@@ -177,7 +177,6 @@ const Noticias = () => {
       "gi"
     );
 
-    // Reemplazar todas las coincidencias encontradas con una cadena vacía
     const texto = mensaje.replace(combinedRegex, "");
 
     if (!texto || typeof mensaje === "object") {
