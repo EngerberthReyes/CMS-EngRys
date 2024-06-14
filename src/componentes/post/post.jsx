@@ -3,8 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import stylesPost from "../CSSComponentes/post.module.css";
+import { useState, useEffect } from "react";
 
-const Post = ({ post, usuario }) => {
+const Post = ({ post, nombreDeUsuario, usuario }) => {
   console.log(post);
   return (
     <>
@@ -44,8 +45,7 @@ const Post = ({ post, usuario }) => {
                         }
                       />
                       <section style={{ wordBreak: "keep-all" }}>
-                        <section>{usuario.nombreDeUsuario}</section>
-                        <section>{usuario.correoElectronicoDeUsuario}</section>
+                        <section>{nombreDeUsuario}</section>
                       </section>
                     </Link>
                   </>

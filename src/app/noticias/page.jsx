@@ -204,6 +204,19 @@ const Noticias = () => {
     }
   };
 
+  const [nombreDeUsuario, setNombreDeUsuario] = useState();
+  useEffect(() => {
+    if (!usuario) return;
+
+    const nombreCompleto = usuario.nombreCompletoUsuario;
+    const nombreApellido = nombreCompleto ? nombreCompleto.split(" ") : [];
+
+    const nombreDeUsuario = `${nombreApellido[0] ? nombreApellido[0] : ""} ${
+      nombreApellido[2] ? nombreApellido[2] : ""
+    }`;
+    setNombreDeUsuario(nombreDeUsuario);
+  }, [usuario]);
+
   return (
     <>
       <head>
@@ -252,7 +265,7 @@ const Noticias = () => {
                     }
                   />
                   <section style={{ wordBreak: "keep-all" }}>
-                    <section>{usuario.nombreDeUsuario}</section>
+                    <section>{nombreDeUsuario}</section>
                     <section>{usuario.correoElectronicoDeUsuario}</section>
                   </section>
                 </Link>
@@ -411,7 +424,7 @@ const Noticias = () => {
                   </section>
                 </section>
               </section>
-              {post && <Post post={post} usuario={usuario}  />}
+              {post && <Post post={post} nombreDeUsuario={nombreDeUsuario} usuario={usuario} />}
             </section>
             <section className={stylesNoticias.seccionTerciaria}>
               <section className={stylesNoticias.seccionAjustes}>

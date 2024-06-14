@@ -44,6 +44,20 @@ const Inicio = () => {
       window.location.reload();
     }
   };
+
+  const [nombreDeUsuario, setNombreDeUsuario] = useState();
+  useEffect(() => {
+    if (!usuario) return;
+
+    const nombreCompleto = usuario.nombreCompletoUsuario;
+    const nombreApellido = nombreCompleto ? nombreCompleto.split(" ") : [];
+
+    const nombreDeUsuario = `${nombreApellido[0] ? nombreApellido[0] : ""} ${
+      nombreApellido[2] ? nombreApellido[2] : ""
+    }`;
+    setNombreDeUsuario(nombreDeUsuario);
+  }, [usuario]);
+
   return (
     <>
       <head>
@@ -92,7 +106,7 @@ const Inicio = () => {
                     }
                   />
                   <section>
-                    <section>{usuario.nombreDeUsuario}</section>
+                    <section>{nombreDeUsuario}</section>
                     <section>{usuario.correoElectronicoDeUsuario}</section>
                   </section>
                 </Link>

@@ -9,7 +9,7 @@ import stylesNosotros from "../CSS/styles-sobreNosotros.module.css";
 
 const SobreNosotros = () => {
   console.log("Nuevo Mensaje");
-const enrutadorMaster = useRouter();
+  const enrutadorMaster = useRouter();
   const [usuario, setUsuario] = useState();
   const [imagen, setImagen] = useState();
   const [nombreImagen, setNombreImagen] = useState();
@@ -80,6 +80,19 @@ const enrutadorMaster = useRouter();
       enrutadorMaster.push("/");
     }
   };
+
+  const [nombreDeUsuario, setNombreDeUsuario] = useState();
+  useEffect(() => {
+    if (!usuario) return;
+
+    const nombreCompleto = usuario.nombreCompletoUsuario;
+    const nombreApellido = nombreCompleto ? nombreCompleto.split(" ") : [];
+
+    const nombreDeUsuario = `${nombreApellido[0] ? nombreApellido[0] : ""} ${
+      nombreApellido[2] ? nombreApellido[2] : ""
+    }`;
+    setNombreDeUsuario(nombreDeUsuario);
+  }, [usuario]);
   return (
     <>
       <head>
@@ -116,7 +129,11 @@ const enrutadorMaster = useRouter();
                     className={stylesNosotros.imagenes}
                     width={35}
                     height={20}
-                    src={usuario?.fotoPerfil ? usuario.fotoPerfil : "/IMG/epigrafe73.png"}
+                    src={
+                      usuario?.fotoPerfil
+                        ? usuario.fotoPerfil
+                        : "/IMG/epigrafe73.png"
+                    }
                     alt={
                       nombreImagen
                         ? nombreImagen
@@ -124,7 +141,7 @@ const enrutadorMaster = useRouter();
                     }
                   />
                   <section style={{ wordBreak: "keep-all" }}>
-                    <section>{usuario.nombreDeUsuario}</section>
+                    <section>{nombreDeUsuario}</section>
                     <section>{usuario.correoElectronicoDeUsuario}</section>
                   </section>
                 </Link>
