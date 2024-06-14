@@ -106,6 +106,12 @@ button.is_active {
   border-radius: 2px;
 }
 
+ul,
+ol,
+li {
+  margin: 0 !important;
+}
+
 @media (prefers-color-scheme: light) {
   .ProseMirror {
     background: #e0e0e0;
