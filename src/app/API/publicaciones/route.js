@@ -20,13 +20,21 @@ export const POST = async (request) => {
       );
     }
 
-    const consultaActualizacionPerfil = `SELECT id_persona FROM personas AS p WHERE id_persona = ?;`;
-    const actualizacionPerfil = await cmsConexion.query(
-      consultaActualizacionPerfil,
-      [verificacionCookie.idPersona]
-    );
+    const consultaPerfil = `SELECT id_persona FROM personas AS p WHERE id_persona = ?;`;
+    const recoleccionId = await cmsConexion.query(consultaPerfil, [
+      verificacionCookie.idPersona,
+    ]);
 
-    const idPersona = actualizacionPerfil[0].id_persona;
+    const idPersona = recoleccionId[0].id_persona;
+
+    const consultaInterfaz = `INSERT INTO options (id_interfaz, id_persona, titulo, contenido)  VALUES (?, ?, ?, ?)`;
+    const actualizacionPerfil = await cmsConexion.query(consultaInterfaz, [
+      1,
+      idPersona,
+      "Publicacion",
+      "Comentario",
+    ]);
+
     console.log(idPersona);
 
     return NextResponse.json(postEnviado);
