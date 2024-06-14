@@ -9,9 +9,11 @@ export const POST = async (request) => {
     const { mensaje, nombreImagen, enlaces, imagen, youtubeUrl } =
       await request.json();
 
-    const enlaceValue = enlaces && enlaces.length > 0 ? enlaces : null;
-    const imagenValue = imagen && imagen.length > 0 ? imagen : null;
-    const youtubeUrlValue =
+    const enlaceValor = enlaces && enlaces.length > 0 ? enlaces : null;
+    const imagenValor = imagen && imagen.length > 0 ? imagen : null;
+    const videoValor =
+      imagen.name.includes(".mp4") && imagen.length > 0 ? imagen : null;
+    const youtubeUrlValor =
       youtubeUrl && youtubeUrl.length > 0 ? youtubeUrl : null;
 
     const fechaActual = () => {
@@ -25,7 +27,7 @@ export const POST = async (request) => {
 
     const fecha = fechaActual();
 
-    console.log(fecha)
+    console.log(fecha);
 
     console.log(mensaje.replace(/<.*?>/g, ""));
     const cookieValue = request.cookies.get("cookieInformacion").value;
@@ -63,10 +65,10 @@ export const POST = async (request) => {
       idPersona,
       mensaje.replace(/<.*?>/g, ""),
       fecha,
-      enlaceValue,
-      imagenValue,
-      imagenValue,
-      youtubeUrlValue,
+      enlaceValor,
+      imagenValor,
+      videoValor,
+      youtubeUrlValor,
     ]);
 
     console.log(publicacion);
