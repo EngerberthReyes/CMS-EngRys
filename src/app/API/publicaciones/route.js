@@ -8,10 +8,10 @@ import { hash, compare } from "bcryptjs";
 
 export const POST = async (request) => {
   try {
-    const { mensaje, nombreImagen, enlaces, imagen, youtubeUrl } =
+    const { mensaje, nombreImagen, enlaces, imagen, imagenesRuta, youtubeUrl } =
       await request.json();
 
-    console.log(mensaje, nombreImagen, enlaces, imagen, youtubeUrl);
+    console.log(mensaje, nombreImagen, enlaces, imagen, imagenesRuta, youtubeUrl);
 
     const enlaceValor = enlaces && enlaces.length > 0 ? enlaces : null;
     const imagenValor = imagen && imagen.length > 0 ? imagen : null;
@@ -21,10 +21,10 @@ export const POST = async (request) => {
       youtubeUrl && youtubeUrl.length > 0 ? youtubeUrl : null;
     console.log(videoValor);
 
-    const bytes = await imagenValor.arrayBuffer();
+    const bytes = await imagenesRestantes.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
-    const fileName = imagenArchivo.name;
+    const fileName = imagenesRestantes.name;
     const filePath = path.posix.join(
       process.cwd(),
       "public/FotosEnPublicaciones",

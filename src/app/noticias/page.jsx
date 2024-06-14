@@ -28,8 +28,11 @@ const Noticias = () => {
   const [imagenPerfil, setImagenPerfil] = useState(null);
   const [interructor, setInterructor] = useState(true);
   const [imagenesPorExceso, setImagenesPorExceso] = useState();
+  const [imagenesRuta, setImagenesRuta] = useState();
   const [temaActual, setTemaActual] = useState();
   const [mensaje, setMensaje] = useState();
+
+  console.log(imagenesRuta)
 
   console.log(mensaje);
 
@@ -91,20 +94,44 @@ const Noticias = () => {
     }
   };
 
-  const agregarArchivo = (event) => {
+  const agregarArchivo = async (event) => {
     const archivos = event.target.files;
     if (archivos && archivos.length > 0) {
-      const archivosRecorridos = Object.values(archivos);
-      const nuevasImagenes = [...imagen, ...archivosRecorridos];
-      const imagenesRestantes = nuevasImagenes.slice(0, 12);
-      setImagenesPorExceso(`${12 - imagenesRestantes.length}`);
-      const nombres = imagenesRestantes.map((archivo) => archivo.name);
-      setNombreImagen(nombres);
-      setImagen(imagenesRestantes);
-      setInterructor(false);
-      event.target.value = "";
+      try {
+        const archivosRecorridos = Object.values(archivos);
+        const nuevasImagenes = [...imagen, ...archivosRecorridos];
+        const imagenesRestantes = nuevasImagenes.slice(0, 12);
+        setImagenesPorExceso(`${12 - imagenesRestantes.length}`);
+
+        const nombres = imagenesRestantes.map((archivo) => archivo.name);
+        console.log(imagenesRestantes);
+
+        const formData = new FormData();
+        imagenesRestantes.forEach((file) => {
+          formData.append("imagenes", file);
+        });
+
+        const respuesta = await axios.post("/API/ImagenYVideo", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+
+        const rutaImagenes = [respuesta.data];
+
+        console.log(rutaImagenes)
+
+        setNombreImagen(nombres.join(", "));
+        setImagen(imagenesRestantes);
+        setImagenesRuta(rutaImagenes);
+        setInterructor(false);
+
+        event.target.value = "";
+      } catch (error) {
+        console.error(error);
+      }
     } else {
-      console.log("Se Selecciono Ningun Archivo");
+      console.log("No se seleccionó ningún archivo");
     }
   };
 
@@ -188,23 +215,27 @@ const Noticias = () => {
     console.log("Enlaces:", enlaces);
     console.log("Youtube", youtubeUrl);
 
+    console.log(imagenesRuta);
+
     try {
       const postEnviado = {
         mensaje: texto,
         nombreImagen: nombreImagen,
         imagen: imagen,
+        imagenesRuta: imagenesRuta,
         imagenUrl: imagenUrl,
         enlaces: enlaces,
         youtubeUrl: youtubeUrl,
       };
       if (postEnviado) {
         setPost([...post, postEnviado]);
+        const respuesta = await axios.post("../API/publicaciones", postEnviado);
+        console.log(respuesta);
         setNombreImagen([]);
         setImagen([]);
         setMensaje("");
+        setImagenesRuta('')
         setInterructor(true);
-        const respuesta = await axios.post("../API/publicaciones", postEnviado);
-        console.log(respuesta);
       }
     } catch (error) {
       console.error(error);

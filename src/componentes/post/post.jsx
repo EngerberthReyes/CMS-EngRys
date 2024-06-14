@@ -101,7 +101,7 @@ const Post = ({ post, nombreDeUsuario, usuario }) => {
                             <>
                               <video
                                 className={stylesPost.imagen}
-                                src={URL.createObjectURL(archivo)}
+                                src={archivo.imagenesRuta}
                                 property
                                 fill
                                 controls
