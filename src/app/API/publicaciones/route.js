@@ -27,11 +27,12 @@ export const POST = async (request) => {
 
     const idPersona = recoleccionId[0].id_persona;
 
-    const consultaInterfaz = `    INSERT INTO publicaciones(id_persona, descripcion_publicacion, fecha, imagen, video, urlVideo) VALUES (?, ?, ?, ?,)`;
+    const consultaInterfaz = `    INSERT INTO publicaciones(id_persona, descripcion_publicacion, fecha, enlace, imagen, video, urlVideo) VALUES (?, ?, ?, ?, ?, ?, ?)`;
     const actualizacionInterfaces = await cmsConexion.query(consultaInterfaz, [
       idPersona,
       mensaje,
       now(),
+      enlace,
       imagen,
       video,
       urlVideo
