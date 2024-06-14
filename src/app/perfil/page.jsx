@@ -697,7 +697,7 @@ const Perfil = () => {
                                       ) : (
                                         <input
                                           value={
-                                            usuario.numeroCodigoPostal
+                                            usuario?.numeroCodigoPostal
                                               ? usuario.numeroCodigoPostal
                                               : usuario.numero_codigo_postal
                                           }
