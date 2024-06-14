@@ -14,7 +14,7 @@ export const POST = async (request) => {
     const enlaceValor = enlaces && enlaces.length > 0 ? enlaces : null;
     const imagenValor = imagen && imagen.length > 0 ? imagen : null;
     const videoValor =
-      nombreImagen.name.includes(".mp4") && imagen.length > 0 ? imagen : null;
+      nombreImagen.includes(".mp4") && imagen.length > 0 ? imagen : null;
     const youtubeUrlValor =
       youtubeUrl && youtubeUrl.length > 0 ? youtubeUrl : null;
     console.log(videoValor);
