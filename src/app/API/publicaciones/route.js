@@ -6,8 +6,9 @@ import { hash, compare } from "bcryptjs";
 
 export const POST = async (request) => {
   try {
-    const postEnviado = await request.json();
-    console.log(postEnviado);
+    const { mensaje, nombreImagen, imagenUrl, enlaces, youtubeUrl } =
+      await request.json();
+    console.log(enlaces);
     const cookieValue = request.cookies.get("cookieInformacion").value;
     console.log(cookieValue);
 
@@ -27,16 +28,18 @@ export const POST = async (request) => {
 
     const idPersona = recoleccionId[0].id_persona;
 
-    const consultaInterfaz = `    INSERT INTO publicaciones(id_persona, descripcion_publicacion, fecha, enlace, imagen, video, urlVideo) VALUES (?, ?, ?, ?, ?, ?, ?)`;
+    const consultaInterfaz = `INSERT INTO publicaciones(id_persona, descripcion_publicacion, fecha, enlace, imagen, video, urlVideo) VALUES (?, ?, ?, ?, ?, ?, ?)`;
     const actualizacionInterfaces = await cmsConexion.query(consultaInterfaz, [
       idPersona,
       mensaje,
       now(),
-      enlace,
-      imagen,
+      enlaces,
+      imagenUrl,
       video,
-      urlVideo
+      youtubeUrl,
     ]);
+
+    console.log(consultaInterfaz);
 
     if (titulo || informacion) {
       const consultaInterfaz = `INSERT INTO options (nombre_interfaz)  VALUES (?)`;
@@ -58,7 +61,7 @@ export const POST = async (request) => {
 
     return NextResponse.json(postEnviado);
   } catch (error) {
-    console.error("Error al modificar la cookie con JWT:", error);
+    console.error(error);
     return new NextResponse("Error interno del servidor", { status: 500 });
   }
 };
