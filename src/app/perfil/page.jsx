@@ -688,7 +688,7 @@ const Perfil = () => {
                                       elementoActivo === index ? (
                                         <input
                                           defaultValue={
-                                            usuario.numeroCodigoPostal
+                                            usuario?.numeroCodigoPostal
                                           }
                                           {...register(iterador)}
                                           className={stylesPerfil.inputClave}
@@ -745,7 +745,7 @@ const Perfil = () => {
                                         </>
                                       ) : (
                                         <input
-                                          defaultValue={usuario.cedula}
+                                          value={usuario?.cedula}
                                           className={stylesPerfil.inputClave}
                                           type="number"
                                           readOnly
@@ -838,7 +838,7 @@ const Perfil = () => {
                                         <Link
                                           href={
                                             usuario?.sitio_web
-                                              ? usuario?.sitio_web
+                                              ? usuario.sitio_web
                                               : usuario.sitioWeb
                                           }
                                           className={stylesPerfil.inputClave}
@@ -855,7 +855,7 @@ const Perfil = () => {
                                       elementoActivo === index ? (
                                         <>
                                           <input
-                                            defaultValue={usuario.tiktok}
+                                            defaultValue={usuario?.tiktok}
                                             {...register(iterador)}
                                             className={stylesPerfil.inputClave}
                                             type="text"
@@ -919,7 +919,7 @@ const Perfil = () => {
                                         </>
                                       ) : (
                                         <input
-                                          defaultValue={usuario.nacional}
+                                          defaultValue={usuario?.nacional}
                                           className={stylesPerfil.inputClave}
                                           type="text"
                                           readOnly
