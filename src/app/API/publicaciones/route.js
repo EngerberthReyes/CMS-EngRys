@@ -9,25 +9,21 @@ export const POST = async (request) => {
     const { mensaje, nombreImagen, enlaces, imagen, youtubeUrl } =
       await request.json();
 
-    // Apply conditional checks after destructuring
     const enlaceValue = enlaces && enlaces.length > 0 ? enlaces : null;
     const imagenValue = imagen && imagen.length > 0 ? imagen : null;
     const youtubeUrlValue =
       youtubeUrl && youtubeUrl.length > 0 ? youtubeUrl : null;
 
-    // Now you can use enlaceValue, imagenValue, and youtubeUrlValue in your code
-
-    function getCurrentDate() {
-      const now = new Date();
+    function fechaActual() {
+      const ahora = new Date();
       const year = now.getFullYear();
-      const month = String(now.getMonth() + 1).padStart(2, "0"); // Months are zero-based
-      const day = String(now.getDate()).padStart(2, "0");
+      const mes = String(ahora.getMonth() + 1).padStart(2, "0");
+      const dia = String(ahora.getDate()).padStart(2, "0");
 
-      return `${year}-${month}-${day}`;
+      return `${year}-${mes}-${dia}`;
     }
 
-    // Example usage
-    const fecha = getCurrentDate();
+    const fecha = fechaActual();
 
     console.log(mensaje.replace(/<.*?>/g, ""));
     const cookieValue = request.cookies.get("cookieInformacion").value;
