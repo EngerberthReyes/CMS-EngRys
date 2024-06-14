@@ -32,7 +32,7 @@ const Noticias = () => {
   const [temaActual, setTemaActual] = useState();
   const [mensaje, setMensaje] = useState();
 
-  console.log(imagenesRuta)
+  console.log(imagenesRuta);
 
   console.log(mensaje);
 
@@ -119,7 +119,7 @@ const Noticias = () => {
 
         const rutaImagenes = [respuesta.data];
 
-        console.log(rutaImagenes)
+        console.log(rutaImagenes);
 
         setNombreImagen(nombres.join(", "));
         setImagen(imagenesRestantes);
@@ -231,14 +231,16 @@ const Noticias = () => {
         setPost([...post, postEnviado]);
         const respuesta = await axios.post("../API/publicaciones", postEnviado);
         console.log(respuesta);
-        setNombreImagen([]);
-        setImagen([]);
-        setMensaje("");
-        setImagenesRuta('')
-        setInterructor(true);
       }
     } catch (error) {
       console.error(error);
+    } finally {
+      setNombreImagen([]);
+      console.log(imagen);
+      setImagen([]);
+      setMensaje("");
+      setImagenesRuta("");
+      setInterructor(true);
     }
   };
 

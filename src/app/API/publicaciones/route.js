@@ -11,7 +11,14 @@ export const POST = async (request) => {
     const { mensaje, nombreImagen, enlaces, imagen, imagenesRuta, youtubeUrl } =
       await request.json();
 
-    console.log(mensaje, nombreImagen, enlaces, imagen, imagenesRuta, youtubeUrl);
+    console.log(
+      mensaje,
+      nombreImagen,
+      enlaces,
+      imagen,
+      imagenesRuta,
+      youtubeUrl
+    );
 
     const enlaceValor = enlaces && enlaces.length > 0 ? enlaces : null;
     const imagenValor = imagen && imagen.length > 0 ? imagen : null;
@@ -20,20 +27,6 @@ export const POST = async (request) => {
     const youtubeUrlValor =
       youtubeUrl && youtubeUrl.length > 0 ? youtubeUrl : null;
     console.log(videoValor);
-
-    const bytes = await imagenesRestantes.arrayBuffer();
-    const buffer = Buffer.from(bytes);
-
-    const fileName = imagenesRestantes.name;
-    const filePath = path.posix.join(
-      process.cwd(),
-      "public/FotosEnPublicaciones",
-      fileName
-    );
-
-    await fs.writeFile(filePath, buffer);
-
-    const fotoPublicacion = path.posix.join("/FotosEnPublicaciones", fileName);
 
     const fechaActual = () => {
       const ahora = new Date();
@@ -83,14 +76,14 @@ export const POST = async (request) => {
       mensaje.replace(/<.*?>/g, ""),
       fecha,
       enlaceValor,
-      fotoPublicacion,
+      imagenesRuta[0],
       videoValor,
       youtubeUrlValor,
     ]);
 
     console.log(publicacion);
     console.log(idPersona);
-
+/*
     if (titulo || informacion) {
       const consultaInterfaz = `INSERT INTO options (nombre_interfaz)  VALUES (?)`;
       const actualizacionInterfaces = await cmsConexion.query(
@@ -106,6 +99,7 @@ export const POST = async (request) => {
         "Informacion",
       ]);
     }
+      */
 
     return NextResponse.json(postEnviado);
   } catch (error) {
