@@ -10,16 +10,13 @@ export const GET = async (request) => {
 
     console.log(cookieValue);
 
-    // Verificar si la cookie 'cookieInformacion' está presente
     if (!cookieValue) {
       throw new Error("No se Encontro la Cookie");
     }
 
-    // Verificar el token JWT
     const sesionUsuario = verify(cookieValue, "secret");
     console.log(sesionUsuario);
 
-    // Responder con los datos del usuario
     return NextResponse.json({ sesionUsuario });
   } catch (error) {
     console.error(error);
