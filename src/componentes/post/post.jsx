@@ -66,11 +66,7 @@ const Post = ({ post, nombreDeUsuario, usuario }) => {
                           <>
                             <Link
                               key={index}
-                              style={{
-                                fontSize: "32px",
-                                textDecoration: "none",
-                              }}
-                              className={stylesPost.mensaje}
+                              className={stylesPost.links}
                               href={`${enlace} `}
                               target="_blank"
                             >
