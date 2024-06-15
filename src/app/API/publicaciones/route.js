@@ -141,12 +141,11 @@ export const POST = async (request) => {
 
     const enviandoPublicaciones = await cmsConexion.query(respuestaPublicacion);
 
-   const publicacionesConImagenesParseadas = enviandoPublicaciones.map(
+    const publicacionesConImagenesParseadas = enviandoPublicaciones.map(
       (publicacion) => {
         let imagen = null;
         let enlaces = null;
         let youtubeUrl = null;
-        mensaje = mensaje;
         try {
           imagen = publicacion.imagen ? JSON.parse(publicacion.imagen) : null;
           enlaces = publicacion.enlaces
@@ -158,7 +157,7 @@ export const POST = async (request) => {
         } catch (error) {
           console.error("Error parsing JSON:", error);
         }
-        return { ...publicacion, mensaje, imagen, enlaces, youtubeUrl };
+        return { ...publicacion, imagen, enlaces, youtubeUrl };
       }
     );
 
