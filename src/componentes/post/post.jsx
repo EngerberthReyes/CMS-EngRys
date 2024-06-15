@@ -11,7 +11,6 @@ const Post = ({ post, nombreDeUsuario, usuario }) => {
   console.log(post);
 
   const [nombreDeUsuarioBD, setNombreDeUsuarioBD] = useState("");
-  const [fotoDePerfilBD, setFotoDePerfilBD] = useState("");
 
   useEffect(() => {
     if (!post || !Array.isArray(post)) return;

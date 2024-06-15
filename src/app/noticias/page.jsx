@@ -276,7 +276,7 @@ const Noticias = () => {
 
   useEffect(() => {
     enviarPost();
-  }, [])
+  }, []);
 
   const enviarComentarioTecla = (event) => {
     if (
@@ -393,119 +393,124 @@ const Noticias = () => {
             </section>
             <section className={stylesNoticias.seccionCentral}>
               <section className={stylesNoticias.seccionPrincipal}>
-                <section className={stylesNoticias.seccionGrid}>
-                  <h1>Pública Algo...</h1>
-                  <section className={stylesNoticias.seccionPost}>
-                    <form
-                      className={stylesNoticias.formulario}
-                      encType="multipart/form-data"
-                      onSubmit={handleSubmit(enviarPost)}
-                    >
-                      <section className="App">
-                        <Tiptap setDescription={setMensaje} />
-                      </section>
-                      <button
-                        onClick={() => enviarPost(mensaje)}
-                        disabled={
-                          (!mensaje ||
-                            mensaje.replace(/[\n\r]/g, "").trim().length <=
-                              0) &&
-                          interructor
-                        }
-                        className={`${stylesNoticias.enlace} ${stylesNoticias.botonEnviar}`}
-                        type="submit"
+                {usuario ? (
+                  <section className={stylesNoticias.seccionGrid}>
+                    <h1>Pública Algo...</h1>
+                    <section className={stylesNoticias.seccionPost}>
+                      <form
+                        className={stylesNoticias.formulario}
+                        encType="multipart/form-data"
+                        onSubmit={handleSubmit(enviarPost)}
                       >
-                        Enviar
-                      </button>
-                    </form>
-                    {imagen.length > 0 && (
-                      <section
-                        className={stylesNoticias.lineaPunteada}
-                      ></section>
-                    )}
-                    <section className={stylesNoticias.seccionGridImagenes}>
-                      {imagen && (
-                        <section className={stylesNoticias.seccionGridImagenes}>
-                          {imagen.map((archivo, index) => (
-                            <section
-                              key={index}
-                              className={stylesNoticias.imagen}
-                            >
-                              {archivo.name.includes(".mp4") ? (
-                                <video
-                                  className={stylesNoticias.imagen}
-                                  alt={`${index + 1}`}
-                                  src={URL.createObjectURL(archivo)}
-                                  controls
-                                ></video>
-                              ) : (
-                                <img
-                                  className={stylesNoticias.imagen}
-                                  alt={`${index + 1}`}
-                                  src={URL.createObjectURL(archivo)}
-                                />
-                              )}
-                            </section>
-                          ))}
+                        <section className="App">
+                          <Tiptap setDescription={setMensaje} />
+                        </section>
+                        <button
+                          onClick={() => enviarPost(mensaje)}
+                          disabled={
+                            (!mensaje ||
+                              mensaje.replace(/[\n\r]/g, "").trim().length <=
+                                0) &&
+                            interructor
+                          }
+                          className={`${stylesNoticias.enlace} ${stylesNoticias.botonEnviar}`}
+                          type="submit"
+                        >
+                          Enviar
+                        </button>
+                      </form>
+                      {imagen.length > 0 && (
+                        <section
+                          className={stylesNoticias.lineaPunteada}
+                        ></section>
+                      )}
+                      <section className={stylesNoticias.seccionGridImagenes}>
+                        {imagen && (
+                          <section
+                            className={stylesNoticias.seccionGridImagenes}
+                          >
+                            {imagen.map((archivo, index) => (
+                              <section
+                                key={index}
+                                className={stylesNoticias.imagen}
+                              >
+                                {archivo.name.includes(".mp4") ? (
+                                  <video
+                                    className={stylesNoticias.imagen}
+                                    alt={`${index + 1}`}
+                                    src={URL.createObjectURL(archivo)}
+                                    controls
+                                  ></video>
+                                ) : (
+                                  <img
+                                    className={stylesNoticias.imagen}
+                                    alt={`${index + 1}`}
+                                    src={URL.createObjectURL(archivo)}
+                                  />
+                                )}
+                              </section>
+                            ))}
+                          </section>
+                        )}
+                      </section>
+                      {imagen.length > 0 && (
+                        <section
+                          className={stylesNoticias.seccionImagenAdvertencia}
+                        >
+                          <p className={stylesNoticias.parrafoImagen}>
+                            Solo Se Puede Agregar 12 Archivos
+                          </p>
+                          <p
+                            className={`${
+                              imagenesPorExceso == "0"
+                                ? `${stylesNoticias.parrafoAdvertencia}`
+                                : `${stylesNoticias.parrafoImagen}`
+                            }`}
+                          >
+                            Puede Agregar:{" "}
+                            {imagenesPorExceso < 10
+                              ? `0${imagenesPorExceso}`
+                              : imagenesPorExceso}{" "}
+                            Archivos Más
+                          </p>
                         </section>
                       )}
                     </section>
-                    {imagen.length > 0 && (
-                      <section
-                        className={stylesNoticias.seccionImagenAdvertencia}
-                      >
-                        <p className={stylesNoticias.parrafoImagen}>
-                          Solo Se Puede Agregar 12 Archivos
-                        </p>
-                        <p
-                          className={`${
-                            imagenesPorExceso == "0"
-                              ? `${stylesNoticias.parrafoAdvertencia}`
-                              : `${stylesNoticias.parrafoImagen}`
-                          }`}
-                        >
-                          Puede Agregar:{" "}
-                          {imagenesPorExceso < 10
-                            ? `0${imagenesPorExceso}`
-                            : imagenesPorExceso}{" "}
-                          Archivos Más
-                        </p>
-                      </section>
-                    )}
-                  </section>
-                  <section className={stylesNoticias.lineaPunteada}></section>
-                  <section className={stylesNoticias.seccionElementos}>
-                    <section className={stylesNoticias.item}>
-                      <label
-                        className={stylesNoticias.inputFile}
-                        htmlFor="imagen"
-                      ></label>
-                      <input
-                        id="imagen"
-                        multiple
-                        accept=".png, .mp4, .gif, .jpg, .jpeg"
-                        onChange={agregarArchivo}
-                        type="file"
-                      />
-                      {temaActual && (
-                        <Image
-                          width={20}
-                          height={20}
-                          src={
-                            temaActual === "oscuro"
-                              ? `/plus-solid-black.svg`
-                              : `/plus-solid-white.svg`
-                          }
-                          alt="Agregar Imagen"
+                    <section className={stylesNoticias.lineaPunteada}></section>
+                    <section className={stylesNoticias.seccionElementos}>
+                      <section className={stylesNoticias.item}>
+                        <label
+                          className={stylesNoticias.inputFile}
+                          htmlFor="imagen"
+                        ></label>
+                        <input
+                          id="imagen"
+                          multiple
+                          accept=".png, .mp4, .gif, .jpg, .jpeg"
+                          onChange={agregarArchivo}
+                          type="file"
                         />
-                      )}
+                        {temaActual && (
+                          <Image
+                            width={20}
+                            height={20}
+                            src={
+                              temaActual === "oscuro"
+                                ? `/plus-solid-black.svg`
+                                : `/plus-solid-white.svg`
+                            }
+                            alt="Agregar Imagen"
+                          />
+                        )}
+                      </section>
+                      <section className={stylesNoticias.item}>Cajas</section>
+                      <section className={stylesNoticias.item}>Cajas</section>
+                      <section className={stylesNoticias.item}>Cajas</section>
                     </section>
-                    <section className={stylesNoticias.item}>Cajas</section>
-                    <section className={stylesNoticias.item}>Cajas</section>
-                    <section className={stylesNoticias.item}>Cajas</section>
                   </section>
-                </section>
+                ) : null}
               </section>
+
               {post && (
                 <Post
                   post={post}
