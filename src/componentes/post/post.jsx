@@ -64,15 +64,19 @@ const Post = ({ post, nombreDeUsuario, usuario }) => {
                       <>
                         {elementoPost.enlaces.map((enlace, index) => (
                           <>
-                          <Link
-                            key={index}
-                            className={stylesPost.mensaje}
-                            href={`${enlace} `}
-                            target="_blank"
-                          >
-                            {enlace}
-                          </Link>
-                          <br/>
+                            <Link
+                              key={index}
+                              style={{
+                                fontSize: "32px",
+                                textDecoration: "none",
+                              }}
+                              className={stylesPost.mensaje}
+                              href={`${enlace} `}
+                              target="_blank"
+                            >
+                              {enlace}
+                            </Link>
+                            <br />
                           </>
                         ))}
                       </>
