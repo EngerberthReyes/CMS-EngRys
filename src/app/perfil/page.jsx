@@ -992,18 +992,20 @@ const Perfil = () => {
                             );
                           }
                         })}
-                        <button
-                          style={{
-                            position: "fixed",
-                            left: "2rem",
-                            bottom: "1rem",
-                            background: "#0f0f0fbf",
-                          }}
-                          className={stylesPerfil.seccionElemento}
-                          type="submit"
-                        >
-                          Guardar Cambios
-                        </button>
+                        {interruptorCambio && (
+                          <button
+                            style={{
+                              position: "fixed",
+                              left: "2rem",
+                              bottom: "1rem",
+                              background: "#0f0f0fbf",
+                            }}
+                            className={stylesPerfil.seccionElemento}
+                            type="submit"
+                          >
+                            Guardar Cambios
+                          </button>
+                        )}
                       </>
                     )}
                   </form>
