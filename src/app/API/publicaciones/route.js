@@ -62,6 +62,9 @@ export const POST = async (request) => {
 
     const imagenesRutaJson = JSON.stringify(imagenesRuta);
 
+    const imagenesRutasExisten =
+      imagenesRutaJson && imagenesRutaJson.length > 0 ? imagenesRutaJson : null;
+
     console.log(JSON.parse(imagenesRutaJson));
 
     const consultaPublicacion = `INSERT INTO publicaciones (
@@ -81,7 +84,7 @@ export const POST = async (request) => {
       mensaje.replace(/<.*?>/g, ""),
       fecha,
       enlaceValor,
-      imagenesRutaJson,
+      imagenesRutasExisten,
       videoValor,
       youtubeUrlValor,
     ]);
@@ -106,7 +109,29 @@ export const POST = async (request) => {
     }
       */
 
-    return NextResponse.json(postEnviado);
+    const respuestaPublicacion = `SELECT
+  public.id_publicacion, 
+  p.nombre,
+  p.apellido,
+  p.fotoPerfil,
+  public.id_persona,
+  public.descripcion_publicacion, 
+  public.fecha, 
+  public.enlace, 
+  public.imagen, 
+  public.video, 
+  public.urlVideo
+FROM
+  publicaciones AS public
+JOIN
+  personas AS p ON public.id_persona = p.id_persona;
+`;
+
+    const enviandoPublicaciones = await cmsConexion.query(respuestaPublicacion);
+
+    console.log(enviandoPublicaciones);
+
+    return NextResponse.json(enviandoPublicaciones);
   } catch (error) {
     console.error(error);
     return new NextResponse("Error interno del servidor", { status: 500 });

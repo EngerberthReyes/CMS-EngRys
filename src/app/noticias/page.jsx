@@ -228,9 +228,11 @@ const Noticias = () => {
         youtubeUrl: youtubeUrl,
       };
       if (postEnviado) {
-        setPost([...post, postEnviado]);
-        const respuesta = await axios.post("../API/publicaciones", postEnviado);
-        console.log(respuesta);
+        const respuestaPostEnviado = await axios.post(
+          "../API/publicaciones",
+          postEnviado
+        );
+        setPost([...post, respuestaPostEnviado.data]);
       }
     } catch (error) {
       console.error(error);
