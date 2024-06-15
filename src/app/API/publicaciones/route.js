@@ -19,7 +19,7 @@ export const GET = async () => {
         public.enlace as enlaces, 
         public.imagen as imagen, 
         public.video as imagenes,
-        public.urlVideo as urlVideo
+        public.urlVideo as youtubeUrl
     FROM
         publicaciones AS public
     JOIN
@@ -40,8 +40,8 @@ export const GET = async () => {
           enlaces = publicacion.enlaces
             ? JSON.parse(publicacion.enlaces)
             : null;
-          youtubeUrl = publicacion.urlVideo
-            ? JSON.parse(publicacion.urlVideo)
+          youtubeUrl = publicacion.youtubeUrl
+            ? JSON.parse(publicacion.youtubeUrl)
             : null;
         } catch (error) {
           console.error("Error parsing JSON:", error);
@@ -57,13 +57,10 @@ export const GET = async () => {
     return new NextResponse("Error interno del servidor", { status: 500 });
   }
 };
-
 export const POST = async (request) => {
   try {
     const formData = await request.formData();
-    const mensaje = formData.get("mensaje");
-    const nombreImagen = formData.get("nombreImagen");
-    const imagenUrl = formData.get("imagenUrl");
+    let mensaje = formData.get("mensaje");
     const enlaces = formData.get("enlaces");
     const youtubeUrl = formData.get("youtubeUrl");
     const imagen = formData.getAll("imagenes");
@@ -73,8 +70,7 @@ export const POST = async (request) => {
     const enlaceValor =
       parsedEnlaces && parsedEnlaces.length > 0 ? parsedEnlaces : null;
     const imagenValor = imagen && imagen.length > 0 ? imagen : null;
-    const videoValor =
-      nombreImagen.includes(".mp4") && imagenValor ? imagenValor : null;
+    const videoValor = imagen.includes(".mp4") && imagen ? imagen : null;
     let youtubeUrlValor =
       youtubeUrl && youtubeUrl.length > 0 ? youtubeUrl : null;
 
@@ -103,10 +99,6 @@ export const POST = async (request) => {
       verificacionCookie.idPersona,
     ]);
 
-    if (recoleccionId.length === 0) {
-      throw new Error("No se encontró el perfil de la persona.");
-    }
-
     const idPersona = recoleccionId[0].id_persona;
 
     const imagenesRutaJson = imagenesRuta[0]
@@ -117,15 +109,18 @@ export const POST = async (request) => {
         id_persona, descripcion_publicacion, fecha, enlace, imagen, video, urlVideo
       ) VALUES (?, ?, ?, ?, ?, ?, ?);`;
 
-    await cmsConexion.query(consultaPublicacion, [
-      idPersona,
-      mensajeSinEtiquetas,
-      fecha,
-      enlaceValor,
-      JSON.stringify(imagenesRutaJson),
-      videoValor,
-      youtubeUrlValor,
-    ]);
+    const respuestaPublicacionEnviada = await cmsConexion.query(
+      consultaPublicacion,
+      [
+        idPersona,
+        mensajeSinEtiquetas,
+        fecha,
+        enlaceValor,
+        JSON.stringify(imagenesRutaJson),
+        videoValor,
+        youtubeUrlValor,
+      ]
+    );
 
     const respuestaPublicacion = `SELECT
       public.id_publicacion, 
@@ -138,7 +133,7 @@ export const POST = async (request) => {
       public.enlace AS enlaces, 
       public.imagen AS imagen, 
       public.video AS imagenes,
-      public.urlVideo AS urlVideo
+      public.urlVideo AS youtubeUrl
     FROM
       publicaciones AS public
     JOIN
@@ -146,23 +141,24 @@ export const POST = async (request) => {
 
     const enviandoPublicaciones = await cmsConexion.query(respuestaPublicacion);
 
-    const publicacionesConImagenesParseadas = enviandoPublicaciones.map(
+   const publicacionesConImagenesParseadas = enviandoPublicaciones.map(
       (publicacion) => {
         let imagen = null;
         let enlaces = null;
         let youtubeUrl = null;
+        mensaje = mensaje;
         try {
           imagen = publicacion.imagen ? JSON.parse(publicacion.imagen) : null;
           enlaces = publicacion.enlaces
             ? JSON.parse(publicacion.enlaces)
             : null;
-          youtubeUrl = publicacion.urlVideo
-            ? JSON.parse(publicacion.urlVideo)
+          youtubeUrl = publicacion.youtubeUrl
+            ? JSON.parse(publicacion.youtubeUrl)
             : null;
         } catch (error) {
           console.error("Error parsing JSON:", error);
         }
-        return { ...publicacion, imagen, enlaces, youtubeUrl };
+        return { ...publicacion, mensaje, imagen, enlaces, youtubeUrl };
       }
     );
 
