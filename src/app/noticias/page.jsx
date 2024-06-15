@@ -239,7 +239,7 @@ const Noticias = () => {
       console.log(imagen);
       setImagen([]);
       setMensaje("");
-      setImagenesRuta("");
+      setImagenesRuta([]);
       setInterructor(true);
     }
   };
