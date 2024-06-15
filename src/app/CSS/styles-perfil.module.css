@@ -136,6 +136,7 @@
 .inputClave {
   background: transparent;
   font-size: 27px;
+  outline: none;
 }
 
 .icono_password {
@@ -149,6 +150,7 @@
   border-radius: 6px;
   padding: 1rem;
   flex-wrap: wrap;
+  row-gap: 1rem;
   column-gap: 0.5rem;
   justify-content: center;
   align-items: center;
