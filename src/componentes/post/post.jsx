@@ -5,10 +5,34 @@ import Link from "next/link";
 import Details from "@/componentes/tiptap/Details";
 import stylesPost from "../CSSComponentes/post.module.css";
 import axios from "axios";
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 
 const Post = ({ post, nombreDeUsuario, usuario }) => {
   console.log(post);
+
+  const [nombreDeUsuarioBD, setNombreDeUsuarioBD] = useState("");
+  const [fotoDePerfilBD, setFotoDePerfilBD] = useState("");
+
+  useEffect(() => {
+    if (!post || !Array.isArray(post)) return;
+
+    const nombresDeUsuarios = post
+      .slice()
+      .reverse()
+      .map((elementoUsuario, index) => {
+        const nombreCompleto = `${elementoUsuario.nombre} ${elementoUsuario.apellido}`;
+        const nombreApellido = nombreCompleto ? nombreCompleto.split(" ") : [];
+        const nombreDeUsuario = `${nombreApellido[0]} ${
+          nombreApellido[nombreApellido.length - 1]
+        }`;
+        return nombreDeUsuario;
+      });
+
+    setNombreDeUsuarioBD(nombresDeUsuarios[nombresDeUsuarios.length - 1]);
+  }, [post]);
+
+  console.log(nombreDeUsuarioBD);
+
   return (
     <>
       {post.length > 0
@@ -22,7 +46,7 @@ const Post = ({ post, nombreDeUsuario, usuario }) => {
               >
                 <section className={stylesPost.seccionGrid}>
                   <section style={{ display: "flex", width: "95%" }}>
-                    {usuario && (
+                    {usuario ? (
                       <>
                         <Link
                           className={`${stylesPost.enlace} ${stylesPost.usuarioPerfil}`}
@@ -34,8 +58,9 @@ const Post = ({ post, nombreDeUsuario, usuario }) => {
                             display: "flex",
                             justifyContent: "center",
                             alignItems: "center",
+                            cursor: "default",
                           }}
-                          href="/perfil"
+                          href=""
                         >
                           <Image
                             className={stylesPost.imagenes}
@@ -49,6 +74,37 @@ const Post = ({ post, nombreDeUsuario, usuario }) => {
                           />
                           <section style={{ wordBreak: "keep-all" }}>
                             <section>{nombreDeUsuario}</section>
+                          </section>
+                        </Link>
+                      </>
+                    ) : (
+                      <>
+                        <Link
+                          className={`${stylesPost.enlace} ${stylesPost.usuarioPerfil}`}
+                          style={{
+                            border: "none",
+                            wordBreak: "keep-all",
+                            height: "4rem",
+                            margin: "0 0 1rem 0",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            cursor: "default",
+                          }}
+                          href=""
+                        >
+                          <Image
+                            className={stylesPost.imagenes}
+                            width={35}
+                            height={20}
+                            src={
+                              elementoPost.fotoPerfil
+                                ? elementoPost.fotoPerfil
+                                : "/IMG/epigrafe73.png"
+                            }
+                          />
+                          <section style={{ wordBreak: "keep-all" }}>
+                            <section>{nombreDeUsuarioBD}</section>
                           </section>
                         </Link>
                       </>
