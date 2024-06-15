@@ -113,7 +113,7 @@ export const POST = async (request) => {
       consultaPublicacion,
       [
         idPersona,
-        mensajeSinEtiquetas,
+        mensaje,
         fecha,
         enlaceValor,
         JSON.stringify(imagenesRutaJson),
