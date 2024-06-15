@@ -177,13 +177,13 @@ const Post = ({ post, nombreDeUsuario, usuario }) => {
                     </>
                   )}
                 </section>
-                <section className={stylesPost.lineaPunteada}></section>
-                <section className={stylesPost.seccionElementos}>
+                {/*      <section className={stylesPost.lineaPunteada}></section>
+              <section className={stylesPost.seccionElementos}>
                   <section className={stylesPost.item}>Cajas</section>
                   <section className={stylesPost.item}>Cajas</section>
                   <section className={stylesPost.item}>Cajas</section>
                   <section className={stylesPost.item}>Cajas</section>
-                </section>
+                </section> */}
               </section>
             </section>
           ))
