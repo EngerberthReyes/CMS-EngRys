@@ -15,7 +15,7 @@ const Post = ({ post, nombreDeUsuario, usuario }) => {
         ? post.map((elementoPost, index) => (
             <section key={index} className={stylesPost.seccionPrincipal}>
               <section className={stylesPost.seccionGrid}>
-                <section style={{ display: "flex", width: "95%" }}>
+                <section style={{ display: "flex", width: "100%" }}>
                   {!usuario ? (
                     <>
                       <Link
@@ -48,7 +48,14 @@ const Post = ({ post, nombreDeUsuario, usuario }) => {
                       </Link>
                     </>
                   ) : (
-                    <>
+                    <section
+                      style={{
+                        display: "flex",
+                        justifyContent: "space-between",
+                        alignItems: "center",
+                        width: "100%",
+                      }}
+                    >
                       <Link
                         className={`${stylesPost.enlace} ${stylesPost.usuarioPerfil}`}
                         style={{
@@ -80,7 +87,34 @@ const Post = ({ post, nombreDeUsuario, usuario }) => {
                           </section>
                         </section>
                       </Link>
-                    </>
+                      <section
+                        className={`${stylesPost.enlace} ${stylesPost.usuarioPerfil}`}
+                        style={{
+                          border: "none",
+                          wordBreak: "keep-all",
+                          height: "4rem",
+                          margin: "0 0 1rem 0",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          cursor: "default",
+                        }}
+                      >
+                        <Image
+                          className={stylesPost.imagenes}
+                          width={20}
+                          height={20}
+                          style={{ height: "2rem", borderRadius: "0" }}
+                          src={"/x-solid.svg"}
+                        />
+                        <section style={{ wordBreak: "keep-all" }}>
+                          <section>
+                            {`${elementoPost.nombre.split(" ")[0]}
+                              ${elementoPost.apellido.split(" ")[0]}`}
+                          </section>
+                        </section>
+                      </section>
+                    </section>
                   )}
                 </section>
                 <section>
