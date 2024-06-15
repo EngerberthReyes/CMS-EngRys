@@ -16,8 +16,6 @@ const Post = ({ post, nombreDeUsuario, usuario }) => {
     if (!post || !Array.isArray(post)) return;
 
     const nombresDeUsuarios = post
-      .slice()
-      .reverse()
       .map((elementoUsuario, index) => {
         const nombreCompleto = `${elementoUsuario.nombre} ${elementoUsuario.apellido}`;
         const nombreApellido = nombreCompleto ? nombreCompleto.split(" ") : [];
@@ -36,16 +34,11 @@ const Post = ({ post, nombreDeUsuario, usuario }) => {
     <>
       {post.length > 0
         ? post
-            .slice()
-            .reverse()
             .map((elementoPost, index) => (
-              <section
-                key={elementoPost.id_publicacion}
-                className={stylesPost.seccionPrincipal}
-              >
+              <section key={index} className={stylesPost.seccionPrincipal}>
                 <section className={stylesPost.seccionGrid}>
                   <section style={{ display: "flex", width: "95%" }}>
-                    {usuario ? (
+                    {!usuario ? (
                       <>
                         <Link
                           className={`${stylesPost.enlace} ${stylesPost.usuarioPerfil}`}

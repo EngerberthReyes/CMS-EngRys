@@ -173,7 +173,12 @@ const Noticias = () => {
   const publicaciones = async () => {
     try {
       const respuestaPost = await axios.get("../API/publicaciones");
-      setPost(respuestaPost.data);
+      const respuestaPrimera = respuestaPost.data;
+      setPost((prevPosts) => {
+        const postNuevos = [...respuestaPrimera, ...prevPosts];
+        console.log(postNuevos);
+        return postNuevos.sort((a, b) => b.id_publicacion - a.id_publicacion);
+      });
     } catch (error) {
       console.error(error);
     }
@@ -262,7 +267,11 @@ const Noticias = () => {
 
       const respuesta = respuestaPostEnviado.data;
 
-      setPost(respuesta);
+      setPost((prevPosts) => {
+        const postNuevos = [...respuesta, ...prevPosts];
+        console.log(postNuevos);
+        return postNuevos.sort((a, b) => b.id_publicacion - a.id_publicacion);
+      });
     } catch (error) {
       console.error("Error al enviar la publicación:", error);
     } finally {
