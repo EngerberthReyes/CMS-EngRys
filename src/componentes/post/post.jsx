@@ -66,10 +66,10 @@ const Post = ({ post, nombreDeUsuario, usuario }) => {
                           <Link
                             key={index}
                             className={stylesPost.mensaje}
-                            href={enlace}
+                            href={`${enlace} `}
                             target="_blank"
                           >
-                            {enlace}
+                            {`${enlace} `}
                           </Link>
                         ))}
                       </>
