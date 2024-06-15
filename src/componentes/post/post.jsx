@@ -63,14 +63,17 @@ const Post = ({ post, nombreDeUsuario, usuario }) => {
                     {elementoPost.enlaces && (
                       <>
                         {elementoPost.enlaces.map((enlace, index) => (
+                          <>
                           <Link
                             key={index}
                             className={stylesPost.mensaje}
                             href={`${enlace} `}
                             target="_blank"
                           >
-                            {`${enlace} `}
+                            {enlace}
                           </Link>
+                          <br/>
+                          </>
                         ))}
                       </>
                     )}
