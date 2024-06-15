@@ -75,7 +75,7 @@ const Post = ({ post, nombreDeUsuario, usuario }) => {
                       </>
                     )}
                   </section>
-                  {(elementoPost.imagen !== null) && (
+                  {elementoPost.imagen !== null && (
                     <section className={stylesPost.lineaPunteada}></section>
                   )}
                   <section className={stylesPost.seccionGridImagenes}>
@@ -96,12 +96,11 @@ const Post = ({ post, nombreDeUsuario, usuario }) => {
                         {elementoPost.imagen.map((archivo, index) => (
                           <>
                             <section key={index}>
-                              {elementoPost.imagen &&
-                              archivo.name.includes(".mp4") ? (
+                              {elementoPost.imagen.includes(".mp4") ? (
                                 <>
                                   <video
                                     className={stylesPost.imagen}
-                                    src={archivo.imagenesRuta}
+                                    src={archivo}
                                     property
                                     fill
                                     controls
@@ -110,13 +109,13 @@ const Post = ({ post, nombreDeUsuario, usuario }) => {
                               ) : (
                                 <img
                                   className={stylesPost.imagen}
-                                  src={URL.createObjectURL(archivo)}
+                                  src={archivo}
                                 />
                               )}
                             </section>
                           </>
                         ))}
-                        {elementoPost.youtubeUrl.length > 0 && (
+                        {elementoPost.youtubeUrl !== null && (
                           <section>
                             {(elementoPost.imagen.length === 0 ||
                               elementoPost.imagenUrl.length === 0) && (

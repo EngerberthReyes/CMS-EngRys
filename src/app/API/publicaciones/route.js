@@ -9,28 +9,44 @@ import { hash, compare } from "bcryptjs";
 export const GET = async () => {
   try {
     const respuestaPublicacion = `SELECT
-  public.id_publicacion, 
-  p.nombre,
-  p.apellido,
-  p.fotoPerfil,
-  public.id_persona,
-  public.descripcion_publicacion as mensaje, 
-  public.fecha as fecha, 
-  public.enlace as enlaces, 
-  public.imagen as imagen, 
-  public.video as imagenUrl,
-  public.urlVideo as youtubeUrl
-FROM
-  publicaciones AS public
-JOIN
-  personas AS p ON public.id_persona = p.id_persona;
-`;
+        public.id_publicacion, 
+        p.nombre,
+        p.apellido,
+        p.fotoPerfil,
+        public.id_persona,
+        public.descripcion_publicacion as mensaje, 
+        public.fecha as fecha, 
+        public.enlace as enlaces, 
+        public.imagen as imagen, 
+        public.video as imagenUrl,
+        public.urlVideo as youtubeUrl
+    FROM
+        publicaciones AS public
+    JOIN
+        personas AS p ON public.id_persona = p.id_persona;
+    `;
 
     const enviandoPublicaciones = await cmsConexion.query(respuestaPublicacion);
 
     console.log(enviandoPublicaciones);
 
-    return NextResponse.json(enviandoPublicaciones);
+    const publicacionesConImagenesParseadas = enviandoPublicaciones.map(
+      (publicacion) => {
+        let imagen = publicacion.imagen;
+        try {
+          imagen = imagen ? JSON.parse(imagen) : [];
+        } catch (error) {
+          console.error("Error parsing imagen JSON:", error);
+          imagen = [];
+        }
+        return {
+          ...publicacion,
+          imagen: imagen,
+        };
+      }
+    );
+    console.log(publicacionesConImagenesParseadas);
+    return NextResponse.json(publicacionesConImagenesParseadas);
   } catch (error) {
     console.error(error);
     return new NextResponse("Error interno del servidor", { status: 500 });
@@ -161,7 +177,23 @@ JOIN
 
     console.log(enviandoPublicaciones);
 
-    return NextResponse.json(enviandoPublicaciones);
+    const publicacionesConImagenesParseadas = enviandoPublicaciones.map(
+      (publicacion) => {
+        let imagen = publicacion.imagen;
+        try {
+          imagen = imagen ? JSON.parse(imagen) : [];
+        } catch (error) {
+          console.error("Error parsing imagen JSON:", error);
+          imagen = [];
+        }
+        return {
+          ...publicacion,
+          imagen: imagen,
+        };
+      }
+    );
+    console.log(publicacionesConImagenesParseadas);
+    return NextResponse.json(publicacionesConImagenesParseadas);
   } catch (error) {
     console.error(error);
     return new NextResponse("Error interno del servidor", { status: 500 });
