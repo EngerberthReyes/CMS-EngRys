@@ -170,6 +170,19 @@ const Noticias = () => {
     }
   };
 
+  const publicaciones = async () => {
+    try {
+      const respuestaPost = await axios.get("../API/publicaciones");
+      setPost(respuestaPost.data);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    publicaciones();
+  }, []);
+
   const enviarPost = async (mensaje) => {
     const regexUrl = /(https?:\/\/[^\s]+)/g;
     const urlExtensions = /\.(jpeg|jpg|gif|png|bmp|webp)(\?.*)?$/i;

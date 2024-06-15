@@ -6,6 +6,37 @@ import { promises as fs } from "fs";
 import path from "path";
 import { hash, compare } from "bcryptjs";
 
+export const GET = async () => {
+  try {
+    const respuestaPublicacion = `SELECT
+  public.id_publicacion, 
+  p.nombre,
+  p.apellido,
+  p.fotoPerfil,
+  public.id_persona,
+  public.descripcion_publicacion as mensaje, 
+  public.fecha as fecha, 
+  public.enlace as enlaces, 
+  public.imagen as imagen, 
+  public.video as imagenUrl,
+  public.urlVideo as youtubeUrl
+FROM
+  publicaciones AS public
+JOIN
+  personas AS p ON public.id_persona = p.id_persona;
+`;
+
+    const enviandoPublicaciones = await cmsConexion.query(respuestaPublicacion);
+
+    console.log(enviandoPublicaciones);
+
+    return NextResponse.json(enviandoPublicaciones);
+  } catch (error) {
+    console.error(error);
+    return new NextResponse("Error interno del servidor", { status: 500 });
+  }
+};
+
 export const POST = async (request) => {
   try {
     const { mensaje, nombreImagen, enlaces, imagen, imagenesRuta, youtubeUrl } =
@@ -62,10 +93,9 @@ export const POST = async (request) => {
 
     const imagenesRutaJson = JSON.stringify(imagenesRuta);
 
-    const imagenesRutasExisten =
-      imagenesRutaJson && imagenesRutaJson.length > 0 ? imagenesRutaJson : null;
+    const imagenesRutasExisten = imagenesRutaJson ? imagenesRutaJson : null;
 
-    console.log(JSON.parse(imagenesRutaJson));
+    console.log(JSON.parse(imagenesRutasExisten));
 
     const consultaPublicacion = `INSERT INTO publicaciones (
   id_publicacion, 
@@ -115,12 +145,12 @@ export const POST = async (request) => {
   p.apellido,
   p.fotoPerfil,
   public.id_persona,
-  public.descripcion_publicacion, 
-  public.fecha, 
-  public.enlace, 
-  public.imagen, 
-  public.video, 
-  public.urlVideo
+  public.descripcion_publicacion as mensaje, 
+  public.fecha as fecha, 
+  public.enlace as enlaces, 
+  public.imagen as imagen, 
+  public.video as imagenUrl,
+  public.urlVideo as youtubeUrl
 FROM
   publicaciones AS public
 JOIN
