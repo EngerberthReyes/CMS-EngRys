@@ -8,27 +8,36 @@ import { hash, compare } from "bcryptjs";
 
 export const POST = async (request) => {
   try {
-    const imagenes = await request.formData();
+    const formData = await request.formData();
+    const imagenes = formData.getAll("imagenes");
+    console.log(imagenes);
 
-    const imagen = imagenes.get("imagenes");
-    console.log(imagen)
-    const bytes = await imagen.arrayBuffer();
-    const buffer = Buffer.from(bytes);
+    const rutasImagenes = [];
 
-    const fileName = imagen.name;
-    const filePath = path.posix.join(
-      process.cwd(),
-      "public/FotosEnPublicaciones",
-      fileName
-    );
+    for (const imagen of imagenes) {
+      const bytes = await imagen.arrayBuffer();
+      const buffer = Buffer.from(bytes);
 
-    await fs.writeFile(filePath, buffer);
+      const fileName = imagen.name;
+      const filePath = path.posix.join(
+        process.cwd(),
+        "public/FotosEnPublicaciones",
+        fileName
+      );
 
-    const fotoPublicacion = path.posix.join("/FotosEnPublicaciones", fileName);
+      await fs.writeFile(filePath, buffer);
 
-    return NextResponse.json(fotoPublicacion);
+      const fotoPublicacion = path.posix.join(
+        "/FotosEnPublicaciones",
+        fileName
+      );
+
+      rutasImagenes.push(fotoPublicacion);
+    }
+    console.log(rutasImagenes);
+    return NextResponse.json(rutasImagenes);
   } catch (error) {
-    console.error(error);
-    return new NextResponse("Error interno del servidor", { status: 500 });
+    console.error("Error processing images:", error);
+    return NextResponse.error();
   }
 };

@@ -59,6 +59,11 @@ export const POST = async (request) => {
 
     const idPersona = recoleccionId[0].id_persona;
     console.log(idPersona);
+
+    const imagenesRutaJson = JSON.stringify(imagenesRuta);
+
+    console.log(JSON.parse(imagenesRutaJson));
+
     const consultaPublicacion = `INSERT INTO publicaciones (
   id_publicacion, 
   id_persona, 
@@ -76,14 +81,14 @@ export const POST = async (request) => {
       mensaje.replace(/<.*?>/g, ""),
       fecha,
       enlaceValor,
-      imagenesRuta[0],
+      imagenesRutaJson,
       videoValor,
       youtubeUrlValor,
     ]);
 
     console.log(publicacion);
     console.log(idPersona);
-/*
+    /*
     if (titulo || informacion) {
       const consultaInterfaz = `INSERT INTO options (nombre_interfaz)  VALUES (?)`;
       const actualizacionInterfaces = await cmsConexion.query(

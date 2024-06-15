@@ -117,7 +117,7 @@ const Noticias = () => {
           },
         });
 
-        const rutaImagenes = [respuesta.data];
+        const rutaImagenes = respuesta.data;
 
         console.log(rutaImagenes);
 
