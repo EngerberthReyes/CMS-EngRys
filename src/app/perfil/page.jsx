@@ -994,7 +994,7 @@ const Perfil = () => {
                         })}
                         <button
                           style={{
-                            position: "absolute",
+                            position: "fixed",
                             left: "2rem",
                             bottom: "1rem",
                             background: "#0f0f0fbf",
