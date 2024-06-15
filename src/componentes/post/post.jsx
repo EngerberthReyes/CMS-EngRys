@@ -8,7 +8,7 @@ import axios from "axios";
 import { useEffect } from "react";
 
 const Post = ({ post, nombreDeUsuario, usuario }) => {
-  console.log(post)
+  console.log(post);
   return (
     <>
       {post.length > 0
@@ -122,17 +122,24 @@ const Post = ({ post, nombreDeUsuario, usuario }) => {
                                 className={stylesPost.lineaPunteada}
                               ></section>
                             )}
-                            {elementoPost.youtubeUrl.map((video, index) => (
-                              <iframe
-                                key={index}
-                                style={{ width: "100%" }}
-                                src={video.replace("watch?v=", "embed/")}
-                                title={`youtube-video-${index}`}
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                allowFullScreen
-                                className={stylesPost.imagen}
-                              ></iframe>
-                            ))}
+                            {elementoPost.youtubeUrl.map(
+                              (videoYoutube, index) => (
+                                <>
+                                  <iframe
+                                    key={elementoPost.id_publicacion}
+                                    style={{ width: "100%" }}
+                                    src={videoYoutube.replace(
+                                      "watch?v=",
+                                      "embed/"
+                                    )}
+                                    title={`youtube-video-${index}`}
+                                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                                    allowFullScreen
+                                    className={stylesPost.imagen}
+                                  ></iframe>
+                                </>
+                              )
+                            )}
                           </section>
                         )}
                       </>
