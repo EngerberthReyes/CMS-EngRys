@@ -75,9 +75,7 @@ const Post = ({ post, nombreDeUsuario, usuario }) => {
                       </>
                     )}
                   </section>
-                  {(elementoPost.imagen !== null ||
-                    elementoPost.imagen.length > 0 ||
-                    elementoPost.imagenUrl.length > 0) && (
+                  {(elementoPost.imagen !== null) && (
                     <section className={stylesPost.lineaPunteada}></section>
                   )}
                   <section className={stylesPost.seccionGridImagenes}>

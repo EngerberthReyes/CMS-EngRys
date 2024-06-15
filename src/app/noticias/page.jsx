@@ -245,7 +245,7 @@ const Noticias = () => {
           "../API/publicaciones",
           postEnviado
         );
-        setPost([...post, respuestaPostEnviado.data]);
+        setPost(respuestaPostEnviado.data);
       }
     } catch (error) {
       console.error(error);
