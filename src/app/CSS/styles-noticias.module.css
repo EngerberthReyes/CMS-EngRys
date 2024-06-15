@@ -143,12 +143,15 @@
   background-color: #eeeeee;
   color: #0f0f0f;
   height: 100%;
+  top: 2%;
+  left: 1%;
+  position: relative;
   border-radius: 4px;
 }
 
 .seccionTerciaria {
   position: sticky;
-  top: 2%;
+  right: 1%;
 }
 
 .seccionSecundariaAjuste {
