@@ -8,7 +8,7 @@ import axios from "axios";
 import { useEffect } from "react";
 
 const Post = ({ post, nombreDeUsuario, usuario }) => {
-  console.log(post);
+  console.log(post)
   return (
     <>
       {post.length > 0

@@ -19,7 +19,7 @@ export const GET = async () => {
         public.enlace as enlaces, 
         public.imagen as imagen, 
         public.video as imagenes,
-        public.urlVideo as youtubeUrl
+        public.urlVideo as urlVideo
     FROM
         publicaciones AS public
     JOIN
@@ -40,8 +40,8 @@ export const GET = async () => {
           enlaces = publicacion.enlaces
             ? JSON.parse(publicacion.enlaces)
             : null;
-          youtubeUrl = publicacion.youtubeUrl
-            ? JSON.parse(publicacion.youtubeUrl)
+          youtubeUrl = publicacion.urlVideo
+            ? JSON.parse(publicacion.urlVideo)
             : null;
         } catch (error) {
           console.error("Error parsing JSON:", error);
@@ -74,7 +74,7 @@ export const POST = async (request) => {
       parsedEnlaces && parsedEnlaces.length > 0 ? parsedEnlaces : null;
     const imagenValor = imagen && imagen.length > 0 ? imagen : null;
     const videoValor =
-      imagen.includes(".mp4") && imagenValor ? imagenValor : null;
+      nombreImagen.includes(".mp4") && imagenValor ? imagenValor : null;
     let youtubeUrlValor =
       youtubeUrl && youtubeUrl.length > 0 ? youtubeUrl : null;
 
@@ -138,7 +138,7 @@ export const POST = async (request) => {
       public.enlace AS enlaces, 
       public.imagen AS imagen, 
       public.video AS imagenes,
-      public.urlVideo AS youtubeUrl
+      public.urlVideo AS urlVideo
     FROM
       publicaciones AS public
     JOIN
@@ -156,8 +156,8 @@ export const POST = async (request) => {
           enlaces = publicacion.enlaces
             ? JSON.parse(publicacion.enlaces)
             : null;
-          youtubeUrl = publicacion.youtubeUrl
-            ? JSON.parse(publicacion.youtubeUrl)
+          youtubeUrl = publicacion.urlVideo
+            ? JSON.parse(publicacion.urlVideo)
             : null;
         } catch (error) {
           console.error("Error parsing JSON:", error);

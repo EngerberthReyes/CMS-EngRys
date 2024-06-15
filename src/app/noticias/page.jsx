@@ -240,7 +240,7 @@ const Noticias = () => {
       formData.append("mensaje", texto);
       formData.append("nombreImagen", nombreImagen);
       formData.append("imagenUrl", JSON.stringify(imagenUrl));
-      formData.append("enlaces", JSON.stringify(enlaces)); // Convertir a cadena JSON si es un array
+      formData.append("enlaces", JSON.stringify(enlaces));
       formData.append("youtubeUrl", JSON.stringify(youtubeUrl));
       formData.append("imagenesRuta", JSON.stringify(imagenesRuta));
 
@@ -260,7 +260,9 @@ const Noticias = () => {
 
       console.log("Respuesta de la API:", respuestaPostEnviado);
 
-      setPost(respuestaPostEnviado.data);
+      const respuesta = respuestaPostEnviado.data;
+
+      setPost(respuesta);
     } catch (error) {
       console.error("Error al enviar la publicación:", error);
     } finally {
@@ -271,6 +273,10 @@ const Noticias = () => {
       setInterructor(true);
     }
   };
+
+  useEffect(() => {
+    enviarPost();
+  }, [])
 
   const enviarComentarioTecla = (event) => {
     if (
