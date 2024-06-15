@@ -97,7 +97,7 @@ const Post = ({ post, nombreDeUsuario, usuario }) => {
                           display: "flex",
                           justifyContent: "center",
                           alignItems: "center",
-                          cursor: "default",
+                          cursor: "pointer",
                         }}
                       >
                         <Image
@@ -108,10 +108,7 @@ const Post = ({ post, nombreDeUsuario, usuario }) => {
                           src={"/x-solid.svg"}
                         />
                         <section style={{ wordBreak: "keep-all" }}>
-                          <section>
-                            {`${elementoPost.nombre.split(" ")[0]}
-                              ${elementoPost.apellido.split(" ")[0]}`}
-                          </section>
+                          <section>Eliminar Publicación</section>
                         </section>
                       </section>
                     </section>
