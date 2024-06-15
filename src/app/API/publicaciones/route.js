@@ -61,14 +61,12 @@ export const POST = async (request) => {
   try {
     const formData = await request.formData();
     let mensaje = formData.get("mensaje");
-    const enlaces = formData.get("enlaces");
+    const enlaces = formData.getAll("enlaces");
     const youtubeUrl = formData.get("youtubeUrl");
     const imagen = formData.getAll("imagenes");
     const imagenesRuta = formData.getAll("imagenesRuta");
 
-    const parsedEnlaces = enlaces ? JSON.parse(enlaces) : null;
-    const enlaceValor =
-      parsedEnlaces && parsedEnlaces.length > 0 ? parsedEnlaces : null;
+    const enlaceValor = enlaces ? enlaces : null;
     const imagenValor = imagen && imagen.length > 0 ? imagen : null;
     const videoValor = imagen.includes(".mp4") && imagen ? imagen : null;
     let youtubeUrlValor =
