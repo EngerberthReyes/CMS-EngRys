@@ -236,7 +236,6 @@ const Perfil = () => {
 
   useEffect(() => {
     obtenerPerfil();
-    console.log("xd");
   }, [interruptorCambio]);
 
   const cerrarPerfil = async () => {
@@ -264,6 +263,13 @@ const Perfil = () => {
   const cambiarDescripcionPersonal = () => {
     setEditorDescripcionPerfil(true);
   };
+
+  const [fechaActual, setFechaActual] = useState("");
+
+  useEffect(() => {
+    const fechaHoy = new Date().toISOString().split("T")[0];
+    setFechaActual(fechaHoy);
+  }, []);
 
   return (
     <>
@@ -717,6 +723,7 @@ const Perfil = () => {
                                               usuario.fechaNacimiento
                                             }
                                             {...register(iterador)}
+                                            max={fechaActual}
                                             className={stylesPerfil.inputClave}
                                             type="date"
                                           />
