@@ -175,7 +175,7 @@ const Noticias = () => {
       const respuestaPost = await axios.get("../API/publicaciones");
       const respuestaPrimera = respuestaPost.data;
       setPost((prevPosts) => {
-        const postNuevos = [...respuestaPrimera, ...prevPosts];
+        const postNuevos = respuestaPrimera;
         console.log(postNuevos);
         return postNuevos.sort((a, b) => b.id_publicacion - a.id_publicacion);
       });
