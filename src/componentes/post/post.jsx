@@ -96,7 +96,7 @@ const Post = ({ post, nombreDeUsuario, usuario }) => {
                         {elementoPost.imagen.map((archivo, index) => (
                           <>
                             <section key={index}>
-                              {elementoPost.imagen.includes(".mp4") ? (
+                              {archivo.includes(".mp4") ? (
                                 <>
                                   <video
                                     className={stylesPost.imagen}
