@@ -55,8 +55,14 @@ export const GET = async () => {
 
 export const POST = async (request) => {
   try {
-    const { mensaje, nombreImagen, enlaces, imagen, imagenesRuta, youtubeUrl } =
-      await request.json();
+    const formData = await request.formData();
+    const mensaje = formData.get("mensaje");
+    const nombreImagen = formData.get("nombreImagen");
+    const imagenUrl = formData.get("imagenUrl");
+    const enlaces = formData.get("enlaces");
+    const youtubeUrl = formData.get("youtubeUrl");
+    const imagen = formData.getAll("imagenes");
+    const imagenesRuta = formData.getAll("imagenesRuta");
 
     console.log(
       mensaje,
@@ -106,7 +112,7 @@ export const POST = async (request) => {
 
     const idPersona = recoleccionId[0].id_persona;
     console.log(idPersona);
-
+    console.log(imagenesRuta);
     const imagenesRutaJson = JSON.stringify(imagenesRuta);
 
     const imagenesRutasExisten = imagenesRutaJson ? imagenesRutaJson : null;

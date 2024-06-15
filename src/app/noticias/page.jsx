@@ -182,20 +182,23 @@ const Noticias = () => {
   useEffect(() => {
     publicaciones();
   }, []);
-
   const enviarPost = async (mensaje) => {
     const regexUrl = /(https?:\/\/[^\s]+)/g;
     const urlExtensions = /\.(jpeg|jpg|gif|png|bmp|webp)(\?.*)?$/i;
     const youtubeRegex =
       /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/;
+
     if (typeof mensaje === "object") {
       return;
     }
-    console.log(mensaje);
+
+    console.log("Mensaje original:", mensaje);
     const mensajePost = mensaje;
     const mensajePostNormal =
       typeof mensaje === "string" ? mensaje.replace(/<.*?>/g, "") : "";
-    console.log(mensajePostNormal);
+
+    console.log("Mensaje normal:", mensajePostNormal);
+
     const urls = mensajePostNormal.match(regexUrl) || [];
     const imagenUrl = [];
     const enlaces = [];
@@ -210,48 +213,58 @@ const Noticias = () => {
         enlaces.push(url);
       }
     });
-    console.log(mensaje);
+
+    console.log("URLs:", urls);
 
     const combinedRegex = new RegExp(
       `${regexUrl.source}|${urlExtensions.source}|${youtubeRegex.source}`,
       "gi"
     );
 
-    const texto = mensaje.replace(combinedRegex, "");
-
-    if (!texto || typeof mensaje === "object") {
-      return;
+    if (!mensaje || typeof mensaje === "object") {
+      mensaje = " ";
     }
+
+    const texto = mensaje.replace(combinedRegex, "").trim();
 
     console.log("Texto:", texto);
     console.log("Imágenes:", imagenUrl);
     console.log("Enlaces:", enlaces);
-    console.log("Youtube", youtubeUrl);
+    console.log("YouTube:", youtubeUrl);
 
-    console.log(imagenesRuta);
+    console.log("ImagenesRuta:", imagenesRuta);
+    console.log("Imagen:", imagen);
 
     try {
-      const postEnviado = {
-        mensaje: texto,
-        nombreImagen: nombreImagen,
-        imagen: imagen,
-        imagenesRuta: imagenesRuta,
-        imagenUrl: imagenUrl,
-        enlaces: enlaces,
-        youtubeUrl: youtubeUrl,
-      };
-      if (postEnviado) {
-        const respuestaPostEnviado = await axios.post(
-          "../API/publicaciones",
-          postEnviado
-        );
-        setPost(respuestaPostEnviado.data);
-      }
+      const formData = new FormData();
+      formData.append("mensaje", texto);
+      formData.append("nombreImagen", nombreImagen);
+      formData.append("imagenUrl", JSON.stringify(imagenUrl));
+      formData.append("enlaces", JSON.stringify(enlaces)); // Convertir a cadena JSON si es un array
+      formData.append("youtubeUrl", JSON.stringify(youtubeUrl));
+      formData.append("imagenesRuta", JSON.stringify(imagenesRuta));
+
+      imagen.forEach((archivo, index) => {
+        formData.append("imagenes", archivo);
+      });
+
+      const respuestaPostEnviado = await axios.post(
+        "../API/publicaciones",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      console.log("Respuesta de la API:", respuestaPostEnviado);
+
+      setPost(respuestaPostEnviado.data);
     } catch (error) {
-      console.error(error);
+      console.error("Error al enviar la publicación:", error);
     } finally {
       setNombreImagen([]);
-      console.log(imagen);
       setImagen([]);
       setMensaje("");
       setImagenesRuta([]);
