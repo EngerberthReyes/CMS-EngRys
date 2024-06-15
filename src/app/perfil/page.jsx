@@ -31,7 +31,7 @@ const Perfil = () => {
   const [temaActual, setTemaActual] = useState();
   const [nombreImagen, setNombreImagen] = useState();
   const [imagen, setImagen] = useState(null);
-  const [description, setDescription] = useState();
+  const [description, setDescription] = useState("");
   const [direccionActualizada, setDireccionActualizada] = useState();
   const [elementoActivo, setElementoActivo] = useState(null);
   const [interruptorCambio, setInterruptorCambio] = useState(false);
@@ -39,7 +39,7 @@ const Perfil = () => {
   const [mostrarClave, setMostrarClave] = useState();
   const [paises, setPaises] = useState();
   const [nombreDeUsuario, setNombreDeUsuario] = useState();
-  const [descripcionPerfil, setDescripcionPerfil] = useState();
+  const [descripcionPerfil, setDescripcionPerfil] = useState("");
 
   useEffect(() => {
     if (!usuario) return;
@@ -455,7 +455,7 @@ const Perfil = () => {
                           <>
                             <Details
                               description={
-                                descripcionPerfilModificacion
+                                descripcionPerfilModificacion?.descripcion_personal
                                   ? descripcionPerfilModificacion.descripcion_personal
                                   : "Descripción Personal"
                               }
