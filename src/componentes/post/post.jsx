@@ -75,7 +75,7 @@ const Post = ({ post, nombreDeUsuario, usuario }) => {
                       </>
                     )}
                   </section>
-                  {elementoPost.imagen.length > 0 && (
+                  {elementoPost.imagen && (
                     <section className={stylesPost.lineaPunteada}></section>
                   )}
                   <section className={stylesPost.seccionGridImagenes}>
@@ -91,7 +91,7 @@ const Post = ({ post, nombreDeUsuario, usuario }) => {
                         ))}
                       </>
                     )}
-                    {elementoPost.imagen && (
+                    {elementoPost.imagen.length > 0 && (
                       <>
                         {elementoPost.imagen.map((archivo, index) => (
                           <>
@@ -117,8 +117,7 @@ const Post = ({ post, nombreDeUsuario, usuario }) => {
                         ))}
                         {elementoPost.youtubeUrl && (
                           <section>
-                            {(elementoPost.imagen.length === 0 ||
-                              elementoPost.imagenUrl.length === 0) && (
+                            {(elementoPost.imagen.length === 0) && (
                               <section
                                 className={stylesPost.lineaPunteada}
                               ></section>

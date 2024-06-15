@@ -64,141 +64,103 @@ export const POST = async (request) => {
     const imagen = formData.getAll("imagenes");
     const imagenesRuta = formData.getAll("imagenesRuta");
 
-    console.log(
-      mensaje,
-      nombreImagen,
-      enlaces,
-      imagen,
-      imagenesRuta,
-      youtubeUrl
-    );
-
-    const enlaceValor = enlaces && enlaces.length > 0 ? enlaces : null;
+    const parsedEnlaces = enlaces ? JSON.parse(enlaces) : null;
+    const enlaceValor =
+      parsedEnlaces && parsedEnlaces.length > 0 ? parsedEnlaces : null;
     const imagenValor = imagen && imagen.length > 0 ? imagen : null;
     const videoValor =
-      nombreImagen.includes(".mp4") && imagen.length > 0 ? imagen : null;
+      nombreImagen.includes(".mp4") && imagenValor ? imagenValor : null;
     const youtubeUrlValor =
       youtubeUrl && youtubeUrl.length > 0 ? youtubeUrl : null;
-    console.log(videoValor);
 
     const fechaActual = () => {
       const ahora = new Date();
       const year = ahora.getFullYear();
       const mes = String(ahora.getMonth() + 1).padStart(2, "0");
       const dia = String(ahora.getDate()).padStart(2, "0");
-
       return `${year}-${mes}-${dia}`;
     };
 
     const fecha = fechaActual();
+    const mensajeSinEtiquetas = mensaje.replace(/<.*?>/g, "");
 
-    console.log(mensaje.replace(/<.*?>/g, ""));
-    const cookieValue = request.cookies.get("cookieInformacion").value;
-    console.log(cookieValue);
-
-    const verificacionCookie = verify(cookieValue, "secret");
-    console.log(verificacionCookie);
-
+    const cookieValue = request.cookies.get("cookieInformacion")?.value;
     if (!cookieValue) {
       throw new Error(
         "La cookie 'cookieInformacion' no se encontró en la solicitud."
       );
     }
 
-    const consultaPerfil = `SELECT id_persona FROM personas AS p WHERE id_persona = ?;`;
+    const verificacionCookie = verify(cookieValue, "secret");
+
+    const consultaPerfil = `SELECT id_persona FROM personas WHERE id_persona = ?;`;
     const recoleccionId = await cmsConexion.query(consultaPerfil, [
       verificacionCookie.idPersona,
     ]);
 
+    if (recoleccionId.length === 0) {
+      throw new Error("No se encontró el perfil de la persona.");
+    }
+
     const idPersona = recoleccionId[0].id_persona;
-    console.log(idPersona);
-    console.log(imagenesRuta);
-    const imagenesRutaJson = JSON.stringify(imagenesRuta);
 
-    const imagenesRutasExisten = imagenesRutaJson ? imagenesRutaJson : null;
-
-    console.log(JSON.parse(imagenesRutasExisten));
+    const imagenesRutaJson = imagenesRuta[0]
+      ? JSON.parse(imagenesRuta[0])
+      : null;
 
     const consultaPublicacion = `INSERT INTO publicaciones (
-  id_publicacion, 
-  id_persona, 
-  descripcion_publicacion, 
-  fecha, 
-  enlace, 
-  imagen, 
-  video, 
-  urlVideo
-) VALUES (?, ?, ?, ?, ?, ?, ?, ?);`;
+        id_persona, descripcion_publicacion, fecha, enlace, imagen, video, urlVideo
+      ) VALUES (?, ?, ?, ?, ?, ?, ?);`;
 
-    const publicacion = await cmsConexion.query(consultaPublicacion, [
-      null,
+    await cmsConexion.query(consultaPublicacion, [
       idPersona,
-      mensaje.replace(/<.*?>/g, ""),
+      mensajeSinEtiquetas,
       fecha,
       enlaceValor,
-      imagenesRutasExisten,
+      JSON.stringify(imagenesRutaJson),
       videoValor,
       youtubeUrlValor,
     ]);
 
-    console.log(publicacion);
-    console.log(idPersona);
-    /*
-    if (titulo || informacion) {
-      const consultaInterfaz = `INSERT INTO options (nombre_interfaz)  VALUES (?)`;
-      const actualizacionInterfaces = await cmsConexion.query(
-        consultaInterfaz,
-        ["Titulo"]
-      );
-
-      const consultaOpciones = `INSERT INTO options (id_interfaz, id_persona, titulo, contenido)  VALUES (?, ?, ?, ?)`;
-      const actualizacionOpciones = await cmsConexion.query(consultaOpciones, [
-        1,
-        idPersona,
-        "Titulo",
-        "Informacion",
-      ]);
-    }
-      */
-
     const respuestaPublicacion = `SELECT
-  public.id_publicacion, 
-  p.nombre,
-  p.apellido,
-  p.fotoPerfil,
-  public.id_persona,
-  public.descripcion_publicacion as mensaje, 
-  public.fecha as fecha, 
-  public.enlace as enlaces, 
-  public.imagen as imagen, 
-  public.video as imagenes,
-  public.urlVideo as youtubeUrl
-FROM
-  publicaciones AS public
-JOIN
-  personas AS p ON public.id_persona = p.id_persona;
-`;
+      public.id_publicacion, 
+      p.nombre,
+      p.apellido,
+      p.fotoPerfil,
+      public.id_persona,
+      public.descripcion_publicacion AS mensaje, 
+      public.fecha AS fecha, 
+      public.enlace AS enlaces, 
+      public.imagen AS imagen, 
+      public.video AS imagenes,
+      public.urlVideo AS youtubeUrl
+    FROM
+      publicaciones AS public
+    JOIN
+      personas AS p ON public.id_persona = p.id_persona;`;
 
     const enviandoPublicaciones = await cmsConexion.query(respuestaPublicacion);
 
-    console.log(enviandoPublicaciones);
-
     const publicacionesConImagenesParseadas = enviandoPublicaciones.map(
       (publicacion) => {
-        let imagen = publicacion.imagen;
+        let imagen = null;
+        let enlaces = null;
+        let youtubeUrl = null;
         try {
-          imagen = imagen ? JSON.parse(imagen) : [];
+          imagen = publicacion.imagen ? JSON.parse(publicacion.imagen) : null;
+          enlaces = publicacion.enlaces
+            ? JSON.parse(publicacion.enlaces)
+            : null;
+          youtubeUrl = publicacion.youtubeUrl
+            ? JSON.parse(publicacion.youtubeUrl)
+            : null;
         } catch (error) {
-          console.error("Error parsing imagen JSON:", error);
-          imagen = [];
+          console.error("Error parsing JSON:", error);
         }
-        return {
-          ...publicacion,
-          imagen: imagen,
-        };
+        return { ...publicacion, imagen, enlaces, youtubeUrl };
       }
     );
-    console.log(publicacionesConImagenesParseadas);
+
     return NextResponse.json(publicacionesConImagenesParseadas);
   } catch (error) {
     console.error(error);
