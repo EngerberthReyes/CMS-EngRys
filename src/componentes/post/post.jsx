@@ -115,9 +115,9 @@ const Post = ({ post, nombreDeUsuario, usuario }) => {
                             </section>
                           </>
                         ))}
-                        {elementoPost.youtubeUrl && (
+                        {elementoPost.youtubeUrl.length > 0 && (
                           <section>
-                            {(elementoPost.imagen.length === 0) && (
+                            {elementoPost.imagen.length === 0 && (
                               <section
                                 className={stylesPost.lineaPunteada}
                               ></section>

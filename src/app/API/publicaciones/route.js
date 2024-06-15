@@ -137,7 +137,6 @@ export const POST = async (request) => {
       public.fecha AS fecha, 
       public.enlace AS enlaces, 
       public.imagen AS imagen, 
-      public.video AS imagenes,
       public.urlVideo AS youtubeUrl
     FROM
       publicaciones AS public
