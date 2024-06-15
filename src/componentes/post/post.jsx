@@ -88,7 +88,7 @@ const Post = ({ post, nombreDeUsuario, usuario }) => {
                         </section>
                       </Link>
                       <section
-                        className={`${stylesPost.enlace} ${stylesPost.usuarioPerfil}`}
+                        className={`${stylesPost.enlace} ${stylesPost.seccionBorrar} ${stylesPost.usuarioPerfil}`}
                         style={{
                           border: "none",
                           wordBreak: "keep-all",

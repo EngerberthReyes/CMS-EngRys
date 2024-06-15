@@ -77,6 +77,15 @@
   box-shadow: 3px 0px 11px 0px #0f0f0f73;
 }
 
+.seccionBorrar {
+  transform: scale(1);
+  transition: transform 500ms ease;
+}
+
+.seccionBorrar:hover {
+  transform: scale(1.05);
+}
+
 .seccionGrid {
   width: 44rem;
   padding: 2%;
