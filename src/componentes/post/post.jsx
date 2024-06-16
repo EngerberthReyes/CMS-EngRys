@@ -9,11 +9,17 @@ import { useState, useEffect } from "react";
 
 const Post = ({ post, nombreDeUsuario, usuario }) => {
   console.log(post);
+  const borrarPublicacion = (idPublicacion) => {
+    console.log(idPublicacion);
+  };
   return (
     <>
       {post.length > 0
         ? post.map((elementoPost, index) => (
-            <section key={index} className={stylesPost.seccionPrincipal}>
+            <section
+              key={elementoPost.id_publicacion}
+              className={stylesPost.seccionPrincipal}
+            >
               <section className={stylesPost.seccionGrid}>
                 <section style={{ display: "flex", width: "100%" }}>
                   {!usuario ? (
@@ -55,6 +61,9 @@ const Post = ({ post, nombreDeUsuario, usuario }) => {
                         alignItems: "center",
                         width: "100%",
                       }}
+                      onClick={() =>
+                        borrarPublicacion(elementoPost.id_publicacion)
+                      }
                     >
                       <Link
                         className={`${stylesPost.enlace} ${stylesPost.usuarioPerfil}`}
