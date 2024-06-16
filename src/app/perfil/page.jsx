@@ -236,7 +236,7 @@ const Perfil = () => {
 
   useEffect(() => {
     obtenerPerfil();
-  }, [interruptorCambio]);
+  }, [interruptorCambio, agregarImagen]);
 
   const cerrarPerfil = async () => {
     try {
