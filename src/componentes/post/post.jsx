@@ -34,7 +34,7 @@ const Post = ({ post, nombreDeUsuario, usuario, enviandoBorrado }) => {
             >
               <section className={stylesPost.seccionGrid}>
                 <section style={{ display: "flex", width: "100%" }}>
-                  {!usuario ? (
+                  {elementoPost.id_persona !== usuario.idPersona ? (
                     <>
                       <Link
                         className={`${stylesPost.enlace} ${stylesPost.usuarioPerfil}`}
@@ -66,73 +66,75 @@ const Post = ({ post, nombreDeUsuario, usuario, enviandoBorrado }) => {
                       </Link>
                     </>
                   ) : (
-                    <section
-                      style={{
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        width: "100%",
-                      }}
-                      onClick={() =>
-                        borrarPublicacion(elementoPost.id_publicacion)
-                      }
-                    >
-                      <Link
-                        className={`${stylesPost.enlace} ${stylesPost.usuarioPerfil}`}
+                    <>
+                      <section
                         style={{
-                          border: "none",
-                          wordBreak: "keep-all",
-                          height: "4rem",
-                          margin: "0 0 1rem 0",
                           display: "flex",
-                          justifyContent: "center",
+                          justifyContent: "space-between",
                           alignItems: "center",
-                          cursor: "default",
+                          width: "100%",
                         }}
-                        href=""
+                        onClick={() =>
+                          borrarPublicacion(elementoPost.id_publicacion)
+                        }
                       >
-                        <Image
-                          className={stylesPost.imagenes}
-                          width={35}
-                          height={20}
-                          src={
-                            elementoPost.fotoPerfil
-                              ? elementoPost.fotoPerfil
-                              : "/IMG/epigrafe73.png"
-                          }
-                        />
-                        <section style={{ wordBreak: "keep-all" }}>
-                          <section>
-                            {`${elementoPost.nombre.split(" ")[0]}
+                        <Link
+                          className={`${stylesPost.enlace} ${stylesPost.usuarioPerfil}`}
+                          style={{
+                            border: "none",
+                            wordBreak: "keep-all",
+                            height: "4rem",
+                            margin: "0 0 1rem 0",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            cursor: "default",
+                          }}
+                          href=""
+                        >
+                          <Image
+                            className={stylesPost.imagenes}
+                            width={35}
+                            height={20}
+                            src={
+                              elementoPost.fotoPerfil
+                                ? elementoPost.fotoPerfil
+                                : "/IMG/epigrafe73.png"
+                            }
+                          />
+                          <section style={{ wordBreak: "keep-all" }}>
+                            <section>
+                              {`${elementoPost.nombre.split(" ")[0]}
                               ${elementoPost.apellido.split(" ")[0]}`}
+                            </section>
+                          </section>
+                        </Link>
+                        <section
+                          className={`${stylesPost.enlace} ${stylesPost.seccionBorrar} ${stylesPost.usuarioPerfil}`}
+                          style={{
+                            border: "none",
+                            wordBreak: "keep-all",
+                            height: "4rem",
+                            margin: "0 0 1rem 0",
+                            display: "flex",
+                            justifyContent: "center",
+                            alignItems: "center",
+                            cursor: "pointer",
+                          }}
+                        >
+                          <Image
+                            className={stylesPost.imagenes}
+                            width={20}
+                            height={20}
+                            style={{ height: "2rem", borderRadius: "0" }}
+                            src={"/x-solid.svg"}
+                          />
+                          <section style={{ wordBreak: "keep-all" }}>
+                            <section>Eliminar Publicación</section>
                           </section>
                         </section>
-                      </Link>
-                      <section
-                        className={`${stylesPost.enlace} ${stylesPost.seccionBorrar} ${stylesPost.usuarioPerfil}`}
-                        style={{
-                          border: "none",
-                          wordBreak: "keep-all",
-                          height: "4rem",
-                          margin: "0 0 1rem 0",
-                          display: "flex",
-                          justifyContent: "center",
-                          alignItems: "center",
-                          cursor: "pointer",
-                        }}
-                      >
-                        <Image
-                          className={stylesPost.imagenes}
-                          width={20}
-                          height={20}
-                          style={{ height: "2rem", borderRadius: "0" }}
-                          src={"/x-solid.svg"}
-                        />
-                        <section style={{ wordBreak: "keep-all" }}>
-                          <section>Eliminar Publicación</section>
-                        </section>
                       </section>
-                    </section>
+                    </>
                   )}
                 </section>
                 <section>

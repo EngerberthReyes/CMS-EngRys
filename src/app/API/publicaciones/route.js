@@ -9,7 +9,7 @@ import { hash, compare } from "bcryptjs";
 export const GET = async () => {
   try {
     const respuestaPublicacion = `SELECT
-        public.id_publicacion, 
+        public.id_publicacion,
         p.nombre,
         p.apellido,
         p.fotoPerfil,
