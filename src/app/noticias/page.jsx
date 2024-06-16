@@ -338,19 +338,6 @@ const Noticias = () => {
           <Link className={stylesNoticias.enlaceNormal} href={"/"}>
             <h1 className={stylesNoticias.tituloHeader}>EpíComputers</h1>
           </Link>
-          <section
-            className={`${stylesNoticias.seccionEnlace} ${stylesNoticias.seccionEnlaceAumentada}`}
-          >
-            <Link className={stylesNoticias.enlace} href="/noticias">
-              Noticias
-            </Link>
-            <Link className={stylesNoticias.enlace} href="/sobre_nosotros">
-              Sobre Nosotros
-            </Link>
-            <Link className={stylesNoticias.enlace} href="/contactanos">
-              Contactanos
-            </Link>
-          </section>
           <section className={stylesNoticias.seccionEnlace}>
             {usuario ? (
               <>
@@ -401,7 +388,12 @@ const Noticias = () => {
         <main>
           <section className={stylesNoticias.main}>
             <section
-              style={{ width: "34rem", position: "relative", left: "1%" }}
+              style={{
+                width: "34rem",
+                position: "sticky",
+                top: "1%",
+                left: "1%",
+              }}
             >
               <section
                 className={stylesNoticias.seccionSecundaria}
@@ -420,15 +412,31 @@ const Noticias = () => {
               >
                 <section className={stylesNoticias.seccionAjustes}>
                   <section className={stylesNoticias.seccionFlex}>
-                    <section>Cajas2</section>
-                    <section>Cajas2</section>
-                    <section>Cajas2</section>
-                    <section>Cajas2</section>
-                    <section>Cajas2</section>
-                    <section>Cajas2</section>
-                    <section>Cajas2</section>
-                    <section>Cajas2</section>
-                    <section>Cajas2</section>
+                    <section
+                      className={`${stylesNoticias.seccionEnlace} ${stylesNoticias.seccionEnlaceAumentada}`}
+                      style={{
+                        width: "100%",
+                        display: "flex",
+                        flexDirection: "column",
+                        rowGap: "1rem",
+                      }}
+                    >
+                      <Link className={stylesNoticias.enlace} href="/noticias">
+                        Noticias
+                      </Link>
+                      <Link
+                        className={stylesNoticias.enlace}
+                        href="/sobre_nosotros"
+                      >
+                        Sobre Nosotros
+                      </Link>
+                      <Link
+                        className={stylesNoticias.enlace}
+                        href="/contactanos"
+                      >
+                        Contactanos
+                      </Link>
+                    </section>
                   </section>
                 </section>
               </section>
