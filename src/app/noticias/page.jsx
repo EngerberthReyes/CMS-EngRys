@@ -10,6 +10,7 @@ import "../CSS/App.css";
 import { Tiptap } from "@/componentes/tiptap/TipTap";
 import { useRouter } from "next/navigation";
 import stylesNoticias from "../CSS/styles-noticias.module.css";
+import useSWR from "swr";
 
 const Noticias = () => {
   const {
@@ -314,9 +315,17 @@ const Noticias = () => {
     }
   };
 
+  const theFetcher = (url) =>
+    fetch(`http://localhost:3000/API/publicaciones`).then((res) => res.json());
+
+  const { data: posts } = useSWR(
+    `http://localhost:3000/API/publicaciones`,
+    theFetcher
+  );
+
   useEffect(() => {
     publicaciones();
-  }, [publicacionBorrada, post]);
+  }, [publicacionBorrada, posts]);
 
   return (
     <>
