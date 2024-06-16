@@ -170,6 +170,12 @@ const Noticias = () => {
     }
   };
 
+  const [publicacionBorrada, setPublicacionBorrada] = useState();
+
+  const actualizadorPublicacion = (enviandoBorrado) => {
+    setPublicacionBorrada(enviandoBorrado);
+  };
+
   const publicaciones = async () => {
     try {
       const respuestaPost = await axios.get("../API/publicaciones");
@@ -186,7 +192,7 @@ const Noticias = () => {
 
   useEffect(() => {
     publicaciones();
-  }, []);
+  }, [publicacionBorrada]);
   const enviarPost = async (mensaje) => {
     const regexUrl = /(https?:\/\/[^\s]+)/g;
     const urlExtensions = /\.(jpeg|jpg|gif|png|bmp|webp)(\?.*)?$/i;
@@ -525,6 +531,7 @@ const Noticias = () => {
                   post={post}
                   nombreDeUsuario={nombreDeUsuario}
                   usuario={usuario}
+                  enviandoBorrado={actualizadorPublicacion}
                 />
               )}
             </section>

@@ -7,19 +7,23 @@ import stylesPost from "../CSSComponentes/post.module.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
-const Post = ({ post, nombreDeUsuario, usuario }) => {
+const Post = ({ post, nombreDeUsuario, usuario, enviandoBorrado }) => {
   console.log(post);
+
   const borrarPublicacion = async (idPublicacion) => {
     try {
-      const postEliminado = await axios.delete(
+      const respuestaBorrado = await axios.delete(
         `http://localhost:3000/API/publicaciones/${idPublicacion}`
       );
-      console.log(postEliminado);
+
+      const publicacionBorrada = respuestaBorrado;
+
+      enviandoBorrado(publicacionBorrada);
     } catch (error) {
-      console.error(error);
+      console.error("Error al borrar la publicación:", error);
     }
-    console.log(idPublicacion);
   };
+
   return (
     <>
       {post.length > 0
