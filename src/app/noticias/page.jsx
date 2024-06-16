@@ -170,30 +170,6 @@ const Noticias = () => {
     }
   };
 
-  const [publicacionBorrada, setPublicacionBorrada] = useState();
-
-  const actualizadorPublicacion = (enviandoBorrado) => {
-    setPublicacionBorrada(enviandoBorrado);
-  };
-
-  const publicaciones = async () => {
-    try {
-      const respuestaPost = await axios.get("../API/publicaciones");
-      const respuestaPrimera = respuestaPost.data;
-      setPost((prevPosts) => {
-        const postNuevos = respuestaPrimera;
-        console.log(postNuevos);
-        return postNuevos.sort((a, b) => b.id_publicacion - a.id_publicacion);
-      });
-    } catch (error) {
-      console.error(error);
-    }
-  };
-
-  useEffect(() => {
-    publicaciones();
-  }, [publicacionBorrada]);
-
   const enviarPost = async (mensaje) => {
     const regexUrl = /(https?:\/\/[^\s]+)/g;
     const urlExtensions = /\.(jpeg|jpg|gif|png|bmp|webp)(\?.*)?$/i;
@@ -317,6 +293,30 @@ const Noticias = () => {
     }`;
     setNombreDeUsuario(nombreDeUsuario);
   }, [usuario]);
+
+  const [publicacionBorrada, setPublicacionBorrada] = useState();
+
+  const actualizadorPublicacion = (enviandoBorrado) => {
+    setPublicacionBorrada(enviandoBorrado);
+  };
+
+  const publicaciones = async () => {
+    try {
+      const respuestaPost = await axios.get("../API/publicaciones");
+      const respuestaPrimera = respuestaPost.data;
+      setPost((prevPosts) => {
+        const postNuevos = respuestaPrimera;
+        console.log(postNuevos);
+        return postNuevos.sort((a, b) => b.id_publicacion - a.id_publicacion);
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  useEffect(() => {
+    publicaciones();
+  }, [publicacionBorrada, post]);
 
   return (
     <>
