@@ -403,7 +403,7 @@ const Noticias = () => {
                   className={stylesNoticias.seccionAjustes}
                   style={{ width: "100%", margin: "0" }}
                 >
-                  <h1 style={{ textAlign: "center" }}>Lateral</h1>
+                  <h1 style={{ textAlign: "center" }}>Secciones</h1>
                 </section>
               </section>
               <section
@@ -421,6 +421,9 @@ const Noticias = () => {
                         rowGap: "1rem",
                       }}
                     >
+                      <Link className={stylesNoticias.enlace} href="/">
+                        Inicio
+                      </Link>
                       <Link className={stylesNoticias.enlace} href="/noticias">
                         Noticias
                       </Link>
