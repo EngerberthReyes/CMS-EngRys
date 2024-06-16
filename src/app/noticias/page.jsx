@@ -95,6 +95,54 @@ const Noticias = () => {
     }
   };
 
+  const [imagenNoticia, setImagenNoticia] = useState([]);
+  const [nombreImagenNoticia, setNombreImagenNoticia] = useState([]);
+  const [imagenRutaNoticia, setImagenRutaNoticia] = useState([]);
+  const [interructorNoticia, setInterructorNoticia] = useState([]);
+  const [imagenesPorExcesoNoticias, setImagenesPorExcesoNoticias] = useState();
+
+  const agregarImagenNoticia = async (event) => {
+    const archivos = event.target.files;
+    if (archivos && archivos.length > 0) {
+      console.log(archivos);
+      try {
+        const archivosRecorridos = Object.values(archivos);
+        const nuevasImagenes = [...imagenNoticia, ...archivosRecorridos];
+        const imagenesRestantes = nuevasImagenes.slice(0, 12);
+        setImagenesPorExcesoNoticias(`${12 - imagenesRestantes.length}`);
+
+        const nombres = imagenesRestantes.map((archivo) => archivo.name);
+        console.log(imagenesRestantes);
+
+        const formData = new FormData();
+        imagenesRestantes.forEach((file) => {
+          formData.append("imagenes", file);
+        });
+
+        const respuesta = await axios.post("/API/ImagenYVideo", formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+
+        const rutaImagenes = respuesta.data;
+
+        console.log(rutaImagenes);
+
+        setNombreImagenNoticia(nombres.join(", "));
+        setImagenNoticia(imagenesRestantes);
+        setImagenRutaNoticia(rutaImagenes);
+        setInterructorNoticia(false);
+
+        event.target.value = "";
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      console.log("No se seleccionó ningún archivo");
+    }
+  };
+
   const agregarArchivo = async (event) => {
     const archivos = event.target.files;
     if (archivos && archivos.length > 0) {
@@ -595,7 +643,13 @@ const Noticias = () => {
               </section>
               <section
                 className={stylesNoticias.seccionSecundaria}
-                style={{ width: "100%", padding: "2%" }}
+                style={{
+                  width: "100%",
+                  padding: "2%",
+                  padding: "2%",
+                  height: `${imagenesPorExcesoNoticias >= 2 ? "91vh" : "auto"}`,
+                  overflowY: "auto",
+                }}
               >
                 <section className={stylesNoticias.seccionAjustes}>
                   <section className={stylesNoticias.seccionFlex}>
@@ -632,19 +686,20 @@ const Noticias = () => {
                               Publicar Noticia
                             </button>
                           </form>
-                          {imagen.length > 0 && (
+                          {imagenNoticia.length > 0 && (
                             <section
                               className={stylesNoticias.lineaPunteada}
                             ></section>
                           )}
                           <section
                             className={stylesNoticias.seccionGridImagenes}
+                            style={{ overflowY: "auto" }}
                           >
-                            {imagen && (
+                            {imagenNoticia && (
                               <section
                                 className={stylesNoticias.seccionGridImagenes}
                               >
-                                {imagen.map((archivo, index) => (
+                                {imagenNoticia.map((archivo, index) => (
                                   <section
                                     key={index}
                                     className={stylesNoticias.imagen}
@@ -668,7 +723,7 @@ const Noticias = () => {
                               </section>
                             )}
                           </section>
-                          {imagen.length > 0 && (
+                          {imagenNoticia.length > 0 && (
                             <section
                               className={
                                 stylesNoticias.seccionImagenAdvertencia
@@ -679,15 +734,15 @@ const Noticias = () => {
                               </p>
                               <p
                                 className={`${
-                                  imagenesPorExceso == "0"
+                                  imagenesPorExcesoNoticias == "0"
                                     ? `${stylesNoticias.parrafoAdvertencia}`
                                     : `${stylesNoticias.parrafoImagen}`
                                 }`}
                               >
                                 Puede Agregar:{" "}
-                                {imagenesPorExceso < 10
-                                  ? `0${imagenesPorExceso}`
-                                  : imagenesPorExceso}{" "}
+                                {imagenesPorExcesoNoticias < 10
+                                  ? `0${imagenesPorExcesoNoticias}`
+                                  : imagenesPorExcesoNoticias}{" "}
                                 Archivos Más
                               </p>
                             </section>
@@ -700,13 +755,13 @@ const Noticias = () => {
                           <section className={stylesNoticias.item}>
                             <label
                               className={stylesNoticias.inputFile}
-                              htmlFor="imagen"
+                              htmlFor="imagenNoticia"
                             ></label>
                             <input
-                              id="imagen"
+                              id="imagenNoticia"
                               multiple
                               accept=".png, .mp4, .gif, .apng, .jpg, .jpeg"
-                              onChange={agregarArchivo}
+                              onChange={agregarImagenNoticia}
                               type="file"
                             />
                             {temaActual && (
