@@ -403,7 +403,7 @@ const Noticias = () => {
                   className={stylesNoticias.seccionAjustes}
                   style={{ width: "100%", margin: "0" }}
                 >
-                  <h1 style={{ textAlign: "center" }}>Secciones</h1>
+                  <h1 style={{ textAlign: "center" }}>Índice</h1>
                 </section>
               </section>
               <section
