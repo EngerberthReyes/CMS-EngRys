@@ -164,7 +164,8 @@ const Post = ({ post, nombreDeUsuario, usuario, enviandoBorrado }) => {
                     </>
                   )}
                 </section>
-                {elementoPost.imagen.length > 0 && (
+                {(elementoPost.imagen.length > 0 ||
+                  elementoPost.youtubeUrl.length > 0) && (
                   <section className={stylesPost.lineaPunteada}></section>
                 )}
                 <section className={stylesPost.seccionGridImagenes}>
@@ -204,34 +205,24 @@ const Post = ({ post, nombreDeUsuario, usuario, enviandoBorrado }) => {
                           </section>
                         </>
                       ))}
-                      {elementoPost.youtubeUrl.length > 0 && (
-                        <section>
-                          {elementoPost.imagen.length === 0 && (
-                            <section
-                              className={stylesPost.lineaPunteada}
-                            ></section>
-                          )}
-                          {elementoPost.youtubeUrl.map(
-                            (videoYoutube, index) => (
-                              <>
-                                <iframe
-                                  key={elementoPost.id_publicacion}
-                                  style={{ width: "100%" }}
-                                  src={videoYoutube.replace(
-                                    "watch?v=",
-                                    "embed/"
-                                  )}
-                                  title={`youtube-video-${index}`}
-                                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                                  allowFullScreen
-                                  className={stylesPost.imagen}
-                                ></iframe>
-                              </>
-                            )
-                          )}
-                        </section>
-                      )}
                     </>
+                  )}
+                  {elementoPost.youtubeUrl.length > 0 && (
+                    <section>
+                      {elementoPost.youtubeUrl.map((videoYoutube, index) => (
+                        <>
+                          <iframe
+                            key={elementoPost.id_publicacion}
+                            style={{ width: "100%", aspectRatio: "16 / 9" }}
+                            src={videoYoutube.replace("watch?v=", "embed/")}
+                            title={`youtube-video-${index}`}
+                            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                            allowFullScreen
+                            className={stylesPost.imagen}
+                          ></iframe>
+                        </>
+                      ))}
+                    </section>
                   )}
                 </section>
                 {/*      <section className={stylesPost.lineaPunteada}></section>

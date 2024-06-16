@@ -511,7 +511,7 @@ const Noticias = () => {
                         <input
                           id="imagen"
                           multiple
-                          accept=".png, .mp4, .gif, .jpg, .jpeg"
+                          accept=".png, .mp4, .gif, .apng, .jpg, .jpeg"
                           onChange={agregarArchivo}
                           type="file"
                         />
