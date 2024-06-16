@@ -270,7 +270,7 @@ const Noticias = () => {
         }
       );
 
-      console.log("Respuesta de la API:", respuestaPostEnviado);
+      console.log(respuestaPostEnviado);
 
       const respuesta = respuestaPostEnviado.data;
 
