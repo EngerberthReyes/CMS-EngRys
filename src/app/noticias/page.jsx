@@ -529,26 +529,29 @@ const Noticias = () => {
                               type="file"
                             />
                             {temaActual && (
-                              <Image
-                                width={20}
-                                height={20}
-                                src={
-                                  temaActual === "oscuro"
-                                    ? `/plus-solid-black.svg`
-                                    : `/plus-solid-white.svg`
-                                }
-                                alt="Agregar Imagen"
-                              />
+                              <section
+                                style={{
+                                  display: "flex",
+                                  justifyContent: "space-around",
+                                  alignItems: "center",
+                                  width: "100%",
+                                }}
+                              >
+                                <Image
+                                  width={20}
+                                  height={20}
+                                  src={
+                                    temaActual === "oscuro"
+                                      ? `/plus-solid-black.svg`
+                                      : `/plus-solid-white.svg`
+                                  }
+                                  alt="Agregar Imagen"
+                                />
+                                <h1 style={{ fontSize: "27px", margin: "0" }}>
+                                  Agregar Imagen
+                                </h1>
+                              </section>
                             )}
-                          </section>
-                          <section className={stylesNoticias.item}>
-                            Cajas
-                          </section>
-                          <section className={stylesNoticias.item}>
-                            Cajas
-                          </section>
-                          <section className={stylesNoticias.item}>
-                            Cajas
                           </section>
                         </section>
                       </section>
