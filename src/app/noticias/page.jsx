@@ -563,7 +563,12 @@ const Noticias = () => {
               )}
             </section>
             <section
-              style={{ width: "34rem", position: "relative", right: "2%" }}
+              style={{
+                width: "34rem",
+                right: "0.8%",
+                top: "1%",
+                position: "sticky",
+              }}
             >
               <section
                 className={stylesNoticias.seccionSecundaria}
