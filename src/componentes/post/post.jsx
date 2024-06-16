@@ -9,7 +9,15 @@ import { useState, useEffect } from "react";
 
 const Post = ({ post, nombreDeUsuario, usuario }) => {
   console.log(post);
-  const borrarPublicacion = (idPublicacion) => {
+  const borrarPublicacion = async (idPublicacion) => {
+    try {
+      const postEliminado = await axios.delete(
+        `http://localhost:3000/API/publicaciones/${idPublicacion}`
+      );
+      console.log(postEliminado);
+    } catch (error) {
+      console.error(error);
+    }
     console.log(idPublicacion);
   };
   return (

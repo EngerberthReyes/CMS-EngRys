@@ -57,6 +57,7 @@ export const GET = async () => {
     return new NextResponse("Error interno del servidor", { status: 500 });
   }
 };
+
 export const POST = async (request) => {
   try {
     const formData = await request.formData();
