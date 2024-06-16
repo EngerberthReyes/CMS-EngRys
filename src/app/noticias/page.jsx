@@ -593,7 +593,7 @@ const Noticias = () => {
                         style={{ width: "auto" }}
                       >
                         <h1 style={{ textAlign: "center" }}>
-                          Públicar Noticias
+                          Publicar Noticias
                         </h1>
                         <section className={stylesNoticias.seccionPost}>
                           <form
@@ -617,7 +617,7 @@ const Noticias = () => {
                               style={{ width: "100%" }}
                               type="submit"
                             >
-                              Enviar
+                              Publicar Noticia
                             </button>
                           </form>
                           {imagen.length > 0 && (
