@@ -34,7 +34,7 @@ const Post = ({ post, nombreDeUsuario, usuario, enviandoBorrado }) => {
             >
               <section className={stylesPost.seccionGrid}>
                 <section style={{ display: "flex", width: "100%" }}>
-                  {elementoPost.id_persona !== usuario.idPersona ? (
+                  {elementoPost?.id_persona !== usuario?.idPersona ? (
                     <>
                       <Link
                         className={`${stylesPost.enlace} ${stylesPost.usuarioPerfil}`}
@@ -55,13 +55,17 @@ const Post = ({ post, nombreDeUsuario, usuario, enviandoBorrado }) => {
                           width={35}
                           height={20}
                           src={
-                            usuario?.fotoPerfil
-                              ? usuario.fotoPerfil
+                            elementoPost?.fotoPerfil
+                              ? elementoPost.fotoPerfil
                               : "/IMG/epigrafe73.png"
                           }
                         />
                         <section style={{ wordBreak: "keep-all" }}>
-                          <section>{nombreDeUsuario}</section>
+                          <section>
+                            {" "}
+                            {`${elementoPost.nombre.split(" ")[0]}
+                              ${elementoPost.apellido.split(" ")[0]}`}
+                          </section>
                         </section>
                       </Link>
                     </>
