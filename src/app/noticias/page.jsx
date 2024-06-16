@@ -193,6 +193,7 @@ const Noticias = () => {
   useEffect(() => {
     publicaciones();
   }, [publicacionBorrada]);
+
   const enviarPost = async (mensaje) => {
     const regexUrl = /(https?:\/\/[^\s]+)/g;
     const urlExtensions = /\.(jpeg|jpg|gif|png|bmp|webp)(\?.*)?$/i;
@@ -274,7 +275,7 @@ const Noticias = () => {
       const respuesta = respuestaPostEnviado.data;
 
       setPost((prevPosts) => {
-        const postNuevos = [...respuesta, ...prevPosts];
+        const postNuevos = respuesta;
         console.log(postNuevos);
         return postNuevos.sort((a, b) => b.id_publicacion - a.id_publicacion);
       });
