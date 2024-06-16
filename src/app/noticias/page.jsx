@@ -400,19 +400,36 @@ const Noticias = () => {
         </header>
         <main>
           <section className={stylesNoticias.main}>
-            <section className={stylesNoticias.seccionSecundaria}>
-              <section className={stylesNoticias.seccionAjustes}>
-                <h1>Lateral</h1>
-                <section className={stylesNoticias.seccionFlex}>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
+            <section
+              style={{ width: "34rem", position: "relative", left: "1%" }}
+            >
+              <section
+                className={stylesNoticias.seccionSecundaria}
+                style={{ width: "100%" }}
+              >
+                <section
+                  className={stylesNoticias.seccionAjustes}
+                  style={{ width: "100%", margin: "0" }}
+                >
+                  <h1 style={{ textAlign: "center" }}>Lateral</h1>
+                </section>
+              </section>
+              <section
+                className={stylesNoticias.seccionSecundaria}
+                style={{ width: "100%", padding: "2%" }}
+              >
+                <section className={stylesNoticias.seccionAjustes}>
+                  <section className={stylesNoticias.seccionFlex}>
+                    <section>Cajas2</section>
+                    <section>Cajas2</section>
+                    <section>Cajas2</section>
+                    <section>Cajas2</section>
+                    <section>Cajas2</section>
+                    <section>Cajas2</section>
+                    <section>Cajas2</section>
+                    <section>Cajas2</section>
+                    <section>Cajas2</section>
+                  </section>
                 </section>
               </section>
             </section>
@@ -545,19 +562,36 @@ const Noticias = () => {
                 />
               )}
             </section>
-            <section className={stylesNoticias.seccionTerciaria}>
-              <section className={stylesNoticias.seccionAjustes}>
-                <h1>Lateral</h1>
-                <section className={stylesNoticias.seccionFlex}>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
+            <section
+              style={{ width: "34rem", position: "relative", right: "2%" }}
+            >
+              <section
+                className={stylesNoticias.seccionSecundaria}
+                style={{ width: "100%" }}
+              >
+                <section
+                  className={stylesNoticias.seccionAjustes}
+                  style={{ width: "100%", margin: "0" }}
+                >
+                  <h1 style={{ textAlign: "center" }}>Lateral</h1>
+                </section>
+              </section>
+              <section
+                className={stylesNoticias.seccionSecundaria}
+                style={{ width: "100%", padding: "2%" }}
+              >
+                <section className={stylesNoticias.seccionAjustes}>
+                  <section className={stylesNoticias.seccionFlex}>
+                    <section>Cajas2</section>
+                    <section>Cajas2</section>
+                    <section>Cajas2</section>
+                    <section>Cajas2</section>
+                    <section>Cajas2</section>
+                    <section>Cajas2</section>
+                    <section>Cajas2</section>
+                    <section>Cajas2</section>
+                    <section>Cajas2</section>
+                  </section>
                 </section>
               </section>
             </section>
