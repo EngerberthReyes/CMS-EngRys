@@ -485,6 +485,7 @@ const Noticias = () => {
                                   ></video>
                                 ) : (
                                   <img
+                                    style={{ height: "100%" }}
                                     className={stylesNoticias.imagen}
                                     alt={`${index + 1}`}
                                     src={URL.createObjectURL(archivo)}

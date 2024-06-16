@@ -251,7 +251,6 @@
 
 .imagen {
   position: relative !important;
-  position: relative !important;
   aspect-ratio: 16 / 9;
   object-fit: cover;
   border-radius: 4px;
