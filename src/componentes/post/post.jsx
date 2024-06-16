@@ -62,7 +62,6 @@ const Post = ({ post, nombreDeUsuario, usuario, enviandoBorrado }) => {
                         />
                         <section style={{ wordBreak: "keep-all" }}>
                           <section>
-                            {" "}
                             {`${elementoPost.nombre.split(" ")[0]}
                               ${elementoPost.apellido.split(" ")[0]}`}
                           </section>
