@@ -318,14 +318,14 @@ const Noticias = () => {
   const theFetcher = (url) =>
     fetch(`http://localhost:3000/API/publicaciones`).then((res) => res.json());
 
-  const { data: posts } = useSWR(
+  const { data: posters } = useSWR(
     `http://localhost:3000/API/publicaciones`,
     theFetcher
   );
 
   useEffect(() => {
     publicaciones();
-  }, [publicacionBorrada, posts]);
+  }, [publicacionBorrada, posters]);
 
   return (
     <>
