@@ -315,8 +315,9 @@ const Noticias = () => {
   };
 
   useEffect(() => {
-    publicaciones();
-  }, [publicacionBorrada, post]);
+    const intervalo = setInterval(publicaciones, 10000);
+    return () => clearInterval(intervalo);
+  }, [publicacionBorrada]);
 
   return (
     <>
