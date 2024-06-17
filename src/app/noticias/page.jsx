@@ -527,7 +527,7 @@ const Noticias = () => {
                 <Link
                   className={`${stylesNoticias.enlace} ${stylesNoticias.usuarioPerfil} ${stylesNoticias.enlacePersonalizado}`}
                   href="/perfil"
-                  style={{ border: "none"}}
+                  style={{ border: "none" }}
                 >
                   <Image
                     className={stylesNoticias.imagenes}
@@ -933,7 +933,7 @@ const Noticias = () => {
                   style={{
                     display: `${noticia.length === 0 ? "none" : ""}`,
                     overflowY: "auto",
-                    height: "40vh",
+                    height: `${usuario ? "40vh" : "76vh"}`,
                     position: "relative",
                     marginTop: "2%",
                     overflowX: "hidden",
