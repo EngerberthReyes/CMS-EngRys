@@ -810,7 +810,7 @@ const Noticias = () => {
                                 (!mensajeNoticia ||
                                   mensajeNoticia.replace(/[\n\r]/g, "").trim()
                                     .length <= 0) &&
-                                interructor
+                                interructorNoticia
                               }
                               className={`${stylesNoticias.enlace} ${stylesNoticias.botonEnviar}`}
                               style={{ width: "100%" }}
