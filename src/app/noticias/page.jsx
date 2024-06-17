@@ -24,6 +24,7 @@ const Noticias = () => {
   });
   const enrutadorMaster = useRouter();
   const [post, setPost] = useState([]);
+  const [noticia, setNoticia] = useState([]);
   const [nombreImagen, setNombreImagen] = useState([]);
   const [imagen, setImagen] = useState([]);
   const [imagenPerfil, setImagenPerfil] = useState(null);
@@ -32,6 +33,7 @@ const Noticias = () => {
   const [imagenesRuta, setImagenesRuta] = useState();
   const [temaActual, setTemaActual] = useState();
   const [mensaje, setMensaje] = useState();
+  const [mensajeNoticia, setMensajeNoticia] = useState();
 
   console.log(imagenesRuta);
 
@@ -216,6 +218,104 @@ const Noticias = () => {
       console.log(error);
     } finally {
       enrutadorMaster.push("/");
+    }
+  };
+
+  const enviarNoticia = async (mensajeNoticia) => {
+    const regexUrl = /(https?:\/\/[^\s]+)/g;
+    const urlExtensions = /\.(jpeg|jpg|gif|png|bmp|webp)(\?.*)?$/i;
+    const youtubeRegex =
+      /^(https?:\/\/)?(www\.)?(youtube\.com|youtu\.?be)\/.+$/;
+
+    if (typeof mensajeNoticia === "object") {
+      return;
+    }
+
+    console.log("Mensaje original:", mensajeNoticia);
+    const mensajePost = mensajeNoticia;
+    const mensajePostNormal =
+      typeof mensajeNoticia === "string"
+        ? mensajeNoticia.replace(/<.*?>/g, "")
+        : "";
+
+    console.log("Mensaje normal:", mensajePostNormal);
+
+    const urls = mensajePostNormal.match(regexUrl) || [];
+    const imagenUrl = [];
+    const enlaces = [];
+    const youtubeUrl = [];
+
+    urls.forEach((url) => {
+      if (urlExtensions.test(url)) {
+        imagenUrl.push(url);
+      } else if (youtubeRegex.test(url)) {
+        youtubeUrl.push(url);
+      } else {
+        enlaces.push(url);
+      }
+    });
+
+    console.log("URLs:", urls);
+
+    const combinedRegex = new RegExp(
+      `${regexUrl.source}|${urlExtensions.source}|${youtubeRegex.source}`,
+      "gi"
+    );
+
+    if (!mensajeNoticia || typeof mensajeNoticia === "object") {
+      mensajeNoticia = " ";
+    }
+
+    const texto = mensajeNoticia.replace(combinedRegex, "").trim();
+
+    console.log("Texto:", texto);
+    console.log("Imágenes:", imagenUrl);
+    console.log("Enlaces:", enlaces);
+    console.log("YouTube:", youtubeUrl);
+
+    console.log("ImagenesRuta:", imagenesRuta);
+    console.log("Imagen:", imagen);
+
+    try {
+      const formData = new FormData();
+      formData.append("mensaje", texto);
+      formData.append("nombreImagen", nombreImagen);
+      formData.append("imagenUrl", JSON.stringify(imagenUrl));
+      formData.append("enlaces", JSON.stringify(enlaces));
+      formData.append("youtubeUrl", JSON.stringify(youtubeUrl));
+      formData.append("imagenesRuta", JSON.stringify(imagenesRuta));
+
+      imagen.forEach((archivo, index) => {
+        formData.append("imagenes", archivo);
+      });
+
+      const respuestaNoticiaEnviada = await axios.post(
+        "../API/options",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+
+      console.log(respuestaNoticiaEnviada);
+
+      const respuesta = respuestaNoticiaEnviada.data;
+
+      setNoticia((prevNoticia) => {
+        const postNuevos = respuesta;
+        console.log(postNuevos);
+        return postNuevos.sort((a, b) => b.id_option - a.id_option);
+      });
+    } catch (error) {
+      console.error("Error al enviar la publicación:", error);
+    } finally {
+      setNombreImagenNoticia([]);
+      setImagenNoticia([]);
+      setMensajeNoticia("");
+      setNombreImagenNoticia([]);
+      setInterructorNoticia(true);
     }
   };
 
@@ -665,17 +765,17 @@ const Noticias = () => {
                           <form
                             className={stylesNoticias.formulario}
                             encType="multipart/form-data"
-                            onSubmit={handleSubmit(enviarPost)}
+                            onSubmit={handleSubmit(enviarNoticia)}
                             style={{ flexFlow: "column wrap", rowGap: "1rem" }}
                           >
                             <section className="App" style={{ width: "100%" }}>
-                              <Tiptap setDescription={setMensaje} />
+                              <Tiptap setDescription={setMensajeNoticia} />
                             </section>
                             <button
-                              onClick={() => enviarPost(mensaje)}
+                              onClick={() => enviarNoticia(mensajeNoticia)}
                               disabled={
-                                (!mensaje ||
-                                  mensaje.replace(/[\n\r]/g, "").trim()
+                                (!mensajeNoticia ||
+                                  mensajeNoticia.replace(/[\n\r]/g, "").trim()
                                     .length <= 0) &&
                                 interructor
                               }
