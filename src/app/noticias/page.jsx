@@ -290,7 +290,7 @@ const Noticias = () => {
       });
 
       const respuestaNoticiaEnviada = await axios.post(
-        "../API/options",
+        "../API/noticias",
         formData,
         {
           headers: {
@@ -304,9 +304,9 @@ const Noticias = () => {
       const respuesta = respuestaNoticiaEnviada.data;
 
       setNoticia((prevNoticia) => {
-        const postNuevos = respuesta;
+        const nuevasNoticias = respuesta;
         console.log(postNuevos);
-        return postNuevos.sort((a, b) => b.id_option - a.id_option);
+        return nuevasNoticias.sort((a, b) => b.id_option - a.id_option);
       });
     } catch (error) {
       console.error("Error al enviar la publicación:", error);
