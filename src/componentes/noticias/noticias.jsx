@@ -32,14 +32,14 @@ const NoticiasPublicadas = ({
   return (
     <>
       {noticia.length > 0
-        ? noticia.map((elementoPost, index) => (
+        ? noticia.map((elementoNoticia, index) => (
             <section
-              key={elementoPost.id_noticia}
+              key={elementoNoticia.id_noticia}
               className={stylesPost.seccionPrincipal}
             >
               <section className={stylesPost.seccionGrid}>
                 <section style={{ display: "flex", width: "100%" }}>
-                  {elementoPost?.id_persona !== usuario?.idPersona ? (
+                  {elementoNoticia?.id_persona !== usuario?.idPersona ? (
                     <>
                       <Link
                         className={`${stylesPost.enlace} ${stylesPost.usuarioPerfil}`}
@@ -60,15 +60,15 @@ const NoticiasPublicadas = ({
                           width={35}
                           height={20}
                           src={
-                            elementoPost?.fotoPerfil
-                              ? elementoPost.fotoPerfil
+                            elementoNoticia?.fotoPerfil
+                              ? elementoNoticia.fotoPerfil
                               : "/IMG/epigrafe73.png"
                           }
                         />
                         <section style={{ wordBreak: "keep-all" }}>
                           <section>
-                            {`${elementoPost.nombre.split(" ")[0]}
-                              ${elementoPost.apellido.split(" ")[0]}`}
+                            {`${elementoNoticia.nombre.split(" ")[0]}
+                              ${elementoNoticia.apellido.split(" ")[0]}`}
                           </section>
                         </section>
                       </Link>
@@ -82,7 +82,7 @@ const NoticiasPublicadas = ({
                           alignItems: "center",
                           width: "100%",
                         }}
-                        onClick={() => borrarNoticia(elementoPost.id_noticia)}
+                        onClick={() => borrarNoticia(elementoNoticia.id_noticia)}
                       >
                         <Link
                           className={`${stylesPost.enlace} ${stylesPost.usuarioPerfil}`}
@@ -103,15 +103,15 @@ const NoticiasPublicadas = ({
                             width={35}
                             height={20}
                             src={
-                              elementoPost.fotoPerfil
-                                ? elementoPost.fotoPerfil
+                              elementoNoticia.fotoPerfil
+                                ? elementoNoticia.fotoPerfil
                                 : "/IMG/epigrafe73.png"
                             }
                           />
                           <section style={{ wordBreak: "keep-all" }}>
                             <section>
-                              {`${elementoPost.nombre.split(" ")[0]}
-                              ${elementoPost.apellido.split(" ")[0]}`}
+                              {`${elementoNoticia.nombre.split(" ")[0]}
+                              ${elementoNoticia.apellido.split(" ")[0]}`}
                             </section>
                           </section>
                         </Link>
@@ -144,13 +144,13 @@ const NoticiasPublicadas = ({
                 </section>
                 <section>
                   <>
-                    {elementoPost.mensaje && (
-                      <Details description={elementoPost.mensaje} />
+                    {elementoNoticia.mensaje && (
+                      <Details description={elementoNoticia.mensaje} />
                     )}
                   </>
-                  {elementoPost.enlaces && (
+                  {elementoNoticia.enlaces && (
                     <>
-                      {elementoPost.enlaces.map((enlace, index) => (
+                      {elementoNoticia.enlaces.map((enlace, index) => (
                         <>
                           <Link
                             key={index}
@@ -166,14 +166,14 @@ const NoticiasPublicadas = ({
                     </>
                   )}
                 </section>
-                {(elementoPost.imagen.length > 0 ||
-                  elementoPost.youtubeUrl.length > 0) && (
+                {(elementoNoticia.imagen.length > 0 ||
+                  elementoNoticia.youtubeUrl.length > 0) && (
                   <section className={stylesPost.lineaPunteada}></section>
                 )}
                 <section className={stylesPost.seccionGridImagenes}>
-                  {elementoPost.imagenUrl && (
+                  {elementoNoticia.imagenUrl && (
                     <>
-                      {elementoPost.imagenUrl.map((url, index) => (
+                      {elementoNoticia.imagenUrl.map((url, index) => (
                         <img
                           className={stylesPost.imagen}
                           key={index}
@@ -183,9 +183,9 @@ const NoticiasPublicadas = ({
                       ))}
                     </>
                   )}
-                  {elementoPost.imagen.length > 0 && (
+                  {elementoNoticia.imagen.length > 0 && (
                     <>
-                      {elementoPost.imagen.map((archivo, index) => (
+                      {elementoNoticia.imagen.map((archivo, index) => (
                         <>
                           <section key={index}>
                             {archivo.includes(".mp4") ? (
@@ -209,12 +209,12 @@ const NoticiasPublicadas = ({
                       ))}
                     </>
                   )}
-                  {elementoPost.youtubeUrl.length > 0 && (
+                  {elementoNoticia.youtubeUrl.length > 0 && (
                     <section>
-                      {elementoPost.youtubeUrl.map((videoYoutube, index) => (
+                      {elementoNoticia.youtubeUrl.map((videoYoutube, index) => (
                         <>
                           <iframe
-                            key={elementoPost.id_publicacion}
+                            key={elementoNoticia.id_noticia}
                             style={{ width: "100%", aspectRatio: "16 / 9" }}
                             src={videoYoutube.replace("watch?v=", "embed/")}
                             title={`youtube-video-${index}`}
