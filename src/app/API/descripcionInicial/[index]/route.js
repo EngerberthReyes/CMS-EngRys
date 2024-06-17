@@ -14,9 +14,7 @@ export const GET = async (request, { params: { index } }) => {
     );
 
     // Crear y enviar la respuesta
-    const response = new NextResponse(
-      JSON.stringify(actualizacionPerfil)
-    );
+    const response = new NextResponse(JSON.stringify(actualizacionPerfil));
     return response;
   } catch (error) {
     // Manejar errores
@@ -33,7 +31,7 @@ export const PUT = async (request, { params: { index } }) => {
     const consultaActualizacionPerfil = `UPDATE options AS opt SET opt.contenido = ? WHERE id_option = ?;`;
     const actualizacionPerfil = await cmsConexion.query(
       consultaActualizacionPerfil,
-      [description, Number(index)]
+      [description.replace(/<.*?>/g, ""), Number(index)]
     );
     console.log(actualizacionPerfil);
     const response = new NextResponse(

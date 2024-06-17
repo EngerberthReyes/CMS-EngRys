@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import Details from "@/componentes/tiptap/DetailsDos";
+import Details from "@/componentes/tiptap/DetailsTres";
 import { Tiptap } from "@/componentes/tiptap/TipTap";
 import { useRouter } from "next/navigation";
 import "../CSS/App.css";
@@ -212,34 +212,29 @@ const SobreNosotros = () => {
                     <ul>
                       {descriptions.map((item, index) => (
                         <section key={index}>
-                          <li
-                            style={{ margin: "0 0 1rem 0", fontSize: "18px" }}
-                          >
-                            <strong>{item.label}:</strong>{" "}
-                            {currentEditIndex === index ? (
-                              <section className="App">
-                                <Tiptap setDescription={setDescription} />
-                                <button
-                                  style={{
-                                    position: "fixed",
-                                    left: "2rem",
-                                    bottom: "1rem",
-                                    background: "#0f0f0fbf",
-                                  }}
-                                  className={stylesNosotros.seccionElemento}
-                                  onClick={guardarCambios}
-                                >
-                                  Guardar Cambios
-                                </button>
-                              </section>
-                            ) : (
-                              <Details
-                                description={
-                                  item?.contenido || "Descripción no disponible"
-                                }
-                              />
-                            )}
-                          </li>
+                          {currentEditIndex === index ? (
+                            <section className="App">
+                              <Tiptap setDescription={setDescription} />
+                              <button
+                                style={{
+                                  position: "fixed",
+                                  left: "2rem",
+                                  bottom: "1rem",
+                                  background: "#0f0f0fbf",
+                                }}
+                                className={stylesNosotros.seccionElemento}
+                                onClick={guardarCambios}
+                              >
+                                Guardar Cambios
+                              </button>
+                            </section>
+                          ) : (
+                            <Details
+                              description={
+                                item?.contenido || "Descripción no disponible"
+                              }
+                            />
+                          )}
                           {currentEditIndex !== index && (
                             <label
                               style={{
