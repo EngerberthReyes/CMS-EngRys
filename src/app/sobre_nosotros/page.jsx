@@ -11,171 +11,111 @@ import "../CSS/App.css";
 import stylesNosotros from "../CSS/styles-sobreNosotros.module.css";
 
 const SobreNosotros = () => {
-  console.log("Nuevo Mensaje");
-  const enrutadorMaster = useRouter();
+  const router = useRouter();
   const [usuario, setUsuario] = useState();
   const [imagen, setImagen] = useState();
   const [nombreImagen, setNombreImagen] = useState();
   const [perfilCerrado, setPerfilCerrado] = useState(false);
   const [description, setDescription] = useState("");
+  const [currentEditIndex, setCurrentEditIndex] = useState(null);
+  const [descriptions, setDescriptions] = useState([]);
+  const [nombreDeUsuario, setNombreDeUsuario] = useState("");
+
+  useEffect(() => {
+    const obtenerPerfil = async () => {
+      if (perfilCerrado) return;
+      try {
+        const respuesta = await axios.get("../API/perfil");
+        const usuarioActivo = respuesta.data.sesionUsuario;
+        setUsuario(usuarioActivo);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    obtenerPerfil();
+  }, [perfilCerrado]);
+
+  useEffect(() => {
+    if (usuario) {
+      const nombreCompleto = usuario.nombreCompletoUsuario || "";
+      const nombreApellido = nombreCompleto.split(" ");
+      setNombreDeUsuario(
+        `${nombreApellido[0] || ""} ${nombreApellido[2] || ""}`
+      );
+    }
+  }, [usuario]);
+
+  const listItemsData = [
+    { label: "Innovación", apiUrl: "/API/descripcionInicial/2" },
+    { label: "Calidad", apiUrl: "/API/descripcionInicial/3" },
+    { label: "Servicio al Cliente", apiUrl: "/API/descripcionInicial/4" },
+    { label: "Responsabilidad Social", apiUrl: "/API/descripcionInicial/5" },
+  ];
+
+  useEffect(() => {
+    const fetchDescriptions = async () => {
+      try {
+        const responses = await Promise.all(
+          listItemsData.map((item) => axios.get(item.apiUrl))
+        );
+        const data = responses.map((response) => response.data);
+        console.log(data.flat(1));
+        setDescriptions(data.flat(1));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+    fetchDescriptions();
+  }, []);
+
+  const cerrarPerfil = async () => {
+    try {
+      await axios.get("../API/cerrarPerfil");
+      setPerfilCerrado(true);
+    } catch (error) {
+      console.log(error);
+    } finally {
+      router.push("/");
+    }
+  };
+
+  const cambiarElemento = (index) => {
+    setCurrentEditIndex(index);
+    setDescription(descriptions[index]?.contenido || "");
+  };
+
+  const guardarCambios = async () => {
+    try {
+      const item = listItemsData[currentEditIndex];
+      const response = await axios.put(item.apiUrl, { description });
+      const newDescriptions = [...descriptions];
+      newDescriptions[currentEditIndex] = response.data;
+      setDescriptions(newDescriptions);
+      setCurrentEditIndex(null);
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   const agregarImagen = async (event) => {
     const formData = new FormData();
     const archivo = event.target.files[0];
-    console.log(archivo);
-    const nombreArchivo = archivo.name;
-    console.log(nombreArchivo);
-
-    try {
-      if (archivo) {
-        setNombreImagen(nombreArchivo);
-        formData.set("archivo", archivo);
-
+    if (archivo) {
+      setNombreImagen(archivo.name);
+      formData.append("archivo", archivo);
+      try {
         const respuesta = await axios.post("../API/perfil", formData, {
           headers: {
             "Content-Type": "multipart/form-data",
           },
         });
-
         const fotodePerfil = respuesta.data.fotoPerfil;
-
-        if (fotodePerfil) {
-          setImagen(fotodePerfil);
-          console.log(fotodePerfil);
-        } else {
-          console.log("No se recibió una URL de la imagen o imagen valida");
-        }
-
-        event.target.value = "";
-      } else {
-        console.log("No se seleccionó ningún archivo");
+        if (fotodePerfil) setImagen(fotodePerfil);
+      } catch (error) {
+        console.log(error.response ? error.response.data : error);
       }
-    } catch (error) {
-      console.log(error.response ? error.response.data : error);
     }
   };
-
-  const obtenerPerfil = async () => {
-    if (perfilCerrado) {
-      return;
-    }
-
-    try {
-      const respuesta = await axios.get("../API/perfil");
-      console.log(respuesta);
-      const usuarioActivo = respuesta.data.sesionUsuario;
-      setUsuario(usuarioActivo);
-    } catch (error) {
-      console.log(error);
-    }
-  };
-
-  useEffect(() => {
-    obtenerPerfil();
-  }, []);
-
-  const cerrarPerfil = async () => {
-    try {
-      const respuesta = await axios.get("../API/cerrarPerfil");
-      setPerfilCerrado(true);
-    } catch (error) {
-      console.log(error);
-    } finally {
-      enrutadorMaster.push("/");
-    }
-  };
-
-  const [nombreDeUsuario, setNombreDeUsuario] = useState();
-  useEffect(() => {
-    if (!usuario) return;
-
-    const nombreCompleto = usuario.nombreCompletoUsuario;
-    const nombreApellido = nombreCompleto ? nombreCompleto.split(" ") : [];
-
-    const nombreDeUsuario = `${nombreApellido[0] ? nombreApellido[0] : ""} ${
-      nombreApellido[2] ? nombreApellido[2] : ""
-    }`;
-    setNombreDeUsuario(nombreDeUsuario);
-  }, [usuario]);
-
-  const listItemsData = [
-    {
-      label: "Innovación",
-      contenido:
-        "Nos comprometemos a estar siempre a la vanguardia de las últimas avances tecnológicos, buscando constantemente formas de mejorar y expandir nuestras ofertas.",
-      apiUrl: "/API/descripcionInicial/1",
-    },
-    {
-      label: "Calidad",
-      contenido:
-        "Nos esforzamos por ofrecer productos y servicios de la más alta calidad, garantizando la satisfacción de nuestros clientes.",
-      apiUrl: "/API/descripcionInicial/2",
-    },
-    {
-      label: "Servicio al Cliente",
-      contenido:
-        "Priorizamos el trato personalizado y la atención detallada a nuestros clientes, entendiendo que cada proyecto es único y requiere un enfoque individualizado.",
-      apiUrl: "/API/descripcionInicial/3",
-    },
-    {
-      label: "Responsabilidad Social",
-      contenido:
-        "Reconocemos nuestro papel en la comunidad y nos comprometemos a contribuir positivamente a través de iniciativas sociales y educativas.",
-      apiUrl: "/API/descripcionInicial/4",
-    },
-  ];
-
-  const [cambiarElemento, setCambiarElemento] = useState(null);
-
-  const cambiarElementoE = (index) => {
-    setCambiarElemento(index);
-    setInterruptorCambio(true);
-  };
-
-  const [interruptorCambio, setInterruptorCambio] = useState(false);
-
-  const [descripcionInicialModificacion, setDescripcionInicialModificacion] =
-    useState("");
-  const [descripcionInicialPersonal, setDescripcionInicialPersonal] =
-    useState("");
-  const [editorDescripcionInicial, setEditorDescripcionInicial] =
-    useState(false);
-
-  const obtenerDescripcionInicialPersonal = async () => {
-    try {
-      if (descripcionInicialPersonal === "") {
-        console.log(setEditorDescripcionInicial);
-        const obtenerDescripcionInicial = await axios.get(
-          "/API/descripcionInicial/{index + 2}"
-        );
-        setDescripcionInicialModificacion(
-          obtenerDescripcionInicial.data[0].contenido
-        );
-        console.log(obtenerDescripcionInicial);
-      }
-      console.log(description);
-      if (descripcionInicialModificacion) {
-        const respuestaDescripcionInicial = await axios.put(
-          "/API/descripcionInicial/{index + 2}",
-          {
-            description,
-          }
-        );
-
-        console.log(respuestaDescripcionInicial.data[0].contenido);
-        setDescripcionInicialModificacion(respuestaDescripcionInicial.data);
-        console.log(respuestaDescripcionInicial.data);
-      }
-    } catch (error) {
-      console.log(error);
-    } finally {
-      setInterruptorCambio(false);
-    }
-  };
-
-  useEffect(() => {
-    obtenerDescripcionInicialPersonal();
-  }, []);
 
   return (
     <>
@@ -185,7 +125,7 @@ const SobreNosotros = () => {
       </head>
       <body id={stylesNosotros.body}>
         <header className={stylesNosotros.header}>
-          <Link className={stylesNosotros.enlaceNormal} href={"/"}>
+          <Link href="/" className={stylesNosotros.enlaceNormal}>
             <h1 className={stylesNosotros.tituloHeader}>EpíComputers</h1>
           </Link>
           <section
@@ -205,24 +145,16 @@ const SobreNosotros = () => {
             {usuario ? (
               <>
                 <Link
+                  href="/perfil"
                   className={`${stylesNosotros.enlace} ${stylesNosotros.usuarioPerfil}`}
                   style={{ border: "none" }}
-                  href="/perfil"
                 >
                   <Image
                     className={stylesNosotros.imagenes}
                     width={35}
                     height={20}
-                    src={
-                      usuario?.fotoPerfil
-                        ? usuario.fotoPerfil
-                        : "/IMG/epigrafe73.png"
-                    }
-                    alt={
-                      nombreImagen
-                        ? nombreImagen
-                        : "Imagen de Perfil Por Defecto"
-                    }
+                    src={usuario?.fotoPerfil || "/IMG/epigrafe73.png"}
+                    alt={nombreImagen || "Imagen de Perfil Por Defecto"}
                   />
                   <section style={{ wordBreak: "keep-all" }}>
                     <section>{nombreDeUsuario}</section>
@@ -231,9 +163,9 @@ const SobreNosotros = () => {
                 </Link>
                 <button
                   className={`${stylesNosotros.enlace} ${stylesNosotros.usuarioPerfil}`}
-                  onClick={() => cerrarPerfil()}
+                  onClick={cerrarPerfil}
                 >
-                  <section>Cerrar Sesión</section>
+                  Cerrar Sesión
                 </button>
               </>
             ) : (
@@ -276,94 +208,84 @@ const SobreNosotros = () => {
                   Servicios de Nuestra Empresa
                 </h1>
                 <section className={stylesNosotros.seccionFlex}>
-                  <ul>
-                    {listItemsData.map((itemInformacion, index) => (
-                      <>
-                        {interruptorCambio && cambiarElemento === index ? (
-                          <section className="App">
-                            <Tiptap setDescription={setDescription} />
-                          </section>
-                        ) : (
-                          <Details
-                            description={
-                              descripcionInicialModificacion
-                                ? descripcionInicialModificacion
-                                : descripcionInicialModificacion
-                            }
-                          />
-                        )}
-                        {cambiarElemento !== index ? (
+                  <div>
+                    <ul>
+                      {descriptions.map((item, index) => (
+                        <section key={index}>
                           <li
-                            style={{
-                              margin: "0 0 1rem 0",
-                              fontSize: "18px",
-                            }}
+                            style={{ margin: "0 0 1rem 0", fontSize: "18px" }}
                           >
-                            <strong>{itemInformacion.label}:</strong>{" "}
-                            {itemInformacion.contenido}
+                            <strong>{item.label}:</strong>{" "}
+                            {currentEditIndex === index ? (
+                              <section className="App">
+                                <Tiptap setDescription={setDescription} />
+                                <button
+                                  style={{
+                                    position: "fixed",
+                                    left: "2rem",
+                                    bottom: "1rem",
+                                    background: "#0f0f0fbf",
+                                  }}
+                                  className={stylesNosotros.seccionElemento}
+                                  onClick={guardarCambios}
+                                >
+                                  Guardar Cambios
+                                </button>
+                              </section>
+                            ) : (
+                              <Details
+                                description={
+                                  item?.contenido || "Descripción no disponible"
+                                }
+                              />
+                            )}
                           </li>
-                        ) : null}
-                        <label
-                          style={{
-                            position: "relative",
-                            height: "0",
-                            top: "0",
-                            left: "0",
-                            cursor: "pointer",
-                          }}
-                        >
-                          <section
-                            className={stylesNosotros.seccionBlanco}
-                            style={{
-                              position: "relative",
-                              height: "0",
-                              top: "0",
-                              left: "0",
-                              cursor: "pointer",
-                            }}
-                          >
-                            <Image
-                              className={stylesNosotros.icono_edit}
-                              onClick={() => cambiarElementoE(index)}
-                              width={20}
-                              height={20}
-                              src={`/editar-theme-black.svg`}
-                              alt="Cambiar Descripción Inicial"
-                            />
-                          </section>
-                        </label>
-                      </>
-                    ))}
-                  </ul>
-                  {interruptorCambio && (
-                    <button
-                      style={{
-                        position: "fixed",
-                        left: "2rem",
-                        bottom: "1rem",
-                        background: "#0f0f0fbf",
-                      }}
-                      className={stylesNosotros.seccionElemento}
-                      onClick={() => obtenerDescripcionInicialPersonal()}
-                    >
-                      Guardar Cambios
-                    </button>
-                  )}
+                          {currentEditIndex !== index && (
+                            <label
+                              style={{
+                                position: "relative",
+                                height: "0",
+                                top: "0",
+                                left: "0",
+                                cursor: "pointer",
+                              }}
+                            >
+                              <section
+                                className={stylesNosotros.seccionBlanco}
+                                style={{
+                                  position: "relative",
+                                  height: "0",
+                                  top: "0",
+                                  left: "0",
+                                  cursor: "pointer",
+                                }}
+                              >
+                                <Image
+                                  className={stylesNosotros.icono_edit}
+                                  onClick={() => cambiarElemento(index)}
+                                  width={20}
+                                  height={20}
+                                  src={`/editar-theme-black.svg`}
+                                  alt="Cambiar Descripción Inicial"
+                                />
+                              </section>
+                            </label>
+                          )}
+                        </section>
+                      ))}
+                    </ul>
+                  </div>
                 </section>
               </section>
             </section>
             <section className={stylesNosotros.seccionPrincipal}>
               <section className={stylesNosotros.seccionGrid}>
-                <h1 style={{ textAlign: "center" }}>EpicComputers...</h1>
+                <h1 style={{ textAlign: "center" }}>EpíComputers...</h1>
                 <section style={{ marginTop: "2%" }}>
                   <article>
                     <h2>Historia</h2>
-                    <p
-                      style={{
-                        fontSize: "18px",
-                      }}
-                    >
-                      EpicComputers nació de la pasión por la tecnología y la
+                    <p style={{ fontSize: "18px" }}>
+                      EpíComputers nació de la pasión por la tecnología y la
                       necesidad de ofrecer soluciones informáticas superiores a
                       nuestros clientes. Fundada en 2024, nuestra empresa ha
                       evolucionado constantemente para adaptarse a las
@@ -371,14 +293,9 @@ const SobreNosotros = () => {
                       enfoque en la calidad y el servicio excepcional.
                     </p>
                   </article>
-
                   <article>
                     <h2>Misión</h2>
-                    <p
-                      style={{
-                        fontSize: "18px",
-                      }}
-                    >
+                    <p style={{ fontSize: "18px" }}>
                       Nuestra misión es ser el socio preferido de nuestros
                       clientes en el mundo de las computadoras, proporcionando
                       equipos de alta calidad y servicios personalizados que les
@@ -387,14 +304,9 @@ const SobreNosotros = () => {
                       tecnología como motor de cambio y desarrollo.
                     </p>
                   </article>
-
                   <article>
                     <h2>Visión</h2>
-                    <p
-                      style={{
-                        fontSize: "18px",
-                      }}
-                    >
+                    <p style={{ fontSize: "18px" }}>
                       Aspiramos a liderar el mercado de computadoras mediante la
                       innovación constante, la excelencia en el servicio y la
                       construcción de relaciones duraderas basadas en la
