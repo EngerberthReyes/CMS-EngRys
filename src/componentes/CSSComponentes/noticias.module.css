@@ -75,7 +75,7 @@
   width: 100%;
   padding: 1% 0;
   border-radius: 4px;
-  box-shadow: 3px 0px 11px 0px #0f0f0f73;
+  border: 2px dashed #0f0f0f
 }
 
 .seccionBorrar {
@@ -276,7 +276,7 @@
   .seccionPrincipal {
     color: #eeeeee;
     background-color: #0f0f0f;
-    box-shadow: 3px 0px 11px 0px #eeeeee73;
+    border: 2px dashed #eeeeee;
   }
 
   .seccionSecundaria,

@@ -525,9 +525,9 @@ const Noticias = () => {
             {usuario ? (
               <>
                 <Link
-                  className={`${stylesNoticias.enlace} ${stylesNoticias.usuarioPerfil}`}
-                  style={{ border: "none" }}
+                  className={`${stylesNoticias.enlace} ${stylesNoticias.usuarioPerfil} ${stylesNoticias.enlacePersonalizado}`}
                   href="/perfil"
+                  style={{ border: "none"}}
                 >
                   <Image
                     className={stylesNoticias.imagenes}
@@ -550,7 +550,7 @@ const Noticias = () => {
                   </section>
                 </Link>
                 <button
-                  className={`${stylesNoticias.enlace} ${stylesNoticias.usuarioPerfil}`}
+                  className={`${stylesNoticias.enlace} ${stylesNoticias.usuarioPerfil} ${stylesNoticias.enlacePersonalizado}`}
                   onClick={() => cerrarPerfil()}
                 >
                   <section>Cerrar Sesión</section>

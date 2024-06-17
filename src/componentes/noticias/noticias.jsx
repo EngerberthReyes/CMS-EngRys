@@ -82,7 +82,9 @@ const NoticiasPublicadas = ({
                           alignItems: "center",
                           width: "100%",
                         }}
-                        onClick={() => borrarNoticia(elementoNoticia.id_noticia)}
+                        onClick={() =>
+                          borrarNoticia(elementoNoticia.id_noticia)
+                        }
                       >
                         <Link
                           className={`${stylesPost.enlace} ${stylesPost.usuarioPerfil}`}

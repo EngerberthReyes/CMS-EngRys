@@ -175,8 +175,20 @@
 }
 
 .enlace {
+  color: #0f0f0f;
+  border-color: #0f0f0f;
+  background-color: #eeeeee;
+
+  &:hover {
+    background-color: #eeeeee;
+    color: #eeeeee;
+    background-color: #0f0f0f;
+  }
+}
+
+.enlacePersonalizado {
+  background-color: transparent;
   color: #eeeeee;
-  border-color: #eeeeee;
 
   &:hover {
     background-color: #eeeeee;
@@ -333,13 +345,23 @@
   }
 
   .enlace {
+    color: #0f0f0f;
+    border-color: #0f0f0f;
+
+    &:hover {
+      background-color: #0f0f0f;
+      color: #eeeeee;
+      border-color: #eeeeee;
+    }
+  }
+
+  .enlacePersonalizado {
+    background-color: transparent;
     color: #eeeeee;
-    border-color: #eeeeee;
 
     &:hover {
       background-color: #eeeeee;
       color: #0f0f0f;
-      border-color: #0f0f0f;
     }
   }
 
