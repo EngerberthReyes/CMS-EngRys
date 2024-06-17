@@ -218,9 +218,13 @@ const SobreNosotros = () => {
                               <button
                                 style={{
                                   position: "fixed",
-                                  left: "2rem",
-                                  bottom: "1rem",
-                                  background: "#0f0f0fbf",
+                                  bottom: "2rem",
+                                  right: "3rem",
+                                  borderRadius: "5px",
+                                  padding: "1%",
+                                  background: "#eeeeeebf",
+                                  color: "#0f0f0f",
+                                  fontSize: "16px",
                                 }}
                                 className={stylesNosotros.seccionElemento}
                                 onClick={guardarCambios}
