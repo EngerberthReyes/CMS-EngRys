@@ -17,6 +17,7 @@ const Inicio = () => {
   const [imagen, setImagen] = useState();
   const [interruptorCambio, setInterruptorCambio] = useState(false);
   const [nombreImagen, setNombreImagen] = useState();
+  const [description, setDescription] = useState("");
   const enrutadorMaster = useRouter();
 
   const obtenerPerfil = async () => {
@@ -62,39 +63,53 @@ const Inicio = () => {
     setNombreDeUsuario(nombreDeUsuario);
   }, [usuario]);
 
-  const [descripcionPerfilModificacion, setDescripcionPerfilModificacion] =
+  const cambiarElemento = () => {
+    setInterruptorCambio(true);
+  };
+
+  const [descripcionInicialModificacion, setDescripcionInicialModificacion] =
     useState("");
-  const [descripcionPerfilPersonal, setDescripcionPerfilPersonal] =
+  const [descripcionInicialPersonal, setDescripcionInicialPersonal] =
     useState("");
-  const [editorDescripcionPerfil, setEditorDescripcionPerfil] = useState(false);
-  const obtenerDescripcionPersonal = async () => {
+  const [editorDescripcionInicial, setEditorDescripcionInicial] =
+    useState(false);
+
+  const obtenerDescripcionInicialPersonal = async () => {
     try {
-      if (descripcionPerfilPersonal === "") {
-        console.log(setEditorDescripcionPerfil);
-        const obtenerDescripcion = await axios.get("../API/descripcionBD");
-        setDescripcionPerfilModificacion(obtenerDescripcion.data);
-        console.log(obtenerDescripcion);
+      if (descripcionInicialPersonal === "") {
+        console.log(setEditorDescripcionInicial);
+        const obtenerDescripcionInicial = await axios.get("/API/descripcionBD");
+        setDescripcionInicialModificacion(obtenerDescripcionInicial.data);
+        console.log(obtenerDescripcionInicial);
       }
-      console.log(descripcionPerfilModificacion);
-      if (descripcionPerfilModificacion) {
-        const respuestaDescripcion = await axios.put("../API/descripcionBD", {
-          descripcionPerfilModificacion,
+      console.log(descripcionInicialModificacion);
+      if (descripcionInicialModificacion) {
+        const respuestaDescripcionInicial = await axios.put(
+          "/API/descripcionBD",
+          {
+            descripcionInicialModificacion,
+          }
+        );
+
+        console.log(respuestaDescripcionInicial);
+        setDescripcionInicialModificacion({
+          descripcion_personal: respuestaDescripcionInicial.data,
         });
-        setEditorDescripcionPerfil(false);
-        console.log(respuestaDescripcion);
-        setDescripcionPerfilModificacion({
-          descripcion_personal: respuestaDescripcion.data,
-        });
-        console.log(respuestaDescripcion.data);
+        console.log(respuestaDescripcionInicial.data);
       }
     } catch (error) {
       console.log(error);
+    } finally {
+      setDescripcionInicialModificacion("xd");
+      setInterruptorCambio(false);
     }
   };
-
+  {
+    /*
   useEffect(() => {
-    obtenerDescripcionPersonal();
-  }, []);
+    obtenerDescripcionInicialPersonal();
+  }, []); */
+  }
 
   return (
     <>
@@ -210,8 +225,8 @@ const Inicio = () => {
                   ) : (
                     <Details
                       description={
-                        descripcionPerfilPersonal
-                          ? descripcionPerfilPersonal
+                        descripcionInicialModificacion
+                          ? descripcionInicialModificacion
                           : "Texto de Ejemplo"
                       }
                     />
@@ -242,11 +257,10 @@ const Inicio = () => {
                         width={20}
                         height={20}
                         src={`/editar-theme-black.svg`}
-                        alt="Cambiar Foto de Perfil"
+                        alt="Cambiar Descripción Inicial"
                       />
                     </section>
                   </label>
-
                   {interruptorCambio && (
                     <button
                       style={{
@@ -256,7 +270,7 @@ const Inicio = () => {
                         background: "#0f0f0fbf",
                       }}
                       className={stylesInicio.seccionElemento}
-                      type="submit"
+                      onClick={() => obtenerDescripcionInicialPersonal()}
                     >
                       Guardar Cambios
                     </button>
