@@ -139,15 +139,12 @@ const Contactanos = () => {
                   Contáctanos
                 </h1>
                 <section>
-                  <h2>Datos Personales</h2>
                   <h3>
-                    Nombre: <span>Nombre del usuario</span>
+                    Correo Electrónico:{" "}
+                    <span>epiccomputers@gmail.epic.com</span>
                   </h3>
                   <h3>
-                    Correo electrónico: <span>correo@ejemplo.com</span>
-                  </h3>
-                  <h3>
-                    Teléfono: <span>+123456789</span>
+                    Teléfono: <span>+58 202420242024</span>
                   </h3>
                 </section>
 
