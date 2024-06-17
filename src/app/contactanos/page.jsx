@@ -137,60 +137,37 @@ const Contactanos = () => {
               <section className={stylesContactanos.seccionAjustes}>
                 <h1>Contáctanos</h1>
                 <section>
-                  <h1>Aqui Ira algo de Como nos pueden contactar o algo</h1>
+                  <h2>Datos Personales</h2>
+                  <h3>
+                    Nombre: <span>Nombre del usuario</span>
+                  </h3>
+                  <h3>
+                    Correo electrónico: <span>correo@ejemplo.com</span>
+                  </h3>
+                  <h3>
+                    Teléfono: <span>+123456789</span>
+                  </h3>
                 </section>
-              </section>
-            </section>
-            <section className={stylesContactanos.seccionPrincipal}>
-              <section className={stylesContactanos.seccionGrid}>
-                <h1>Aqui va algo</h1>
-                <h1>Todas Estas imagenes podrian ser de Pcs</h1>
-                <section className={stylesContactanos.seccionElementos}>
-                  <section>
-                    <Image
-                      className={stylesContactanos.elemento}
-                      src={"/IMG/epigrafe73.png"}
-                      width={200}
-                      height={200}
-                      alt={"Imagen"}
-                    />
-                  </section>
-                  <section>
-                    <Image
-                      className={stylesContactanos.elemento}
-                      src={"/IMG/epigrafe73.png"}
-                      width={200}
-                      height={200}
-                      alt={"Imagen"}
-                    />
-                  </section>
-                  <section>
-                    <Image
-                      className={stylesContactanos.elemento}
-                      src={"/IMG/epigrafe73.png"}
-                      width={200}
-                      height={200}
-                      alt={"Imagen"}
-                    />
-                  </section>
-                  <section>
-                    <Image
-                      className={stylesContactanos.elemento}
-                      src={"/IMG/epigrafe73.png"}
-                      width={200}
-                      height={200}
-                      alt={"Imagen"}
-                    />
-                  </section>
-                  <section>
-                    <Image
-                      className={stylesContactanos.elemento}
-                      src={"/IMG/epigrafe73.png"}
-                      width={200}
-                      height={200}
-                      alt={"Imagen"}
-                    />
-                  </section>
+
+                <section>
+                  <h2>Intereses</h2>
+                  <h3>
+                    Intereses: <span>Interés 1, Interés 2, etc.</span>
+                  </h3>
+                </section>
+
+                <section>
+                  <h2>Presupuesto</h2>
+                  <h3>
+                    Presupuesto: <span>$5000</span>
+                  </h3>
+                </section>
+
+                <section>
+                  <h2>Hora de Contacto Preferida</h2>
+                  <h3>
+                    Hora de contacto preferida: <span>10:00 AM</span>
+                  </h3>
                 </section>
               </section>
             </section>

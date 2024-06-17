@@ -28,7 +28,7 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 81vh;
+  height: 89vh;
 }
 
 .seccionEnlace {
@@ -73,8 +73,8 @@
 
 .main {
   display: flex;
-  justify-content: flex-start;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   width: 100vw;
   column-gap: 2%;
   margin: 1% 0;
@@ -82,8 +82,6 @@
 
 .seccionPrincipal {
   background-color: #eeeeee;
-  width: 50%;
-  margin: 0 2% 0 0;
   border-radius: 4px;
 }
 
@@ -114,8 +112,7 @@
 }
 
 .seccionSecundaria {
-  width: 50%;
-  margin: 0 0 0 2%;
+  padding: 2%;
   background-color: #eeeeee;
   color: #0f0f0f;
   height: 100%;
