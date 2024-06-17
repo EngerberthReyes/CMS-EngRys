@@ -146,6 +146,16 @@ const Contactanos = () => {
                   <h3>
                     Teléfono: <span>+58 2024202420242024</span>
                   </h3>
+                  <h3>
+                    Instagram: <span>https://instagram.com/@epicoputers</span>
+                  </h3>
+                  <h3>
+                    Facebook:{" "}
+                    <span>https://facebook.com/perfil/epicomputers</span>
+                  </h3>
+                  <h3>
+                    X: <span>https://x.com/perfil/epicoputers</span>
+                  </h3>
                 </section>
               </section>
             </section>
