@@ -58,6 +58,40 @@ const Inicio = () => {
     setNombreDeUsuario(nombreDeUsuario);
   }, [usuario]);
 
+  const [descripcionPerfilModificacion, setDescripcionPerfilModificacion] =
+    useState("");
+  const [descripcionPerfilPersonal, setDescripcionPerfilPersonal] =
+    useState("");
+  const [editorDescripcionPerfil, setEditorDescripcionPerfil] = useState(false);
+  const obtenerDescripcionPersonal = async () => {
+    try {
+      if (descripcionPerfilPersonal === "") {
+        console.log(setEditorDescripcionPerfil);
+        const obtenerDescripcion = await axios.get("../API/descripcionBD");
+        setDescripcionPerfilModificacion(obtenerDescripcion.data);
+        console.log(obtenerDescripcion);
+      }
+      console.log(descripcionPerfilModificacion);
+      if (descripcionPerfilModificacion) {
+        const respuestaDescripcion = await axios.put("../API/descripcionBD", {
+          descripcionPerfilModificacion,
+        });
+        setEditorDescripcionPerfil(false);
+        console.log(respuestaDescripcion);
+        setDescripcionPerfilModificacion({
+          descripcion_personal: respuestaDescripcion.data,
+        });
+        console.log(respuestaDescripcion.data);
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    obtenerDescripcionPersonal();
+  }, []);
+
   return (
     <>
       <head>
@@ -129,18 +163,55 @@ const Inicio = () => {
             )}
           </section>
         </header>
-        <main>
+        <main
+          style={{
+            display: "flex",
+            alignItems: "center",
+            justifyContent: "center",
+            height: "85vh",
+          }}
+        >
           <section
             className={`${stylesInicio.main} ${stylesInicio.seccionSecundariaAjuste}`}
           >
             <section
               className={`${stylesInicio.seccionPrincipal} ${stylesInicio.seccionSecundariaAjuste}`}
             >
-              <section className={stylesInicio.seccionFlexPrincipal}>
-                <section className={stylesInicio.secctionInformacion}>
+              <section
+                className={stylesInicio.seccionFlexPrincipal}
+                style={{ columnGap: "2rem" }}
+              >
+                <section
+                  className={stylesInicio.secctionInformacion}
+                  style={{
+                    width: "100%",
+                    display: "flex",
+                    flexDirection: "column",
+                    justifyContent: "center",
+                    alignItems: "center",
+                    rowGap: "5%",
+                  }}
+                >
                   <h1 className={stylesInicio.tituloSeccion}>
                     La PC Gamer de Tus Sueños
                   </h1>
+                  <p
+                    className={stylesInicio.tituloSeccion}
+                    style={{ fontSize: "19px", textAlign: "center" }}
+                  >
+                    Bienvenido a EpíComputers, tu destino definitivo en el mundo
+                    de las computadoras. En nuestro sitio web, te sumergirás en
+                    una experiencia única donde la tecnología se encuentra con
+                    la innovación. Desde procesadores de última generación hasta
+                    sistemas completos personalizados, ofrecemos soluciones que
+                    van más allá de tus expectativas. Nuestra misión es
+                    transformar tu relación con la tecnología, proporcionando
+                    equipos de alta calidad que se adapten a tus necesidades
+                    específicas. Con un diseño limpio y fácil de navegar,
+                    descubrirás productos seleccionados cuidadosamente por
+                    nuestros expertos, asegurándote de obtener el mejor valor
+                    por tu inversión.
+                  </p>
                 </section>
                 <section className={stylesInicio.seccionElementos}>
                   <section>
@@ -156,8 +227,9 @@ const Inicio = () => {
               </section>
             </section>
           </section>
+          {/*
           <section className={stylesInicio.main}>
-            {/*} <section className={stylesInicio.seccionSecundaria}>
+            <section className={stylesInicio.seccionSecundaria}>
               <section className={stylesInicio.seccionAjustes}>
                 <h1>Lateral</h1>
                 <section className={stylesInicio.seccionFlex}>
@@ -172,7 +244,7 @@ const Inicio = () => {
                   <section>Cajas2</section>
                 </section>
               </section>
-            </section> */}
+            </section> 
             <section className={stylesInicio.seccionPrincipal}>
               <h1>Aqui va algo</h1>
               <section className={stylesInicio.seccionFlex}>
@@ -189,7 +261,9 @@ const Inicio = () => {
                 </section>
               </section>
             </section>
+          
           </section>
+            */}
         </main>
       </body>
     </>
