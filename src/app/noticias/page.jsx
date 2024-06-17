@@ -233,15 +233,15 @@ const Noticias = () => {
     }
 
     console.log("Mensaje original:", mensajeNoticia);
-    const mensajePost = mensajeNoticia;
-    const mensajePostNormal =
+    const mensajeNoticiaInicial = mensajeNoticia;
+    const mensajeNoticiaNormal =
       typeof mensajeNoticia === "string"
         ? mensajeNoticia.replace(/<.*?>/g, "")
         : "";
 
-    console.log("Mensaje normal:", mensajePostNormal);
+    console.log("Mensaje normal:", mensajeNoticia);
 
-    const urls = mensajePostNormal.match(regexUrl) || [];
+    const urls = mensajeNoticiaNormal.match(regexUrl) || [];
     const imagenUrl = [];
     const enlaces = [];
     const youtubeUrl = [];
