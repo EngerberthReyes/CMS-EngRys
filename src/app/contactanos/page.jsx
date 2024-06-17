@@ -78,7 +78,7 @@ const Contactanos = () => {
               Sobre Nosotros
             </Link>
             <Link className={stylesContactanos.enlace} href="/contactanos">
-              Contactanos
+              Contáctanos
             </Link>
           </section>
           <section className={stylesContactanos.seccionEnlace}>

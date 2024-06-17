@@ -622,7 +622,7 @@ const Noticias = () => {
                         className={stylesNoticias.enlace}
                         href="/contactanos"
                       >
-                        Contactanos
+                        Contáctanos
                       </Link>
                     </section>
                   </section>
