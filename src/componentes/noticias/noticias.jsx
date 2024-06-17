@@ -36,7 +36,6 @@ const NoticiasPublicadas = ({
             <section
               key={elementoPost.id_noticia}
               className={stylesPost.seccionPrincipal}
-              style={{ position: "relative", left: "2%" }}
             >
               <section className={stylesPost.seccionGrid}>
                 <section style={{ display: "flex", width: "100%" }}>

@@ -493,6 +493,8 @@ const Noticias = () => {
       });
     } catch (error) {
       console.error(error);
+    } finally {
+      setImagenesPorExcesoNoticias(0);
     }
   };
 
@@ -929,12 +931,12 @@ const Noticias = () => {
                 </section>
                 <section
                   style={{
+                    display: `${noticia.length === 0 ? "none" : ""}`,
                     overflowY: "auto",
                     height: "40vh",
                     position: "relative",
                     marginTop: "2%",
                     overflowX: "hidden",
-                    left: "1%",
                   }}
                 >
                   {noticia && (
