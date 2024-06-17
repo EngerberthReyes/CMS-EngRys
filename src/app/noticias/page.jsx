@@ -305,8 +305,8 @@ const Noticias = () => {
 
       setNoticia((prevNoticia) => {
         const nuevasNoticias = respuesta;
-        console.log(postNuevos);
-        return nuevasNoticias.sort((a, b) => b.id_option - a.id_option);
+        console.log(nuevasNoticias);
+        return nuevasNoticias.sort((a, b) => b.id_noticia - a.id_noticia);
       });
     } catch (error) {
       console.error("Error al enviar la publicación:", error);

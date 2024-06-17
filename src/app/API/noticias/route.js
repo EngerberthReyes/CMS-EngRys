@@ -9,21 +9,21 @@ import { hash, compare } from "bcryptjs";
 export const GET = async () => {
   try {
     const respuestaPublicacion = `SELECT
-        public.id_publicacion,
+        notic.id_noticia,
         p.nombre,
         p.apellido,
         p.fotoPerfil,
-        public.id_persona,
-        public.descripcion_publicacion as mensaje, 
-        public.fecha as fecha, 
-        public.enlace as enlaces, 
-        public.imagen as imagen, 
-        public.video as imagenes,
-        public.urlVideo as youtubeUrl
+        notic.id_persona,
+        notic.descripcion_publicacion as mensaje, 
+        notic.fecha as fecha, 
+        notic.enlace as enlaces, 
+        notic.imagen as imagen, 
+        notic.video as imagenes,
+        notic.urlVideo as youtubeUrl
     FROM
-        publicaciones AS public
+        noticias AS notic
     JOIN
-        personas AS p ON public.id_persona = p.id_persona;
+        personas AS p ON notic.id_persona = p.id_persona;
     `;
 
     const enviandoPublicaciones = await cmsConexion.query(respuestaPublicacion);
@@ -31,22 +31,20 @@ export const GET = async () => {
     console.log(enviandoPublicaciones);
 
     const publicacionesConImagenesParseadas = enviandoPublicaciones.map(
-      (publicacion) => {
+      (noticia) => {
         let imagen = null;
         let enlaces = null;
         let youtubeUrl = null;
         try {
-          imagen = publicacion.imagen ? JSON.parse(publicacion.imagen) : null;
-          enlaces = publicacion.enlaces
-            ? JSON.parse(publicacion.enlaces)
-            : null;
-          youtubeUrl = publicacion.youtubeUrl
-            ? JSON.parse(publicacion.youtubeUrl)
+          imagen = noticia.imagen ? JSON.parse(noticia.imagen) : null;
+          enlaces = noticia.enlaces ? JSON.parse(noticia.enlaces) : null;
+          youtubeUrl = noticia.youtubeUrl
+            ? JSON.parse(noticia.youtubeUrl)
             : null;
         } catch (error) {
           console.error("Error parsing JSON:", error);
         }
-        return { ...publicacion, imagen, enlaces, youtubeUrl };
+        return { ...noticia, imagen, enlaces, youtubeUrl };
       }
     );
 
@@ -104,8 +102,8 @@ export const POST = async (request) => {
       ? JSON.parse(imagenesRuta[0])
       : null;
 
-    const consultaPublicacion = `INSERT INTO publicaciones (
-        id_persona, descripcion_publicacion, fecha, enlace, imagen, video, urlVideo
+    const consultaPublicacion = `INSERT INTO noticias (
+        id_persona, descripcion_noticia, fecha, enlace, imagen, video, urlVideo
       ) VALUES (?, ?, ?, ?, ?, ?, ?);`;
 
     const respuestaPublicacionEnviada = await cmsConexion.query(
@@ -122,41 +120,39 @@ export const POST = async (request) => {
     );
 
     const respuestaPublicacion = `SELECT
-      public.id_publicacion, 
+      notic.id_noticia, 
       p.nombre,
       p.apellido,
       p.fotoPerfil,
-      public.id_persona,
-      public.descripcion_publicacion AS mensaje, 
-      public.fecha AS fecha, 
-      public.enlace AS enlaces, 
-      public.imagen AS imagen, 
-      public.video AS imagenes,
-      public.urlVideo AS youtubeUrl
+      notic.id_persona,
+      notic.descripcion_noticia AS mensaje, 
+      notic.fecha AS fecha, 
+      notic.enlace AS enlaces, 
+      notic.imagen AS imagen, 
+      notic.video AS imagenes,
+      notic.urlVideo AS youtubeUrl
     FROM
-      publicaciones AS public
+      noticias AS notic
     JOIN
-      personas AS p ON public.id_persona = p.id_persona;`;
+      personas AS p ON notic.id_persona = p.id_persona;`;
 
     const enviandoPublicaciones = await cmsConexion.query(respuestaPublicacion);
 
     const publicacionesConImagenesParseadas = enviandoPublicaciones.map(
-      (publicacion) => {
+      (noticia) => {
         let imagen = null;
         let enlaces = null;
         let youtubeUrl = null;
         try {
-          imagen = publicacion.imagen ? JSON.parse(publicacion.imagen) : null;
-          enlaces = publicacion.enlaces
-            ? JSON.parse(publicacion.enlaces)
-            : null;
-          youtubeUrl = publicacion.youtubeUrl
-            ? JSON.parse(publicacion.youtubeUrl)
+          imagen = noticia.imagen ? JSON.parse(noticia.imagen) : null;
+          enlaces = noticia.enlaces ? JSON.parse(noticia.enlaces) : null;
+          youtubeUrl = noticia.youtubeUrl
+            ? JSON.parse(noticia.youtubeUrl)
             : null;
         } catch (error) {
           console.error("Error parsing JSON:", error);
         }
-        return { ...publicacion, imagen, enlaces, youtubeUrl };
+        return { ...noticia, imagen, enlaces, youtubeUrl };
       }
     );
 
