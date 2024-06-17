@@ -719,7 +719,7 @@ const Noticias = () => {
                     <section className={stylesNoticias.seccionElementos}>
                       <section
                         className={stylesNoticias.item}
-                        style={{ justifyContent: "space-evenly" }}
+                        style={{ padding: "1%", columnGap: "1rem" }}
                       >
                         <label
                           className={stylesNoticias.inputFile}
