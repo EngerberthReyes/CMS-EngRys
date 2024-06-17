@@ -208,7 +208,7 @@ const SobreNosotros = () => {
                   Servicios de Nuestra Empresa
                 </h1>
                 <section className={stylesNosotros.seccionFlex}>
-                  <div>
+                  <section>
                     <ul>
                       {descriptions.map((item, index) => (
                         <section key={index}>
@@ -229,47 +229,35 @@ const SobreNosotros = () => {
                               </button>
                             </section>
                           ) : (
-                            <Details
-                              description={
-                                item?.contenido || "Descripción no disponible"
-                              }
-                            />
-                          )}
-                          {currentEditIndex !== index && (
-                            <label
-                              style={{
-                                position: "relative",
-                                height: "0",
-                                top: "0",
-                                left: "0",
-                                cursor: "pointer",
-                              }}
-                            >
-                              <section
-                                className={stylesNosotros.seccionBlanco}
-                                style={{
-                                  position: "relative",
-                                  height: "0",
-                                  top: "0",
-                                  left: "0",
-                                  cursor: "pointer",
-                                }}
-                              >
-                                <Image
-                                  className={stylesNosotros.icono_edit}
-                                  onClick={() => cambiarElemento(index)}
-                                  width={20}
-                                  height={20}
-                                  src={`/editar-theme-black.svg`}
-                                  alt="Cambiar Descripción Inicial"
-                                />
-                              </section>
-                            </label>
+                            <section>
+                              <Details
+                                description={
+                                  item?.contenido || "Descripción no disponible"
+                                }
+                              />
+                              {currentEditIndex !== index && (
+                                <label
+                                  style={{
+                                    cursor: "pointer",
+                                  }}
+                                >
+                                  <Image
+                                    className={stylesNosotros.icono_edit}
+                                    onClick={() => cambiarElemento(index)}
+                                    width={50}
+                                    height={50}
+                                    style={{ width: "2rem" }}
+                                    src={`/editar-theme-black.svg`}
+                                    alt="Cambiar Descripción Inicial"
+                                  />
+                                </label>
+                              )}
+                            </section>
                           )}
                         </section>
                       ))}
                     </ul>
-                  </div>
+                  </section>
                 </section>
               </section>
             </section>

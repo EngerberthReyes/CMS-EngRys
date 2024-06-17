@@ -4,7 +4,10 @@ import stylesInicio from "../../app/CSS/styles-inicio.module.css";
 const Details = ({ description }) => {
   return (
     <>
-      <section className="ProseMirror">
+      <section
+        className="ProseMirror"
+
+      >
         <li style={{ fontSize: "22px" }}>{parse(description)}</li>
       </section>
     </>
