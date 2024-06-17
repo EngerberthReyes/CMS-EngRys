@@ -144,7 +144,7 @@ const Contactanos = () => {
                     <span>epiccomputers@gmail.epic.com</span>
                   </h3>
                   <h3>
-                    Teléfono: <span>+58 202420242024</span>
+                    Teléfono: <span>+58 2024202420242024</span>
                   </h3>
                 </section>
 
