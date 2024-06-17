@@ -192,8 +192,11 @@ const Inicio = () => {
                     rowGap: "5%",
                   }}
                 >
-                  <h1 className={stylesInicio.tituloSeccion}>
-                    La PC Gamer de Tus Sueños
+                  <h1
+                    className={stylesInicio.tituloSeccion}
+                    style={{ textAlign: "center" }}
+                  >
+                    La PC Gamer de Tus Sueños - EpíComputers
                   </h1>
                   <p
                     className={stylesInicio.tituloSeccion}
