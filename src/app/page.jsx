@@ -5,7 +5,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./CSS/App.css";
-import Details from "@/componentes/tiptap/Details";
+import Details from "@/componentes/tiptap/DetailsDos";
 import { Tiptap } from "@/componentes/tiptap/TipTap";
 import { useRouter } from "next/navigation";
 import stylesInicio from "./CSS/styles-inicio.module.css";
@@ -78,38 +78,37 @@ const Inicio = () => {
     try {
       if (descripcionInicialPersonal === "") {
         console.log(setEditorDescripcionInicial);
-        const obtenerDescripcionInicial = await axios.get("/API/descripcionBD");
-        setDescripcionInicialModificacion(obtenerDescripcionInicial.data);
+        const obtenerDescripcionInicial = await axios.get(
+          "/API/descripcionInicial"
+        );
+        setDescripcionInicialModificacion(
+          obtenerDescripcionInicial.data[0].contenido
+        );
         console.log(obtenerDescripcionInicial);
       }
-      console.log(descripcionInicialModificacion);
+      console.log(description);
       if (descripcionInicialModificacion) {
         const respuestaDescripcionInicial = await axios.put(
-          "/API/descripcionBD",
+          "/API/descripcionInicial",
           {
-            descripcionInicialModificacion,
+            description,
           }
         );
 
-        console.log(respuestaDescripcionInicial);
-        setDescripcionInicialModificacion({
-          descripcion_personal: respuestaDescripcionInicial.data,
-        });
+        console.log(respuestaDescripcionInicial.data[0].contenido);
+        setDescripcionInicialModificacion(respuestaDescripcionInicial.data);
         console.log(respuestaDescripcionInicial.data);
       }
     } catch (error) {
       console.log(error);
     } finally {
-      setDescripcionInicialModificacion("xd");
       setInterruptorCambio(false);
     }
   };
-  {
-    /*
+
   useEffect(() => {
     obtenerDescripcionInicialPersonal();
-  }, []); */
-  }
+  }, []);
 
   return (
     <>
@@ -227,7 +226,7 @@ const Inicio = () => {
                       description={
                         descripcionInicialModificacion
                           ? descripcionInicialModificacion
-                          : "Texto de Ejemplo"
+                          : descripcionInicialModificacion
                       }
                     />
                   )}
@@ -275,24 +274,6 @@ const Inicio = () => {
                       Guardar Cambios
                     </button>
                   )}
-
-                  <p
-                    className={stylesInicio.tituloSeccion}
-                    style={{ fontSize: "19px", textAlign: "center" }}
-                  >
-                    Bienvenido a EpíComputers, tu destino definitivo en el mundo
-                    de las computadoras. En nuestro sitio web, te sumergirás en
-                    una experiencia única donde la tecnología se encuentra con
-                    la innovación. Desde procesadores de última generación hasta
-                    sistemas completos personalizados, ofrecemos soluciones que
-                    van más allá de tus expectativas. Nuestra misión es
-                    transformar tu relación con la tecnología, proporcionando
-                    equipos de alta calidad que se adapten a tus necesidades
-                    específicas. Con un diseño limpio y fácil de navegar,
-                    descubrirás productos seleccionados cuidadosamente por
-                    nuestros expertos, asegurándote de obtener el mejor valor
-                    por tu inversión.
-                  </p>
                 </section>
                 <section className={stylesInicio.seccionElementos}>
                   <section>
