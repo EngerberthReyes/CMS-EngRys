@@ -3,7 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Details from "@/componentes/tiptap/Details";
-import stylesPost from "../CSSComponentes/post.module.css";
+import stylesPost from "../CSSComponentes/noticias.module.css";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
