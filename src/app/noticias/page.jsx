@@ -892,14 +892,14 @@ const Noticias = () => {
                         </section>
                       </section>
                     ) : null}
-                    {noticia && (
+                    {/*noticia && (
                       <Noticias
                         noticia={noticia}
                         nombreDeUsuario={nombreDeUsuario}
                         usuario={usuario}
                         enviandoBorrado={actualizadorPublicacion}
                       />
-                    )}
+                    )*/}
                   </section>
                 </section>
               </section>
