@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import Post from "@/componentes/post/post.jsx";
+import NoticiasPublicadas from "@/componentes/noticias/noticias.jsx";
 import { useState, useEffect } from "react";
 import { useForm } from "react-hook-form";
 import axios from "axios";
@@ -892,14 +893,14 @@ const Noticias = () => {
                         </section>
                       </section>
                     ) : null}
-                    {/*noticia && (
-                      <Noticias
+                    {noticia && (
+                      <NoticiasPublicadas
                         noticia={noticia}
                         nombreDeUsuario={nombreDeUsuario}
                         usuario={usuario}
                         enviandoBorrado={actualizadorPublicacion}
                       />
-                    )*/}
+                    )}
                   </section>
                 </section>
               </section>
