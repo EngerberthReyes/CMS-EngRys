@@ -717,7 +717,10 @@ const Noticias = () => {
                     </section>
                     <section className={stylesNoticias.lineaPunteada}></section>
                     <section className={stylesNoticias.seccionElementos}>
-                      <section className={stylesNoticias.item}>
+                      <section
+                        className={stylesNoticias.item}
+                        style={{ justifyContent: "space-evenly" }}
+                      >
                         <label
                           className={stylesNoticias.inputFile}
                           htmlFor="imagen"
@@ -731,8 +734,8 @@ const Noticias = () => {
                         />
                         {temaActual && (
                           <Image
-                            width={20}
-                            height={20}
+                            width={30}
+                            height={30}
                             src={
                               temaActual === "oscuro"
                                 ? `/plus-solid-black.svg`
@@ -741,10 +744,12 @@ const Noticias = () => {
                             alt="Agregar Imagen"
                           />
                         )}
+                        <h1 style={{ margin: "0" }}>Agregar Archivo</h1>
                       </section>
+                      {/*<section className={stylesNoticias.item}>Cajas</section>
                       <section className={stylesNoticias.item}>Cajas</section>
                       <section className={stylesNoticias.item}>Cajas</section>
-                      <section className={stylesNoticias.item}>Cajas</section>
+                         */}
                     </section>
                   </section>
                 ) : null}
@@ -923,7 +928,7 @@ const Noticias = () => {
                                   alt="Agregar Imagen"
                                 />
                                 <h1 style={{ fontSize: "27px", margin: "0" }}>
-                                  Agregar Imagen
+                                  Agregar Archivo
                                 </h1>
                               </section>
                             )}
