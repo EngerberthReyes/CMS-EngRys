@@ -79,7 +79,7 @@ const Inicio = () => {
       if (descripcionInicialPersonal === "") {
         console.log(setEditorDescripcionInicial);
         const obtenerDescripcionInicial = await axios.get(
-          "/API/descripcionInicial"
+          "/API/descripcionInicial/2"
         );
         setDescripcionInicialModificacion(
           obtenerDescripcionInicial.data[0].contenido
@@ -89,7 +89,7 @@ const Inicio = () => {
       console.log(description);
       if (descripcionInicialModificacion) {
         const respuestaDescripcionInicial = await axios.put(
-          "/API/descripcionInicial",
+          "/API/descripcionInicial/2",
           {
             description,
           }

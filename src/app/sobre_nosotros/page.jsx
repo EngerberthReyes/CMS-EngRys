@@ -4,7 +4,10 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import Details from "@/componentes/tiptap/DetailsDos";
+import { Tiptap } from "@/componentes/tiptap/TipTap";
 import { useRouter } from "next/navigation";
+import "../CSS/App.css";
 import stylesNosotros from "../CSS/styles-sobreNosotros.module.css";
 
 const SobreNosotros = () => {
@@ -14,6 +17,7 @@ const SobreNosotros = () => {
   const [imagen, setImagen] = useState();
   const [nombreImagen, setNombreImagen] = useState();
   const [perfilCerrado, setPerfilCerrado] = useState(false);
+  const [description, setDescription] = useState("");
 
   const agregarImagen = async (event) => {
     const formData = new FormData();
@@ -93,6 +97,86 @@ const SobreNosotros = () => {
     }`;
     setNombreDeUsuario(nombreDeUsuario);
   }, [usuario]);
+
+  const listItemsData = [
+    {
+      label: "Innovación",
+      contenido:
+        "Nos comprometemos a estar siempre a la vanguardia de las últimas avances tecnológicos, buscando constantemente formas de mejorar y expandir nuestras ofertas.",
+      apiUrl: "/API/descripcionInicial/1",
+    },
+    {
+      label: "Calidad",
+      contenido:
+        "Nos esforzamos por ofrecer productos y servicios de la más alta calidad, garantizando la satisfacción de nuestros clientes.",
+      apiUrl: "/API/descripcionInicial/2",
+    },
+    {
+      label: "Servicio al Cliente",
+      contenido:
+        "Priorizamos el trato personalizado y la atención detallada a nuestros clientes, entendiendo que cada proyecto es único y requiere un enfoque individualizado.",
+      apiUrl: "/API/descripcionInicial/3",
+    },
+    {
+      label: "Responsabilidad Social",
+      contenido:
+        "Reconocemos nuestro papel en la comunidad y nos comprometemos a contribuir positivamente a través de iniciativas sociales y educativas.",
+      apiUrl: "/API/descripcionInicial/4",
+    },
+  ];
+
+  const [cambiarElemento, setCambiarElemento] = useState(null);
+
+  const cambiarElementoE = (index) => {
+    setCambiarElemento(index);
+    setInterruptorCambio(true);
+  };
+
+  const [interruptorCambio, setInterruptorCambio] = useState(false);
+
+  const [descripcionInicialModificacion, setDescripcionInicialModificacion] =
+    useState("");
+  const [descripcionInicialPersonal, setDescripcionInicialPersonal] =
+    useState("");
+  const [editorDescripcionInicial, setEditorDescripcionInicial] =
+    useState(false);
+
+  const obtenerDescripcionInicialPersonal = async () => {
+    try {
+      if (descripcionInicialPersonal === "") {
+        console.log(setEditorDescripcionInicial);
+        const obtenerDescripcionInicial = await axios.get(
+          "/API/descripcionInicial/{index + 2}"
+        );
+        setDescripcionInicialModificacion(
+          obtenerDescripcionInicial.data[0].contenido
+        );
+        console.log(obtenerDescripcionInicial);
+      }
+      console.log(description);
+      if (descripcionInicialModificacion) {
+        const respuestaDescripcionInicial = await axios.put(
+          "/API/descripcionInicial/{index + 2}",
+          {
+            description,
+          }
+        );
+
+        console.log(respuestaDescripcionInicial.data[0].contenido);
+        setDescripcionInicialModificacion(respuestaDescripcionInicial.data);
+        console.log(respuestaDescripcionInicial.data);
+      }
+    } catch (error) {
+      console.log(error);
+    } finally {
+      setInterruptorCambio(false);
+    }
+  };
+
+  useEffect(() => {
+    obtenerDescripcionInicialPersonal();
+  }, []);
+
   return (
     <>
       <head>
@@ -192,50 +276,79 @@ const SobreNosotros = () => {
                   Servicios de Nuestra Empresa
                 </h1>
                 <section className={stylesNosotros.seccionFlex}>
-                  <ol>
-                    <li
+                  <ul>
+                    {listItemsData.map((itemInformacion, index) => (
+                      <>
+                        {interruptorCambio && cambiarElemento === index ? (
+                          <section className="App">
+                            <Tiptap setDescription={setDescription} />
+                          </section>
+                        ) : (
+                          <Details
+                            description={
+                              descripcionInicialModificacion
+                                ? descripcionInicialModificacion
+                                : descripcionInicialModificacion
+                            }
+                          />
+                        )}
+                        {cambiarElemento !== index ? (
+                          <li
+                            style={{
+                              margin: "0 0 1rem 0",
+                              fontSize: "18px",
+                            }}
+                          >
+                            <strong>{itemInformacion.label}:</strong>{" "}
+                            {itemInformacion.contenido}
+                          </li>
+                        ) : null}
+                        <label
+                          style={{
+                            position: "relative",
+                            height: "0",
+                            top: "0",
+                            left: "0",
+                            cursor: "pointer",
+                          }}
+                        >
+                          <section
+                            className={stylesNosotros.seccionBlanco}
+                            style={{
+                              position: "relative",
+                              height: "0",
+                              top: "0",
+                              left: "0",
+                              cursor: "pointer",
+                            }}
+                          >
+                            <Image
+                              className={stylesNosotros.icono_edit}
+                              onClick={() => cambiarElementoE(index)}
+                              width={20}
+                              height={20}
+                              src={`/editar-theme-black.svg`}
+                              alt="Cambiar Descripción Inicial"
+                            />
+                          </section>
+                        </label>
+                      </>
+                    ))}
+                  </ul>
+                  {interruptorCambio && (
+                    <button
                       style={{
-                        margin: "0 0 1rem 0",
-                        fontSize: "18px",
+                        position: "fixed",
+                        left: "2rem",
+                        bottom: "1rem",
+                        background: "#0f0f0fbf",
                       }}
+                      className={stylesNosotros.seccionElemento}
+                      onClick={() => obtenerDescripcionInicialPersonal()}
                     >
-                      <strong>Innovación:</strong> Nos comprometemos a estar
-                      siempre a la vanguardia de las últimas avances
-                      tecnológicos, buscando constantemente formas de mejorar y
-                      expandir nuestras ofertas.
-                    </li>
-                    <li
-                      style={{
-                        margin: "0 0 1rem 0",
-                        fontSize: "18px",
-                      }}
-                    >
-                      <strong>Calidad:</strong> Nos esforzamos por ofrecer
-                      productos y servicios de la más alta calidad, garantizando
-                      la satisfacción de nuestros clientes.
-                    </li>
-                    <li
-                      style={{
-                        margin: "0 0 1rem 0",
-                        fontSize: "18px",
-                      }}
-                    >
-                      <strong>Servicio al Cliente:</strong> Priorizamos el trato
-                      personalizado y la atención detallada a nuestros clientes,
-                      entendiendo que cada proyecto es único y requiere un
-                      enfoque individualizado.
-                    </li>
-                    <li
-                      style={{
-                        fontSize: "18px",
-                      }}
-                    >
-                      <strong>Responsabilidad Social:</strong> Reconocemos
-                      nuestro papel en la comunidad y nos comprometemos a
-                      contribuir positivamente a través de iniciativas sociales
-                      y educativas.
-                    </li>
-                  </ol>
+                      Guardar Cambios
+                    </button>
+                  )}
                 </section>
               </section>
             </section>
