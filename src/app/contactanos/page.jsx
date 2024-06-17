@@ -141,7 +141,7 @@ const Contactanos = () => {
                 <section>
                   <h3 style={{ marginBottom: "4%" }}>
                     Correo Electrónico:{" "}
-                    <span>epiccomputers@gmail.epic.com</span>
+                    <span>epicomputers@gmail.epic.com</span>
                   </h3>
                   <h3 style={{ marginBottom: "4%" }}>
                     Teléfono: <span>+58 2024202420242024</span>
