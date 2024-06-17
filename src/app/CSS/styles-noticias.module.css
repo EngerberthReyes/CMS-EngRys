@@ -319,13 +319,13 @@
     align-self: flex-end;
     padding: 0.5rem 2rem;
     background-color: #eeeeee;
-    color: #0f0f0f !important;
+    color: #eeeeee !important;
     border-color: #eeeeee !important;
 
     &:hover {
       border-color: #eeeeee;
-      color: #eeeeee !important;
-      background-color: #0f0f0f !important;
+      color: #0f0f0f !important;
+      background-color: #eeeeee !important;
     }
   }
 
