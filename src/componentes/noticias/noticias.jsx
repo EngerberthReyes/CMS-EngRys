@@ -34,8 +34,9 @@ const NoticiasPublicadas = ({
       {noticia.length > 0
         ? noticia.map((elementoPost, index) => (
             <section
-              key={elementoPost.id_publicacion}
+              key={elementoPost.id_noticia}
               className={stylesPost.seccionPrincipal}
+              style={{ position: "relative", left: "2%" }}
             >
               <section className={stylesPost.seccionGrid}>
                 <section style={{ display: "flex", width: "100%" }}>

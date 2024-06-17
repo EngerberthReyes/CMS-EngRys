@@ -925,17 +925,17 @@ const Noticias = () => {
                         </section>
                       </section>
                     ) : null}
-                    {noticia && (
-                      <NoticiasPublicadas
-                        noticia={noticia}
-                        nombreDeUsuario={nombreDeUsuario}
-                        usuario={usuario}
-                        enviandoBorrado={actualizadorNoticia}
-                      />
-                    )}
                   </section>
                 </section>
               </section>
+              {noticia && (
+                <NoticiasPublicadas
+                  noticia={noticia}
+                  nombreDeUsuario={nombreDeUsuario}
+                  usuario={usuario}
+                  enviandoBorrado={actualizadorNoticia}
+                />
+              )}
             </section>
           </section>
         </main>
