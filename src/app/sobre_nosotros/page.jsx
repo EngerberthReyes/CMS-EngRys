@@ -116,7 +116,73 @@ const SobreNosotros = () => {
       }
     }
   };
+  const [descriptionA, setDescriptionA] = useState("");
+  const [currentEditIndexA, setCurrentEditIndexA] = useState(null);
+  const [descriptionsA, setDescriptionsA] = useState([
+    {
+      id: 6,
+      title: "Historia",
+      urlApi: "/API/descripcionInicial/6",
+      contenido: "",
+    },
+    {
+      id: 7,
+      title: "Misión",
+      urlApi: "/API/descripcionInicial/7",
+      contenido: "",
+    },
+    {
+      id: 8,
+      title: "Visión",
+      urlApi: "/API/descripcionInicial/8",
+      contenido: "",
+    },
+  ]);
 
+  const guardarCambiosA = async (index) => {
+    try {
+      const item = descriptionsA[index];
+      console.log(item);
+      console.log(descriptionA);
+      const response = await axios.put(
+        `/API/descripcionInicial/${item.id_option}`,
+        {
+          descriptionA,
+        }
+      );
+      console.log(response);
+      const newDescriptions = [...descriptionsA];
+      newDescriptions[currentEditIndexA].contenido = descriptionA;
+      setDescriptionsA(newDescriptions);
+      setCurrentEditIndexA(null);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
+  useEffect(() => {
+    const fetchDescriptionsA = async () => {
+      try {
+        const responses = await Promise.all(
+          descriptionsA.map((item) => axios.get(item.urlApi))
+        );
+        const data = responses.map((response) => response.data);
+
+        console.log(data);
+        setDescriptionsA(data.flat(1));
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchDescriptionsA();
+  }, []);
+
+  const cambiarElementoA = (index) => {
+    setCurrentEditIndexA(index);
+    console.log(index);
+    setDescriptionA(descriptionsA[index].contenido || "");
+  };
   return (
     <>
       <head>
@@ -265,44 +331,66 @@ const SobreNosotros = () => {
                 </section>
               </section>
             </section>
-            <section className={stylesNosotros.seccionPrincipal}>
-              <section className={stylesNosotros.seccionGrid}>
-                <h1 style={{ textAlign: "center" }}>EpíComputers...</h1>
-                <section style={{ marginTop: "2%" }}>
-                  <article>
-                    <h2>Historia</h2>
-                    <p style={{ fontSize: "18px" }}>
-                      EpíComputers nació de la pasión por la tecnología y la
-                      necesidad de ofrecer soluciones informáticas superiores a
-                      nuestros clientes. Fundada en 2024, nuestra empresa ha
-                      evolucionado constantemente para adaptarse a las
-                      cambiantes necesidades del mercado, siempre manteniendo un
-                      enfoque en la calidad y el servicio excepcional.
-                    </p>
-                  </article>
-                  <article>
-                    <h2>Misión</h2>
-                    <p style={{ fontSize: "18px" }}>
-                      Nuestra misión es ser el socio preferido de nuestros
-                      clientes en el mundo de las computadoras, proporcionando
-                      equipos de alta calidad y servicios personalizados que les
-                      permitan alcanzar sus objetivos profesionales y
-                      personales. Creemos firmemente en la importancia de la
-                      tecnología como motor de cambio y desarrollo.
-                    </p>
-                  </article>
-                  <article>
-                    <h2>Visión</h2>
-                    <p style={{ fontSize: "18px" }}>
-                      Aspiramos a liderar el mercado de computadoras mediante la
-                      innovación constante, la excelencia en el servicio y la
-                      construcción de relaciones duraderas basadas en la
-                      confianza y el respeto mutuo. Queremos ser reconocidos no
-                      solo por nuestras soluciones tecnológicas avanzadas, sino
-                      también por nuestra contribución a la sociedad a través de
-                      la promoción de la educación y el acceso a la tecnología.
-                    </p>
-                  </article>
+            <section className={stylesNosotros.main}>
+              <section
+                className={stylesNosotros.seccionPrincipal}
+                style={{ width: "97%" }}
+              >
+                <section className={stylesNosotros.seccionGrid}>
+                  <h1 style={{ textAlign: "center" }}>EpíComputers...</h1>
+                  <section style={{ marginTop: "2%" }}>
+                    {descriptionsA.map((item, index) => (
+                      <section key={index}>
+                        {currentEditIndexA === index ? (
+                          <section className="App">
+                            <Tiptap setDescription={setDescriptionA} />
+                            <button
+                              style={{
+                                position: "fixed",
+                                bottom: "2rem",
+                                right: "3rem",
+                                borderRadius: "5px",
+                                padding: "1%",
+                                background: "#eeeeeebf",
+                                color: "#0f0f0f",
+                                fontSize: "16px",
+                              }}
+                              className={stylesNosotros.seccionElemento}
+                              onClick={() => guardarCambiosA(index)}
+                            >
+                              Guardar Cambios
+                            </button>
+                          </section>
+                        ) : (
+                          <section>
+                            <h1>{item.titulo}</h1>
+                            <Details
+                              description={
+                                item?.contenido || "Descripción no disponible"
+                              }
+                            />
+                            {currentEditIndexA !== index && (
+                              <label
+                                style={{
+                                  cursor: "pointer",
+                                }}
+                              >
+                                <Image
+                                  className={stylesNosotros.icono_edit}
+                                  onClick={() => cambiarElementoA(index)}
+                                  width={50}
+                                  height={50}
+                                  style={{ width: "2rem" }}
+                                  src={`/editar-theme-black.svg`}
+                                  alt="Cambiar Descripción Inicial"
+                                />
+                              </label>
+                            )}
+                          </section>
+                        )}
+                      </section>
+                    ))}
+                  </section>
                 </section>
               </section>
             </section>

@@ -7,7 +7,7 @@ export const GET = async (request, { params: { index } }) => {
     console.log(index);
 
     // Consultar la base de datos
-    const consultaActualizacionPerfil = `SELECT contenido FROM options as opt WHERE id_option = ?;`;
+    const consultaActualizacionPerfil = `SELECT id_option, titulo, contenido FROM options as opt WHERE id_option = ?;`;
     const actualizacionPerfil = await cmsConexion.query(
       consultaActualizacionPerfil,
       [Number(index)]
@@ -25,13 +25,18 @@ export const GET = async (request, { params: { index } }) => {
 
 export const PUT = async (request, { params: { index } }) => {
   try {
-    const { description } = await request.json();
+    const { description, descriptionA } = await request.json();
     console.log(index);
     console.log(description);
+    console.log(descriptionA);
+    const comprobacion = description ? description : descriptionA;
+
+    console.log(comprobacion);
+
     const consultaActualizacionPerfil = `UPDATE options AS opt SET opt.contenido = ? WHERE id_option = ?;`;
     const actualizacionPerfil = await cmsConexion.query(
       consultaActualizacionPerfil,
-      [description.replace(/<.*?>/g, ""), Number(index)]
+      [comprobacion.replace(/<.*?>/g, ""), Number(index)]
     );
     console.log(actualizacionPerfil);
     const response = new NextResponse(
