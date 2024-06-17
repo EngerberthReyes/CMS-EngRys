@@ -927,15 +927,26 @@ const Noticias = () => {
                     ) : null}
                   </section>
                 </section>
+                <section
+                  style={{
+                    overflowY: "auto",
+                    height: "40vh",
+                    position: "relative",
+                    marginTop: "2%",
+                    overflowX: "hidden",
+                    left: "1%",
+                  }}
+                >
+                  {noticia && (
+                    <NoticiasPublicadas
+                      noticia={noticia}
+                      nombreDeUsuario={nombreDeUsuario}
+                      usuario={usuario}
+                      enviandoBorrado={actualizadorNoticia}
+                    />
+                  )}
+                </section>
               </section>
-              {noticia && (
-                <NoticiasPublicadas
-                  noticia={noticia}
-                  nombreDeUsuario={nombreDeUsuario}
-                  usuario={usuario}
-                  enviandoBorrado={actualizadorNoticia}
-                />
-              )}
             </section>
           </section>
         </main>
