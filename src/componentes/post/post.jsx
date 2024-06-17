@@ -77,9 +77,6 @@ const Post = ({ post, nombreDeUsuario, usuario, enviandoBorrado }) => {
                           alignItems: "center",
                           width: "100%",
                         }}
-                        onClick={() =>
-                          borrarPublicacion(elementoPost.id_publicacion)
-                        }
                       >
                         <Link
                           className={`${stylesPost.enlace} ${stylesPost.usuarioPerfil}`}
@@ -124,6 +121,9 @@ const Post = ({ post, nombreDeUsuario, usuario, enviandoBorrado }) => {
                             alignItems: "center",
                             cursor: "pointer",
                           }}
+                          onClick={() =>
+                            borrarPublicacion(elementoPost.id_publicacion)
+                          }
                         >
                           <Image
                             className={stylesPost.imagenes}
