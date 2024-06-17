@@ -188,7 +188,7 @@ const SobreNosotros = () => {
           <section className={stylesNosotros.main}>
             <section className={stylesNosotros.seccionSecundaria}>
               <section className={stylesNosotros.seccionAjustes}>
-                <h1 style={{ textAlign: "center", margin: "0" }}>
+                <h1 style={{ textAlign: "center", marginBottom: "4%" }}>
                   Servicios de Nuestra Empresa
                 </h1>
                 <section className={stylesNosotros.seccionFlex}>
