@@ -139,17 +139,17 @@ const Contactanos = () => {
                   Contáctanos
                 </h1>
                 <section>
-                  <h3>
+                  <h3 style={{ marginBottom: "4%" }}>
                     Correo Electrónico:{" "}
                     <span>epiccomputers@gmail.epic.com</span>
                   </h3>
-                  <h3>
+                  <h3 style={{ marginBottom: "4%" }}>
                     Teléfono: <span>+58 2024202420242024</span>
                   </h3>
-                  <h3>
+                  <h3 style={{ marginBottom: "4%" }}>
                     Instagram: <span>https://instagram.com/@epicoputers</span>
                   </h3>
-                  <h3>
+                  <h3 style={{ marginBottom: "4%" }}>
                     Facebook:{" "}
                     <span>https://facebook.com/perfil/epicomputers</span>
                   </h3>
