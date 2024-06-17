@@ -116,6 +116,7 @@ const NoticiasPublicadas = ({
                           </section>
                         </Link>
                         <section
+                          title="Eliminar Noticia"
                           className={`${stylesPost.enlace} ${stylesPost.seccionBorrar} ${stylesPost.usuarioPerfil}`}
                           style={{
                             border: "none",
@@ -134,10 +135,8 @@ const NoticiasPublicadas = ({
                             height={20}
                             style={{ height: "2rem", borderRadius: "0" }}
                             src={"/x-solid.svg"}
+                            alt={"Eliminar Noticia"}
                           />
-                          <section style={{ wordBreak: "keep-all" }}>
-                            <section>Eliminar Publicación</section>
-                          </section>
                         </section>
                       </section>
                     </>
