@@ -171,37 +171,126 @@ const SobreNosotros = () => {
             <section
               className={`${stylesNosotros.seccionPrincipal} ${stylesNosotros.seccionSecundariaAjuste}`}
             >
-              <section className={stylesNosotros.seccionGrid}>
-                <h1>Aqui va algo</h1>
-                <section>
-                  <h1>Aqui Podria ir otra cosa</h1>
-                </section>
+              <section
+                className={stylesNosotros.seccionGrid}
+                style={{
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                }}
+              >
+                <h1 style={{ textAlign: "center", margin: "0" }}>
+                  Sobre EpíComputers
+                </h1>
               </section>
             </section>
           </section>
           <section className={stylesNosotros.main}>
             <section className={stylesNosotros.seccionSecundaria}>
               <section className={stylesNosotros.seccionAjustes}>
-                <h1>Aqui podrias poner Puntos sobre nuestros servicios</h1>
+                <h1 style={{ textAlign: "center", margin: "0" }}>
+                  Servicios de Nuestra Empresa
+                </h1>
                 <section className={stylesNosotros.seccionFlex}>
-                  <section>Puntos</section>
-                  <section>Puntos</section>
-                  <section>Puntos</section>
-                  <section>Puntos</section>
-                  <section>Puntos</section>
-                  <section>Puntos</section>
-                  <section>Puntos</section>
-                  <section>Puntos</section>
-                  <section>Puntos</section>
+                  <ol>
+                    <li
+                      style={{
+                        margin: "0 0 1rem 0",
+                        fontSize: "18px",
+                      }}
+                    >
+                      <strong>Innovación:</strong> Nos comprometemos a estar
+                      siempre a la vanguardia de las últimas avances
+                      tecnológicos, buscando constantemente formas de mejorar y
+                      expandir nuestras ofertas.
+                    </li>
+                    <li
+                      style={{
+                        margin: "0 0 1rem 0",
+                        fontSize: "18px",
+                      }}
+                    >
+                      <strong>Calidad:</strong> Nos esforzamos por ofrecer
+                      productos y servicios de la más alta calidad, garantizando
+                      la satisfacción de nuestros clientes.
+                    </li>
+                    <li
+                      style={{
+                        margin: "0 0 1rem 0",
+                        fontSize: "18px",
+                      }}
+                    >
+                      <strong>Servicio al Cliente:</strong> Priorizamos el trato
+                      personalizado y la atención detallada a nuestros clientes,
+                      entendiendo que cada proyecto es único y requiere un
+                      enfoque individualizado.
+                    </li>
+                    <li
+                      style={{
+                        fontSize: "18px",
+                      }}
+                    >
+                      <strong>Responsabilidad Social:</strong> Reconocemos
+                      nuestro papel en la comunidad y nos comprometemos a
+                      contribuir positivamente a través de iniciativas sociales
+                      y educativas.
+                    </li>
+                  </ol>
                 </section>
               </section>
             </section>
             <section className={stylesNosotros.seccionPrincipal}>
               <section className={stylesNosotros.seccionGrid}>
-                <h1>Aqui muchas mas cosas</h1>
-                <section>
-                  <h1>Aqui se podria poner una descripción de esta empresa</h1>
-                  <p>Texto</p>
+                <h1>EpicComputers:</h1>
+                <section style={{ marginTop: "2%" }}>
+                  <article>
+                    <h2>Historia</h2>
+                    <p
+                      style={{
+                        fontSize: "18px",
+                      }}
+                    >
+                      EpicComputers nació de la pasión por la tecnología y la
+                      necesidad de ofrecer soluciones informáticas superiores a
+                      nuestros clientes. Fundada en 2024, nuestra empresa ha
+                      evolucionado constantemente para adaptarse a las
+                      cambiantes necesidades del mercado, siempre manteniendo un
+                      enfoque en la calidad y el servicio excepcional.
+                    </p>
+                  </article>
+
+                  <article>
+                    <h2>Misión</h2>
+                    <p
+                      style={{
+                        fontSize: "18px",
+                      }}
+                    >
+                      Nuestra misión es ser el socio preferido de nuestros
+                      clientes en el mundo de las computadoras, proporcionando
+                      equipos de alta calidad y servicios personalizados que les
+                      permitan alcanzar sus objetivos profesionales y
+                      personales. Creemos firmemente en la importancia de la
+                      tecnología como motor de cambio y desarrollo.
+                    </p>
+                  </article>
+
+                  <article>
+                    <h2>Visión</h2>
+                    <p
+                      style={{
+                        fontSize: "18px",
+                      }}
+                    >
+                      Aspiramos a liderar el mercado de computadoras mediante la
+                      innovación constante, la excelencia en el servicio y la
+                      construcción de relaciones duraderas basadas en la
+                      confianza y el respeto mutuo. Queremos ser reconocidos no
+                      solo por nuestras soluciones tecnológicas avanzadas, sino
+                      también por nuestra contribución a la sociedad a través de
+                      la promoción de la educación y el acceso a la tecnología.
+                    </p>
+                  </article>
                 </section>
               </section>
             </section>
