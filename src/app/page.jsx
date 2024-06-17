@@ -4,6 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
 import axios from "axios";
+import "./CSS/App.css";
+import Details from "@/componentes/tiptap/Details";
+import { Tiptap } from "@/componentes/tiptap/TipTap";
 import { useRouter } from "next/navigation";
 import stylesInicio from "./CSS/styles-inicio.module.css";
 
@@ -12,6 +15,7 @@ const Inicio = () => {
   const [usuario, setUsuario] = useState();
   const [perfilCerrado, setPerfilCerrado] = useState(false);
   const [imagen, setImagen] = useState();
+  const [interruptorCambio, setInterruptorCambio] = useState(false);
   const [nombreImagen, setNombreImagen] = useState();
   const enrutadorMaster = useRouter();
 
@@ -198,6 +202,66 @@ const Inicio = () => {
                   >
                     La PC Gamer de Tus Sueños - EpíComputers
                   </h1>
+
+                  {interruptorCambio ? (
+                    <section className="App">
+                      <Tiptap setDescription={setDescription} />
+                    </section>
+                  ) : (
+                    <Details
+                      description={
+                        descripcionPerfilPersonal
+                          ? descripcionPerfilPersonal
+                          : "Texto de Ejemplo"
+                      }
+                    />
+                  )}
+
+                  <label
+                    style={{
+                      position: "relative",
+                      height: "0",
+                      top: "0",
+                      left: "0",
+                      cursor: "pointer",
+                    }}
+                  >
+                    <section
+                      className={stylesInicio.seccionBlanco}
+                      style={{
+                        position: "relative",
+                        height: "0",
+                        top: "0",
+                        left: "0",
+                        cursor: "pointer",
+                      }}
+                    >
+                      <Image
+                        className={stylesInicio.icono_edit}
+                        onClick={() => cambiarElemento()}
+                        width={20}
+                        height={20}
+                        src={`/editar-theme-black.svg`}
+                        alt="Cambiar Foto de Perfil"
+                      />
+                    </section>
+                  </label>
+
+                  {interruptorCambio && (
+                    <button
+                      style={{
+                        position: "fixed",
+                        left: "2rem",
+                        bottom: "1rem",
+                        background: "#0f0f0fbf",
+                      }}
+                      className={stylesInicio.seccionElemento}
+                      type="submit"
+                    >
+                      Guardar Cambios
+                    </button>
+                  )}
+
                   <p
                     className={stylesInicio.tituloSeccion}
                     style={{ fontSize: "19px", textAlign: "center" }}
@@ -230,43 +294,6 @@ const Inicio = () => {
               </section>
             </section>
           </section>
-          {/*
-          <section className={stylesInicio.main}>
-            <section className={stylesInicio.seccionSecundaria}>
-              <section className={stylesInicio.seccionAjustes}>
-                <h1>Lateral</h1>
-                <section className={stylesInicio.seccionFlex}>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                  <section>Cajas2</section>
-                </section>
-              </section>
-            </section> 
-            <section className={stylesInicio.seccionPrincipal}>
-              <h1>Aqui va algo</h1>
-              <section className={stylesInicio.seccionFlex}>
-                <section className={stylesInicio.seccionSecundaria}>
-                  <section className={stylesInicio.seccionAjustes}>
-                    <h1>
-                      Aqui Van Más Cosas, como como funciona nuestra pagina,
-                      nuestros servicios
-                    </h1>
-                  </section>
-                </section>
-                <section className={stylesInicio.seccionElementos}>
-                  <h1>Aqui Van Más Cosas</h1>
-                </section>
-              </section>
-            </section>
-          
-          </section>
-            */}
         </main>
       </body>
     </>
