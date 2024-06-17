@@ -315,7 +315,7 @@ const Noticias = () => {
       setNombreImagenNoticia([]);
       setImagenNoticia([]);
       setMensajeNoticia("");
-      setNombreImagenNoticia([]);
+      setImagenRutaNoticia([]);
       setInterructorNoticia(true);
     }
   };
