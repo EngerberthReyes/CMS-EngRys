@@ -116,7 +116,7 @@ const Noticias = () => {
 
         const formData = new FormData();
         imagenesRestantes.forEach((file) => {
-          formData.append("imagenes", file);
+          formData.append("imagenesNoticias", file);
         });
 
         const respuesta = await axios.post("/API/ImagenYVideo", formData, {
@@ -125,13 +125,13 @@ const Noticias = () => {
           },
         });
 
-        const rutaImagenes = respuesta.data;
+        const { rutasImagenesNoticias } = respuesta.data;
 
-        console.log(rutaImagenes);
+        console.log(rutasImagenesNoticias);
 
         setNombreImagenNoticia(nombres.join(", "));
         setImagenNoticia(imagenesRestantes);
-        setImagenRutaNoticia(rutaImagenes);
+        setImagenRutaNoticia(rutasImagenesNoticias);
         setInterructorNoticia(false);
 
         event.target.value = "";
@@ -166,13 +166,13 @@ const Noticias = () => {
           },
         });
 
-        const rutaImagenes = respuesta.data;
+        const { rutasImagenes } = respuesta.data;
 
-        console.log(rutaImagenes);
+        console.log(rutasImagenes);
 
         setNombreImagen(nombres.join(", "));
         setImagen(imagenesRestantes);
-        setImagenesRuta(rutaImagenes);
+        setImagenesRuta(rutasImagenes);
         setInterructor(false);
 
         event.target.value = "";
