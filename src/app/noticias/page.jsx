@@ -476,6 +476,38 @@ const Noticias = () => {
     publicaciones();
   }, [publicacionBorrada, posters]);
 
+  const [noticiaBorrada, setNoticiaBorrada] = useState();
+
+  const actualizadorNoticia = (enviandoBorrado) => {
+    setNoticiaBorrada(enviandoBorrado);
+  };
+
+  const noticias = async () => {
+    try {
+      const respuestaPost = await axios.get("../API/noticias");
+      const respuestaPrimera = respuestaPost.data;
+      setNoticia((prevPosts) => {
+        const postNuevos = respuestaPrimera;
+        console.log(postNuevos);
+        return postNuevos.sort((a, b) => b.id_noticia - a.id_noticia);
+      });
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const theFetcherNoticia = (url) =>
+    fetch(`http://localhost:3000/API/noticias`).then((res) => res.json());
+
+  const { data: noticiasActual } = useSWR(
+    `http://localhost:3000/API/noticias`,
+    theFetcherNoticia
+  );
+
+  useEffect(() => {
+    noticias();
+  }, [noticiaBorrada, noticiasActual]);
+
   return (
     <>
       <head>
@@ -898,7 +930,7 @@ const Noticias = () => {
                         noticia={noticia}
                         nombreDeUsuario={nombreDeUsuario}
                         usuario={usuario}
-                        enviandoBorrado={actualizadorPublicacion}
+                        enviandoBorrado={actualizadorNoticia}
                       />
                     )}
                   </section>

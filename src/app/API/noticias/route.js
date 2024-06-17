@@ -14,7 +14,7 @@ export const GET = async () => {
         p.apellido,
         p.fotoPerfil,
         notic.id_persona,
-        notic.descripcion_publicacion as mensaje, 
+        notic.descripcion_noticia as mensaje, 
         notic.fecha as fecha, 
         notic.enlace as enlaces, 
         notic.imagen as imagen, 

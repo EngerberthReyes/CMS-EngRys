@@ -15,7 +15,7 @@ const NoticiasPublicadas = ({
 }) => {
   console.log(noticia);
 
-  const borrarPublicacion = async (idNoticia) => {
+  const borrarNoticia = async (idNoticia) => {
     try {
       const respuestaBorrado = await axios.delete(
         `http://localhost:3000/API/noticias/${idNoticia}`
@@ -82,9 +82,7 @@ const NoticiasPublicadas = ({
                           alignItems: "center",
                           width: "100%",
                         }}
-                        onClick={() =>
-                          borrarPublicacion(elementoPost.id_publicacion)
-                        }
+                        onClick={() => borrarNoticia(elementoPost.id_noticia)}
                       >
                         <Link
                           className={`${stylesPost.enlace} ${stylesPost.usuarioPerfil}`}

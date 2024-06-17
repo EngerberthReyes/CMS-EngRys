@@ -6,13 +6,13 @@ import { promises as fs } from "fs";
 import path from "path";
 import { hash, compare } from "bcryptjs";
 
-export const DELETE = async (request, { params: { idPublicacion } }) => {
+export const DELETE = async (request, { params: { idNoticia } }) => {
   try {
-    console.log(idPublicacion);
+    console.log(idNoticia);
 
-    const consultaPublicacion = `DELETE FROM publicaciones WHERE id_publicacion = ?;`;
+    const consultaPublicacion = `DELETE FROM noticias WHERE id_noticia = ?;`;
     const respuestaPublicacion = await cmsConexion.query(consultaPublicacion, [
-      Number(idPublicacion),
+      Number(idNoticia),
     ]);
 
     return NextResponse.json(respuestaPublicacion);
