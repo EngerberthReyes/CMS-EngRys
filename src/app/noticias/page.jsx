@@ -274,8 +274,8 @@ const Noticias = () => {
     console.log("Enlaces:", enlaces);
     console.log("YouTube:", youtubeUrl);
 
-    console.log("ImagenesRuta:", imagenesRuta);
-    console.log("Imagen:", imagen);
+    console.log("ImagenesRuta:", imagenRutaNoticia);
+    console.log("Imagen:", imagenNoticia);
 
     try {
       const formData = new FormData();
@@ -284,9 +284,9 @@ const Noticias = () => {
       formData.append("imagenUrl", JSON.stringify(imagenUrl));
       formData.append("enlaces", JSON.stringify(enlaces));
       formData.append("youtubeUrl", JSON.stringify(youtubeUrl));
-      formData.append("imagenesRuta", JSON.stringify(imagenesRuta));
+      formData.append("imagenesRuta", JSON.stringify(imagenRutaNoticia));
 
-      imagen.forEach((archivo, index) => {
+      imagenNoticia.forEach((archivo, index) => {
         formData.append("imagenes", archivo);
       });
 

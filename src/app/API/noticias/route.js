@@ -71,6 +71,8 @@ export const POST = async (request) => {
     let youtubeUrlValor =
       youtubeUrl && youtubeUrl.length > 0 ? youtubeUrl : null;
 
+      console.log(imagenValor)
+
     const fechaActual = () => {
       const ahora = new Date();
       const year = ahora.getFullYear();
@@ -101,6 +103,8 @@ export const POST = async (request) => {
     const imagenesRutaJson = imagenesRuta[0]
       ? JSON.parse(imagenesRuta[0])
       : null;
+
+      console.log(imagenesRuta)
 
     const consultaPublicacion = `INSERT INTO noticias (
         id_persona, descripcion_noticia, fecha, enlace, imagen, video, urlVideo
