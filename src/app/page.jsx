@@ -266,6 +266,7 @@ const Inicio = () => {
                         position: "fixed",
                         left: "2rem",
                         bottom: "1rem",
+                        zIndex: "1000",
                         background: "#0f0f0fbf",
                       }}
                       className={stylesInicio.seccionElemento}

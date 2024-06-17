@@ -290,6 +290,7 @@ const SobreNosotros = () => {
                                   padding: "1%",
                                   background: "#eeeeeebf",
                                   color: "#0f0f0f",
+                                  zIndex: "1000",
                                   fontSize: "16px",
                                 }}
                                 className={stylesNosotros.seccionElemento}
@@ -353,6 +354,7 @@ const SobreNosotros = () => {
                                 padding: "1%",
                                 background: "#eeeeeebf",
                                 color: "#0f0f0f",
+                                zIndex: "1000",
                                 fontSize: "16px",
                               }}
                               className={stylesNosotros.seccionElemento}
