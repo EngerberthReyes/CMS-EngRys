@@ -241,7 +241,7 @@ const SobreNosotros = () => {
             </section>
             <section className={stylesNosotros.seccionPrincipal}>
               <section className={stylesNosotros.seccionGrid}>
-                <h1>EpicComputers:</h1>
+                <h1>EpicComputers...</h1>
                 <section style={{ marginTop: "2%" }}>
                   <article>
                     <h2>Historia</h2>
