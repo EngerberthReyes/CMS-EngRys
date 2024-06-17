@@ -586,7 +586,9 @@ const Noticias = () => {
                   className={stylesNoticias.seccionAjustes}
                   style={{ width: "100%", margin: "0" }}
                 >
-                  <h1 style={{ textAlign: "center", padding: "1rem" }}>Índice</h1>
+                  <h1 style={{ textAlign: "center", padding: "1rem" }}>
+                    Índice
+                  </h1>
                 </section>
               </section>
               <section
@@ -773,7 +775,9 @@ const Noticias = () => {
                   className={stylesNoticias.seccionAjustes}
                   style={{ width: "100%", margin: "0" }}
                 >
-                  <h1 style={{ textAlign: "center" }}>Noticias</h1>
+                  <h1 style={{ textAlign: "center", padding: "1rem 0" }}>
+                    Noticias
+                  </h1>
                 </section>
               </section>
               <section
