@@ -154,7 +154,8 @@ const Contactanos = () => {
                     <span>https://facebook.com/perfil/epicomputers</span>
                   </h3>
                   <h3>
-                    X: <span>https://x.com/perfil/epicoputers</span>
+                    X [Former Twitter]:{" "}
+                    <span>https://x.com/perfil/epicoputers</span>
                   </h3>
                 </section>
               </section>
