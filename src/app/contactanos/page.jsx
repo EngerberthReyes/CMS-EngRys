@@ -147,27 +147,6 @@ const Contactanos = () => {
                     Teléfono: <span>+58 2024202420242024</span>
                   </h3>
                 </section>
-
-                <section>
-                  <h2>Intereses</h2>
-                  <h3>
-                    Intereses: <span>Interés 1, Interés 2, etc.</span>
-                  </h3>
-                </section>
-
-                <section>
-                  <h2>Presupuesto</h2>
-                  <h3>
-                    Presupuesto: <span>$5000</span>
-                  </h3>
-                </section>
-
-                <section>
-                  <h2>Hora de Contacto Preferida</h2>
-                  <h3>
-                    Hora de contacto preferida: <span>10:00 AM</span>
-                  </h3>
-                </section>
               </section>
             </section>
           </section>
