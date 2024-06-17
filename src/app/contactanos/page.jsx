@@ -135,7 +135,9 @@ const Contactanos = () => {
           <section className={stylesContactanos.main}>
             <section className={stylesContactanos.seccionSecundaria}>
               <section className={stylesContactanos.seccionAjustes}>
-                <h1>Contáctanos</h1>
+                <h1 style={{ textAlign: "center", marginBottom: "4%" }}>
+                  Contáctanos
+                </h1>
                 <section>
                   <h2>Datos Personales</h2>
                   <h3>
