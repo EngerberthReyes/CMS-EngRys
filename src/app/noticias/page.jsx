@@ -752,7 +752,19 @@ const Noticias = () => {
                          */}
                     </section>
                   </section>
-                ) : null}
+                ) : (
+                  <section className={stylesNoticias.seccionGrid}>
+                    <h1
+                      style={{
+                        textAlign: "center",
+                        fontSize: "28px",
+                        margin: "0",
+                      }}
+                    >
+                      Inicie Sesión o Regístrese Para Hacer Publicaciones
+                    </h1>
+                  </section>
+                )}
               </section>
 
               {post && (
