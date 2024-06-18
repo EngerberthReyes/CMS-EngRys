@@ -260,21 +260,24 @@ const Inicio = () => {
                       />
                     </section>
                   </label>
-                  {interruptorCambio && (
-                    <button
-                      style={{
-                        position: "fixed",
-                        left: "2rem",
-                        bottom: "1rem",
-                        zIndex: "1000",
-                        background: "#0f0f0fbf",
-                      }}
-                      className={stylesInicio.seccionElemento}
-                      onClick={() => obtenerDescripcionInicialPersonal()}
-                    >
-                      Guardar Cambios
-                    </button>
-                  )}
+                  {interruptorCambio &&
+                    usuario?.idRol !== 2 &&
+                    usuario?.idRol !== 3 &&
+                    usuario !== undefined && (
+                      <button
+                        style={{
+                          position: "fixed",
+                          left: "2rem",
+                          bottom: "1rem",
+                          zIndex: "1000",
+                          background: "#0f0f0fbf",
+                        }}
+                        className={stylesInicio.seccionElemento}
+                        onClick={() => obtenerDescripcionInicialPersonal()}
+                      >
+                        Guardar Cambios
+                      </button>
+                    )}
                 </section>
                 <section className={stylesInicio.seccionElementos}>
                   <section>
