@@ -288,7 +288,7 @@ const Contactanos = () => {
                           target="_blank"
                           rel="noopener noreferrer"
                         >
-                          {contactInfo[3]?.contenido}
+                          {contactInfo[4]?.contenido}
                         </Link>
                       </h3>
                       <button
