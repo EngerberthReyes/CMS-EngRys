@@ -194,7 +194,10 @@ const Contactanos = () => {
                   Contáctanos
                 </h1>
                 <section>
-                  {isEditing && usuario?.idRol !== 2 && usuario?.idRol !== 3 ? (
+                  {isEditing &&
+                  usuario?.idRol !== 2 &&
+                  usuario?.idRol !== 3 &&
+                  usuario !== undefined ? (
                     <>
                       <h3 style={{ marginBottom: "4%" }}>
                         Correo Electrónico:{" "}
@@ -286,14 +289,16 @@ const Contactanos = () => {
                           {contactInfo[4]?.contenido}
                         </Link>
                       </h3>
-                      {(usuario?.idRol !== 2) && (usuario?.idRol !== 3) && (
-                        <button
-                          onClick={() => setIsEditing(true)}
-                          style={{ marginTop: "10px" }}
-                        >
-                          Editar
-                        </button>
-                      )}
+                      {usuario?.idRol !== 2 &&
+                        usuario?.idRol !== 3 &&
+                        usuario !== undefined && (
+                          <button
+                            onClick={() => setIsEditing(true)}
+                            style={{ marginTop: "10px" }}
+                          >
+                            Editar
+                          </button>
+                        )}
                     </>
                   )}
                 </section>

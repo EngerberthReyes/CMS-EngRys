@@ -306,23 +306,26 @@ const SobreNosotros = () => {
                                   item?.contenido || "Descripción no disponible"
                                 }
                               />
-                              {currentEditIndex !== index && usuario?.idRol !== 2 && usuario?.idRol !== 3 && (
-                                <label
-                                  style={{
-                                    cursor: "pointer",
-                                  }}
-                                >
-                                  <Image
-                                    className={stylesNosotros.icono_edit}
-                                    onClick={() => cambiarElemento(index)}
-                                    width={50}
-                                    height={50}
-                                    style={{ width: "2rem" }}
-                                    src={`/editar-theme-black.svg`}
-                                    alt="Cambiar Descripción Inicial"
-                                  />
-                                </label>
-                              )}
+                              {currentEditIndex !== index &&
+                                usuario?.idRol !== 2 &&
+                                usuario?.idRol !== 3 &&
+                                usuario !== undefined && (
+                                  <label
+                                    style={{
+                                      cursor: "pointer",
+                                    }}
+                                  >
+                                    <Image
+                                      className={stylesNosotros.icono_edit}
+                                      onClick={() => cambiarElemento(index)}
+                                      width={50}
+                                      height={50}
+                                      style={{ width: "2rem" }}
+                                      src={`/editar-theme-black.svg`}
+                                      alt="Cambiar Descripción Inicial"
+                                    />
+                                  </label>
+                                )}
                             </section>
                           )}
                         </section>
@@ -371,23 +374,26 @@ const SobreNosotros = () => {
                                 item?.contenido || "Descripción no disponible"
                               }
                             />
-                            {currentEditIndexA !== index && usuario?.idRol !== 2 && usuario?.idRol !== 3 && (
-                              <label
-                                style={{
-                                  cursor: "pointer",
-                                }}
-                              >
-                                <Image
-                                  className={stylesNosotros.icono_edit}
-                                  onClick={() => cambiarElementoA(index)}
-                                  width={50}
-                                  height={50}
-                                  style={{ width: "2rem" }}
-                                  src={`/editar-theme-black.svg`}
-                                  alt="Cambiar Descripción Inicial"
-                                />
-                              </label>
-                            )}
+                            {currentEditIndexA !== index &&
+                              usuario?.idRol !== 2 &&
+                              usuario?.idRol !== 3 &&
+                              usuario !== undefined && (
+                                <label
+                                  style={{
+                                    cursor: "pointer",
+                                  }}
+                                >
+                                  <Image
+                                    className={stylesNosotros.icono_edit}
+                                    onClick={() => cambiarElementoA(index)}
+                                    width={50}
+                                    height={50}
+                                    style={{ width: "2rem" }}
+                                    src={`/editar-theme-black.svg`}
+                                    alt="Cambiar Descripción Inicial"
+                                  />
+                                </label>
+                              )}
                           </section>
                         )}
                       </section>

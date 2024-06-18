@@ -230,53 +230,55 @@ const Inicio = () => {
                       }
                     />
                   )}
-
-                  <label
-                    style={{
-                      position: "relative",
-                      height: "0",
-                      top: "0",
-                      left: "0",
-                      cursor: "pointer",
-                    }}
-                  >
-                    <section
-                      className={stylesInicio.seccionBlanco}
-                      style={{
-                        position: "relative",
-                        height: "0",
-                        top: "0",
-                        left: "0",
-                        cursor: "pointer",
-                      }}
-                    >
-                      <Image
-                        className={stylesInicio.icono_edit}
-                        onClick={() => cambiarElemento()}
-                        width={20}
-                        height={20}
-                        src={`/editar-theme-black.svg`}
-                        alt="Cambiar Descripción Inicial"
-                      />
-                    </section>
-                  </label>
                   {interruptorCambio &&
                     usuario?.idRol !== 2 &&
                     usuario?.idRol !== 3 &&
                     usuario !== undefined && (
-                      <button
-                        style={{
-                          position: "fixed",
-                          left: "2rem",
-                          bottom: "1rem",
-                          zIndex: "1000",
-                          background: "#0f0f0fbf",
-                        }}
-                        className={stylesInicio.seccionElemento}
-                        onClick={() => obtenerDescripcionInicialPersonal()}
-                      >
-                        Guardar Cambios
-                      </button>
+                      <>
+                        <label
+                          style={{
+                            position: "relative",
+                            height: "0",
+                            top: "0",
+                            left: "0",
+                            cursor: "pointer",
+                          }}
+                        >
+                          <section
+                            className={stylesInicio.seccionBlanco}
+                            style={{
+                              position: "relative",
+                              height: "0",
+                              top: "0",
+                              left: "0",
+                              cursor: "pointer",
+                            }}
+                          >
+                            <Image
+                              className={stylesInicio.icono_edit}
+                              onClick={() => cambiarElemento()}
+                              width={20}
+                              height={20}
+                              src={`/editar-theme-black.svg`}
+                              alt="Cambiar Descripción Inicial"
+                            />
+                          </section>
+                        </label>
+
+                        <button
+                          style={{
+                            position: "fixed",
+                            left: "2rem",
+                            bottom: "1rem",
+                            zIndex: "1000",
+                            background: "#0f0f0fbf",
+                          }}
+                          className={stylesInicio.seccionElemento}
+                          onClick={() => obtenerDescripcionInicialPersonal()}
+                        >
+                          Guardar Cambios
+                        </button>
+                      </>
                     )}
                 </section>
                 <section className={stylesInicio.seccionElementos}>
