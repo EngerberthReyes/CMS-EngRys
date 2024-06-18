@@ -201,7 +201,7 @@ const Contactanos = () => {
                           type="text"
                           name="correo"
                           defaultValue={contactInfo[0]?.contenido}
-                          onChange={() => handleChange(9)}
+                          onChange={() => handleChange(event, 9)}
                         />
                       </h3>
                       <h3 style={{ marginBottom: "4%" }}>
@@ -210,7 +210,7 @@ const Contactanos = () => {
                           type="text"
                           name="telefono"
                           value={contactInfo[1]?.contenido}
-                          defaultValue={() => handleChange(10)}
+                          defaultValue={() => handleChange(event, 10)}
                         />
                       </h3>
                       <h3 style={{ marginBottom: "4%" }}>
@@ -219,7 +219,7 @@ const Contactanos = () => {
                           type="text"
                           name="instagram"
                           defaultValue={contactInfo[2]?.contenido}
-                          onChange={() => handleChange(11)}
+                          onChange={() => handleChange(event, 11)}
                         />
                       </h3>
                       <h3 style={{ marginBottom: "4%" }}>
@@ -228,7 +228,7 @@ const Contactanos = () => {
                           type="text"
                           name="facebook"
                           defaultValue={contactInfo[3]?.contenido}
-                          onChange={() => handleChange(12)}
+                          onChange={() => handleChange(event, 12)}
                         />
                       </h3>
                       <h3>
@@ -237,7 +237,7 @@ const Contactanos = () => {
                           type="text"
                           name="x"
                           defaultValue={contactInfo[4]?.contenido}
-                          onChange={() => handleChange(13)}
+                          onChange={() => handleChange(event, 13)}
                         />
                       </h3>
                       <button
