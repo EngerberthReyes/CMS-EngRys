@@ -27,6 +27,7 @@ const Contactanos = () => {
         const respuesta = await axios.get("../API/perfil");
         const usuarioActivo = respuesta.data.sesionUsuario;
         setUsuario(usuarioActivo);
+        console.log(usuarioActivo.idRol);
       } catch (error) {
         console.log(error);
       }
@@ -193,7 +194,7 @@ const Contactanos = () => {
                   Contáctanos
                 </h1>
                 <section>
-                  {isEditing ? (
+                  {isEditing && usuario?.idRol !== 2 && usuario?.idRol !== 3 ? (
                     <>
                       <h3 style={{ marginBottom: "4%" }}>
                         Correo Electrónico:{" "}
@@ -285,12 +286,14 @@ const Contactanos = () => {
                           {contactInfo[4]?.contenido}
                         </Link>
                       </h3>
-                      <button
-                        onClick={() => setIsEditing(true)}
-                        style={{ marginTop: "10px" }}
-                      >
-                        Editar
-                      </button>
+                      {(usuario?.idRol !== 2) && (usuario?.idRol !== 3) && (
+                        <button
+                          onClick={() => setIsEditing(true)}
+                          style={{ marginTop: "10px" }}
+                        >
+                          Editar
+                        </button>
+                      )}
                     </>
                   )}
                 </section>
