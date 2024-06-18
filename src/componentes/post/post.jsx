@@ -9,7 +9,7 @@ import { useState, useEffect } from "react";
 
 const Post = ({ post, nombreDeUsuario, usuario, enviandoBorrado }) => {
   console.log(post);
-
+  console.log(usuario);
   const borrarPublicacion = async (idPublicacion) => {
     try {
       const respuestaBorrado = await axios.delete(
@@ -33,8 +33,15 @@ const Post = ({ post, nombreDeUsuario, usuario, enviandoBorrado }) => {
               className={stylesPost.seccionPrincipal}
             >
               <section className={stylesPost.seccionGrid}>
-                <section style={{ display: "flex", width: "100%" }}>
-                  {elementoPost?.id_persona !== usuario?.idPersona ? (
+                <section
+                  style={{
+                    display: "flex",
+                    width: "100%",
+                    justifyContent: "space-between",
+                  }}
+                >
+                  {elementoPost?.id_persona !== usuario?.idPersona &&
+                  usuario !== undefined ? (
                     <>
                       <Link
                         className={`${stylesPost.enlace} ${stylesPost.usuarioPerfil}`}
@@ -70,75 +77,112 @@ const Post = ({ post, nombreDeUsuario, usuario, enviandoBorrado }) => {
                     </>
                   ) : (
                     <>
-                      <section
-                        style={{
-                          display: "flex",
-                          justifyContent: "space-between",
-                          alignItems: "center",
-                          width: "100%",
-                        }}
-                      >
-                        <Link
-                          className={`${stylesPost.enlace} ${stylesPost.usuarioPerfil}`}
-                          style={{
-                            border: "none",
-                            wordBreak: "keep-all",
-                            height: "4rem",
-                            margin: "0 0 1rem 0",
-                            display: "flex",
-                            justifyContent: "center",
-                            alignItems: "center",
-                            cursor: "default",
-                          }}
-                          href=""
-                        >
-                          <Image
-                            className={stylesPost.imagenes}
-                            width={35}
-                            height={20}
-                            src={
-                              elementoPost.fotoPerfil
-                                ? elementoPost.fotoPerfil
-                                : "/IMG/epigrafe73.png"
-                            }
-                          />
-                          <section style={{ wordBreak: "keep-all" }}>
-                            <section>
-                              {`${elementoPost.nombre.split(" ")[0]}
-                              ${elementoPost.apellido.split(" ")[0]}`}
-                            </section>
-                          </section>
-                        </Link>
+                      <>
                         <section
-                          className={`${stylesPost.enlace} ${stylesPost.seccionBorrar} ${stylesPost.usuarioPerfil}`}
                           style={{
-                            border: "none",
-                            wordBreak: "keep-all",
-                            height: "4rem",
-                            margin: "0 0 1rem 0",
                             display: "flex",
-                            justifyContent: "center",
+                            justifyContent: "space-between",
                             alignItems: "center",
-                            cursor: "pointer",
+                            width: "100%",
                           }}
-                          onClick={() =>
-                            borrarPublicacion(elementoPost.id_publicacion)
-                          }
                         >
-                          <Image
-                            className={stylesPost.imagenes}
-                            width={20}
-                            height={20}
-                            style={{ height: "2rem", borderRadius: "0" }}
-                            src={"/x-solid.svg"}
-                          />
-                          <section style={{ wordBreak: "keep-all" }}>
-                            <section>Eliminar Publicación</section>
-                          </section>
+                          <Link
+                            className={`${stylesPost.enlace} ${stylesPost.usuarioPerfil}`}
+                            style={{
+                              border: "none",
+                              wordBreak: "keep-all",
+                              height: "4rem",
+                              margin: "0 0 1rem 0",
+                              display: "flex",
+                              justifyContent: "center",
+                              alignItems: "center",
+                              cursor: "default",
+                            }}
+                            href=""
+                          >
+                            <Image
+                              className={stylesPost.imagenes}
+                              width={35}
+                              height={20}
+                              src={
+                                elementoPost.fotoPerfil
+                                  ? elementoPost.fotoPerfil
+                                  : "/IMG/epigrafe73.png"
+                              }
+                            />
+                            <section style={{ wordBreak: "keep-all" }}>
+                              <section>
+                                {`${elementoPost.nombre.split(" ")[0]}
+                              ${elementoPost.apellido.split(" ")[0]}`}
+                              </section>
+                            </section>
+                          </Link>
+                          {usuario !== undefined && (
+                            <section
+                              className={`${stylesPost.enlace} ${stylesPost.seccionBorrar} ${stylesPost.usuarioPerfil}`}
+                              style={{
+                                border: "none",
+                                wordBreak: "keep-all",
+                                height: "4rem",
+                                margin: "0 0 1rem 0",
+                                display: "flex",
+                                justifyContent: "center",
+                                alignItems: "center",
+                                cursor: "pointer",
+                              }}
+                              onClick={() =>
+                                borrarPublicacion(elementoPost.id_publicacion)
+                              }
+                            >
+                              <Image
+                                className={stylesPost.imagenes}
+                                width={20}
+                                height={20}
+                                style={{ height: "2rem", borderRadius: "0" }}
+                                src={"/x-solid.svg"}
+                              />
+                              <section style={{ wordBreak: "keep-all" }}>
+                                <section>Eliminar Publicación</section>
+                              </section>
+                            </section>
+                          )}
+                        </section>
+                      </>
+                    </>
+                  )}
+                  {usuario?.idRol !== 2 &&
+                  usuario?.idRol !== 3 &&
+                  usuario !== undefined ? (
+                    <>
+                      <section
+                        className={`${stylesPost.enlace} ${stylesPost.seccionBorrar} ${stylesPost.usuarioPerfil}`}
+                        style={{
+                          border: "none",
+                          wordBreak: "keep-all",
+                          height: "4rem",
+                          margin: "0 0 1rem 0",
+                          display: "flex",
+                          justifyContent: "center",
+                          alignItems: "center",
+                          cursor: "pointer",
+                        }}
+                        onClick={() =>
+                          borrarPublicacion(elementoPost.id_publicacion)
+                        }
+                      >
+                        <Image
+                          className={stylesPost.imagenes}
+                          width={20}
+                          height={20}
+                          style={{ height: "2rem", borderRadius: "0" }}
+                          src={"/x-solid.svg"}
+                        />
+                        <section style={{ wordBreak: "keep-all" }}>
+                          <section>Eliminar Publicación</section>
                         </section>
                       </section>
                     </>
-                  )}
+                  ) : null}
                 </section>
                 <section>
                   <>

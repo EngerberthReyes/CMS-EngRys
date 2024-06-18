@@ -809,7 +809,7 @@ const Noticias = () => {
               >
                 <section className={stylesNoticias.seccionAjustes}>
                   <section className={stylesNoticias.seccionFlex}>
-                    {usuario ? (
+                    {usuario && usuario?.idRol !== 2 && usuario?.idRol !== 3 ? (
                       <section
                         className={stylesNoticias.seccionGrid}
                         style={{ width: "auto" }}

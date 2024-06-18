@@ -306,7 +306,7 @@ const SobreNosotros = () => {
                                   item?.contenido || "Descripción no disponible"
                                 }
                               />
-                              {currentEditIndex !== index && (
+                              {currentEditIndex !== index && usuario?.idRol !== 2 && usuario?.idRol !== 3 && (
                                 <label
                                   style={{
                                     cursor: "pointer",
@@ -371,7 +371,7 @@ const SobreNosotros = () => {
                                 item?.contenido || "Descripción no disponible"
                               }
                             />
-                            {currentEditIndexA !== index && (
+                            {currentEditIndexA !== index && usuario?.idRol !== 2 && usuario?.idRol !== 3 && (
                               <label
                                 style={{
                                   cursor: "pointer",
