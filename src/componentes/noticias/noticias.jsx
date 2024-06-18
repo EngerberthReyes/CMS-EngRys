@@ -114,6 +114,13 @@ const NoticiasPublicadas = ({
                             </section>
                           </section>
                         </Link>
+                      </section>
+                    </>
+                  )}
+                  {usuario?.idRol !== 2 &&
+                    usuario?.idRol !== 3 &&
+                    usuario !== undefined && (
+                      <>
                         <section
                           title="Eliminar Noticia"
                           className={`${stylesPost.enlace} ${stylesPost.seccionBorrar} ${stylesPost.usuarioPerfil}`}
@@ -140,9 +147,8 @@ const NoticiasPublicadas = ({
                             alt={"Eliminar Noticia"}
                           />
                         </section>
-                      </section>
-                    </>
-                  )}
+                      </>
+                    )}
                 </section>
                 <section>
                   <>
