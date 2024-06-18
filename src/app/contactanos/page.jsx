@@ -250,16 +250,10 @@ const Contactanos = () => {
                   ) : (
                     <>
                       <h3 style={{ marginBottom: "4%" }}>
-                        Correo Electrónico:{" "}
-                        <Link href={`${contactInfo[0]?.contenido}`}>
-                          {contactInfo[0]?.contenido}
-                        </Link>
+                        Correo Electrónico: {contactInfo[0]?.contenido}
                       </h3>
                       <h3 style={{ marginBottom: "4%" }}>
-                        Teléfono:{" "}
-                        <Link href={`${contactInfo[1]?.contenido}`}>
-                          {contactInfo[1]?.contenido}
-                        </Link>
+                        Teléfono: {contactInfo[1]?.contenido}
                       </h3>
                       <h3 style={{ marginBottom: "4%" }}>
                         Instagram:{" "}
