@@ -8,13 +8,7 @@ import { useRouter } from "next/navigation";
 import stylesContactanos from "../CSS/styles-contactanos.module.css";
 
 const Contactanos = () => {
-  const [contactInfo, setContactInfo] = useState({
-    correo: "epicomputers@gmail.epic.com",
-    telefono: "+58 2024202420242024",
-    instagram: "https://instagram.com/@epicoputers",
-    facebook: "https://facebook.com/perfil/epicomputers",
-    x: "https://x.com/perfil/epicoputers",
-  });
+  const [contactInfo, setContactInfo] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
   const router = useRouter();
   const [usuario, setUsuario] = useState();
@@ -64,26 +58,58 @@ const Contactanos = () => {
     }
   };
 
+  const contactos = [
+    { id: 10, red: "correo_electronico", valor: "epicomputers@gmail.epic.com" },
+    { id: 11, red: "telefono", valor: "+58 20242024202420242024" },
+    { id: 12, tipo: "instagram", valor: "https://instagram.com/@epicomputers" },
+    {
+      id: 13,
+      red: "facebook",
+      valor: "https://facebook.com/perfil/epicomputers",
+    },
+    { id: 14, red: "X", valor: "https://x.com/perfil/epicomputers" },
+  ];
+
   const obtenerContactInfo = async () => {
     try {
       const response = await axios.get("../API/contacto");
+      console.log(response.data);
       setContactInfo(response.data);
     } catch (error) {
       console.log(error);
     }
   };
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setContactInfo((prevInfo) => ({
-      ...prevInfo,
-      [name]: value,
-    }));
+  useEffect(() => {
+    obtenerContactInfo();
+  }, []);
+
+  const [nuevoValor, setNuevoValor] = useState([]);
+
+  const handleChange = (event, id) => {
+    // Obtén el valor del target del evento
+    const newValue = event.target.value;
+
+    // Busca el índice del objeto con el id especificado
+    const index = contactInfo.findIndex((contact) => contact.id_option === id);
+
+    // Verifica si se encontró el objeto
+    if (index !== -1) {
+      // Actualiza directamente el objeto en el array original
+      contactInfo[index].contenido = newValue;
+
+      // Recupera solo el elemento modificado usando slice
+      const modifiedElement = contactInfo.slice(index, index + 1);
+      setNuevoValor(modifiedElement[0]); // Imprime el elemento modificado
+    } else {
+      console.log("Elemento no encontrado");
+    }
   };
 
   const handleSave = async () => {
     try {
-      await axios.put("/api/contacto", contactInfo);
+      console.log(nuevoValor);
+      await axios.put("../API/contacto", { nuevoValor });
       setIsEditing(false);
     } catch (error) {
       console.log(error);
@@ -158,7 +184,10 @@ const Contactanos = () => {
         </header>
         <main className={stylesContactanos.mainPrincipal}>
           <section className={stylesContactanos.main}>
-            <section className={stylesContactanos.seccionSecundaria}>
+            <section
+              className={stylesContactanos.seccionSecundaria}
+              style={{ width: "50rem" }}
+            >
               <section className={stylesContactanos.seccionAjustes}>
                 <h1 style={{ textAlign: "center", marginBottom: "4%" }}>
                   Contáctanos
@@ -171,7 +200,7 @@ const Contactanos = () => {
                         <input
                           type="text"
                           name="correo"
-                          value={contactInfo.correo}
+                          defaultValue={contactInfo[0]?.contenido}
                           onChange={handleChange}
                         />
                       </h3>
@@ -180,8 +209,8 @@ const Contactanos = () => {
                         <input
                           type="text"
                           name="telefono"
-                          value={contactInfo.telefono}
-                          onChange={handleChange}
+                          value={contactInfo[1]?.contenido}
+                          defaultValue={handleChange}
                         />
                       </h3>
                       <h3 style={{ marginBottom: "4%" }}>
@@ -189,7 +218,7 @@ const Contactanos = () => {
                         <input
                           type="text"
                           name="instagram"
-                          value={contactInfo.instagram}
+                          defaultValue={contactInfo[2]?.contenido}
                           onChange={handleChange}
                         />
                       </h3>
@@ -198,7 +227,7 @@ const Contactanos = () => {
                         <input
                           type="text"
                           name="facebook"
-                          value={contactInfo.facebook}
+                          defaultValue={contactInfo[3]?.contenido}
                           onChange={handleChange}
                         />
                       </h3>
@@ -207,8 +236,8 @@ const Contactanos = () => {
                         <input
                           type="text"
                           name="x"
-                          value={contactInfo.x}
-                          onChange={handleChange}
+                          defaultValue={contactInfo[4]?.contenido}
+                          onChange={() => handleChange(event, 13)}
                         />
                       </h3>
                       <button
@@ -221,20 +250,23 @@ const Contactanos = () => {
                   ) : (
                     <>
                       <h3 style={{ marginBottom: "4%" }}>
-                        Correo Electrónico: <span>{contactInfo.correo}</span>
+                        Correo Electrónico:{" "}
+                        <span>{contactInfo[0]?.contenido}</span>
                       </h3>
                       <h3 style={{ marginBottom: "4%" }}>
-                        Teléfono: <span>{contactInfo.telefono}</span>
+                        Teléfono: <span>{contactInfo[1]?.contenido}</span>
                       </h3>
                       <h3 style={{ marginBottom: "4%" }}>
-                        Instagram: <span>{contactInfo.instagram}</span>
+                        Instagram: <span>{contactInfo[2]?.contenido}</span>
                       </h3>
                       <h3 style={{ marginBottom: "4%" }}>
-                        Facebook: <span>{contactInfo.facebook}</span>
+                        Facebook: <span>{contactInfo[3]?.contenido}</span>
                       </h3>
                       <h3>
-                        X [Former Twitter]: <span>{contactInfo.x}</span>
+                        X [Former Twitter]:{" "}
+                        <span>{contactInfo[4]?.contenido}</span>
                       </h3>
+
                       <button
                         onClick={() => setIsEditing(true)}
                         style={{ marginTop: "10px" }}

@@ -5,19 +5,7 @@ import { cmsConexion } from "@/db/database";
 
 export const GET = async (request) => {
   try {
-    const cookieValue = request.cookies.get("cookieInformacion").value;
-    console.log(cookieValue);
-
-    const verificacionCookie = verify(cookieValue, "secret");
-    console.log(verificacionCookie);
-
-    if (!cookieValue) {
-      throw new Error(
-        "La cookie 'cookieInformacion' no se encontró en la solicitud."
-      );
-    }
-
-    const consultaActualizacionPerfil = `SELECT contenido FROM options as opt WHERE opt.id_interfaz = 2;`;
+    const consultaActualizacionPerfil = `SELECT id_option, contenido FROM options as opt WHERE opt.id_interfaz = 4;`;
     const actualizacionPerfil = await cmsConexion.query(
       consultaActualizacionPerfil
     );
@@ -35,15 +23,15 @@ export const GET = async (request) => {
 
 export const PUT = async (request) => {
   try {
-    const { description } = await request.json();
-    console.log(description);
-    const consultaActualizacionPerfil = `UPDATE options AS opt SET opt.contenido = ? WHERE id_interfaz = 2;`;
+    const { nuevoValor } = await request.json();
+    console.log(nuevoValor);
+    const consultaActualizacionPerfil = `UPDATE options AS opt SET opt.contenido = ? WHERE id_option = ?;`;
     const actualizacionPerfil = await cmsConexion.query(
       consultaActualizacionPerfil,
-      [description]
+      [nuevoValor.contenido, nuevoValor.id_option]
     );
 
-    const response = new NextResponse(JSON.stringify(description));
+    const response = new NextResponse(JSON.stringify(actualizacionPerfil));
     return response;
   } catch (error) {
     console.error("Error al modificar la cookie con JWT:", error);
