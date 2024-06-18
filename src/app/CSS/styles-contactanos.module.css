@@ -119,6 +119,17 @@
   border-radius: 4px;
 }
 
+.input_texto {
+  width: 100%;
+  color: #eeeeee;
+  background: #000000;
+  border-color: #eeeeee;
+
+  &:focus {
+    box-shadow: 3px 0px 11px 0px #b9b9b9;
+  }
+}
+
 .seccionSecundariaAjuste {
   display: inline-block;
   margin: 0.5% 0.5% 0 0.5%;
@@ -157,6 +168,17 @@
     background-color: #0f0f0f9e;
     color: #eeeeee;
   }
+  
+  .input_texto {
+    color: #eeeeee;
+    background: #000000;
+    border-color: #eeeeee;
+
+    &:focus {
+      box-shadow: 3px 0px 11px 0px #b9b9b9;
+    }
+  }
+
 
   .enlaceNormal {
     text-decoration: none;

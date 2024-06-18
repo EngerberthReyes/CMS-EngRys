@@ -5,9 +5,19 @@ import axios from "axios";
 import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
 import stylesContactanos from "../CSS/styles-contactanos.module.css";
 
 const Contactanos = () => {
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors, isValid },
+  } = useForm({
+    mode: "onChange",
+  });
+
   const [contactInfo, setContactInfo] = useState([]);
   const [isEditing, setIsEditing] = useState(false);
   const router = useRouter();
@@ -117,6 +127,11 @@ const Contactanos = () => {
     }
   };
 
+  const onSubmit = (data) => {
+    handleSave(data);
+    reset(); // Reset the form after submission
+  };
+
   return (
     <>
       <head>
@@ -187,7 +202,84 @@ const Contactanos = () => {
           <section className={stylesContactanos.main}>
             <section
               className={stylesContactanos.seccionSecundaria}
-              style={{ width: "50rem" }}
+              style={{
+                width: "50rem",
+                height: "82vh",
+                margin: "0 1rem",
+                overflowY: "auto",
+              }}
+            >
+              <section className={stylesContactanos.seccionAjustes}>
+                <h1 style={{ textAlign: "center", marginBottom: "4%" }}>
+                  Contáctanos
+                </h1>
+                {!usuario && (
+                  <section>
+                    <>
+                      <form onSubmit={handleSubmit(onSubmit)}>
+                        <h3 style={{ marginBottom: "4%" }}>
+                          Nombre:{" "}
+                          <input
+                            type="text"
+                            className={`${stylesContactanos.input_texto} rounded-2`}
+                            name="nombre"
+                            {...register("nombre", { required: true })}
+                          />
+                        </h3>
+                        <h3 style={{ marginBottom: "4%" }}>
+                          Asunto:{" "}
+                          <input
+                            type="text"
+                            className={`${stylesContactanos.input_texto} rounded-2`}
+                            name="asunto"
+                            {...register("asunto", { required: true })}
+                          />
+                        </h3>
+                        <h3 style={{ marginBottom: "4%" }}>
+                          Mensaje:{" "}
+                          <textarea
+                            name="mensaje"
+                            className={`${stylesContactanos.input_texto} rounded-2`}
+                            {...register("mensaje", { required: true })}
+                          />
+                        </h3>
+                        <h3 style={{ marginBottom: "4%" }}>
+                          Correo Electrónico:{" "}
+                          <input
+                            type="text"
+                            className={`${stylesContactanos.input_texto} rounded-2`}
+                            name="correo"
+                            {...register("correo", { required: true })}
+                          />
+                        </h3>
+                        <h3 style={{ marginBottom: "4%" }}>
+                          Teléfono:{" "}
+                          <input
+                            type="text"
+                            className={`${stylesContactanos.input_texto} rounded-2`}
+                            name="telefono"
+                            {...register("telefono", { required: true })}
+                          />
+                        </h3>
+                        <button type="submit" style={{ marginTop: "10px" }}>
+                          Guardar Cambios
+                        </button>
+                      </form>
+                    </>
+                  </section>
+                )}
+              </section>
+            </section>
+            <section
+              className={stylesContactanos.seccionSecundaria}
+              style={{
+                width: "50rem",
+                height: "40rem",
+                margin: "0 1rem",
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
+              }}
             >
               <section className={stylesContactanos.seccionAjustes}>
                 <h1 style={{ textAlign: "center", marginBottom: "4%" }}>
