@@ -251,22 +251,46 @@ const Contactanos = () => {
                     <>
                       <h3 style={{ marginBottom: "4%" }}>
                         Correo Electrónico:{" "}
-                        <span>{contactInfo[0]?.contenido}</span>
+                        <Link href={`${contactInfo[0]?.contenido}`}>
+                          {contactInfo[0]?.contenido}
+                        </Link>
                       </h3>
                       <h3 style={{ marginBottom: "4%" }}>
-                        Teléfono: <span>{contactInfo[1]?.contenido}</span>
+                        Teléfono:{" "}
+                        <Link href={`${contactInfo[1]?.contenido}`}>
+                          {contactInfo[1]?.contenido}
+                        </Link>
                       </h3>
                       <h3 style={{ marginBottom: "4%" }}>
-                        Instagram: <span>{contactInfo[2]?.contenido}</span>
+                        Instagram:{" "}
+                        <Link
+                          href={`${contactInfo[2]?.contenido}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {contactInfo[2]?.contenido}
+                        </Link>
                       </h3>
                       <h3 style={{ marginBottom: "4%" }}>
-                        Facebook: <span>{contactInfo[3]?.contenido}</span>
+                        Facebook:{" "}
+                        <Link
+                          href={`${contactInfo[3]?.contenido}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {contactInfo[3]?.contenido}
+                        </Link>
                       </h3>
                       <h3>
                         X [Former Twitter]:{" "}
-                        <span>{contactInfo[4]?.contenido}</span>
+                        <Link
+                          href={`${contactInfo[4]?.contenido}`}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                        >
+                          {contactInfo[3]?.contenido}
+                        </Link>
                       </h3>
-
                       <button
                         onClick={() => setIsEditing(true)}
                         style={{ marginTop: "10px" }}
