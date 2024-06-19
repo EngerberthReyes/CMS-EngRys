@@ -12,6 +12,7 @@ import { useRouter } from "next/navigation";
 import Details from "@/componentes/tiptap/Details";
 import { Tiptap } from "@/componentes/tiptap/TipTap";
 import { compare } from "bcryptjs";
+import useSWR from "swr";
 import parse from "html-react-parser";
 
 const Perfil = () => {
@@ -40,6 +41,7 @@ const Perfil = () => {
   const [paises, setPaises] = useState();
   const [nombreDeUsuario, setNombreDeUsuario] = useState();
   const [descripcionPerfil, setDescripcionPerfil] = useState("");
+  const [fotoDePerfilCambio, setFotoDePerfilCambio] = useState(true);
 
   useEffect(() => {
     if (!usuario) return;
@@ -98,13 +100,17 @@ const Perfil = () => {
         } else {
           console.log("No se recibió una URL de la imagen o imagen valida");
         }
-
+        setFotoDePerfilCambio(false);
         event.target.value = "";
       } else {
         console.log("No se seleccionó ningún archivo");
       }
     } catch (error) {
       console.log(error.response ? error.response.data : error);
+    } finally {
+      setTimeout(() => {
+        setFotoDePerfilCambio(false);
+      }, 2000);
     }
   };
 
@@ -234,9 +240,12 @@ const Perfil = () => {
     }
   };
 
+  console.log(fotoDePerfilCambio);
+
   useEffect(() => {
     obtenerPerfil();
-  }, [interruptorCambio, agregarImagen]);
+    setFotoDePerfilCambio(true);
+  }, [fotoDePerfilCambio]);
 
   const cerrarPerfil = async () => {
     try {
