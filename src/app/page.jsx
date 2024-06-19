@@ -269,10 +269,11 @@ const Inicio = () => {
                         <button
                           style={{
                             position: "fixed",
+                            padding: "1%",
                             left: "2rem",
                             bottom: "1rem",
                             zIndex: "1000",
-                            background: "#0f0f0fbf",
+                            background: "#610c0cbf",
                           }}
                           className={stylesInicio.seccionElemento}
                           onClick={() => obtenerDescripcionInicialPersonal()}
