@@ -129,7 +129,7 @@ const Contactanos = () => {
 
   const enviarDatos = async (datos) => {
     const { nombre, asunto, mensaje, correo, telefono } = datos;
-    console.log(correo)
+    console.log(correo);
     try {
       const respuesta = await axios.post("../API/authContacto", {
         nombre,
@@ -254,7 +254,7 @@ const Contactanos = () => {
                     <>
                       <form onSubmit={handleSubmit(enviarDatos)}>
                         <h3 style={{ marginBottom: "4%" }}>
-                          Nombre:{" "}
+                          Nombre y Apellido:{" "}
                           <input
                             type="text"
                             className={`${stylesContactanos.input_texto} rounded-2`}
@@ -301,7 +301,7 @@ const Contactanos = () => {
                           )}
                         </h3>
                         <h3 style={{ marginBottom: "4%" }}>
-                          Correo Electrónico:{" "}
+                          Su Correo Electrónico:{" "}
                           <input
                             type="email"
                             className={`${stylesContactanos.input_texto} rounded-2`}
@@ -344,7 +344,7 @@ const Contactanos = () => {
                           )}
                         </h3>
                         <button type="submit" style={{ marginTop: "10px" }}>
-                          Guardar Cambios
+                          Enviar Correo
                         </button>
                       </form>
                     </>

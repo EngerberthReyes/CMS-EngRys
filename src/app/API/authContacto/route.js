@@ -71,8 +71,8 @@ export async function POST(req) {
       from: `${correo}`,
       to: "engerberthr73@gmail.com",
       bcc: process.env.MAIL_USERNAME,
-      subject: "Mensaje de Contacto Para EpíComputers",
-      text: `${asunto}`,
+      subject: `Mensaje de Contacto Para EpíComputers: ${asunto}`,
+      text: `Nombre y Apellido: ${nombre}\n\nMensaje: ${mensaje}\n\nTeléfono: ${telefono}`,
     };
 
     // Enviar el correo electrónico
