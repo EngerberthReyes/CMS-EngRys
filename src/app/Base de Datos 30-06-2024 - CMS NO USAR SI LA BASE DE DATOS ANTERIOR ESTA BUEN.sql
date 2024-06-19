@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 19-06-2024 a las 04:06:29
+-- Tiempo de generación: 19-06-2024 a las 12:24:11
 -- Versión del servidor: 10.4.32-MariaDB
 -- Versión de PHP: 8.2.12
 
@@ -45,6 +45,18 @@ CREATE TABLE `ciudades` (
   `nombre_ciudad` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Volcado de datos para la tabla `ciudades`
+--
+
+INSERT INTO `ciudades` (`id_ciudad`, `id_estado`, `nombre_ciudad`) VALUES
+(1, 1, 'Abu Qir'),
+(2, 2, '2'),
+(3, 3, 'Falmouth'),
+(4, 4, 'Caála'),
+(5, 5, 'La que tu quieras xd'),
+(6, 6, 'Caconda');
+
 -- --------------------------------------------------------
 
 --
@@ -56,6 +68,18 @@ CREATE TABLE `codigos_postales` (
   `id_parroquia` int(11) DEFAULT NULL,
   `numero_codigo_postal` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `codigos_postales`
+--
+
+INSERT INTO `codigos_postales` (`id_codigo_postal`, `id_parroquia`, `numero_codigo_postal`) VALUES
+(1, 1, NULL),
+(2, 2, NULL),
+(3, 3, NULL),
+(4, 4, NULL),
+(5, 5, 2222),
+(6, 6, NULL);
 
 -- --------------------------------------------------------
 
@@ -69,6 +93,18 @@ CREATE TABLE `direcciones` (
   `direccion_completa` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Volcado de datos para la tabla `direcciones`
+--
+
+INSERT INTO `direcciones` (`id_direccion`, `id_codigo_postal`, `direccion_completa`) VALUES
+(1, 1, 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'),
+(2, 2, '34534534535345haushdasd'),
+(3, 3, '32423423423423'),
+(4, 4, 'a'),
+(5, 5, 'Dirección Cualquiera'),
+(6, 6, 'Libelo');
+
 -- --------------------------------------------------------
 
 --
@@ -80,6 +116,18 @@ CREATE TABLE `estados` (
   `id_pais` int(11) NOT NULL,
   `nombre_estado` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `estados`
+--
+
+INSERT INTO `estados` (`id_estado`, `id_pais`, `nombre_estado`) VALUES
+(1, 1, 'algo'),
+(2, 2, 'Saint asdasdA'),
+(3, 3, 'Saint John Parish'),
+(4, 4, 'Cuanza Sul'),
+(5, 5, 'XD'),
+(6, 6, 'Bié Province');
 
 -- --------------------------------------------------------
 
@@ -133,6 +181,18 @@ CREATE TABLE `municipios` (
   `nombre_municipio` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Volcado de datos para la tabla `municipios`
+--
+
+INSERT INTO `municipios` (`id_municipio`, `id_ciudad`, `nombre_municipio`) VALUES
+(1, 1, NULL),
+(2, 2, NULL),
+(3, 3, NULL),
+(4, 4, NULL),
+(5, 5, 'Algo mas que hacer'),
+(6, 6, NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -169,6 +229,18 @@ CREATE TABLE `noticias` (
   `video` varchar(2000) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Volcado de datos para la tabla `noticias`
+--
+
+INSERT INTO `noticias` (`id_noticia`, `id_persona`, `descripcion_noticia`, `fecha`, `enlace`, `imagen`, `urlVideo`, `video`) VALUES
+(33, 5, '<p>sdfsdf</p>', '2024-06-16', '[]', '[]', '[]', NULL),
+(37, 5, '', '2024-06-16', '[]', '[\"/FotosenNoticias/Barranca Abajo Cassette.jpg\"]', '[]', NULL),
+(40, 4, '<p>xd</p>', '2024-06-16', '[]', '[]', '[]', NULL),
+(41, 4, '<p>sdsd</p>', '2024-06-16', '[]', '[]', '[]', NULL),
+(42, 6, '', '2024-06-18', '[]', '[\"/FotosenNoticias/Barranca Abajo Cassette.jpg\"]', '[]', NULL),
+(43, 6, '<p>xf</p>', '2024-06-18', '[]', '[]', '[]', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -188,35 +260,19 @@ CREATE TABLE `options` (
 --
 
 INSERT INTO `options` (`id_option`, `id_interfaz`, `id_persona`, `titulo`, `contenido`) VALUES
-(1, 2, 1,  'La PC Gamer de Tus Sueños',
-    '<p>En Epícomputers, nos dedicamos a ofrecer soluciones tecnológicas de vanguardia, adaptadas a las necesidades de cada uno de nuestros clientes. Con un compromiso firme hacia la calidad, la innovación y el servicio excepcional, nos hemos establecido como un referente en el mercado de computadoras y tecnología.</p>'
-  ),
-(2, 3, 1, 'Innovación',
-    'Innovación: En Epícomputers, la innovación es el núcleo de todo lo que hacemos. Entendemos que el mundo de la tecnología avanza rápidamente y que para mantenernos a la vanguardia, debemos adoptar continuamente nuevas ideas y métodos. Por eso, nos dedicamos a explorar y desarrollar las tecnologías más avanzadas para ofrecerte soluciones de última generación.'
-  ),
-(3, 3, 1, 'Calidad',
-    'Calidad: Nos esforzamos por ofrecer productos y servicios de la más alta calidad, garantizando la satisfacción de nuestros clientes.'
-  ),
-(4, 3, 1, 'Servicio al Cliente',
-    'Servicio al Cliente: Priorizamos el trato personalizado y la atención detallada a nuestros clientes, entendiendo que cada proyecto es único y requiere un enfoque individualizado.'
-  ),
-(5, 3, 1,  'Responsabilidad Social',
-    'Responsabilidad Social: Reconocemos nuestro papel en la comunidad y nos comprometemos a contribuir positivamente a través de iniciativas sociales y educativas.'
-  ),
-(6, 3, 1,  'Historia',
-    '<p>EpíComputers es una empresa que ha estado involucrada en el desarrollo y ventas de computadoras desde 2024. A lo largo de su historia, han producido una variedad de sistemas informáticos, incluyendo microcomputadoras personales (PCs), servidores y dispositivos de almacenamiento. La compañía se destacó por sus innovaciones en hardware y software, especialmente en el ámbito de las computadoras para uso profesional y empresarial.</p>'
-  ),
-(7, 3, 1, 'Misión',
-    'Ofrecer una amplia gama de computadoras y productos tecnológicos de alta calidad a precios asequibles, con el objetivo de mejorar la vida cotidiana de nuestros clientes y facilitar su acceso a la tecnología. Nos comprometemos a brindar un excelente servicio al cliente, innovar constantemente en nuestros productos y procesos, y operar de manera sostenible para contribuir positivamente a nuestras comunidades.'
-  ),
-(8, 3, 1, 'Visión',
-    'Aspiramos a liderar el mercado de computadoras mediante la innovación constante, la excelencia en el servicio y la construcción de relaciones duraderas basadas en la confianza y el respeto mutuo. Queremos ser reconocidos no solo por nuestras soluciones tecnológicas avanzadas, sino también por nuestra contribución a la sociedad a través de la promoción de la educación y el acceso a la tecnología.'
-  ),
-(9, 4, 1, 'correo_electronico', 'engerberthr73@gmail.com'),
-(10, 4, 1, 'telefono', '+58 2024202420242024'),
-(11, 4, 1, 'instagram', 'https://instagram.com/epicomputers'),
-(12, 4, 1, 'facebook', 'https://facebook/perfil/epicomputers'),
-(13, 4, 1, 'X', 'https://x.com/epicomputers');
+(1, 2, 1, 'La PC Gamer de Tus S', 'sfd'),
+(2, 3, 1, 'Innovación', 'https://x.com/perfil/epicomputers'),
+(3, 3, 1, 'Calidad', 'https://x.com/perfil/epicomputers'),
+(4, 3, 1, 'Servicio al Cliente', 'https://x.com/perfil/epicomputers'),
+(5, 3, 1, 'Responsabilidad Soci', 'https://x.com/perfil/epicomputers'),
+(6, 3, 1, 'Historia', 'https://x.com/perfil/epicomputers'),
+(7, 3, 1, 'Misión', 'https://x.com/perfil/epicomputers'),
+(8, 3, 1, 'Visión', 'https://x.com/perfil/epicomputers'),
+(9, 4, 1, 'correo_electronico', 'https://x.com/perfil/epicomputers'),
+(10, 4, 1, 'telefono', 'https://x.com/perfil/epicomputers'),
+(11, 4, 1, 'instagram', 'htsaasdfdfperfil/epicomputers'),
+(12, 4, 1, 'facebook', 'httpasdasdadasd/perfil/epicomputers'),
+(13, 4, 1, 'X', 'nosxde xd');
 
 -- --------------------------------------------------------
 
@@ -229,6 +285,18 @@ CREATE TABLE `paises` (
   `nombre_pais` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Volcado de datos para la tabla `paises`
+--
+
+INSERT INTO `paises` (`id_pais`, `nombre_pais`) VALUES
+(1, 'Egypt'),
+(2, 'sdasdasdasdad'),
+(3, 'Antigua and Barbuda'),
+(4, 'HONO'),
+(5, 'Nose '),
+(6, 'Angola');
+
 -- --------------------------------------------------------
 
 --
@@ -240,6 +308,18 @@ CREATE TABLE `parroquias` (
   `id_municipio` int(11) DEFAULT NULL,
   `nombre_parroquia` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `parroquias`
+--
+
+INSERT INTO `parroquias` (`id_parroquia`, `id_municipio`, `nombre_parroquia`) VALUES
+(1, 1, NULL),
+(2, 2, NULL),
+(3, 3, NULL),
+(4, 4, NULL),
+(5, 5, 'Agua XD'),
+(6, 6, NULL);
 
 -- --------------------------------------------------------
 
@@ -281,6 +361,18 @@ CREATE TABLE `personas` (
   `url_imagen_pagina` blob DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
+--
+-- Volcado de datos para la tabla `personas`
+--
+
+INSERT INTO `personas` (`id_persona`, `id_genero`, `id_rol`, `id_nacionalidad`, `id_direccion`, `nombre`, `apellido`, `cedula`, `fotoPerfil`, `fecha_nacimiento`, `correo_electronico`, `clave`, `descripcion_personal`, `facebook`, `instagram`, `x`, `tiktok`, `sitio_web`, `url_imagen_pagina`) VALUES
+(1, 1, 2, 1, 1, 'Engerberth Reyes', 'A A', 30434485, '/FotosDePerfil/Barranca Abajo.jpg', '2020-05-10', 'reyes.epete14@gmail.com', '$2a$11$A6HssXomUUrFx/MSGC5fYeD.Wn0TQtCepCdWWddy6fVxK4UJRtbTy', NULL, '', 'https://instagram.com/login', '', '', 'https://www.youtube.com', 0x626c6f623a687474703a2f2f6c6f63616c686f73743a333030302f32316562373965342d353838352d343561392d396230342d346639323939356335323261),
+(2, 1, 2, 2, 2, 'Engerberth Reyes Javier Boxil', 'sdfsdfsdfBoxil undefined', 30434485, '/FotosDePerfil/Base de Datos - CMS.png', '2024-08-27', 'engerberthr73@gmail.com', '$2a$11$a5DsrHu3emM8fnDoTCeFqOPeANA7nTWM8VP1G8AC9ydWtzX4GUkH.', NULL, '', '', '', '', '', NULL),
+(3, 1, 2, 1, 3, 'asdasd', 'asdasdasd', 323423, '/FotosDePerfil/Barranca Abajo.jpg', '2024-06-04', 'engerberthr373@gmail.com', '$2a$11$f8/IR4YzU7BSscSFdELjHujoUkj24nOYe8D9VvojENpV79bEfszAi', NULL, '', '', '', '', '', NULL),
+(4, 1, 2, 1, 4, 'Javier Reyes Boxil', 'Reyes Boxil', 30434485, '/FotosDePerfil/PCGamer.png', '2024-06-11', 'a@gmail.com', '$2a$11$pzx3fJ9BTVz7V9nxQvGTC.NE9sffJqQKlJ32DsDNRbZcwMncYxffy', NULL, 'https://facebook.com/FACEBOOK', 'https://instagram.com/instagram', 'https://x.com/x', 'https://tiktok.xdxd/@tiktok', 'https://YOUTUBE.com', 0x626c6f623a687474703a2f2f6c6f63616c686f73743a333030302f65333263383864642d303133312d343366662d623236662d366565326335643532343964),
+(5, 1, 2, 2, 5, 'Engerberth Javier Reyes Boxil', 'Reyes Boxil', 30434487, '/FotosDePerfil/Base de Datos - CMS.png', '2024-06-04', 'engerberthreyes@gmail.com', '$2a$11$LfqpFCCO1EjDZ8vwjaJBwOefKgU6yM0TpQrgZvWvVzTOHNspX0qNS', '4654654646', 'https://facebook.com/Pablo', 'https://instagram.com/c', 'https://x.com/c', 'https://tiktok.com/@a', 'esto es un sitio web', 0x626c6f623a687474703a2f2f6c6f63616c686f73743a333030302f31663563396235362d383362302d346661332d616639322d353531646666363034623436),
+(6, 1, 2, 1, 6, 'Engerberth Reyes Javier Boxil', 'XD', 30434485, '/FotosDePerfil/Anarcocapitalismo.png', '2024-05-28', 'i@gmail.com', '$2a$11$CFCfd27ucHd9YBdliUipKO8afUB4hUfgjYaQfgNHskGxKifbclH72', '<p><u>xdxdxd</u></p>', '', '', '', '', '', NULL);
+
 -- --------------------------------------------------------
 
 --
@@ -297,6 +389,41 @@ CREATE TABLE `publicaciones` (
   `video` varchar(255) DEFAULT NULL,
   `urlVideo` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Volcado de datos para la tabla `publicaciones`
+--
+
+INSERT INTO `publicaciones` (`id_publicacion`, `id_persona`, `descripcion_publicacion`, `fecha`, `enlace`, `imagen`, `video`, `urlVideo`) VALUES
+(93, 5, '<p>d</p>', '2024-06-16', '[]', '[]', NULL, '[]'),
+(94, 5, '<p>sdfsdf</p>', '2024-06-16', '[]', '[]', NULL, '[]'),
+(95, 5, '<p>xdxdxd</p>', '2024-06-16', '[]', '[]', NULL, '[]'),
+(96, 5, '<p>xdxdxdxd</p>', '2024-06-16', '[]', '[\"/FotosEnPublicaciones/Barranca Abajo  CD.jpg\"]', NULL, '[]'),
+(97, 5, '<p>asdad</p>', '2024-06-16', '[]', '[]', NULL, '[]'),
+(98, 5, '<p>sd</p>', '2024-06-16', '[]', '[\"/FotosEnPublicaciones/Barranca Abajo Cassette.jpg\"]', NULL, '[]'),
+(99, 5, '', '2024-06-16', '[]', '[\"/FotosEnPublicaciones/Barranca Abajo  CD.jpg\",\"/FotosEnPublicaciones/Barranca Abajo Cassette.jpg\",\"/FotosEnPublicaciones/Barranca Abajo.jpg\",\"/FotosEnPublicaciones/epigrafe73.png\",\"/FotosEnPublicaciones/IconoNoLineal.png\",\"/FotosEnPublicaciones/Listado Barranca Abajo.jpg\",\"/FotosEnPublicaciones/Patron Lineal.png\",\"/FotosEnPublicaciones/Patron LinealX.png\",\"/FotosEnPublicaciones/Patron LinealY.png\"]', NULL, '[]'),
+(100, 5, '', '2024-06-16', '[]', '[\"/FotosEnPublicaciones/Barranca Abajo Cassette.jpg\",\"/FotosEnPublicaciones/Barranca Abajo.jpg\",\"/FotosEnPublicaciones/IconoNoLineal.png\",\"/FotosEnPublicaciones/Listado Barranca Abajo.jpg\"]', NULL, '[]'),
+(102, 5, '', '2024-06-16', '[]', '{\"rutasImagenes\":[\"/FotosEnPublicaciones/Anarcocapitalismo.png\",\"/FotosEnPublicaciones/Barranca Abajo  CD.jpg\",\"/FotosEnPublicaciones/Barranca Abajo Cassette.jpg\",\"/FotosEnPublicaciones/Base de Datos - CMS.png\",\"/FotosEnPublicaciones/epigrafe73.png\",\"/FotosEnPublicaciones/IconoNoLineal.png\"],\"rutasImagenesNoticias\":[]}', NULL, '[]'),
+(103, 5, '', '2024-06-16', '[]', '[\"/FotosEnPublicaciones/Barranca Abajo  CD.jpg\",\"/FotosEnPublicaciones/Barranca Abajo Cassette.jpg\",\"/FotosEnPublicaciones/epigrafe73.png\",\"/FotosEnPublicaciones/IconoNoLineal.png\"]', NULL, '[]'),
+(104, 5, '<p>que lugar ocupas</p>', '2024-06-16', '[]', '[]', NULL, '[]'),
+(105, 5, '<p>que lugar ocupas in mi mint</p>', '2024-06-16', '[]', '[]', NULL, '[]'),
+(106, 5, '<p></p>', '2024-06-16', '[]', '[\"/FotosEnPublicaciones/Barranca Abajo  CD.jpg\"]', NULL, '[]'),
+(107, 5, '<p>fdgdfgd fg</p>', '2024-06-16', '[]', '[]', NULL, '[]'),
+(108, 5, '<p>sdfsdfdfsf</p>', '2024-06-16', '[]', '[]', NULL, '[]'),
+(109, 5, '<p>asdad</p>', '2024-06-16', '[]', '[]', NULL, '[]'),
+(110, 5, '<p>dasdas da </p>', '2024-06-16', '[]', '[]', NULL, '[]'),
+(111, 5, '<p>asdasd</p>', '2024-06-16', '[]', '[]', NULL, '[]'),
+(112, 5, '<p>a sdas da s</p>', '2024-06-16', '[]', '[]', NULL, '[]'),
+(127, 4, '<p>fg</p>', '2024-06-16', '[]', '[]', NULL, '[]'),
+(134, 5, '', '2024-06-17', '[]', '[\"/FotosEnPublicaciones/2024-05-27 23-54-23.mp4\"]', NULL, '[]'),
+(136, 6, '<p>NO NO NO</p><p></p>', '2024-06-18', '[]', '[]', NULL, '[]'),
+(137, 6, '<p>NO NO NO</p><p></p>', '2024-06-18', '[]', '[]', NULL, '[]'),
+(138, 6, '<p>NO NO NO</p><p></p>', '2024-06-18', '[]', '[]', NULL, '[]'),
+(139, 6, '<p>NO NO NO</p><p></p>', '2024-06-18', '[]', '[]', NULL, '[]'),
+(140, 6, '<p>no es una ilucion</p><p></p>', '2024-06-18', '[]', '[]', NULL, '[]'),
+(141, 6, '<p>MIREN QUE LE HABRA PASADO</p><p></p>', '2024-06-18', '[]', '[]', NULL, '[]'),
+(143, 6, '<p>asd</p>', '2024-06-18', '[]', '[]', NULL, '[]'),
+(146, 6, '<p><strong><em><u>dfdfd</u></em></strong></p>', '2024-06-18', '[]', '[]', NULL, '[]');
 
 -- --------------------------------------------------------
 
@@ -455,73 +582,73 @@ ALTER TABLE `asignaciones_roles_permisos`
 -- AUTO_INCREMENT de la tabla `ciudades`
 --
 ALTER TABLE `ciudades`
-  MODIFY `id_ciudad` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_ciudad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `codigos_postales`
 --
 ALTER TABLE `codigos_postales`
-  MODIFY `id_codigo_postal` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_codigo_postal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `direcciones`
 --
 ALTER TABLE `direcciones`
-  MODIFY `id_direccion` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_direccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `estados`
 --
 ALTER TABLE `estados`
-  MODIFY `id_estado` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_estado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `generos`
 --
 ALTER TABLE `generos`
-  MODIFY `id_genero` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_genero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `interfaces`
 --
 ALTER TABLE `interfaces`
-  MODIFY `id_interfaz` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_interfaz` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de la tabla `municipios`
 --
 ALTER TABLE `municipios`
-  MODIFY `id_municipio` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_municipio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `nacionalidades`
 --
 ALTER TABLE `nacionalidades`
-  MODIFY `id_nacionalidad` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_nacionalidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT de la tabla `noticias`
 --
 ALTER TABLE `noticias`
-  MODIFY `id_noticia` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_noticia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
 
 --
 -- AUTO_INCREMENT de la tabla `options`
 --
 ALTER TABLE `options`
-  MODIFY `id_option` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_option` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT de la tabla `paises`
 --
 ALTER TABLE `paises`
-  MODIFY `id_pais` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_pais` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `parroquias`
 --
 ALTER TABLE `parroquias`
-  MODIFY `id_parroquia` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_parroquia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `permisos`
@@ -533,19 +660,19 @@ ALTER TABLE `permisos`
 -- AUTO_INCREMENT de la tabla `personas`
 --
 ALTER TABLE `personas`
-  MODIFY `id_persona` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_persona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT de la tabla `publicaciones`
 --
 ALTER TABLE `publicaciones`
-  MODIFY `id_publicacion` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_publicacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=147;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- Restricciones para tablas volcadas
