@@ -76,7 +76,7 @@ export const PUT = async (request) => {
       const actualizacionPerfil = await cmsConexion.query(
         consultaActualizacionPerfil,
         [
-          elementosActualizar.descripcion_personal.replace(/<.*?>/g, ""),
+          elementosActualizar.descripcion_personal,
           verificacionCookie.correoElectronicoDeUsuario,
         ]
       );
