@@ -153,7 +153,7 @@ const Post = ({ post, nombreDeUsuario, usuario, enviandoBorrado }) => {
                       </>
                     </>
                   )}
-                  {usuario?.idRol !== 1 && usuario !== undefined ? (
+                  {usuario?.idRol === 1 && usuario !== undefined ? (
                     <>
                       <section
                         className={`${stylesPost.enlace} ${stylesPost.seccionBorrar} ${stylesPost.usuarioPerfil}`}
