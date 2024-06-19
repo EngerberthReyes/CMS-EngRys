@@ -249,107 +249,104 @@ const Contactanos = () => {
                 <h1 style={{ textAlign: "center", marginBottom: "4%" }}>
                   Contáctanos
                 </h1>
-                {!usuario && (
-                  <section>
-                    <>
-                      <form onSubmit={handleSubmit(enviarDatos)}>
-                        <h3 style={{ marginBottom: "4%" }}>
-                          Nombre y Apellido:{" "}
-                          <input
-                            type="text"
-                            className={`${stylesContactanos.input_texto} rounded-2`}
-                            name="nombre"
-                            {...register("nombre", {
-                              required: "El nombre es requerido",
-                            })}
-                          />
-                          {errors.nombre && (
-                            <p style={{ color: "red" }}>
-                              {errors.nombre.message}
-                            </p>
-                          )}
-                        </h3>
-                        <h3 style={{ marginBottom: "4%" }}>
-                          Asunto:{" "}
-                          <input
-                            type="text"
-                            className={`${stylesContactanos.input_texto} rounded-2`}
-                            name="asunto"
-                            {...register("asunto", {
-                              required: "El asunto es requerido",
-                            })}
-                          />
-                          {errors.asunto && (
-                            <p style={{ color: "red" }}>
-                              {errors.asunto.message}
-                            </p>
-                          )}
-                        </h3>
-                        <h3 style={{ marginBottom: "4%" }}>
-                          Mensaje:{" "}
-                          <textarea
-                            name="mensaje"
-                            className={`${stylesContactanos.input_texto} rounded-2`}
-                            {...register("mensaje", {
-                              required: "El mensaje es requerido",
-                            })}
-                          />
-                          {errors.mensaje && (
-                            <p style={{ color: "red" }}>
-                              {errors.mensaje.message}
-                            </p>
-                          )}
-                        </h3>
-                        <h3 style={{ marginBottom: "4%" }}>
-                          Su Correo Electrónico:{" "}
-                          <input
-                            type="email"
-                            className={`${stylesContactanos.input_texto} rounded-2`}
-                            name="correo"
-                            {...register("correo", {
-                              required: "El correo electrónico es requerido",
-                              pattern: {
-                                value:
-                                  /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
-                                message:
-                                  "El formato del correo electrónico no es válido",
-                              },
-                            })}
-                          />
-                          {errors.correo && (
-                            <p style={{ color: "red" }}>
-                              {errors.correo.message}
-                            </p>
-                          )}
-                        </h3>
-                        <h3 style={{ marginBottom: "4%" }}>
-                          Teléfono:{" "}
-                          <input
-                            type="number"
-                            className={`${stylesContactanos.input_texto} rounded-2`}
-                            name="telefono"
-                            {...register("telefono", {
-                              required: "El teléfono es requerido",
-                              pattern: {
-                                value: /^[0-9]+$/,
-                                message:
-                                  "El teléfono solo debe contener números",
-                              },
-                            })}
-                          />
-                          {errors.telefono && (
-                            <p style={{ color: "red" }}>
-                              {errors.telefono.message}
-                            </p>
-                          )}
-                        </h3>
-                        <button type="submit" style={{ marginTop: "10px" }}>
-                          Enviar Correo
-                        </button>
-                      </form>
-                    </>
-                  </section>
-                )}
+                <section>
+                  <>
+                    <form onSubmit={handleSubmit(enviarDatos)}>
+                      <h3 style={{ marginBottom: "4%" }}>
+                        Nombre y Apellido:{" "}
+                        <input
+                          type="text"
+                          className={`${stylesContactanos.input_texto} rounded-2`}
+                          name="nombre"
+                          {...register("nombre", {
+                            required: "El nombre es requerido",
+                          })}
+                        />
+                        {errors.nombre && (
+                          <p style={{ color: "red" }}>
+                            {errors.nombre.message}
+                          </p>
+                        )}
+                      </h3>
+                      <h3 style={{ marginBottom: "4%" }}>
+                        Asunto:{" "}
+                        <input
+                          type="text"
+                          className={`${stylesContactanos.input_texto} rounded-2`}
+                          name="asunto"
+                          {...register("asunto", {
+                            required: "El asunto es requerido",
+                          })}
+                        />
+                        {errors.asunto && (
+                          <p style={{ color: "red" }}>
+                            {errors.asunto.message}
+                          </p>
+                        )}
+                      </h3>
+                      <h3 style={{ marginBottom: "4%" }}>
+                        Mensaje:{" "}
+                        <textarea
+                          name="mensaje"
+                          className={`${stylesContactanos.input_texto} rounded-2`}
+                          {...register("mensaje", {
+                            required: "El mensaje es requerido",
+                          })}
+                        />
+                        {errors.mensaje && (
+                          <p style={{ color: "red" }}>
+                            {errors.mensaje.message}
+                          </p>
+                        )}
+                      </h3>
+                      <h3 style={{ marginBottom: "4%" }}>
+                        Su Correo Electrónico:{" "}
+                        <input
+                          type="email"
+                          className={`${stylesContactanos.input_texto} rounded-2`}
+                          name="correo"
+                          {...register("correo", {
+                            required: "El correo electrónico es requerido",
+                            pattern: {
+                              value:
+                                /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/,
+                              message:
+                                "El formato del correo electrónico no es válido",
+                            },
+                          })}
+                        />
+                        {errors.correo && (
+                          <p style={{ color: "red" }}>
+                            {errors.correo.message}
+                          </p>
+                        )}
+                      </h3>
+                      <h3 style={{ marginBottom: "4%" }}>
+                        Teléfono:{" "}
+                        <input
+                          type="number"
+                          className={`${stylesContactanos.input_texto} rounded-2`}
+                          name="telefono"
+                          {...register("telefono", {
+                            required: "El teléfono es requerido",
+                            pattern: {
+                              value: /^[0-9]+$/,
+                              message: "El teléfono solo debe contener números",
+                            },
+                          })}
+                        />
+                        {errors.telefono && (
+                          <p style={{ color: "red" }}>
+                            {errors.telefono.message}
+                          </p>
+                        )}
+                      </h3>
+                      <button type="submit" style={{ marginTop: "10px" }}>
+                        Enviar Correo
+                      </button>
+                    </form>
+                  </>
+                </section>
               </section>
             </section>
             <section
