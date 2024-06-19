@@ -239,8 +239,6 @@ const Post = ({ post, nombreDeUsuario, usuario, enviandoBorrado }) => {
                                   src={archivo}
                                   style={{
                                     objectFit: "contain",
-                                    width: "50%",
-                                    margin: "0 auto",
                                   }}
                                   property
                                   fill
