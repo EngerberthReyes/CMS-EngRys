@@ -9,6 +9,7 @@ import Details from "@/componentes/tiptap/DetailsDos";
 import { Tiptap } from "@/componentes/tiptap/TipTap";
 import { useRouter } from "next/navigation";
 import stylesInicio from "./CSS/styles-inicio.module.css";
+import useSWR from "swr";
 
 const Inicio = () => {
   console.log("Nuevo Mensaje");
@@ -101,6 +102,7 @@ const Inicio = () => {
       }
     } catch (error) {
       console.log(error);
+      window.location.reload();
     } finally {
       setInterruptorCambio(false);
     }
@@ -230,8 +232,7 @@ const Inicio = () => {
                       }
                     />
                   )}
-                  {interruptorCambio &&
-                    usuario?.idRol !== 2 &&
+                  {usuario?.idRol !== 2 &&
                     usuario?.idRol !== 3 &&
                     usuario !== undefined && (
                       <>
