@@ -127,7 +127,6 @@ const Post = ({ post, nombreDeUsuario, usuario, enviandoBorrado }) => {
                                 border: "none",
                                 wordBreak: "keep-all",
                                 height: "4rem",
-                                width: "22rem",
                                 margin: "0 0 1rem 0",
                                 display: "flex",
                                 justifyContent: "center",
