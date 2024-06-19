@@ -389,7 +389,7 @@ const Contactanos = () => {
             >
               <section className={stylesContactanos.seccionAjustes}>
                 <h1 style={{ textAlign: "center", marginBottom: "4%" }}>
-                  Nuestas Redes Sociales
+                  Nuestras Redes Sociales
                 </h1>
                 <section>
                   {isEditing &&
