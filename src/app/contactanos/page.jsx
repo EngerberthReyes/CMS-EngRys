@@ -353,7 +353,7 @@ const Contactanos = () => {
               className={stylesContactanos.seccionSecundaria}
               style={{
                 width: "50rem",
-                height: "40rem",
+                height: "82vh",
                 margin: "0 1rem",
                 display: "flex",
                 flexDirection: "column",
