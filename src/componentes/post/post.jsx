@@ -24,23 +24,6 @@ const Post = ({ post, nombreDeUsuario, usuario, enviandoBorrado }) => {
     }
   };
 
-  let previewTimeout = null;
-
-  const video = document.querySelector(".videoa");
-
-  const startPreview = () => {
-    video.muted = true;
-    video.currentTime = 1;
-    video.playbackRate = 1;
-    video.play();
-  };
-
-  const stopPreview = () => {
-    video.currentTime = 0;
-    video.playbackRate = 1;
-    video.pause();
-  };
-
   return (
     <>
       {post.length > 0
@@ -252,21 +235,9 @@ const Post = ({ post, nombreDeUsuario, usuario, enviandoBorrado }) => {
                             {archivo.includes(".mp4") ? (
                               <>
                                 <video
-                                  className={`${stylesPost.imagen} videoa`}
+                                  className={stylesPost.imagen}
                                   src={archivo}
                                   style={{ objectFit: "contain" }}
-                                  onMouseOut={() => {
-                                    clearTimeout(previewTimeout);
-                                    previewTimeout = null;
-                                    stopPreview();
-                                  }}
-                                  onMouseOver={(e) => {
-                                    startPreview();
-                                    previewTimeout = setTimeout(
-                                      stopPreview,
-                                      5000
-                                    );
-                                  }}
                                   property
                                   fill
                                   controls

@@ -29,23 +29,6 @@ const NoticiasPublicadas = ({
     }
   };
 
-  let previewTimeout = null;
-
-  const video = document.querySelector(".video");
-
-  const startPreviewa = () => {
-    video.muted = true;
-    video.currentTime = 1;
-    video.playbackRate = 1;
-    video.play();
-  };
-
-  const stopPreviewa = () => {
-    video.currentTime = 0;
-    video.playbackRate = 1;
-    video.pause();
-  };
-
   return (
     <>
       {noticia.length > 0
@@ -216,21 +199,9 @@ const NoticiasPublicadas = ({
                             {archivo.includes(".mp4") ? (
                               <>
                                 <video
-                                  className={`${stylesPost.imagen} video`}
+                                  className={stylesPost.imagen}
                                   src={archivo}
                                   style={{ objectFit: "contain" }}
-                                  onMouseOut={() => {
-                                    clearTimeout(previewTimeout);
-                                    previewTimeout = null;
-                                    stopPreviewa();
-                                  }}
-                                  onMouseOver={(e) => {
-                                    startPreviewa();
-                                    previewTimeout = setTimeout(
-                                      stopPreviewa,
-                                      5000
-                                    );
-                                  }}
                                   property
                                   fill
                                   controls
