@@ -954,7 +954,13 @@ const Noticias = () => {
                   style={{
                     display: `${noticia.length === 0 ? "none" : ""}`,
                     overflowY: "auto",
-                    height: `${usuario ? "40vh" : "76vh"}`,
+                    height: `${
+                      usuario?.idRol === 2
+                        ? "76vh"
+                        : usuario?.idRol === 1
+                        ? "40vh"
+                        : "76vh"
+                    }`,
                     position: "relative",
                     marginTop: "2%",
                     overflowX: "hidden",
