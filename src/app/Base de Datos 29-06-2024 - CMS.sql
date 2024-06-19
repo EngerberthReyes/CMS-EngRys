@@ -188,19 +188,35 @@ CREATE TABLE `options` (
 --
 
 INSERT INTO `options` (`id_option`, `id_interfaz`, `id_persona`, `titulo`, `contenido`) VALUES
-(1, 2, 1, 'La PC Gamer de Tus S', 'sfd'),
-(2, 3, 1, 'Innovación', 'https://x.com/perfil/epicomputers'),
-(3, 3, 1, 'Calidad', 'https://x.com/perfil/epicomputers'),
-(4, 3, 1, 'Servicio al Cliente', 'https://x.com/perfil/epicomputers'),
-(5, 3, 1, 'Responsabilidad Soci', 'https://x.com/perfil/epicomputers'),
-(6, 3, 1, 'Historia', 'https://x.com/perfil/epicomputers'),
-(7, 3, 1, 'Misión', 'https://x.com/perfil/epicomputers'),
-(8, 3, 1, 'Visión', 'https://x.com/perfil/epicomputers'),
-(9, 4, 1, 'correo_electronico', 'https://x.com/perfil/epicomputers'),
-(10, 4, 1, 'telefono', 'https://x.com/perfil/epicomputers'),
-(11, 4, 1, 'instagram', 'htsaasdfdfperfil/epicomputers'),
-(12, 4, 1, 'facebook', 'httpasdasdadasd/perfil/epicomputers'),
-(13, 4, 1, 'X', 'nosxde xd');
+(1, 2, 1,  'La PC Gamer de Tus Sueños',
+    '<p>En Epícomputers, nos dedicamos a ofrecer soluciones tecnológicas de vanguardia, adaptadas a las necesidades de cada uno de nuestros clientes. Con un compromiso firme hacia la calidad, la innovación y el servicio excepcional, nos hemos establecido como un referente en el mercado de computadoras y tecnología.</p>'
+  ),
+(2, 3, 1, 'Innovación',
+    'Innovación: En Epícomputers, la innovación es el núcleo de todo lo que hacemos. Entendemos que el mundo de la tecnología avanza rápidamente y que para mantenernos a la vanguardia, debemos adoptar continuamente nuevas ideas y métodos. Por eso, nos dedicamos a explorar y desarrollar las tecnologías más avanzadas para ofrecerte soluciones de última generación.'
+  ),
+(3, 3, 1, 'Calidad',
+    'Calidad: Nos esforzamos por ofrecer productos y servicios de la más alta calidad, garantizando la satisfacción de nuestros clientes.'
+  ),
+(4, 3, 1, 'Servicio al Cliente',
+    'Servicio al Cliente: Priorizamos el trato personalizado y la atención detallada a nuestros clientes, entendiendo que cada proyecto es único y requiere un enfoque individualizado.'
+  ),
+(5, 3, 1,  'Responsabilidad Social',
+    'Responsabilidad Social: Reconocemos nuestro papel en la comunidad y nos comprometemos a contribuir positivamente a través de iniciativas sociales y educativas.'
+  ),
+(6, 3, 1,  'Historia',
+    '<p>EpíComputers es una empresa que ha estado involucrada en el desarrollo y ventas de computadoras desde 2024. A lo largo de su historia, han producido una variedad de sistemas informáticos, incluyendo microcomputadoras personales (PCs), servidores y dispositivos de almacenamiento. La compañía se destacó por sus innovaciones en hardware y software, especialmente en el ámbito de las computadoras para uso profesional y empresarial.</p>'
+  ),
+(7, 3, 1, 'Misión',
+    'Ofrecer una amplia gama de computadoras y productos tecnológicos de alta calidad a precios asequibles, con el objetivo de mejorar la vida cotidiana de nuestros clientes y facilitar su acceso a la tecnología. Nos comprometemos a brindar un excelente servicio al cliente, innovar constantemente en nuestros productos y procesos, y operar de manera sostenible para contribuir positivamente a nuestras comunidades.'
+  ),
+(8, 3, 1, 'Visión',
+    'Aspiramos a liderar el mercado de computadoras mediante la innovación constante, la excelencia en el servicio y la construcción de relaciones duraderas basadas en la confianza y el respeto mutuo. Queremos ser reconocidos no solo por nuestras soluciones tecnológicas avanzadas, sino también por nuestra contribución a la sociedad a través de la promoción de la educación y el acceso a la tecnología.'
+  );
+(9, 4, 1, 'correo_electronico', 'engerberthr73@gmail.com'),
+(10, 4, 1, 'telefono', '+58 2024202420242024'),
+(11, 4, 1, 'instagram', https://instagram/epicomputers'),
+(12, 4, 1, 'facebook', https://facebook/perfil/epicomputers'),
+(13, 4, 1, 'X', ‘https://x/epicomputers’);
 
 -- --------------------------------------------------------
 
