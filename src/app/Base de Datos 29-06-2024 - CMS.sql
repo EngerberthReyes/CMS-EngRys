@@ -45,18 +45,6 @@ CREATE TABLE `ciudades` (
   `nombre_ciudad` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Volcado de datos para la tabla `ciudades`
---
-
-INSERT INTO `ciudades` (`id_ciudad`, `id_estado`, `nombre_ciudad`) VALUES
-(1, 1, 'Abu Qir'),
-(2, 2, '2'),
-(3, 3, 'Falmouth'),
-(4, 4, 'Caála'),
-(5, 5, 'La que tu quieras xd'),
-(6, 6, 'Caconda');
-
 -- --------------------------------------------------------
 
 --
@@ -68,18 +56,6 @@ CREATE TABLE `codigos_postales` (
   `id_parroquia` int(11) DEFAULT NULL,
   `numero_codigo_postal` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Volcado de datos para la tabla `codigos_postales`
---
-
-INSERT INTO `codigos_postales` (`id_codigo_postal`, `id_parroquia`, `numero_codigo_postal`) VALUES
-(1, 1, NULL),
-(2, 2, NULL),
-(3, 3, NULL),
-(4, 4, NULL),
-(5, 5, 2222),
-(6, 6, NULL);
 
 -- --------------------------------------------------------
 
@@ -93,18 +69,6 @@ CREATE TABLE `direcciones` (
   `direccion_completa` varchar(200) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Volcado de datos para la tabla `direcciones`
---
-
-INSERT INTO `direcciones` (`id_direccion`, `id_codigo_postal`, `direccion_completa`) VALUES
-(1, 1, 'AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'),
-(2, 2, '34534534535345haushdasd'),
-(3, 3, '32423423423423'),
-(4, 4, 'a'),
-(5, 5, 'Dirección Cualquiera'),
-(6, 6, 'XD');
-
 -- --------------------------------------------------------
 
 --
@@ -116,18 +80,6 @@ CREATE TABLE `estados` (
   `id_pais` int(11) NOT NULL,
   `nombre_estado` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Volcado de datos para la tabla `estados`
---
-
-INSERT INTO `estados` (`id_estado`, `id_pais`, `nombre_estado`) VALUES
-(1, 1, 'algo'),
-(2, 2, 'Saint asdasdA'),
-(3, 3, 'Saint John Parish'),
-(4, 4, 'Cuanza Sul'),
-(5, 5, 'XD'),
-(6, 6, 'Bié Province');
 
 -- --------------------------------------------------------
 
@@ -181,18 +133,6 @@ CREATE TABLE `municipios` (
   `nombre_municipio` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Volcado de datos para la tabla `municipios`
---
-
-INSERT INTO `municipios` (`id_municipio`, `id_ciudad`, `nombre_municipio`) VALUES
-(1, 1, NULL),
-(2, 2, NULL),
-(3, 3, NULL),
-(4, 4, NULL),
-(5, 5, 'Algo mas que hacer'),
-(6, 6, NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -228,18 +168,6 @@ CREATE TABLE `noticias` (
   `urlVideo` varchar(2000) DEFAULT NULL,
   `video` varchar(2000) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Volcado de datos para la tabla `noticias`
---
-
-INSERT INTO `noticias` (`id_noticia`, `id_persona`, `descripcion_noticia`, `fecha`, `enlace`, `imagen`, `urlVideo`, `video`) VALUES
-(33, 5, '<p>sdfsdf</p>', '2024-06-16', '[]', '[]', '[]', NULL),
-(37, 5, '', '2024-06-16', '[]', '[\"/FotosenNoticias/Barranca Abajo Cassette.jpg\"]', '[]', NULL),
-(40, 4, '<p>xd</p>', '2024-06-16', '[]', '[]', '[]', NULL),
-(41, 4, '<p>sdsd</p>', '2024-06-16', '[]', '[]', '[]', NULL),
-(42, 6, '', '2024-06-18', '[]', '[\"/FotosenNoticias/Barranca Abajo Cassette.jpg\"]', '[]', NULL),
-(43, 6, '<p>xf</p>', '2024-06-18', '[]', '[]', '[]', NULL);
 
 -- --------------------------------------------------------
 
@@ -285,18 +213,6 @@ CREATE TABLE `paises` (
   `nombre_pais` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Volcado de datos para la tabla `paises`
---
-
-INSERT INTO `paises` (`id_pais`, `nombre_pais`) VALUES
-(1, 'Egypt'),
-(2, 'sdasdasdasdad'),
-(3, 'Antigua and Barbuda'),
-(4, 'HONO'),
-(5, 'Nose '),
-(6, 'Angola');
-
 -- --------------------------------------------------------
 
 --
@@ -308,18 +224,6 @@ CREATE TABLE `parroquias` (
   `id_municipio` int(11) DEFAULT NULL,
   `nombre_parroquia` varchar(100) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Volcado de datos para la tabla `parroquias`
---
-
-INSERT INTO `parroquias` (`id_parroquia`, `id_municipio`, `nombre_parroquia`) VALUES
-(1, 1, NULL),
-(2, 2, NULL),
-(3, 3, NULL),
-(4, 4, NULL),
-(5, 5, 'Agua XD'),
-(6, 6, NULL);
 
 -- --------------------------------------------------------
 
@@ -361,18 +265,6 @@ CREATE TABLE `personas` (
   `url_imagen_pagina` blob DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
---
--- Volcado de datos para la tabla `personas`
---
-
-INSERT INTO `personas` (`id_persona`, `id_genero`, `id_rol`, `id_nacionalidad`, `id_direccion`, `nombre`, `apellido`, `cedula`, `fotoPerfil`, `fecha_nacimiento`, `correo_electronico`, `clave`, `descripcion_personal`, `facebook`, `instagram`, `x`, `tiktok`, `sitio_web`, `url_imagen_pagina`) VALUES
-(1, 1, 2, 1, 1, 'Engerberth Reyes', 'A A', 30434485, '/FotosDePerfil/Barranca Abajo.jpg', '2020-05-10', 'reyes.epete14@gmail.com', '$2a$11$A6HssXomUUrFx/MSGC5fYeD.Wn0TQtCepCdWWddy6fVxK4UJRtbTy', NULL, '', 'https://instagram.com/login', '', '', 'https://www.youtube.com', 0x626c6f623a687474703a2f2f6c6f63616c686f73743a333030302f32316562373965342d353838352d343561392d396230342d346639323939356335323261),
-(2, 1, 2, 2, 2, 'Engerberth Reyes Javier Boxil', 'sdfsdfsdfBoxil undefined', 30434485, '/FotosDePerfil/Base de Datos - CMS.png', '2024-08-27', 'engerberthr73@gmail.com', '$2a$11$a5DsrHu3emM8fnDoTCeFqOPeANA7nTWM8VP1G8AC9ydWtzX4GUkH.', NULL, '', '', '', '', '', NULL),
-(3, 1, 2, 1, 3, 'asdasd', 'asdasdasd', 323423, '/FotosDePerfil/Barranca Abajo.jpg', '2024-06-04', 'engerberthr373@gmail.com', '$2a$11$f8/IR4YzU7BSscSFdELjHujoUkj24nOYe8D9VvojENpV79bEfszAi', NULL, '', '', '', '', '', NULL),
-(4, 1, 2, 1, 4, 'Javier Reyes Boxil', 'Reyes Boxil', 30434485, '/FotosDePerfil/PCGamer.png', '2024-06-11', 'a@gmail.com', '$2a$11$pzx3fJ9BTVz7V9nxQvGTC.NE9sffJqQKlJ32DsDNRbZcwMncYxffy', NULL, 'https://facebook.com/FACEBOOK', 'https://instagram.com/instagram', 'https://x.com/x', 'https://tiktok.xdxd/@tiktok', 'https://YOUTUBE.com', 0x626c6f623a687474703a2f2f6c6f63616c686f73743a333030302f65333263383864642d303133312d343366662d623236662d366565326335643532343964),
-(5, 1, 2, 2, 5, 'Engerberth Javier Reyes Boxil', 'Reyes Boxil', 30434487, '/FotosDePerfil/Base de Datos - CMS.png', '2024-06-04', 'engerberthreyes@gmail.com', '$2a$11$LfqpFCCO1EjDZ8vwjaJBwOefKgU6yM0TpQrgZvWvVzTOHNspX0qNS', '4654654646', 'https://facebook.com/Pablo', 'https://instagram.com/c', 'https://x.com/c', 'https://tiktok.com/@a', 'esto es un sitio web', 0x626c6f623a687474703a2f2f6c6f63616c686f73743a333030302f31663563396235362d383362302d346661332d616639322d353531646666363034623436),
-(6, 1, 2, 1, 6, 'Engerberth Reyes No Exisrias', 'XD', 30434485, '/FotosDePerfil/Anarcocapitalismo.png', '2024-05-28', 'i@gmail.com', '$2a$11$JsuCZtcClpkRkgjXsCf9.O5eAW4HonLfjvYVYTg8oi5Nc0x2K6tni', '<p><u>xdxdxd</u></p>', '', '', '', '', '', NULL);
-
 -- --------------------------------------------------------
 
 --
@@ -389,41 +281,6 @@ CREATE TABLE `publicaciones` (
   `video` varchar(255) DEFAULT NULL,
   `urlVideo` varchar(500) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Volcado de datos para la tabla `publicaciones`
---
-
-INSERT INTO `publicaciones` (`id_publicacion`, `id_persona`, `descripcion_publicacion`, `fecha`, `enlace`, `imagen`, `video`, `urlVideo`) VALUES
-(93, 5, '<p>d</p>', '2024-06-16', '[]', '[]', NULL, '[]'),
-(94, 5, '<p>sdfsdf</p>', '2024-06-16', '[]', '[]', NULL, '[]'),
-(95, 5, '<p>xdxdxd</p>', '2024-06-16', '[]', '[]', NULL, '[]'),
-(96, 5, '<p>xdxdxdxd</p>', '2024-06-16', '[]', '[\"/FotosEnPublicaciones/Barranca Abajo  CD.jpg\"]', NULL, '[]'),
-(97, 5, '<p>asdad</p>', '2024-06-16', '[]', '[]', NULL, '[]'),
-(98, 5, '<p>sd</p>', '2024-06-16', '[]', '[\"/FotosEnPublicaciones/Barranca Abajo Cassette.jpg\"]', NULL, '[]'),
-(99, 5, '', '2024-06-16', '[]', '[\"/FotosEnPublicaciones/Barranca Abajo  CD.jpg\",\"/FotosEnPublicaciones/Barranca Abajo Cassette.jpg\",\"/FotosEnPublicaciones/Barranca Abajo.jpg\",\"/FotosEnPublicaciones/epigrafe73.png\",\"/FotosEnPublicaciones/IconoNoLineal.png\",\"/FotosEnPublicaciones/Listado Barranca Abajo.jpg\",\"/FotosEnPublicaciones/Patron Lineal.png\",\"/FotosEnPublicaciones/Patron LinealX.png\",\"/FotosEnPublicaciones/Patron LinealY.png\"]', NULL, '[]'),
-(100, 5, '', '2024-06-16', '[]', '[\"/FotosEnPublicaciones/Barranca Abajo Cassette.jpg\",\"/FotosEnPublicaciones/Barranca Abajo.jpg\",\"/FotosEnPublicaciones/IconoNoLineal.png\",\"/FotosEnPublicaciones/Listado Barranca Abajo.jpg\"]', NULL, '[]'),
-(102, 5, '', '2024-06-16', '[]', '{\"rutasImagenes\":[\"/FotosEnPublicaciones/Anarcocapitalismo.png\",\"/FotosEnPublicaciones/Barranca Abajo  CD.jpg\",\"/FotosEnPublicaciones/Barranca Abajo Cassette.jpg\",\"/FotosEnPublicaciones/Base de Datos - CMS.png\",\"/FotosEnPublicaciones/epigrafe73.png\",\"/FotosEnPublicaciones/IconoNoLineal.png\"],\"rutasImagenesNoticias\":[]}', NULL, '[]'),
-(103, 5, '', '2024-06-16', '[]', '[\"/FotosEnPublicaciones/Barranca Abajo  CD.jpg\",\"/FotosEnPublicaciones/Barranca Abajo Cassette.jpg\",\"/FotosEnPublicaciones/epigrafe73.png\",\"/FotosEnPublicaciones/IconoNoLineal.png\"]', NULL, '[]'),
-(104, 5, '<p>que lugar ocupas</p>', '2024-06-16', '[]', '[]', NULL, '[]'),
-(105, 5, '<p>que lugar ocupas in mi mint</p>', '2024-06-16', '[]', '[]', NULL, '[]'),
-(106, 5, '<p></p>', '2024-06-16', '[]', '[\"/FotosEnPublicaciones/Barranca Abajo  CD.jpg\"]', NULL, '[]'),
-(107, 5, '<p>fdgdfgd fg</p>', '2024-06-16', '[]', '[]', NULL, '[]'),
-(108, 5, '<p>sdfsdfdfsf</p>', '2024-06-16', '[]', '[]', NULL, '[]'),
-(109, 5, '<p>asdad</p>', '2024-06-16', '[]', '[]', NULL, '[]'),
-(110, 5, '<p>dasdas da </p>', '2024-06-16', '[]', '[]', NULL, '[]'),
-(111, 5, '<p>asdasd</p>', '2024-06-16', '[]', '[]', NULL, '[]'),
-(112, 5, '<p>a sdas da s</p>', '2024-06-16', '[]', '[]', NULL, '[]'),
-(127, 4, '<p>fg</p>', '2024-06-16', '[]', '[]', NULL, '[]'),
-(134, 5, '', '2024-06-17', '[]', '[\"/FotosEnPublicaciones/2024-05-27 23-54-23.mp4\"]', NULL, '[]'),
-(136, 6, '<p>NO NO NO</p><p></p>', '2024-06-18', '[]', '[]', NULL, '[]'),
-(137, 6, '<p>NO NO NO</p><p></p>', '2024-06-18', '[]', '[]', NULL, '[]'),
-(138, 6, '<p>NO NO NO</p><p></p>', '2024-06-18', '[]', '[]', NULL, '[]'),
-(139, 6, '<p>NO NO NO</p><p></p>', '2024-06-18', '[]', '[]', NULL, '[]'),
-(140, 6, '<p>no es una ilucion</p><p></p>', '2024-06-18', '[]', '[]', NULL, '[]'),
-(141, 6, '<p>MIREN QUE LE HABRA PASADO</p><p></p>', '2024-06-18', '[]', '[]', NULL, '[]'),
-(143, 6, '<p>asd</p>', '2024-06-18', '[]', '[]', NULL, '[]'),
-(146, 6, '<p><strong><em><u>dfdfd</u></em></strong></p>', '2024-06-18', '[]', '[]', NULL, '[]');
 
 -- --------------------------------------------------------
 
@@ -582,73 +439,73 @@ ALTER TABLE `asignaciones_roles_permisos`
 -- AUTO_INCREMENT de la tabla `ciudades`
 --
 ALTER TABLE `ciudades`
-  MODIFY `id_ciudad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_ciudad` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `codigos_postales`
 --
 ALTER TABLE `codigos_postales`
-  MODIFY `id_codigo_postal` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_codigo_postal` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `direcciones`
 --
 ALTER TABLE `direcciones`
-  MODIFY `id_direccion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_direccion` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `estados`
 --
 ALTER TABLE `estados`
-  MODIFY `id_estado` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_estado` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `generos`
 --
 ALTER TABLE `generos`
-  MODIFY `id_genero` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_genero` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `interfaces`
 --
 ALTER TABLE `interfaces`
-  MODIFY `id_interfaz` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_interfaz` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `municipios`
 --
 ALTER TABLE `municipios`
-  MODIFY `id_municipio` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_municipio` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `nacionalidades`
 --
 ALTER TABLE `nacionalidades`
-  MODIFY `id_nacionalidad` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id_nacionalidad` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `noticias`
 --
 ALTER TABLE `noticias`
-  MODIFY `id_noticia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=44;
+  MODIFY `id_noticia` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `options`
 --
 ALTER TABLE `options`
-  MODIFY `id_option` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id_option` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `paises`
 --
 ALTER TABLE `paises`
-  MODIFY `id_pais` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_pais` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `parroquias`
 --
 ALTER TABLE `parroquias`
-  MODIFY `id_parroquia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_parroquia` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `permisos`
@@ -660,19 +517,19 @@ ALTER TABLE `permisos`
 -- AUTO_INCREMENT de la tabla `personas`
 --
 ALTER TABLE `personas`
-  MODIFY `id_persona` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_persona` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `publicaciones`
 --
 ALTER TABLE `publicaciones`
-  MODIFY `id_publicacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=147;
+  MODIFY `id_publicacion` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- Restricciones para tablas volcadas
