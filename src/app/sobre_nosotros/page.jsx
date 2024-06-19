@@ -5,6 +5,7 @@ import Link from "next/link";
 import { useState, useEffect } from "react";
 import axios from "axios";
 import Details from "@/componentes/tiptap/DetailsTres";
+import DetailsCuatro from "@/componentes/tiptap/DetailsCuatro";
 import { Tiptap } from "@/componentes/tiptap/TipTap";
 import { useRouter } from "next/navigation";
 import "../CSS/App.css";
@@ -369,7 +370,7 @@ const SobreNosotros = () => {
                         ) : (
                           <section>
                             <h1>{item.titulo}</h1>
-                            <Details
+                            <DetailsCuatro
                               description={
                                 item?.contenido || "Descripción no disponible"
                               }
