@@ -237,6 +237,7 @@ const Post = ({ post, nombreDeUsuario, usuario, enviandoBorrado }) => {
                                 <video
                                   className={stylesPost.imagen}
                                   src={archivo}
+                                  style={{ objectFit: "contain" }}
                                   property
                                   fill
                                   controls

@@ -201,6 +201,7 @@ const NoticiasPublicadas = ({
                                 <video
                                   className={stylesPost.imagen}
                                   src={archivo}
+                                  style={{ objectFit: "contain" }}
                                   property
                                   fill
                                   controls
