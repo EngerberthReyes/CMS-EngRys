@@ -41,6 +41,9 @@ const Post = ({ post, nombreDeUsuario, usuario, enviandoBorrado }) => {
                   }}
                 >
                   {elementoPost?.id_persona !== usuario?.idPersona &&
+                  usuario !== undefined &&
+                  usuario?.idRol !== 2 &&
+                  usuario?.idRol !== 3 &&
                   usuario !== undefined ? (
                     <>
                       <Link
@@ -150,9 +153,7 @@ const Post = ({ post, nombreDeUsuario, usuario, enviandoBorrado }) => {
                       </>
                     </>
                   )}
-                  {usuario?.idRol !== 2 &&
-                  usuario?.idRol !== 3 &&
-                  usuario !== undefined ? (
+                  {usuario?.idRol !== 1 && usuario !== undefined ? (
                     <>
                       <section
                         className={`${stylesPost.enlace} ${stylesPost.seccionBorrar} ${stylesPost.usuarioPerfil}`}
