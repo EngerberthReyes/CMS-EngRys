@@ -214,9 +214,9 @@ INSERT INTO `options` (`id_option`, `id_interfaz`, `id_persona`, `titulo`, `cont
   );
 (9, 4, 1, 'correo_electronico', 'engerberthr73@gmail.com'),
 (10, 4, 1, 'telefono', '+58 2024202420242024'),
-(11, 4, 1, 'instagram', https://instagram/epicomputers'),
-(12, 4, 1, 'facebook', https://facebook/perfil/epicomputers'),
-(13, 4, 1, 'X', ‘https://x/epicomputers’);
+(11, 4, 1, 'instagram', 'https://instagram.com/epicomputers'),
+(12, 4, 1, 'facebook', 'https://facebook/perfil/epicomputers'),
+(13, 4, 1, 'X', 'https://x.com/epicomputers');
 
 -- --------------------------------------------------------
 
