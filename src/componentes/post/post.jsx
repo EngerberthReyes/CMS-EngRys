@@ -41,9 +41,7 @@ const Post = ({ post, nombreDeUsuario, usuario, enviandoBorrado }) => {
                   }}
                 >
                   {elementoPost?.id_persona !== usuario?.idPersona &&
-                  usuario !== undefined &&
-                  usuario?.idRol !== 2 &&
-                  usuario?.idRol !== 3 &&
+                  usuario?.idRol !== 1 &&
                   usuario !== undefined ? (
                     <>
                       <Link
@@ -120,48 +118,50 @@ const Post = ({ post, nombreDeUsuario, usuario, enviandoBorrado }) => {
                               </section>
                             </section>
                           </Link>
-                          {usuario?.idRol !== 2 && usuario?.idRol !== 3 && usuario !== undefined && (
-                            <section
-                              className={`${stylesPost.enlace} ${stylesPost.seccionBorrar} ${stylesPost.usuarioPerfil}`}
-                              style={{
-                                border: "none",
-                                wordBreak: "keep-all",
-                                height: "4rem",
-                                margin: "0 0 1rem 0",
-                                display: "flex",
-                                justifyContent: "center",
-                                alignItems: "center",
-                                cursor: "pointer",
-                              }}
-                              onClick={() =>
-                                borrarPublicacion(elementoPost.id_publicacion)
-                              }
-                            >
-                              <Image
-                                className={stylesPost.imagenes}
-                                width={20}
-                                height={20}
-                                style={{ height: "2rem", borderRadius: "0" }}
-                                src={"/x-solid.svg"}
-                              />
-                              <section style={{ wordBreak: "keep-all" }}>
-                                <section>Eliminar Publicación</section>
+                          {elementoPost?.id_persona === usuario?.idPersona &&
+                            usuario?.idRol !== 1 &&
+                            usuario !== undefined && (
+                              <section
+                                className={`${stylesPost.enlace} ${stylesPost.seccionBorrar} ${stylesPost.usuarioPerfil}`}
+                                style={{
+                                  border: "none",
+                                  wordBreak: "keep-all",
+                                  height: "4rem",
+                                  margin: "0 0 1rem 0",
+                                  display: "flex",
+                                  justifyContent: "center",
+                                  alignItems: "center",
+                                  cursor: "pointer",
+                                }}
+                                onClick={() =>
+                                  borrarPublicacion(elementoPost.id_publicacion)
+                                }
+                              >
+                                <Image
+                                  className={stylesPost.imagenes}
+                                  width={20}
+                                  height={20}
+                                  style={{ height: "2rem", borderRadius: "0" }}
+                                  src={"/x-solid.svg"}
+                                />
+                                <section style={{ wordBreak: "keep-all" }}>
+                                  <section>Eliminar Publicación</section>
+                                </section>
                               </section>
-                            </section>
-                          )}
+                            )}
                         </section>
                       </>
                     </>
                   )}
-                  {usuario?.idRol !== 1 && usuario !== undefined ? (
+                  {usuario?.idRol === 1 && usuario !== undefined ? (
                     <>
                       <section
                         className={`${stylesPost.enlace} ${stylesPost.seccionBorrar} ${stylesPost.usuarioPerfil}`}
                         style={{
                           border: "none",
                           wordBreak: "keep-all",
-                          height: "4rem",
                           width: "22rem",
+                          height: "4rem",
                           margin: "0 0 1rem 0",
                           display: "flex",
                           justifyContent: "center",
