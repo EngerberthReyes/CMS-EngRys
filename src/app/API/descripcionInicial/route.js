@@ -34,14 +34,18 @@ export const GET = async (request) => {
 };
 
 export const PUT = async (request) => {
+  const description = await request.json();
+  console.log(description);
   try {
-    const { description } = await request.json();
-    console.log(description);
+
+
     const consultaActualizacionPerfil = `UPDATE options AS opt SET opt.contenido = ? WHERE id_interfaz = 2;`;
     const actualizacionPerfil = await cmsConexion.query(
       consultaActualizacionPerfil,
       [description]
     );
+
+    console.log(actualizacionPerfil)
 
     const response = new NextResponse(JSON.stringify(description));
     return response;

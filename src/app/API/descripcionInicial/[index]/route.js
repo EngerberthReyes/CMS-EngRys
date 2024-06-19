@@ -36,7 +36,7 @@ export const PUT = async (request, { params: { index } }) => {
     const consultaActualizacionPerfil = `UPDATE options AS opt SET opt.contenido = ? WHERE id_option = ?;`;
     const actualizacionPerfil = await cmsConexion.query(
       consultaActualizacionPerfil,
-      [comprobacion.replace(/<.*?>/g, ""), Number(index)]
+      [comprobacion, Number(index)]
     );
     console.log(actualizacionPerfil);
     const response = new NextResponse(
