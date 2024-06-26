@@ -62,6 +62,7 @@ const Post = ({ post, nombreDeUsuario, usuario, enviandoBorrado }) => {
                           className={stylesPost.imagenes}
                           width={35}
                           height={20}
+                          style={{ objectFit: "cover" }}
                           src={
                             elementoPost?.fotoPerfil
                               ? elementoPost.fotoPerfil
@@ -105,6 +106,7 @@ const Post = ({ post, nombreDeUsuario, usuario, enviandoBorrado }) => {
                               className={stylesPost.imagenes}
                               width={35}
                               height={20}
+                              style={{ objectFit: "cover" }}
                               src={
                                 elementoPost.fotoPerfil
                                   ? elementoPost.fotoPerfil

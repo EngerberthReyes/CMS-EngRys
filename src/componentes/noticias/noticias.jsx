@@ -59,6 +59,7 @@ const NoticiasPublicadas = ({
                           className={stylesPost.imagenes}
                           width={35}
                           height={20}
+                          style={{ objectFit: "cover" }}
                           src={
                             elementoNoticia?.fotoPerfil
                               ? elementoNoticia.fotoPerfil
@@ -101,6 +102,7 @@ const NoticiasPublicadas = ({
                             className={stylesPost.imagenes}
                             width={35}
                             height={20}
+                            style={{ objectFit: "cover" }}
                             src={
                               elementoNoticia.fotoPerfil
                                 ? elementoNoticia.fotoPerfil
