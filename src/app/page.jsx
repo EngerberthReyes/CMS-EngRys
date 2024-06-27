@@ -102,8 +102,10 @@ const Inicio = () => {
       }
     } catch (error) {
       console.log(error);
-      window.location.reload();
     } finally {
+      if (descripcionInicialPersonal || descripcionInicialModificacion) {
+        window.location.reload();
+      }
       setInterruptorCambio(false);
     }
   };
