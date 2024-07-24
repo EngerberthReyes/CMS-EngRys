@@ -213,7 +213,7 @@ const Post = ({ post, nombreDeUsuario, usuario, enviandoBorrado }) => {
                   )}
                 </section>
                 {(elementoPost.imagen.length > 0 ||
-                  elementoPost.youtubeUrl.length > 0) && (
+                  elementoPost?.youtubeUrl.length > 0) && (
                   <section className={stylesPost.lineaPunteada}></section>
                 )}
                 <section className={stylesPost.seccionGridImagenes}>
@@ -258,9 +258,9 @@ const Post = ({ post, nombreDeUsuario, usuario, enviandoBorrado }) => {
                       ))}
                     </>
                   )}
-                  {elementoPost.youtubeUrl.length > 0 && (
+                  {elementoPost?.youtubeUrl.length > 0 && (
                     <section>
-                      {elementoPost.youtubeUrl.map((videoYoutube, index) => (
+                      {elementoPost?.youtubeUrl.map((videoYoutube, index) => (
                         <>
                           <iframe
                             key={elementoPost.id_publicacion}
