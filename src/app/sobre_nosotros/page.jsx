@@ -285,7 +285,13 @@ const SobreNosotros = () => {
                           }}
                         >
                           {currentEditIndex === index ? (
-                            <section className="App">
+                            <section
+                              className="App"
+                              style={{
+                                width: "auto",
+                                marginBottom: "1rem",
+                              }}
+                            >
                               <Tiptap setDescription={setDescription} />
                               <button
                                 style={{
@@ -309,7 +315,7 @@ const SobreNosotros = () => {
                             <section>
                               <Details
                                 description={
-                                  item?.contenido || "Descripción no disponible"
+                                  item?.contenido || "Descripción No Disponible"
                                 }
                               />
                               {currentEditIndex !== index &&
@@ -352,7 +358,13 @@ const SobreNosotros = () => {
                     {descriptionsA.map((item, index) => (
                       <section key={index}>
                         {currentEditIndexA === index ? (
-                          <section className="App">
+                          <section
+                            className="App"
+                            style={{
+                              width: "auto",
+                              marginBottom: "1rem",
+                            }}
+                          >
                             <Tiptap setDescription={setDescriptionA} />
                             <button
                               style={{
@@ -401,15 +413,18 @@ const SobreNosotros = () => {
                                   <label
                                     style={{
                                       cursor: "pointer",
-                                      width: "10rem",
                                     }}
                                   >
                                     <Image
                                       className={stylesNosotros.icono_edit}
                                       onClick={() => cambiarElementoA(index)}
-                                      width={50}
-                                      height={50}
-                                      style={{ width: "2rem" }}
+                                      width={100}
+                                      height={100}
+                                      style={{
+                                        color: "transparent",
+                                        width: "11rem",
+                                        height: "3rem",
+                                      }}
                                       src={`/editar-theme-black.svg`}
                                       alt="Cambiar Descripción Inicial"
                                     />
