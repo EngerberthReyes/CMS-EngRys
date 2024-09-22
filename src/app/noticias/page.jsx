@@ -947,7 +947,15 @@ const Noticias = () => {
                           </section>
                         </section>
                       </section>
-                    ) : null}
+                    ) : (
+                      <h2
+                        style={{
+                          textAlign: "center",
+                        }}
+                      >
+                        Aún No Hay Noticias Disponibles.
+                      </h2>
+                    )}
                   </section>
                 </section>
                 <section
