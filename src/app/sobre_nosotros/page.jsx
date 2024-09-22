@@ -278,7 +278,12 @@ const SobreNosotros = () => {
                   <section>
                     <ul>
                       {descriptions.map((item, index) => (
-                        <section key={index}>
+                        <section
+                          key={index}
+                          style={{
+                            textAlign: "center",
+                          }}
+                        >
                           {currentEditIndex === index ? (
                             <section className="App">
                               <Tiptap setDescription={setDescription} />
