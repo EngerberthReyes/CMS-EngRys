@@ -374,7 +374,13 @@ const SobreNosotros = () => {
                           </section>
                         ) : (
                           <section>
-                            <h1>{item.titulo}</h1>
+                            <h1
+                              style={{
+                                textAlign: "center",
+                              }}
+                            >
+                              {item.titulo}
+                            </h1>
                             <section
                               style={{
                                 display: "flex",
@@ -385,7 +391,7 @@ const SobreNosotros = () => {
                             >
                               <DetailsCuatro
                                 description={
-                                  item?.contenido || "Descripción no disponible"
+                                  item?.contenido || "Descripción No Disponible"
                                 }
                               />
                               {currentEditIndexA !== index &&
