@@ -370,31 +370,41 @@ const SobreNosotros = () => {
                         ) : (
                           <section>
                             <h1>{item.titulo}</h1>
-                            <DetailsCuatro
-                              description={
-                                item?.contenido || "Descripción no disponible"
-                              }
-                            />
-                            {currentEditIndexA !== index &&
-                              usuario?.idRol !== 2 &&
-                              usuario?.idRol !== 3 &&
-                              usuario !== undefined && (
-                                <label
-                                  style={{
-                                    cursor: "pointer",
-                                  }}
-                                >
-                                  <Image
-                                    className={stylesNosotros.icono_edit}
-                                    onClick={() => cambiarElementoA(index)}
-                                    width={50}
-                                    height={50}
-                                    style={{ width: "2rem" }}
-                                    src={`/editar-theme-black.svg`}
-                                    alt="Cambiar Descripción Inicial"
-                                  />
-                                </label>
-                              )}
+                            <section
+                              style={{
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: "space-between",
+                                gap: "1rem",
+                              }}
+                            >
+                              <DetailsCuatro
+                                description={
+                                  item?.contenido || "Descripción no disponible"
+                                }
+                              />
+                              {currentEditIndexA !== index &&
+                                usuario?.idRol !== 2 &&
+                                usuario?.idRol !== 3 &&
+                                usuario !== undefined && (
+                                  <label
+                                    style={{
+                                      cursor: "pointer",
+                                      width: "10rem",
+                                    }}
+                                  >
+                                    <Image
+                                      className={stylesNosotros.icono_edit}
+                                      onClick={() => cambiarElementoA(index)}
+                                      width={50}
+                                      height={50}
+                                      style={{ width: "2rem" }}
+                                      src={`/editar-theme-black.svg`}
+                                      alt="Cambiar Descripción Inicial"
+                                    />
+                                  </label>
+                                )}
+                            </section>
                           </section>
                         )}
                       </section>
