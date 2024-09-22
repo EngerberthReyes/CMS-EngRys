@@ -1,8 +1,8 @@
 #body::before {
-  background: url("../../../public/LunaLava.png") center center fixed;
-  filter: blur(6px);
+  background: url("../../../public/Estrellas.png") center center fixed;
   position: fixed;
   background-size: cover;
+  background-repeat: no-repeat;
   z-index: -1;
   content: "";
   position: absolute;
@@ -11,13 +11,12 @@
 }
 
 #body {
-  justify-content: flex-end;
-  align-items: flex-start;
+  justify-content: center;
+  align-items: center;
   height: 100vh;
 }
 
 .contenedor_general {
-  background: url("../../../public/Anarcocapitalismo.png") center center;
   background-position: center;
   background-repeat: no-repeat;
   background-size: cover;
@@ -25,11 +24,12 @@
   top: 0;
   right: 53%;
   height: 100vh;
-  z-index: 1000;
+  z-index: 1;
 }
 
 .contenedor_form {
   width: 50%;
+  z-index: 2;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -260,7 +260,8 @@
 @media (prefers-color-scheme: dark) {
   #body::before {
     position: fixed;
-    background: url("../../../public/LunaLava.png") center center fixed;
+    background: url("../../../public/Estrellas.png") center center fixed;
+    background-size: cover;
   }
 
   .contenedor_form {
