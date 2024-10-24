@@ -1,19 +1,17 @@
-# CMS-INU-IUJO SECCIÓN B - NEXT.JS 14 [Mini Proyecto]
+# CMS - Next.Js 14 [Proyecto]
 
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+Un CMS Donde Se Pueden Publicar Muchas Cosas. Creado con Next.JS y MySQL.
 
-## Getting Started
+Descargue o Clone El Proyecto.
 
-First, run the development server:
+Para Ejecutar:
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Usar Xampp Como Programa de Gestión de Base de Datos.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Crear una Base de Datos Llamada: cms, world y venezuela y Dentro de Ellas, Importar Los Siguientes Archivos: Base de Datos - CMS.sql / Base de Datos - Venezuela.sql / Base de Datos - world.sql
+
+Dentro de la Carpeta Usar El Comando Para Descargar Las Dependencias Con: "npm i" en Una Terminal, Una Vez Descargadas e Instaladas Las Dependencias
+
+Proceda a Ejecutar el Proyecto Usando: "npm run dev"
+
+Engerberth Reyes 2024
